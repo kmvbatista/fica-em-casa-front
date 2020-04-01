@@ -1,38 +1,91 @@
-.App {
+main {
+  flex: 1;
+}
+
+main ul {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  list-style: none;
+}
+
+@media (max-width: 650px) {
+  main ul {
+    grid-template-columns: 1fr;
+  }
+}
+
+aside {
+  width: 320px;
+  background: #fff;
+  box-shadow: 0 0 14px 0 rgba(0, 0, 0, 0.02);
+  border-radius: 2px;
+  padding: 30px 20px;
+}
+
+trong {
+  font-size: 20px;
   text-align: center;
+  display: block;
+  color: #333;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+form {
+  margin-top: 50px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+form .input-block + .input-block {
+  margin-top: 20px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+form .input-group {
+  padding: 50px;
+
+  margin-top: 20px;
+  display: grid;
+  gap: 20px;
+  grid-template-columns: 1fr 1fr;
 }
 
-.App-link {
-  color: #61dafb;
+form .input-group .input-block {
+  margin-top: 0;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+form .input-block label {
+  color: #acacac;
+  font-size: 14px;
+  font-weight: bold;
+  display: block;
+}
+
+form .input-block input {
+  padding: 50;
+  width: 50%;
+  height: 32px;
+  font-size: 14px;
+  color: #666;
+  border: 0;
+  border-bottom: 1px solid #eee;
+}
+
+form button {
+  width: 100%;
+  border: 0;
+  margin-top: 30px;
+  background: #3f51b5;
+  border-radius: 2px;
+  padding: 15px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.5s;
+}
+
+form button[type='submit']:hover {
+  background: #6931ca;
+}
+
+a:link {
+  text-decoration: none;
 }

@@ -1,9 +1,10 @@
 import React from 'react';
 import { AppBar, IconButton, Toolbar, Button } from '@material-ui/core';
+import MenuIcon from '@material-ui/icons/Menu';
 
-export default function AppBar() {
+export default function CustomAppBar() {
   return (
-    <AppBar position="static">
+    <AppBar position='static'>
       <Toolbar>
         <div
           style={{
@@ -13,13 +14,13 @@ export default function AppBar() {
             flexBasis: '100%',
           }}
         >
-          <IconButton edge="start" color="inherit" aria-label="menu">
+          <IconButton edge='start' color='inherit' aria-label='menu'>
             <MenuIcon />
           </IconButton>
-          Super
-          <Button color="inherit">Login</Button>
+          Solidarity
+          <Button color='inherit'>Login</Button>
         </div>
       </Toolbar>
     </AppBar>
   );
-};
+}

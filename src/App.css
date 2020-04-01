@@ -58,8 +58,8 @@ form .input-block label {
   display: block;
 }
 
-form .input-block input {
-  padding: 50;
+input {
+  padding: 0 16px;
   width: 50%;
   height: 32px;
   font-size: 14px;
@@ -68,7 +68,7 @@ form .input-block input {
   border-bottom: 1px solid #eee;
 }
 
-form button {
+button {
   width: 100%;
   border: 0;
   margin-top: 30px;
@@ -78,6 +78,22 @@ form button {
   font-size: 16px;
   font-weight: bold;
   color: #fff;
+  cursor: pointer;
+  transition: background 0.5s;
+}
+
+button,
+.necessity {
+  width: 50%;
+  outline: none;
+  border: 0;
+  margin-top: 5px;
+  background: #fff;
+  border-radius: 2px;
+  padding: 3px 5px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #3f51b5;
   cursor: pointer;
   transition: background 0.5s;
 }

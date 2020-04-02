@@ -39,7 +39,7 @@ form .input-block + .input-block {
 }
 
 form .input-group {
-  padding: 50px;
+  padding: 50px 0;
 
   margin-top: 20px;
   display: grid;
@@ -59,8 +59,7 @@ form .input-block label {
 }
 
 input {
-  padding: 0 16px;
-  width: 50%;
+  width: 90%;
   height: 32px;
   font-size: 14px;
   color: #666;

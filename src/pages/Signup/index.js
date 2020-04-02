@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Container, Button } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
 
+import api from '../../services/api';
 import './style.css';
 
 export default function Signup() {
@@ -10,23 +11,25 @@ export default function Signup() {
   const [password, setPassword] = useState('');
   const [adress, setAdress] = useState('');
   const [age, setAge] = useState('');
-  const [cellphone, setCellphone] = useState('');
+  const [phone, setPhone] = useState('');
   const [childrensNumber, setChildrensNumber] = useState(0);
 
   const history = useHistory();
 
-  const handleSubmit = () => {
-    console.log({
+  const handleSubmit = async () => {
+    const dataToSend = {
       email,
       name,
       password,
       adress,
       age,
-      cellphone,
+      phone,
       childrensNumber,
-    });
+    };
+    await api.post('/user', dataToSend);
     history.push('/');
   };
+
   return (
     <Container className='container'>
       <form>
@@ -83,14 +86,14 @@ export default function Signup() {
 
         <div className='input-group'>
           <div className='input-block'>
-            <label htmlFor='cellphone'>Celular</label>
+            <label htmlFor='phone'>Celular</label>
             <input
               type='text'
-              name='cellphone'
-              id='cellphone'
+              name='phone'
+              id='phone'
               required
-              value={cellphone}
-              onChange={e => setCellphone(e.target.value)}
+              value={phone}
+              onChange={e => setPhone(e.target.value)}
             />
           </div>
 

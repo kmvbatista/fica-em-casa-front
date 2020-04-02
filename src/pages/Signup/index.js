@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
-import { Container } from '@material-ui/core';
-import { Link } from 'react-router-dom';
+import { Container, Button } from '@material-ui/core';
+import { useHistory } from 'react-router-dom';
+
+import './style.css';
 
 export default function Signup() {
   const [email, setEmail] = useState('');
@@ -11,10 +13,22 @@ export default function Signup() {
   const [cellphone, setCellphone] = useState('');
   const [childrensNumber, setChildrensNumber] = useState(0);
 
-  const handleSubmit = () => {};
+  const history = useHistory();
 
+  const handleSubmit = () => {
+    console.log({
+      email,
+      name,
+      password,
+      adress,
+      age,
+      cellphone,
+      childrensNumber,
+    });
+    history.push('/');
+  };
   return (
-    <Container>
+    <Container className='container'>
       <form>
         <div className='input-group'>
           <div className='input-block'>
@@ -29,10 +43,11 @@ export default function Signup() {
           </div>
 
           <div className='input-block'>
-            <label htmlFor='name'>Email</label>
+            <label htmlFor='email'>Email</label>
             <input
               name='email'
               id='email'
+              type='email'
               required
               value={email}
               onChange={e => setEmail(e.target.value)}
@@ -42,7 +57,7 @@ export default function Signup() {
 
         <div className='input-group'>
           <div className='input-block'>
-            <label htmlFor='password'>Password</label>
+            <label htmlFor='password'>Senha</label>
             <input
               type='password'
               name='password'
@@ -82,7 +97,7 @@ export default function Signup() {
           <div className='input-block'>
             <label htmlFor='age'>Idade</label>
             <input
-              type='text'
+              type='number'
               name='age'
               id='age'
               required
@@ -96,7 +111,7 @@ export default function Signup() {
           <div className='input-block'>
             <label htmlFor='childrensNumber'>Nº de filhos</label>
             <input
-              type='text'
+              type='number'
               name='childrensNumber'
               id='childrensNumber'
               required
@@ -105,18 +120,15 @@ export default function Signup() {
             />
           </div>
         </div>
-
-        <button>
-          <Link to='/home' style={{ color: 'white' }}>
-            Salvar
-          </Link>
-        </button>
-      </form>
-      <button>
-        <Link to='/home' style={{ color: 'white' }}>
+        <Button
+          variant='contained'
+          className='save-button'
+          color='primary'
+          onClick={handleSubmit}
+        >
           Salvar
-        </Link>
-      </button>
+        </Button>
+      </form>
     </Container>
   );
 }

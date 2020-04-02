@@ -14,34 +14,30 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function NecessityForm() {
+export default function NecessityForm(props) {
   const classes = useStyles();
-  const [necessitiesList, setNecessitiesList] = useState([
-    { name: 'feijao', isCompleted: false },
-    { name: 'arroz', isCompleted: true },
-  ]);
   const [itemToAdd, setItemToAdd] = useState();
 
   const addItem = () => {
+    console.log(props);
     if (itemToAdd && itemToAdd != '')
-      necessitiesList.push({ name: itemToAdd, isCompleted: false });
-    setNecessitiesList([...necessitiesList]);
+      props.necessities.push({ name: itemToAdd, isCompleted: false });
+    props.setNecessities([...props.necessities]);
   };
 
   const toggleCheckItem = name => {
-    let newNecessities = necessitiesList.map(el => {
+    let newNecessities = props.necessities.map(el => {
       if (el.name == name) {
         el.isCompleted = !el.isCompleted;
       }
       return el;
     });
-    console.log(newNecessities);
-    setNecessitiesList(newNecessities);
+    props.setNecessities(newNecessities);
   };
 
   return (
     <List className={classes.root}>
-      {necessitiesList.map(item => {
+      {props.necessities.map(item => {
         const labelId = `checkbox-list-label-${item.name}`;
 
         return (

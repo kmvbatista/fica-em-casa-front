@@ -6,7 +6,6 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import NecessityForm from './NecessityForm';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -55,7 +54,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function SimpleTabs() {
+export default function SimpleTabs(props) {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
@@ -89,7 +88,7 @@ export default function SimpleTabs() {
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>
-        <NecessityForm></NecessityForm>
+        {props.children}
       </TabPanel>
       <TabPanel value={value} index={1}>
         Item Two

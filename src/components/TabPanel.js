@@ -20,7 +20,11 @@ function TabPanel(props) {
       aria-labelledby={`simple-tab-${index}`}
       {...other}
     >
-      {value === index && <Box p={3}>{children}</Box>}
+      {value === index && (
+        <Box style={{ display: 'flex', justifyContent: 'center' }} p={3}>
+          {children}
+        </Box>
+      )}
     </Typography>
   );
 }
@@ -43,6 +47,9 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 1,
     backgroundColor: theme.palette.background.paper,
   },
+  flexContainer: {
+    justifyContent: 'space-around',
+  },
 }));
 
 export default function SimpleTabs() {
@@ -64,6 +71,7 @@ export default function SimpleTabs() {
         color='transparent'
       >
         <Tabs
+          variant='fullWidth'
           value={value}
           onChange={handleChange}
           aria-label='simple tabs example'

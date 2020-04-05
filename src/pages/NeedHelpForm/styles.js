@@ -40,5 +40,4 @@ export const Span = styled.span`
   width: 3.5em;
   height: 3.5em;
   margin-right: 1em;
-  z-index: 20;
 `;

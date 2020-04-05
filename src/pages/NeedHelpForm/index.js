@@ -21,14 +21,35 @@ export default function NeedHelpForm() {
         </div>
         <InputBlock>
           <p>Você tem filhos?</p>
-          <div style={{ position: 'relative' }}>
-            <input type='radio' name='children' id='sim' style={{}} />
-            <Span>sim</Span>
+          <div style={{ display: 'inline-block', marginLeft: '1.5em' }}>
+            <input
+              type='radio'
+              name='children'
+              id='sim'
+              style={{ visibility: 'hidden' }}
+            />
+            <label
+              htmlFor='sim'
+              style={{ cursor: 'pointer', position: 'relative' }}
+            >
+              <Span></Span>
+              sim
+            </label>
           </div>
-          <div style={{ position: 'relative', marginLeft: '3.5em' }}>
-            <input type='radio' name='children' id='nao' style={{}} />
-            <label htmlFor='nao'></label>
-            <Span>não</Span>
+          <div style={{ display: 'inline-block', marginLeft: '1.5em' }}>
+            <input
+              type='radio'
+              name='children'
+              id='nao'
+              style={{ visibility: 'hidden' }}
+            />
+            <label
+              htmlFor='nao'
+              style={{ cursor: 'pointer', position: 'relative' }}
+            >
+              <Span></Span>
+              não
+            </label>
           </div>
         </InputBlock>
         <InputBlock>

@@ -8,10 +8,10 @@ export default function Routes() {
   return (
     <Switch>
       <Suspense fallback={<div>Loading...</div>}>
-        <Route exact path='/'>
+        <Route exact path='/home'>
           <Home></Home>
         </Route>
-        <Route exact path='/login'>
+        <Route exact path='/'>
           <Login></Login>
         </Route>
         <Route exact path='/signUp'>

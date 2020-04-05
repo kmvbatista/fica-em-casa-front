@@ -2,6 +2,9 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   padding: 4.5em;
+  border-radius: 24px 0 0 0;
+  background-color: white;
+  transform: translate(0px, -2em);
 `;
 export const LoginInput = styled.input`
   border-radius: 1.5em;
@@ -32,8 +35,8 @@ export const RegisterButton = styled.button`
   width: 100%;
   color: white;
   background-color: var(--color-pink);
-  padding: 1.2em 0.5em;
-  box-shadow: 0px 10px 20px rgba(230, 31, 123, 0.4);
+  padding: 1em 0.5em;
+  box-shadow: 0px 10px 20px rgba(230, 31, 123, 0.5);
   font-size: 2em;
   font-weight: bold;
 `;

@@ -9,6 +9,7 @@ import {
   Title,
   HighlightText,
   SecondaryText,
+  Image,
 } from './styles';
 
 export default function ChooseGroup() {
@@ -22,7 +23,19 @@ export default function ChooseGroup() {
           <SubTitle>grupo de risco</SubTitle>
         </TitleContainer>
         <CenteredBox>
-          <div style={{ direction: 'rtl' }}>
+          <Image
+            style={{ left: 0 }}
+            src='./preciso-ajuda.png'
+            alt='preciso-de-ajuda'
+          ></Image>
+          <div
+            style={{
+              direction: 'rtl',
+              position: 'absolute',
+              left: '40%',
+              color: 'var(--color-pink)',
+            }}
+          >
             <HighlightText>
               Preciso<br></br>
             </HighlightText>
@@ -38,11 +51,24 @@ export default function ChooseGroup() {
           <SubTitle>do grupo de risco</SubTitle>
         </TitleContainer>
         <CenteredBox>
-          <div style={{ direction: 'rtl' }}>
-            <HighlightText>
-              Quero<br></br>
-            </HighlightText>
-            <SecondaryText>ajudar</SecondaryText>
+          <div
+            style={{
+              direction: 'rtl',
+              color: 'var(--color-purple)',
+            }}
+          >
+            <Image
+              style={{ right: 0, height: '105%', top: '10%' }}
+              src='./quero-ajudar.png'
+              alt='quero-ajudar'
+            ></Image>
+
+            <div style={{ position: 'absolute', left: '12%', top: '35%' }}>
+              <HighlightText>
+                Quero<br></br>
+              </HighlightText>
+              <SecondaryText>ajudar</SecondaryText>
+            </div>
           </div>
         </CenteredBox>
       </Box2>

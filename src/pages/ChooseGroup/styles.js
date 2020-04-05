@@ -58,16 +58,21 @@ export const CenteredBox = styled.div`
   align-items: center;
   display: flex;
   justify-content: flex-end;
+  position: relative;
 `;
 
 export const HighlightText = styled.text`
-  color: var(--color-pink);
   font-size: 3em;
   font-weight: bolder;
 `;
 
 export const SecondaryText = styled.text`
-  color: var(--color-pink);
   font-size: 2.2em;
   font-weight: 400;
+`;
+
+export const Image = styled.img`
+  height: 85%;
+  position: absolute;
+  top: 30%;
 `;

@@ -8,10 +8,13 @@ import {
   Select,
   InputBox,
 } from './styles';
+import { useHistory } from 'react-router-dom';
 import { PinkContainer } from '../../globalComponents';
 
 export default function NeedHelpForm() {
   const [hasChildren, setHasChildren] = useState();
+  const history = useHistory();
+
   return (
     <PinkContainer>
       <Title>Se você faz parte do grupo de risco, preencha abaixo</Title>
@@ -46,7 +49,10 @@ export default function NeedHelpForm() {
             sim
           </RadioButton>
           <RadioButton
-            onClick={() => setHasChildren(false)}
+            onClick={() => {
+              setHasChildren(false);
+              history.push('/need-help-options');
+            }}
             style={{
               backgroundColor:
                 hasChildren == false ? '#ffff00b3' : 'transparent',

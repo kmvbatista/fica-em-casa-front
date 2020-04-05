@@ -1,4 +1,5 @@
 import React from 'react';
+import {useHistory} from 'react-router-dom'
 import {
   Container,
   Box1,
@@ -12,10 +13,13 @@ import {
   Image,
 } from './styles';
 
+
 export default function ChooseGroup() {
+const history = useHistory();
+
   return (
     <Container>
-      <Box1>
+      <Box1 onClick={() => history.push('need-help-form')}>
         <TitleContainer>
           <Title>
             Faço parte do<br></br>

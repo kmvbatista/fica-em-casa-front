@@ -7,7 +7,6 @@ import Appbar from './components/Appbar';
 function App() {
   return (
     <>
-      <Appbar></Appbar>
       <BrowserRouter>
         <Routes></Routes>
       </BrowserRouter>

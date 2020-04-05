@@ -1,44 +1,40 @@
 import React, { useState } from 'react';
 import { Container } from '@material-ui/core';
-import { Link } from 'react-router-dom';
-import './style.css';
+import { useHistory } from 'react-router-dom';
+import Welcome from './components/Welcome/Welcome';
 
+import api from '../../services/api';
+import './style.css';
+import InitialForm from './components/InitialForm/InitialForm';
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSubmit = () => {};
+  useHistory();
+
+  const handleSubmit = async () => {
+    const dataToSend = { email, password };
+    try {
+      const response = await api.post('/sessions', dataToSend);
+      console.log(response);
+      const { user, token } = response.data;
+      document.cookie = `token: ${JSON.stringify(
+        token,
+      )}; user: ${JSON.stringify(user)};`;
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
-    <Container>
-      <form onSubmit={handleSubmit}>
-        <div className='input-block'>
-          <label htmlFor='password'>Email</label>
-          <input
-            name='email'
-            id='email'
-            required
-            value={email}
-            onChange={e => setEmail(e.target.value)}
-          />
-        </div>
-        <div className='input-block'>
-          <label htmlFor='name'>Senha</label>
-          <input
-            name='password'
-            id='password'
-            required
-            value={password}
-            onChange={e => setPassword(e.target.value)}
-          />
-        </div>
-        <button>Login</button>
-        <button>
-          <Link to='signup' style={{ color: 'white' }}>
-            Cadastrar-se
-          </Link>
-        </button>
-      </form>
+    <Container style={{ padding: 0 }}>
+      <Welcome></Welcome>
+      <InitialForm
+        email={email}
+        setEmail={setEmail}
+        password={setPassword}
+        handleSubmit={handleSubmit}
+      ></InitialForm>
     </Container>
   );
 }

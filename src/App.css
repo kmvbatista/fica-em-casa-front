@@ -1,91 +1,70 @@
-main {
-  flex: 1;
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
 }
 
-main ul {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
-  list-style: none;
+* {
+  padding: 0;
+  margin: 0;
 }
 
-@media (max-width: 650px) {
-  main ul {
-    grid-template-columns: 1fr;
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+}
+
+@media only screen and (max-width: 600px) {
+  html {
+    /* rem = 9px, 9/16 = 56.25% */
+    font-size: 50%;
+  }
+}
+@media only screen and (max-width: 900px) {
+  html {
+    /* 1rem = 9px, 9/16 = 56.25% */
+    font-size: 56.25%;
+  }
+}
+@media only screen and (min-width: 1800px) {
+  /* 1rem = 9px, 9/16 = 56.25% */
+  html {
+    font-size: 75%;
   }
 }
 
-aside {
-  width: 320px;
-  background: #fff;
-  box-shadow: 0 0 14px 0 rgba(0, 0, 0, 0.02);
-  border-radius: 2px;
-  padding: 30px 20px;
+@media only screen and (min-width: 600px) {
+  body {
+    margin: 10em 20em;
+  }
 }
 
-trong {
-  font-size: 20px;
-  text-align: center;
-  display: block;
-  color: #333;
+body {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  line-height: 1.6;
+  min-height: 100vh;
+  color: var(--color-grey-dark-2);
 }
 
-form {
-  margin-top: 50px;
-}
+:root {
+  --color-primary: #eb2f64;
+  --color-primary-light: #ff3366;
+  --color-primary-dark: #ba265d;
 
-form .input-block + .input-block {
-  margin-top: 20px;
-}
+  --color-grey-light1: #faf9f9;
+  --color-grey-light2: #f4f2f2;
+  --color-grey-light3: #f0eeee;
+  --color-grey: #ccc;
+  --color-grey-dark-1: #333;
+  --color-grey-dark-2: #777;
+  --color-grey-dark-3: rgba;
 
-form .input-group {
-  padding: 50px 0;
+  --color-purple: rgb(141, 35, 212);
+  --color-pink: rgb(230, 31, 123);
 
-  margin-top: 20px;
-  display: grid;
-  gap: 20px;
-  grid-template-columns: 1fr 1fr;
-}
-
-form .input-group .input-block {
-  margin-top: 0;
-}
-
-form .input-block label {
-  color: #acacac;
-  font-size: 14px;
-  font-weight: bold;
-  display: block;
-}
-
-input {
-  width: 90%;
-  height: 32px;
-  font-size: 14px;
-  color: #666;
-  border: 0;
-  border-bottom: 1px solid #eee;
-}
-
-button .necessity {
-  width: 50%;
-  outline: none;
-  border: 0;
-  margin-top: 5px;
-  background: #fff;
-  border-radius: 2px;
-  padding: 3px 5px;
-  font-size: 16px;
-  font-weight: bold;
-  color: #3f51b5;
-  cursor: pointer;
-  transition: background 0.5s;
-}
-
-form button[type='submit']:hover {
-  background: #6931ca;
-}
-
-a:link {
-  text-decoration: none;
+  --line-light: 1px solid var(--color-grey-light2);
+  --shadow-light: 0 2rem 4rem rgba(0, 0, 0, 0.06);
 }

@@ -9,8 +9,9 @@ export default function Signup() {
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [adress, setAdress] = useState('');
-  const [age, setAge] = useState('');
+  const [birthday, setAge] = useState('');
   const [phone, setPhone] = useState('');
   const [childrensNumber, setChildrensNumber] = useState(0);
 
@@ -21,13 +22,18 @@ export default function Signup() {
       email,
       name,
       password,
+      confirmPassword,
       adress,
-      age,
+      birthday,
       phone,
       childrensNumber,
     };
-    await api.post('/user', dataToSend);
-    history.push('/');
+    try {
+      await api.post('/user', dataToSend);
+      history.push('/login');
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -41,7 +47,7 @@ export default function Signup() {
               id='name'
               required
               value={name}
-              onChange={e => setName(e.target.value)}
+              onChange={(e) => setName(e.target.value)}
             />
           </div>
 
@@ -53,7 +59,7 @@ export default function Signup() {
               type='email'
               required
               value={email}
-              onChange={e => setEmail(e.target.value)}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
         </div>
@@ -67,19 +73,19 @@ export default function Signup() {
               id='password'
               required
               value={password}
-              onChange={e => setPassword(e.target.value)}
+              onChange={(e) => setPassword(e.target.value)}
             />
           </div>
 
           <div className='input-block'>
-            <label htmlFor='adress'>Endereço</label>
+            <label htmlFor='confirmPassword'>Confirme a Senha</label>
             <input
-              type='text'
-              name='adress'
-              id='adress'
+              type='password'
+              name='confirmPassword'
+              id='confirmPassword'
               required
-              value={adress}
-              onChange={e => setAdress(e.target.value)}
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
             />
           </div>
         </div>
@@ -93,19 +99,19 @@ export default function Signup() {
               id='phone'
               required
               value={phone}
-              onChange={e => setPhone(e.target.value)}
+              onChange={(e) => setPhone(e.target.value)}
             />
           </div>
 
           <div className='input-block'>
-            <label htmlFor='age'>Idade</label>
+            <label htmlFor='birthday'>Idade</label>
             <input
-              type='number'
-              name='age'
-              id='age'
+              type='date'
+              name='birthday'
+              id='birthday'
               required
-              value={age}
-              onChange={e => setAge(e.target.value)}
+              value={birthday}
+              onChange={(e) => setAge(e.target.value)}
             />
           </div>
         </div>
@@ -119,7 +125,18 @@ export default function Signup() {
               id='childrensNumber'
               required
               value={childrensNumber}
-              onChange={e => setChildrensNumber(e.target.value)}
+              onChange={(e) => setChildrensNumber(e.target.value)}
+            />
+          </div>
+          <div className='input-block'>
+            <label htmlFor='adress'>Endereço</label>
+            <input
+              type='text'
+              name='adress'
+              id='adress'
+              required
+              value={adress}
+              onChange={(e) => setAdress(e.target.value)}
             />
           </div>
         </div>

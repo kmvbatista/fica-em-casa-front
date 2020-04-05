@@ -32,7 +32,7 @@ export default function ChooseGroup() {
             style={{
               direction: 'rtl',
               position: 'absolute',
-              left: '40%',
+              right: '20%',
               color: 'var(--color-pink)',
             }}
           >

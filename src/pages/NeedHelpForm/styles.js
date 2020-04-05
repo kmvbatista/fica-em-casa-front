@@ -11,7 +11,7 @@ export const Container = styled.div`
 
 export const Title = styled.div`
   color: white;
-  font-size: 2em;
+  font-size: 2.3em;
   font-weight: bolder;
 `;
 
@@ -33,6 +33,7 @@ export const Input = styled.input`
   color: white;
   font-size: 1.5em;
   text-align: center;
+  font-weight: 200;
 `;
 
 export const InputBox = styled.div`
@@ -63,6 +64,7 @@ export const RadioButton = styled.div`
 export const Question = styled.div`
   width: 30%;
   margin-right: 10%;
+  font-size: 1.1em;
 `;
 
 export const Select = styled.select`

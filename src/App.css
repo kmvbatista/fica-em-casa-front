@@ -46,6 +46,7 @@ body {
   line-height: 1;
   min-height: 100vh;
   color: var(--color-grey-dark-2);
+  font-family: BalooThambi2;
 }
 
 :root {
@@ -54,7 +55,7 @@ body {
   --color-pink: #db4266;
   --color-pink-light: #f9b0c3;
   --color-yellow-: #fceb4a;
-  --color-yellow-light: #fceb4a;
+  --color-yellow-light: #fdf9d5;
   --color-blue: #5ca7dc;
   --color-blue-dark: #254797;
 

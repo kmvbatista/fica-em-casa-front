@@ -9,21 +9,18 @@ import {
   Select,
   InputBox,
 } from './styles';
-import './styles.css';
 
 export default function NeedHelpForm() {
   const [hasChildren, setHasChildren] = useState();
   return (
     <Container>
-      <Title>
-        <p>Se você faz parte do grupo de risco, preencha abaixo:</p>
-      </Title>
+      <Title>Se você faz parte do grupo de risco, preencha abaixo</Title>
       <form>
         <div>
           <InputBlock
             style={{ flexDirection: 'column', alignItems: 'flex-start' }}
           >
-            <p>Quando você nasceu?</p>
+            <Question style={{ width: '100%' }}>Quando você nasceu?</Question>
             <div style={{ display: 'flex', marginTop: '1.5rem' }}>
               <InputBox>
                 <Input type='number' />
@@ -43,7 +40,7 @@ export default function NeedHelpForm() {
             onClick={() => setHasChildren(true)}
             className='radio'
             style={{
-              backgroundColor: hasChildren ? '#ffff00b3' : 'transparent',
+              backgroundColor: hasChildren ? '#ffff0099' : 'transparent',
             }}
           >
             sim

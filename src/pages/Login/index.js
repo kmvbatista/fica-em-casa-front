@@ -10,7 +10,7 @@ export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  useHistory();
+  const history = useHistory();
 
   const handleSubmit = async () => {
     const dataToSend = { email, password };
@@ -33,7 +33,7 @@ export default function Login() {
         email={email}
         setEmail={setEmail}
         password={setPassword}
-        handleSubmit={handleSubmit}
+        handleSubmit={() => history.push('/choose-group')}
       ></InitialForm>
     </Container>
   );

@@ -15,29 +15,29 @@ export default function InitialForm(props) {
       <Container>
         <Title>Faça o seu cadastro para continuar...</Title>
 
-        <form>
-          <InputBlock className='input-block'>
-            <LoginInput
-              placeholder='seu nome'
-              name='nome'
-              id='nome'
-              required
-            ></LoginInput>
-            <LoginInput
-              placeholder='seu email'
-              name='email'
-              id='email'
-              required
-            ></LoginInput>
-            <LoginInput
-              placeholder='seu endereço'
-              name='password'
-              id='password'
-              required
-            ></LoginInput>
-            <RegisterButton>cadastrar-se</RegisterButton>
-          </InputBlock>
-        </form>
+        <InputBlock className='input-block'>
+          <LoginInput
+            placeholder='seu nome'
+            name='nome'
+            id='nome'
+            required
+          ></LoginInput>
+          <LoginInput
+            placeholder='seu email'
+            name='email'
+            id='email'
+            required
+          ></LoginInput>
+          <LoginInput
+            placeholder='seu endereço'
+            name='password'
+            id='password'
+            required
+          ></LoginInput>
+          <RegisterButton onClick={() => props.handleSubmit()}>
+            cadastrar-se
+          </RegisterButton>
+        </InputBlock>
       </Container>
     </div>
   );

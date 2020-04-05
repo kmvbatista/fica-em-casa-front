@@ -20,6 +20,7 @@ export const InputBlock = styled.div`
   display: flex;
   font-size: 1.7em;
   color: white;
+  align-items: center;
 `;
 
 export const Input = styled.input`
@@ -31,13 +32,21 @@ export const Input = styled.input`
   margin-right: 1em;
 `;
 
-export const Span = styled.span`
-  position: absolute;
+export const RadioButton = styled.div`
+  position: relative;
+  cursor: pointer;
   display: inline-block;
   border: white 2px solid;
   border-radius: 10px;
-  background-color: transparent;
   width: 3.5em;
   height: 3.5em;
   margin-right: 1em;
+  text-align: center;
+  padding: 0.975em 0;
+  font-weight: bolder;
+`;
+
+export const Question = styled.div`
+  width: 30%;
+  margin-right: 10%;
 `;

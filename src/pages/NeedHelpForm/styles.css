@@ -1,4 +1,4 @@
-span::after {
+/* .radio::after {
   background-color: #ffff0093;
   display: block;
   transition: opacity 0.2s;
@@ -10,7 +10,7 @@ span::after {
   left: 0;
   top: 0;
   border-radius: 8px;
-}
-input:checked + label *::after {
+} */
+/* input:checked + label *::after {
   opacity: 1;
-}
+} */

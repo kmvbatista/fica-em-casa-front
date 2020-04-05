@@ -1,8 +1,16 @@
-import React from 'react';
-import { Container, Title, InputBlock, Input, Span } from './styles';
+import React, { useState } from 'react';
+import {
+  Container,
+  Title,
+  InputBlock,
+  Input,
+  RadioButton,
+  Question,
+} from './styles';
 import './styles.css';
 
 export default function NeedHelpForm() {
+  const [hasChildren, setHasChildren] = useState();
   return (
     <Container>
       <Title>
@@ -10,9 +18,11 @@ export default function NeedHelpForm() {
       </Title>
       <form>
         <div>
-          <InputBlock style={{ flexDirection: 'column' }}>
+          <InputBlock
+            style={{ flexDirection: 'column', alignItems: 'flex-start' }}
+          >
             <p>Quando você nasceu?</p>
-            <div style={{ display: 'flex' }}>
+            <div style={{ display: 'flex', marginTop: '1.5rem' }}>
               <Input type='number' />
               <Input type='number' />
               <Input type='number' />
@@ -20,48 +30,37 @@ export default function NeedHelpForm() {
           </InputBlock>
         </div>
         <InputBlock>
-          <p>Você tem filhos?</p>
-          <div style={{ display: 'inline-block', marginLeft: '1.5em' }}>
-            <input
-              type='radio'
-              name='children'
-              id='sim'
-              style={{ visibility: 'hidden' }}
-            />
-            <label
-              htmlFor='sim'
-              style={{ cursor: 'pointer', position: 'relative' }}
-            >
-              <Span></Span>
-              sim
-            </label>
-          </div>
-          <div style={{ display: 'inline-block', marginLeft: '1.5em' }}>
-            <input
-              type='radio'
-              name='children'
-              id='nao'
-              style={{ visibility: 'hidden' }}
-            />
-            <label
-              htmlFor='nao'
-              style={{ cursor: 'pointer', position: 'relative' }}
-            >
-              <Span></Span>
-              não
-            </label>
-          </div>
+          <Question>Você tem filhos?</Question>
+          <RadioButton
+            onClick={() => setHasChildren(true)}
+            className='radio'
+            style={{
+              backgroundColor: hasChildren ? '#ffff00b3' : 'transparent',
+            }}
+          >
+            sim
+          </RadioButton>
+          <RadioButton
+            onClick={() => setHasChildren(false)}
+            style={{
+              backgroundColor:
+                hasChildren == false ? '#ffff00b3' : 'transparent',
+            }}
+            className='radio'
+          >
+            não
+          </RadioButton>
         </InputBlock>
         <InputBlock>
-          <p>Quantos?</p>
+          <Question>Quantos?</Question>
           <Input type='number' />
         </InputBlock>
         <InputBlock>
-          <p>Faixa Etária?</p>
-          <Input type='text' />
+          <Question>Faixa Etária?</Question>
+          <Input type='sel' />
         </InputBlock>
         <InputBlock>
-          <p>Quantos moram com você?</p>
+          <Question>Quantos moram com você?</Question>
           <Input type='number' />
         </InputBlock>
       </form>

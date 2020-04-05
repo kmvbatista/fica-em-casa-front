@@ -33,15 +33,11 @@
   },
   {
     "name": "Conselho",
-    "imageUrl": "./conversation.png"
+    "imageUrl": "./communication.png"
   },
   {
     "name": "Vídeo aula",
     "imageUrl": "./videoAula.png"
-  },
-  {
-    "name": "Conselho",
-    "imageUrl": "./conversation.png"
   },
   {
     "name": "Pet",

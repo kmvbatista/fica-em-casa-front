@@ -5,7 +5,7 @@ export const Container = styled.div`
   min-height: 100vh;
   flex-direction: column;
   background-color: var(--color-pink);
-  padding: 3em;
+  padding: 6em;
   justify-content: space-around;
 `;
 

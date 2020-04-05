@@ -61,7 +61,7 @@ export default function NeedHelpForm() {
         </InputBlock>
         <div
           style={{
-            animation: 'opacity 2s',
+            transition: 'opacity .8s',
             opacity: !hasChildren ? 0 : 1,
           }}
         >

@@ -69,3 +69,11 @@ export const Select = styled.select`
   height: 3em;
   margin-right: 1em;
 `;
+
+export const GetModalButton = styled.div`
+  cursor: pointer;
+  display: block;
+  border-radius: 20px;
+  display: flex;
+  justify-content: space-around;
+`;

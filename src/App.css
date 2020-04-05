@@ -15,9 +15,15 @@ html {
   box-sizing: border-box;
 }
 
+@media only screen and (max-width: 1800px) {
+  html {
+    font-size: 80%;
+  }
+}
+
 @media only screen and (max-width: 1200px) {
   html {
-    font-size: 75.5%;
+    font-size: 70%;
   }
 }
 
@@ -29,7 +35,7 @@ html {
 
 @media only screen and (max-width: 600px) {
   html {
-    font-size: 56.25%;
+    font-size: 57.25%;
   }
 }
 
@@ -40,6 +46,8 @@ html {
   }
 }
 
+/* --------------- */
+/* margin media queries */
 @media only screen and (min-width: 600px) {
   body {
     margin: 5em 5em;
@@ -54,13 +62,7 @@ html {
 
 @media only screen and (min-width: 1200px) {
   body {
-    margin: 9em 9em;
-  }
-}
-
-@media only screen and (min-width: 1800px) {
-  body {
-    margin: 10em 20em;
+    margin: 8.5em 8.5em;
   }
 }
 

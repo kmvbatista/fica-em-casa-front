@@ -33,11 +33,11 @@ export const OptionCard = styled.div`
   padding: 5px 0;
   text-align: center;
   @media only screen and (min-width: 610px) {
-    height: 7em;
-    width: 8em;
+    height: 5.5em;
+    width: 6.5em;
   }
   @media only screen and (min-width: 900px) {
-    height: 8em;
-    width: 9em;
+    height: 6em;
+    width: 7em;
   }
 `;

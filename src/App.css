@@ -13,29 +13,52 @@
 
 html {
   box-sizing: border-box;
-  font-size: 62.5%;
+}
+
+@media only screen and (max-width: 1200px) {
+  html {
+    font-size: 75.5%;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  html {
+    font-size: 67.25%;
+  }
 }
 
 @media only screen and (max-width: 600px) {
   html {
-    /* rem = 9px, 9/16 = 56.25% */
-    font-size: 50%;
-  }
-}
-@media only screen and (max-width: 900px) {
-  html {
-    /* 1rem = 9px, 9/16 = 56.25% */
     font-size: 56.25%;
   }
 }
+
 @media only screen and (min-width: 1800px) {
   /* 1rem = 9px, 9/16 = 56.25% */
   html {
-    font-size: 75%;
+    font-size: 90%;
   }
 }
 
 @media only screen and (min-width: 600px) {
+  body {
+    margin: 5em 5em;
+  }
+}
+
+@media only screen and (min-width: 900px) {
+  body {
+    margin: 8em 8em;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  body {
+    margin: 9em 9em;
+  }
+}
+
+@media only screen and (min-width: 1800px) {
   body {
     margin: 10em 20em;
   }

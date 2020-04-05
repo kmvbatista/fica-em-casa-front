@@ -14,7 +14,7 @@ export default function NeedHelpOptions() {
       </SubTitle>
       <Grid>
         {cardData.map((el) => (
-          <OptionCard>
+          <OptionCard key={el.name}>
             <img
               src={el.imageUrl}
               alt=''

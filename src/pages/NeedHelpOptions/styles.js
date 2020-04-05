@@ -1,13 +1,12 @@
 import styled from 'styled-components';
 
-export const Title = styled.text`
+export const Title = styled.p`
   font-size: 4.3em;
   font-weight: bolder;
-  margin-bottom: 0.7em;
   color: white;
 `;
 
-export const SubTitle = styled.text`
+export const SubTitle = styled.p`
   font-size: 1.8em;
   font-weight: 500;
   color: white;
@@ -20,7 +19,7 @@ export const Grid = styled.div`
 `;
 
 export const OptionCard = styled.div`
-  height: 5.5em;
+  height: 5em;
   width: 6em;
   border-radius: 17px;
   background-color: white;
@@ -33,4 +32,12 @@ export const OptionCard = styled.div`
   font-size: 1.4em;
   padding: 5px 0;
   text-align: center;
+  @media only screen and (min-width: 610px) {
+    height: 7em;
+    width: 8em;
+  }
+  @media only screen and (min-width: 900px) {
+    height: 8em;
+    width: 9em;
+  }
 `;

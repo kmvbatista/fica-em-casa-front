@@ -24,12 +24,26 @@ export const InputBlock = styled.div`
 `;
 
 export const Input = styled.input`
+  flex: 1;
+  display: block;
+  border: none;
+  min-width: 0;
+  background-color: inherit;
+  outline: none;
+  color: white;
+  font-size: 1.5em;
+  text-align: center;
+`;
+
+export const InputBox = styled.div`
   border: white 2px solid;
   border-radius: 10px;
-  background-color: var(--color-pink);
-  width: 4em;
-  height: 4em;
+  background-color: transparent;
+  width: 3.5em;
+  height: 3.5em;
   margin-right: 1em;
+  display: flex;
+  position: relative;
 `;
 
 export const RadioButton = styled.div`

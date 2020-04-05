@@ -50,3 +50,14 @@ export const Question = styled.div`
   width: 30%;
   margin-right: 10%;
 `;
+
+export const Select = styled.select`
+  border: white 2px solid;
+  border-radius: 10px;
+  background-color: var(--color-pink);
+  color: white;
+  font-size: 1em;
+  width: 50%;
+  height: 3em;
+  margin-right: 1em;
+`;

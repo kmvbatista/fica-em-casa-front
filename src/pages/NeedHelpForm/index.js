@@ -6,6 +6,7 @@ import {
   Input,
   RadioButton,
   Question,
+  Select,
 } from './styles';
 import './styles.css';
 
@@ -57,7 +58,12 @@ export default function NeedHelpForm() {
         </InputBlock>
         <InputBlock>
           <Question>Faixa Etária?</Question>
-          <Input type='sel' />
+          <Select name='childrenAge' id='childrenAge'>
+            <option value='10'>até 10 anos</option>
+            <option value='20'>até 20 anos</option>
+            <option value='30'>até 30 anos</option>
+            <option value='40'>até 40 anos</option>
+          </Select>
         </InputBlock>
         <InputBlock>
           <Question>Quantos moram com você?</Question>

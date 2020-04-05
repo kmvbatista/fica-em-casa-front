@@ -5,6 +5,6 @@ export const PinkContainer = styled.div`
   min-height: 100vh;
   flex-direction: column;
   background-color: var(--color-pink);
-  padding: 6em;
+  padding: 6em 4em;
   justify-content: space-around;
 `;

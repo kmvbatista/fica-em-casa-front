@@ -1,19 +1,10 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
-  display: flex;
-  min-height: 100vh;
-  flex-direction: column;
-  background-color: var(--color-pink);
-  padding: 6em;
-  justify-content: space-around;
-`;
-
 export const Title = styled.div`
   color: white;
   font-size: 2.3em;
   font-weight: bolder;
-  margin-bottom: 1em;
+  margin-bottom: em;
 `;
 
 export const InputBlock = styled.div`

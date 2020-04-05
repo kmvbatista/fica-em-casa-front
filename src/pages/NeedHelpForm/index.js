@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import {
-  Container,
   Title,
   InputBlock,
   Input,
@@ -9,11 +8,12 @@ import {
   Select,
   InputBox,
 } from './styles';
+import { PinkContainer } from '../../globalComponents';
 
 export default function NeedHelpForm() {
   const [hasChildren, setHasChildren] = useState();
   return (
-    <Container>
+    <PinkContainer>
       <Title>Se você faz parte do grupo de risco, preencha abaixo</Title>
       <form>
         <div>
@@ -85,6 +85,6 @@ export default function NeedHelpForm() {
           </InputBlock>
         </div>
       </form>
-    </Container>
+    </PinkContainer>
   );
 }

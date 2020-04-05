@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Container } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
 import Welcome from './components/Welcome/Welcome';
 
@@ -27,7 +26,7 @@ export default function Login() {
   };
 
   return (
-    <Container style={{ padding: 0 }}>
+    <div style={{ padding: 0 }}>
       <Welcome></Welcome>
       <InitialForm
         email={email}
@@ -35,6 +34,6 @@ export default function Login() {
         password={setPassword}
         handleSubmit={() => history.push('/choose-group')}
       ></InitialForm>
-    </Container>
+    </div>
   );
 }

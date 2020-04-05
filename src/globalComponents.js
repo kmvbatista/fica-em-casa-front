@@ -6,11 +6,11 @@ export const PinkContainer = styled.div`
   flex-direction: column;
   background-color: var(--color-pink);
   justify-content: space-around;
-  padding: 6em 4em;
+  padding: 6em 4em 0 4em;
   @media only screen and (min-width: 1400px) {
-    padding: 6em 10em;
+    padding: 6em 10em 0 10em;
   }
   @media only screen and (min-width: 1800px) {
-    padding: 6em 20em;
+    padding: 6em 20em 0 20em;
   }
 `;

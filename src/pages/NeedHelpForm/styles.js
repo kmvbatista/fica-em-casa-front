@@ -13,6 +13,7 @@ export const Title = styled.div`
   color: white;
   font-size: 2.3em;
   font-weight: bolder;
+  margin-bottom: 1em;
 `;
 
 export const InputBlock = styled.div`

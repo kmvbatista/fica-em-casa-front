@@ -21,7 +21,7 @@ export default function NeedHelpForm() {
             style={{ flexDirection: 'column', alignItems: 'flex-start' }}
           >
             <Question style={{ width: '100%' }}>Quando você nasceu?</Question>
-            <div style={{ display: 'flex', marginTop: '1.5rem' }}>
+            <div style={{ display: 'flex', marginTop: '1.2em' }}>
               <InputBox>
                 <Input type='number' />
               </InputBox>

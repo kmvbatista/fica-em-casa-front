@@ -1,5 +1,15 @@
 import React from 'react';
-import { TopDecoration, MainTab, MainPhrase } from './styles';
+import {
+  TopDecoration,
+  MainTab,
+  MainPhrase,
+  PeopleCard,
+  PersonAvatar,
+  Distance,
+  PersonName,
+} from './styles';
+import peopleData from '../../assets/peopleToHelp.json';
+import { Column } from '../../globalComponents';
 
 export default function AvailableHelpers() {
   return (
@@ -22,6 +32,27 @@ export default function AvailableHelpers() {
           <strong>X vizinhos</strong> combinam com o que você pode{' '}
           <strong>ajudar</strong>!
         </MainPhrase>
+        <Column>
+          {peopleData.map((el) => (
+            <PeopleCard key={el.distance}>
+              <PersonAvatar>
+                <img
+                  src={el.photoUrl}
+                  alt={el.name}
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    borderRadius: 'inherit',
+                  }}
+                />
+              </PersonAvatar>
+              <Column>
+                <PersonName>{el.name}</PersonName>
+                <Distance>{el.distance}km perto de você</Distance>
+              </Column>
+            </PeopleCard>
+          ))}
+        </Column>
       </MainTab>
     </div>
   );

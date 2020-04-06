@@ -10,38 +10,7 @@ export const SubTitle = styled.p`
   font-size: 1.8em;
   font-weight: 500;
   color: white;
-`;
-
-export const Grid = styled.div`
-  display: grid;
-  grid-template-columns: auto auto auto;
-  grid-row-gap: 1.1em;
-`;
-
-export const OptionCard = styled.div`
-  cursor: pointer;
-  margin: auto;
-  height: 7em;
-  width: 7em;
-  border-radius: 17px;
-  background-color: white;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-  color: var(--color-pink);
-  font-weight: bold;
-  font-size: 1.28em;
-  padding: 15px 0;
-  text-align: center;
-  @media only screen and (min-width: 610px) {
-    height: 5.5em;
-    width: 6.5em;
-  }
-  @media only screen and (min-width: 900px) {
-    height: 6em;
-    width: 7em;
-  }
+  margin: 1.2em 0;
 `;
 
 export const GetModalButton = styled.div`
@@ -55,4 +24,6 @@ export const GetModalButton = styled.div`
   background-color: white;
   color: var(--color-pink);
   font-size: 1.5em;
+  margin-top: 1.5em;
+  padding: 1em;
 `;

@@ -1,6 +1,6 @@
 import React from 'react';
-import { PinkContainer } from '../../globalComponents';
-import { SubTitle, OptionCard, Title, Grid, GetModalButton } from './styles';
+import { PinkContainer, Grid, OptionCard } from '../../globalComponents';
+import { SubTitle, Title, GetModalButton } from './styles';
 import cardData from '../../assets/productCategory.json';
 
 export default function NeedHelpOptions() {
@@ -21,7 +21,7 @@ export default function NeedHelpOptions() {
         ))}
       </Grid>
       <GetModalButton>
-        <img src='./logo.png' alt='logo' style={{ height: '80%' }} />
+        <img src='./logo.png' alt='logo' style={{ height: '100%' }} />
         <div>
           Não achou sua necessidade acima?
           <br />

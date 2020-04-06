@@ -35,19 +35,25 @@ export const PeopleCard = styled.div`
 `;
 
 export const PersonAvatar = styled.div`
-  border-radius: 32%;
+  border-radius: 38%;
   position: relative;
-  height: 5em;
-  width: 5em;
+  height: 4.8em;
+  width: 4.8em;
 `;
 
 export const PersonName = styled.p`
   font-size: 1.6em;
   font-weight: bold;
-  margin-bottom: 0.5em;
+  margin-bottom: 0.3em;
 `;
 
 export const Distance = styled.p`
   font-size: 1.4em;
   font-weight: 200;
+`;
+
+export const ContactIcon = styled.div`
+  max-height: 3.5em;
+  max-width: 3.5em;
+  margin-right: 0.5em;
 `;

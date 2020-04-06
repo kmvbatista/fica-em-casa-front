@@ -7,9 +7,10 @@ import {
   PersonAvatar,
   Distance,
   PersonName,
+  ContactIcon,
 } from './styles';
 import peopleData from '../../assets/peopleToHelp.json';
-import { Column } from '../../globalComponents';
+import { Column, Row } from '../../globalComponents';
 
 export default function AvailableHelpers() {
   return (
@@ -50,6 +51,30 @@ export default function AvailableHelpers() {
                 <PersonName>{el.name}</PersonName>
                 <Distance>{el.distance}km perto de você</Distance>
               </Column>
+              <Row>
+                <ContactIcon>
+                  <img
+                    src='./whatsapp.png'
+                    alt='whatsapp icon'
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      borderRadius: 'inherit',
+                    }}
+                  />
+                </ContactIcon>
+                <ContactIcon>
+                  <img
+                    src='./telefone.png'
+                    alt='whatsapp icon'
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      borderRadius: 'inherit',
+                    }}
+                  />
+                </ContactIcon>
+              </Row>
             </PeopleCard>
           ))}
         </Column>

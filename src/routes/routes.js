@@ -4,6 +4,7 @@ const Login = lazy(() => import('../pages/Login/index'));
 const ChoseGroup = lazy(() => import('../pages/ChooseGroup/index'));
 const NeedHelpForm = lazy(() => import('../pages/NeedHelpForm/index'));
 const NeedHelpOptions = lazy(() => import('../pages/NeedHelpOptions/index'));
+const CanHelpOptions = lazy(() => import('../pages/CanHelpOptions/index'));
 
 export default function Routes() {
   return (
@@ -20,6 +21,9 @@ export default function Routes() {
         </Route>
         <Route exact path='/need-help-options'>
           <NeedHelpOptions></NeedHelpOptions>
+        </Route>
+        <Route exact path='/can-help-options'>
+          <CanHelpOptions></CanHelpOptions>
         </Route>
       </Suspense>
     </Switch>

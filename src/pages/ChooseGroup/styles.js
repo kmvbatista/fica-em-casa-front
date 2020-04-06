@@ -39,7 +39,6 @@ export const Box1 = styled.div`
 
 export const Box2 = styled.div`
   flex-direction: column;
-
   display: flex;
   height: 50vh;
   transform: translate(0, -2em);

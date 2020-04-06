@@ -12,18 +12,3 @@ export const SubTitle = styled.p`
   color: white;
   margin: 1.2em 0;
 `;
-
-export const GetModalButton = styled.div`
-  cursor: pointer;
-  display: block;
-  border-radius: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  height: 4em;
-  background-color: white;
-  color: var(--color-pink);
-  font-size: 1.5em;
-  margin-top: 1.5em;
-  padding: 1em;
-`;

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const PinkContainer = styled.div`
+export const ColumnContainer = styled.div`
   display: flex;
   min-height: 100vh;
   flex-direction: column;
@@ -44,4 +44,19 @@ export const Grid = styled.div`
   display: grid;
   grid-template-columns: auto auto auto;
   grid-gap: 1.2em;
+`;
+
+export const GetModalButton = styled.div`
+  cursor: pointer;
+  display: block;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  height: 4em;
+  background-color: white;
+  color: var(--color-pink);
+  font-size: 1.5em;
+  margin-top: 1.5em;
+  padding: 1em;
 `;

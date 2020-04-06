@@ -1,11 +1,16 @@
 import React from 'react';
-import { PinkContainer, Grid, OptionCard } from '../../globalComponents';
-import { SubTitle, Title, GetModalButton } from './styles';
+import {
+  ColumnContainer,
+  Grid,
+  OptionCard,
+  GetModalButton,
+} from '../../globalComponents';
+import { SubTitle, Title } from './styles';
 import cardData from '../../assets/productCategory.json';
 
 export default function NeedHelpOptions() {
   return (
-    <PinkContainer>
+    <ColumnContainer>
       <Title>Preciso de ajuda</Title>
       <SubTitle>
         Pode escolher mais de uma opção, tá?
@@ -30,6 +35,6 @@ export default function NeedHelpOptions() {
           </p>
         </div>
       </GetModalButton>
-    </PinkContainer>
+    </ColumnContainer>
   );
 }

@@ -9,14 +9,14 @@ import {
   InputBox,
 } from './styles';
 import { useHistory } from 'react-router-dom';
-import { PinkContainer } from '../../globalComponents';
+import { ColumnContainer } from '../../globalComponents';
 
 export default function NeedHelpForm() {
   const [hasChildren, setHasChildren] = useState();
   const history = useHistory();
 
   return (
-    <PinkContainer>
+    <ColumnContainer>
       <Title>Se você faz parte do grupo de risco, preencha abaixo</Title>
       <form>
         <div>
@@ -91,6 +91,6 @@ export default function NeedHelpForm() {
           </InputBlock>
         </div>
       </form>
-    </PinkContainer>
+    </ColumnContainer>
   );
 }

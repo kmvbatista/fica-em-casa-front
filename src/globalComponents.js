@@ -60,3 +60,8 @@ export const GetModalButton = styled.div`
   margin-top: 1.5em;
   padding: 1em;
 `;
+
+export const Column = styled.div`
+  display: flex;
+  flex-direction: column;
+`;

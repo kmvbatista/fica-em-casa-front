@@ -43,20 +43,21 @@ export const PersonAvatar = styled.div`
 `;
 
 export const PersonName = styled.p`
-  font-size: 1.6em;
+  font-size: 1.5em;
   font-weight: bold;
   margin-bottom: 0.3em;
 `;
 
 export const Distance = styled.p`
-  font-size: 1.4em;
+  font-size: 1.3em;
   font-weight: 200;
+  color: var(--color-grey-light3);
 `;
 
 export const ContactIcon = styled.div`
-  max-height: 3.5em;
-  max-width: 3.5em;
   margin-right: 0.5em;
+  max-width: 4em;
+  max-height: 4em;
 `;
 
 export const ExpandedButton = styled.div`

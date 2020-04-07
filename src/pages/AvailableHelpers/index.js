@@ -54,7 +54,7 @@ export default function AvailableHelpers() {
                 <PersonName>{el.name}</PersonName>
                 <Distance>{el.distance}km perto de você</Distance>
               </Column>
-              <Row>
+              <Row style={{ width: '30%' }}>
                 <ContactIcon>
                   <img
                     src='./whatsapp.svg'

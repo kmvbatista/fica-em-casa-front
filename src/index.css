@@ -1,5 +1,11 @@
 @font-face {
-  font-family: 'BalooThambi2';
-  src: local('BalooThambi2'),
+  font-family: 'BalooThambi2-Regular';
+  src: local('BalooThambi2-Regular'),
     url(./assets/fonts/BalooThambi2-Regular.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'BalooThambi2-Bolder';
+  src: local('BalooThambi2-Bolder'),
+    url(./assets/fonts/BalooThambi2-ExtraBold.ttf) format('truetype');
 }

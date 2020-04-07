@@ -45,7 +45,9 @@ export default function AvailableHelpers() {
                 }}
               ></PersonAvatar>
               <Column style={{ marginRight: '5%' }}>
-                <PersonName>{el.name}</PersonName>
+                <PersonName>
+                  <strong>{el.name}</strong>
+                </PersonName>
                 <Distance>{el.distance}km perto de você</Distance>
               </Column>
               <Row style={{ width: '30%' }}>

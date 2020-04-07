@@ -32,7 +32,7 @@ export default function Login() {
         email={email}
         setEmail={setEmail}
         password={setPassword}
-        handleSubmit={() => history.push('/choose-group')}
+        handleSubmit={() => history.push('/available-helpers')}
       ></InitialForm>
     </div>
   );

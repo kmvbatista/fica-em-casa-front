@@ -33,24 +33,18 @@ export default function AvailableHelpers() {
       </TopDecoration>
       <MainTab>
         <MainPhrase>
-          <strong>X vizinhos</strong> combinam com o que você pode{' '}
-          <strong>ajudar</strong>!
+          <strong>{peopleData.length} vizinhos</strong> combinam com o que você
+          pode <strong>ajudar</strong>!
         </MainPhrase>
         <Column>
           {peopleData.map((el) => (
             <PeopleCard key={el.distance}>
-              <PersonAvatar>
-                <img
-                  src={el.photoUrl}
-                  alt={el.name}
-                  style={{
-                    width: '100%',
-                    height: '100%',
-                    borderRadius: 'inherit',
-                  }}
-                />
-              </PersonAvatar>
-              <Column>
+              <PersonAvatar
+                style={{
+                  backgroundImage: `url(${el.photoUrl})`,
+                }}
+              ></PersonAvatar>
+              <Column style={{ marginRight: '5%' }}>
                 <PersonName>{el.name}</PersonName>
                 <Distance>{el.distance}km perto de você</Distance>
               </Column>

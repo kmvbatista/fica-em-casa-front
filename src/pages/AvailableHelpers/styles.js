@@ -26,26 +26,28 @@ export const PeopleCard = styled.div`
   display: flex;
   justify-content: space-around;
   background-color: #f9b0c336;
-  margin-bottom: 1em;
+  margin-bottom: 2em;
   color: white;
   font-weight: 200;
   align-items: center;
-  padding: 0.5em 0;
+  padding: 0.7em 0;
   border-radius: 10px;
   position: relative;
 `;
 
 export const PersonAvatar = styled.div`
   border-radius: 38%;
-  position: relative;
-  height: 4.8em;
-  width: 4.8em;
+  height: 5.25em;
+  width: 5.25em;
+  background-color: rgb(221, 221, 221);
+  background-position: center;
+  background-size: cover;
 `;
 
 export const PersonName = styled.p`
   font-size: 1.5em;
   font-weight: bold;
-  margin-bottom: 0.3em;
+  margin-bottom: 0.5em;
 `;
 
 export const Distance = styled.p`

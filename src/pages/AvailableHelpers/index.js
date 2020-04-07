@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   TopDecoration,
   MainTab,
@@ -8,14 +8,16 @@ import {
   Distance,
   PersonName,
   ContactIcon,
-  ExpandedButton,
-  Arrow,
+  CollapsibleCard,
+  HelpOptionCard,
 } from './styles';
-import peopleData from '../../assets/peopleToHelp.json';
 import { Column, Row } from '../../globalComponents';
+import Collapse from '@material-ui/core/Collapse';
 import ArrowButton from './ArrowButton/arrowButton';
+import peopleData from '../../assets/peopleToHelp.json';
 
 export default function AvailableHelpers() {
+  const [isActive, setIsActive] = useState(false);
   return (
     <div>
       <TopDecoration>
@@ -37,43 +39,71 @@ export default function AvailableHelpers() {
           pode <strong>ajudar</strong>!
         </MainPhrase>
         <Column>
-          {peopleData.map((el) => (
-            <PeopleCard key={el.distance}>
-              <PersonAvatar
-                style={{
-                  backgroundImage: `url(${el.photoUrl})`,
-                }}
-              ></PersonAvatar>
-              <Column style={{ marginRight: '5%' }}>
-                <PersonName>
-                  <strong>{el.name}</strong>
-                </PersonName>
-                <Distance>{el.distance}km perto de você</Distance>
-              </Column>
-              <Row style={{ width: '30%' }}>
-                <ContactIcon>
-                  <img
-                    src='./whatsapp.svg'
-                    alt='whatsapp icon'
+          {peopleData.map((person) => (
+            <Column style={{ marginBottom: '2em' }}>
+              <PeopleCard key={person.distance}>
+                <PersonAvatar
+                  style={{
+                    backgroundImage: `url(${person.photoUrl})`,
+                  }}
+                ></PersonAvatar>
+                <Column style={{ marginRight: '5%' }}>
+                  <PersonName>
+                    <strong>{person.name}</strong>
+                  </PersonName>
+                  <Distance>{person.distance}km perto de você</Distance>
+                </Column>
+                <Row style={{ width: '30%' }}>
+                  <ContactIcon>
+                    <img
+                      src='./whatsapp.svg'
+                      alt='whatsapp icon'
+                      style={{
+                        width: '70%',
+                        borderRadius: 'inherit',
+                      }}
+                    />
+                  </ContactIcon>
+                  <ContactIcon>
+                    <img
+                      src='./phone.svg'
+                      alt='whatsapp icon'
+                      style={{
+                        width: '70%',
+                        borderRadius: 'inherit',
+                      }}
+                    />
+                  </ContactIcon>
+                  <div onClick={() => setIsActive(!isActive)}>
+                    <ArrowButton></ArrowButton>
+                  </div>
+                </Row>
+              </PeopleCard>
+              <Collapse in={isActive}>
+                <CollapsibleCard>
+                  <p
                     style={{
-                      width: '70%',
-                      borderRadius: 'inherit',
+                      fontSize: '1.4em',
+                      color: 'var(--color-grey-dark1)',
+                      fontWeight: '200',
                     }}
-                  />
-                </ContactIcon>
-                <ContactIcon>
-                  <img
-                    src='./phone.svg'
-                    alt='whatsapp icon'
-                    style={{
-                      width: '70%',
-                      borderRadius: 'inherit',
-                    }}
-                  />
-                </ContactIcon>
-                <ArrowButton></ArrowButton>
-              </Row>
-            </PeopleCard>
+                  >
+                    Luiza precisa de ajuda com
+                  </p>
+                  <Row style={{ margin: '.8em 0' }}>
+                    {person.needHelpWith.map((it) => (
+                      <HelpOptionCard>
+                        <img
+                          src={`./${it}.png`}
+                          alt={it}
+                          style={{ width: '1.5em', height: '1.5em' }}
+                        />
+                      </HelpOptionCard>
+                    ))}
+                  </Row>
+                </CollapsibleCard>
+              </Collapse>
+            </Column>
           ))}
         </Column>
       </MainTab>

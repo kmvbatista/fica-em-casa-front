@@ -82,13 +82,13 @@ export const ExpandedButton = styled.div`
 export const HelpOptionCard = styled.div`
   border-radius: 20%;
   background-color: white;
-  padding: 0.7em 1em;
+  padding: 0.85em 1.1em;
   margin-right: 0.8em;
 `;
 
 export const GoToMapsButtonn = styled.div`
-  display: block;
-  padding: 1em 3em;
+  padding: 1em 0em;
   text-align: center;
-  background-color: #64ffad;
+  background-color: #6ed59e;
+  border-radius: 10px;
 `;

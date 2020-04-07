@@ -10,6 +10,7 @@ import {
   ContactIcon,
   CollapsibleCard,
   HelpOptionCard,
+  GoToMapsButtonn,
 } from './styles';
 import { Column, Row } from '../../globalComponents';
 import Collapse from '@material-ui/core/Collapse';
@@ -35,8 +36,11 @@ export default function AvailableHelpers() {
       </TopDecoration>
       <MainTab>
         <MainPhrase>
-          <strong>{peopleData.length} vizinhos</strong> combinam com o que você
-          pode <strong>ajudar</strong>!
+          <strong style={{ fontSize: 'inherit' }}>
+            {peopleData.length} vizinhos
+          </strong>{' '}
+          combinam com o que você pode{' '}
+          <strong style={{ fontSize: 'inherit' }}>ajudar</strong>!
         </MainPhrase>
         <Column>
           {peopleData.map((person) => (
@@ -49,7 +53,9 @@ export default function AvailableHelpers() {
                 ></PersonAvatar>
                 <Column style={{ marginRight: '5%' }}>
                   <PersonName>
-                    <strong>{person.name}</strong>
+                    <strong style={{ fontSize: 'inherit' }}>
+                      {person.name}
+                    </strong>
                   </PersonName>
                   <Distance>{person.distance}km perto de você</Distance>
                 </Column>
@@ -88,7 +94,7 @@ export default function AvailableHelpers() {
                       fontWeight: '200',
                     }}
                   >
-                    Luiza precisa de ajuda com
+                    {person.name.split(' ')[0]} precisa de ajuda com
                   </p>
                   <Row style={{ margin: '.8em 0' }}>
                     {person.needHelpWith.map((it) => (
@@ -101,6 +107,9 @@ export default function AvailableHelpers() {
                       </HelpOptionCard>
                     ))}
                   </Row>
+                  <GoToMapsButtonn>
+                    <strong>Traçar mapa usando o Google Maps</strong>
+                  </GoToMapsButtonn>
                 </CollapsibleCard>
               </Collapse>
             </Column>

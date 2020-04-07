@@ -2,21 +2,37 @@
   {
     "name": "João Carlos",
     "photoUrl": "https://assets-br.wemystic.com.br/20191113010228/homem-capri-850x640.jpg",
-    "distance": 2
+    "distance": 2,
+    "needHelpWith": [
+      "market",
+      "pharmacy",
+      "food-donation",
+      "bread",
+      "detergent"
+    ]
   },
   {
     "name": "Leonardo Silva",
     "photoUrl": "https://img.ibxk.com.br/2019/02/17/17124052466014.jpg?w=704",
-    "distance": 3
+    "distance": 3,
+    "needHelpWith": ["bookshelf", "pharmacy", "soap", "market", "detergent"]
   },
   {
     "name": "Luzia Costa",
     "photoUrl": "https://meapaixonei.com.br/wp-content/uploads/2017/10/sinais-que-comprovam-que-voce-tem-se-tornado-uma-pessoa-melhor-a-cada-dia-300x197.jpg",
-    "distance": 1
+    "distance": 1,
+    "needHelpWith": [
+      "communication",
+      "pharmacy",
+      "food-donation",
+      "videoAula",
+      "detergent"
+    ]
   },
   {
     "name": "Márcia Pena",
     "photoUrl": "https://image.freepik.com/fotos-gratis/retrato-de-uma-mulher-na-idade-adulta_163305-929.jpg",
-    "distance": 0.7
+    "distance": 0,
+    "needHelpWith": ["pet", "pharmacy", "food-donation", "netflix", "detergent"]
   }
 ]

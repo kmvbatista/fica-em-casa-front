@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   TopDecoration,
   MainTab,
@@ -19,6 +19,31 @@ import peopleData from '../../assets/peopleToHelp.json';
 
 export default function AvailableHelpers() {
   const [isActive, setIsActive] = useState(false);
+  const [itemsExpanded, setListExpanded] = useState([]);
+
+  useEffect(() => {
+    const isItemsExpandedList = peopleData.map((x) => {
+      return { id: x.name, isExpanded: false };
+    });
+    update(isItemsExpandedList);
+  }, []);
+
+  const update = (x) => {
+    setListExpanded([...x]);
+  };
+
+  const getIsItemExpanded = (personName) => {
+    if (itemsExpanded.length == 0) return false;
+    const item = itemsExpanded.filter((x) => x.id == personName)[0];
+    return item.isExpanded;
+  };
+
+  const toggleExpanded = (personName) => {
+    const index = itemsExpanded.findIndex((x) => x.id == personName);
+    itemsExpanded[index].isExpanded = !itemsExpanded[index].isExpanded;
+    update(itemsExpanded);
+  };
+
   return (
     <div>
       <TopDecoration>
@@ -80,12 +105,12 @@ export default function AvailableHelpers() {
                       }}
                     />
                   </ContactIcon>
-                  <div onClick={() => setIsActive(!isActive)}>
+                  <div onClick={() => toggleExpanded(person.name)}>
                     <ArrowButton></ArrowButton>
                   </div>
                 </Row>
               </PeopleCard>
-              <Collapse in={isActive}>
+              <Collapse in={getIsItemExpanded(person.name)}>
                 <CollapsibleCard>
                   <p
                     style={{

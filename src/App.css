@@ -70,12 +70,13 @@ body {
   font-weight: 400;
   line-height: 1;
   min-height: 100vh;
-  color: var(--color-grey-dark-2);
+  color: white;
   font-family: BalooThambi2-Regular;
 }
 
 strong {
   font-family: BalooThambi2-Bolder;
+  font-size: 1.3em;
 }
 
 :root {

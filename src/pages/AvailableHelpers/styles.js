@@ -32,6 +32,7 @@ export const PeopleCard = styled.div`
   align-items: center;
   padding: 0.5em 0;
   border-radius: 10px;
+  position: relative;
 `;
 
 export const PersonAvatar = styled.div`
@@ -56,4 +57,13 @@ export const ContactIcon = styled.div`
   max-height: 3.5em;
   max-width: 3.5em;
   margin-right: 0.5em;
+`;
+
+export const ExpandedButton = styled.div`
+  width: 1.5em;
+  position: absolute;
+  right: -0.75em;
+  top: 50%;
+  transform: translate(0, -50%);
+  color: white;
 `;

@@ -8,9 +8,12 @@ import {
   Distance,
   PersonName,
   ContactIcon,
+  ExpandedButton,
+  Arrow,
 } from './styles';
 import peopleData from '../../assets/peopleToHelp.json';
 import { Column, Row } from '../../globalComponents';
+import ArrowButton from './ArrowButton/arrowButton';
 
 export default function AvailableHelpers() {
   return (
@@ -54,26 +57,25 @@ export default function AvailableHelpers() {
               <Row>
                 <ContactIcon>
                   <img
-                    src='./whatsapp.png'
+                    src='./whatsapp.svg'
                     alt='whatsapp icon'
                     style={{
-                      width: '100%',
-                      height: '100%',
+                      width: '70%',
                       borderRadius: 'inherit',
                     }}
                   />
                 </ContactIcon>
                 <ContactIcon>
                   <img
-                    src='./telefone.png'
+                    src='./phone.svg'
                     alt='whatsapp icon'
                     style={{
-                      width: '100%',
-                      height: '100%',
+                      width: '70%',
                       borderRadius: 'inherit',
                     }}
                   />
                 </ContactIcon>
+                <ArrowButton></ArrowButton>
               </Row>
             </PeopleCard>
           ))}

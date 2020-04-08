@@ -31,7 +31,7 @@ export default function AvailableHelpers() {
             {peopleData.length} vizinhos
           </strong>
           combinam com o que você precisa e
-          <strong style={{ fontSize: 'inherit' }}>vão te ajudar</strong>!
+          <strong style={{ fontSize: 'inherit' }}> vão te ajudar</strong>!
         </MainPhrase>
         <Column>
           {peopleData.map((person) => (

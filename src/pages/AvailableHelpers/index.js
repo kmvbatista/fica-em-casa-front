@@ -12,9 +12,9 @@ import {
 export default function AvailableHelpers() {
   return (
     <div>
-      <TopDecoration>
+      <TopDecoration style={{ backgroundColor: 'var(--color-pink)' }}>
         <img
-          src='./old-guys-dancing.png'
+          src='./helpers.png'
           alt='needed-people'
           style={{
             position: 'absolute',
@@ -25,17 +25,20 @@ export default function AvailableHelpers() {
           }}
         />
       </TopDecoration>
-      <MainTab>
+      <MainTab style={{ backgroundColor: 'var(--color-purple)' }}>
         <MainPhrase>
           <strong style={{ fontSize: 'inherit' }}>
             {peopleData.length} vizinhos
-          </strong>{' '}
-          combinam com o que você pode{' '}
-          <strong style={{ fontSize: 'inherit' }}>ajudar</strong>!
+          </strong>
+          combinam com o que você precisa e
+          <strong style={{ fontSize: 'inherit' }}>vão te ajudar</strong>!
         </MainPhrase>
         <Column>
           {peopleData.map((person) => (
-            <PersonCard person={person}></PersonCard>
+            <PersonCard
+              backgroundColor={'#ffffff1c'}
+              person={person}
+            ></PersonCard>
           ))}
         </Column>
       </MainTab>

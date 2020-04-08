@@ -17,7 +17,7 @@ export const LoginInput = styled.input`
 export const Title = styled.h3`
   margin-bottom: 1.5em;
   font-weight: bold;
-  font-size: 4.5em;
+  font-size: 3.2em;
   line-height: 1;
   font-weight: bolder;
   color: var(--color-purple);

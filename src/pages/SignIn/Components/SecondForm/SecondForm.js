@@ -13,7 +13,9 @@ export default function SecondForm(props) {
   return (
     <div className='container'>
       <Container>
-        <Title>Agora crie o seu login e senha!</Title>
+        <Title>
+          <strong style={{ fontSize: 'inherit' }}>Agora crie o seu login e senha!</strong>
+        </Title>
 
         <InputBlock className='input-block'>
           <LoginInput

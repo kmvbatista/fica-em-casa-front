@@ -17,8 +17,8 @@ export const ColumnContainer = styled.div`
 export const OptionCard = styled.div`
   cursor: pointer;
   margin: auto;
-  height: 7em;
-  width: 7em;
+  height: 8em;
+  width: 8em;
   border-radius: 17px;
   background-color: white;
   display: flex;
@@ -27,7 +27,7 @@ export const OptionCard = styled.div`
   align-items: center;
   color: var(--color-pink);
   font-weight: bold;
-  font-size: 1.25em;
+
   padding: 15px 0;
   text-align: center;
   @media only screen and (min-width: 610px) {
@@ -38,6 +38,10 @@ export const OptionCard = styled.div`
     height: 6em;
     width: 7em;
   }
+`;
+
+export const GridText = styled.p`
+  font-size: 1.25em;
 `;
 
 export const Grid = styled.div`

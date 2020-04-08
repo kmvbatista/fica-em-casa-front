@@ -7,6 +7,7 @@ const NeedHelpForm = lazy(() => import('../pages/NeedHelpForm/index'));
 const NeedHelpOptions = lazy(() => import('../pages/NeedHelpOptions/index'));
 const CanHelpOptions = lazy(() => import('../pages/CanHelpOptions/index'));
 const AvailableHelpers = lazy(() => import('../pages/AvailableHelpers/index'));
+const AvailableNeeded = lazy(() => import('../pages/AvailableNeeded/index'));
 
 export default function Routes() {
   return (
@@ -32,6 +33,9 @@ export default function Routes() {
         </Route>
         <Route exact path='/available-helpers'>
           <AvailableHelpers></AvailableHelpers>
+        </Route>
+        <Route exact path='/available-needed'>
+          <AvailableNeeded></AvailableNeeded>
         </Route>
       </Suspense>
     </Switch>

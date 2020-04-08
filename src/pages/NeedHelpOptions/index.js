@@ -4,6 +4,7 @@ import {
   Grid,
   OptionCard,
   GetModalButton,
+  GridText,
 } from '../../globalComponents';
 import { SubTitle, Title } from './styles';
 import cardData from '../../assets/productCategory.json';
@@ -20,8 +21,8 @@ export default function NeedHelpOptions() {
       <Grid>
         {cardData.map((el) => (
           <OptionCard key={el.name}>
-            <img src={el.imageUrl} alt={el.name} style={{ maxHeight: '55%' }} />
-            {el.name}
+            <img src={el.imageUrl} alt={el.name} style={{ height: '2.5em' }} />
+            <GridText>{el.name}</GridText>
           </OptionCard>
         ))}
       </Grid>

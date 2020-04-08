@@ -3,7 +3,6 @@ import { useHistory } from 'react-router-dom';
 import Welcome from './components/Welcome/Welcome';
 
 import api from '../../services/api';
-import './style.css';
 import InitialForm from './components/InitialForm/InitialForm';
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -32,7 +31,11 @@ export default function Login() {
         email={email}
         setEmail={setEmail}
         password={setPassword}
+<<<<<<< HEAD
         handleSubmit={() => history.push('/sign-in')}
+=======
+        handleSubmit={() => history.push('/available-helpers')}
+>>>>>>> 0341b2f27045ac4dd582d4aac37806abd80fcdd1
       ></InitialForm>
     </div>
   );

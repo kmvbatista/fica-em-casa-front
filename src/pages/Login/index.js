@@ -31,11 +31,7 @@ export default function Login() {
         email={email}
         setEmail={setEmail}
         password={setPassword}
-<<<<<<< HEAD
         handleSubmit={() => history.push('/sign-in')}
-=======
-        handleSubmit={() => history.push('/available-helpers')}
->>>>>>> 0341b2f27045ac4dd582d4aac37806abd80fcdd1
       ></InitialForm>
     </div>
   );

@@ -77,5 +77,5 @@ export const GoToMapsIcon = styled.img`
   position: absolute;
   bottom: 0;
   left: 1em;
-  width: 9%;
+  height: 89%;
 `;

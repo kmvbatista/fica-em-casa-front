@@ -1,18 +1,18 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import Welcome from './components/Welcome/Welcome';
-
+import Wait from './Components/Wait';
 import api from '../../services/api';
-import './style.css';
-import InitialForm from './components/InitialForm/InitialForm';
-export default function Login() {
-  const [email, setEmail] = useState('');
+
+import SecondForm from './Components/SecondForm/SecondForm';
+
+export default function SignIn() {
+  const [telefone, setTelefone] = useState('');
   const [password, setPassword] = useState('');
 
   const history = useHistory();
 
   const handleSubmit = async () => {
-    const dataToSend = { email, password };
+    const dataToSend = { telefone, password };
     try {
       const response = await api.post('/sessions', dataToSend);
       console.log(response);
@@ -27,13 +27,13 @@ export default function Login() {
 
   return (
     <div style={{ padding: 0 }}>
-      <Welcome></Welcome>
-      <InitialForm
-        email={email}
-        setEmail={setEmail}
+      <Wait></Wait>
+      <SecondForm
+        telefone={telefone}
+        setTelefone={setTelefone}
         password={setPassword}
-        handleSubmit={() => history.push('/sign-in')}
-      ></InitialForm>
+        handleSubmit={() => history.push('/choose-group')}
+      ></SecondForm>
     </div>
   );
 }

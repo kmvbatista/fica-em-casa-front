@@ -1,17 +1,9 @@
 import React from 'react';
-import { Column } from '../../globalComponents';
-
-import peopleData from '../../assets/peopleToHelp.json';
-import PersonCard from '../../components/AvailablePeople/PersonCard';
-import {
-  MainPhrase,
-  MainTab,
-} from '../../components/AvailablePeople/sharedComponents';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import { TabContainer, TopDecorationImage, TopDecoration } from './styles';
-import AvailableHelpers from '../AvailableHelpers';
-import AvailableNeeded from '../AvailableNeeded';
+import AvailableHelpers from './components/AvailableHelpers';
+import AvailableNeeded from './components/AvailableNeeded';
 
 export default function HelpBeHelped() {
   const [value, setValue] = React.useState('one');

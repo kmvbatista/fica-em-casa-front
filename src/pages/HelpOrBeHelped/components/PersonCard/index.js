@@ -12,7 +12,7 @@ import {
   GoToMapsIcon,
 } from './styles';
 
-import { Column, Row } from '../../../globalComponents';
+import { Column, Row } from '../../../../globalComponents';
 
 import Collapse from '@material-ui/core/Collapse';
 import ArrowButton from './ArrowButton/arrowButton';

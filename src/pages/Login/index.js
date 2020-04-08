@@ -3,7 +3,6 @@ import { useHistory } from 'react-router-dom';
 import Welcome from './components/Welcome/Welcome';
 
 import api from '../../services/api';
-import './style.css';
 import InitialForm from './components/InitialForm/InitialForm';
 export default function Login() {
   const [email, setEmail] = useState('');

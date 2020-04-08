@@ -1,49 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import {
-  TopDecoration,
-  MainTab,
-  MainPhrase,
-  PeopleCard,
-  PersonAvatar,
-  Distance,
-  PersonName,
-  ContactIcon,
-  CollapsibleCard,
-  HelpOptionCard,
-  GoToMapsButtonn,
-} from './styles';
-import { Column, Row } from '../../globalComponents';
-import Collapse from '@material-ui/core/Collapse';
-import ArrowButton from './ArrowButton/arrowButton';
+import { TopDecoration, MainTab, MainPhrase } from './styles';
+import { Column } from '../../globalComponents';
+
 import peopleData from '../../assets/peopleToHelp.json';
+import PersonCard from './PersonCard';
 
 export default function AvailableHelpers() {
-  const [isActive, setIsActive] = useState(false);
-  const [itemsExpanded, setListExpanded] = useState([]);
-
-  useEffect(() => {
-    const isItemsExpandedList = peopleData.map((x) => {
-      return { id: x.name, isExpanded: false };
-    });
-    update(isItemsExpandedList);
-  }, []);
-
-  const update = (x) => {
-    setListExpanded([...x]);
-  };
-
-  const getIsItemExpanded = (personName) => {
-    if (itemsExpanded.length == 0) return false;
-    const item = itemsExpanded.filter((x) => x.id == personName)[0];
-    return item.isExpanded;
-  };
-
-  const toggleExpanded = (personName) => {
-    const index = itemsExpanded.findIndex((x) => x.id == personName);
-    itemsExpanded[index].isExpanded = !itemsExpanded[index].isExpanded;
-    update(itemsExpanded);
-  };
-
   return (
     <div>
       <TopDecoration>
@@ -69,75 +31,7 @@ export default function AvailableHelpers() {
         </MainPhrase>
         <Column>
           {peopleData.map((person) => (
-            <Column style={{ marginBottom: '2em' }}>
-              <PeopleCard key={person.distance}>
-                <PersonAvatar
-                  style={{
-                    backgroundImage: `url(${person.photoUrl})`,
-                  }}
-                ></PersonAvatar>
-                <Column style={{ marginRight: '5%' }}>
-                  <PersonName>
-                    <strong style={{ fontSize: 'inherit' }}>
-                      {person.name}
-                    </strong>
-                  </PersonName>
-                  <Distance>{person.distance}km perto de você</Distance>
-                </Column>
-                <Row style={{ width: '30%' }}>
-                  <ContactIcon>
-                    <img
-                      src='./whatsapp.svg'
-                      alt='whatsapp icon'
-                      style={{
-                        width: '70%',
-                        borderRadius: 'inherit',
-                      }}
-                    />
-                  </ContactIcon>
-                  <ContactIcon>
-                    <img
-                      src='./phone.svg'
-                      alt='whatsapp icon'
-                      style={{
-                        width: '70%',
-                        borderRadius: 'inherit',
-                      }}
-                    />
-                  </ContactIcon>
-                  <div onClick={() => toggleExpanded(person.name)}>
-                    <ArrowButton></ArrowButton>
-                  </div>
-                </Row>
-              </PeopleCard>
-              <Collapse in={getIsItemExpanded(person.name)}>
-                <CollapsibleCard>
-                  <p
-                    style={{
-                      fontSize: '1.4em',
-                      color: 'var(--color-grey-dark1)',
-                      fontWeight: '200',
-                    }}
-                  >
-                    {person.name.split(' ')[0]} precisa de ajuda com
-                  </p>
-                  <Row style={{ margin: '.8em 0' }}>
-                    {person.needHelpWith.map((it) => (
-                      <HelpOptionCard>
-                        <img
-                          src={`./${it}.png`}
-                          alt={it}
-                          style={{ width: '1.5em', height: '1.5em' }}
-                        />
-                      </HelpOptionCard>
-                    ))}
-                  </Row>
-                  <GoToMapsButtonn>
-                    <strong>Traçar mapa usando o Google Maps</strong>
-                  </GoToMapsButtonn>
-                </CollapsibleCard>
-              </Collapse>
-            </Column>
+            <PersonCard person={person}></PersonCard>
           ))}
         </Column>
       </MainTab>

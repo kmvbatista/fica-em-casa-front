@@ -9,10 +9,10 @@ import {
   MainTab,
 } from '../../components/AvailablePeople/sharedComponents';
 
-export default function AvailableHelpers() {
+export default function AvailableNeeded() {
   return (
     <div>
-      <TopDecoration>
+      {/* <TopDecoration>
         <img
           src='./old-guys-dancing.png'
           alt='needed-people'
@@ -24,7 +24,7 @@ export default function AvailableHelpers() {
             transform: 'translate(-50%, 0)',
           }}
         />
-      </TopDecoration>
+      </TopDecoration> */}
       <MainTab>
         <MainPhrase>
           <strong style={{ fontSize: 'inherit' }}>

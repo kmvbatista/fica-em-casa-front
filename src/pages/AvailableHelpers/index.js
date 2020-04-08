@@ -8,11 +8,27 @@ import {
   TopDecoration,
   MainTab,
 } from '../../components/AvailablePeople/sharedComponents';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
+import { TabContainer } from './styles';
 
 export default function AvailableHelpers() {
+  // const [value, setValue] = React.useState('one');
+
+  // const handleChange = (event, newValue) => {
+  //   setValue(newValue);
+  // };
+
+  // function a11yProps(index) {
+  //   return {
+  //     id: `simple-tab-${index}`,
+  //     'aria-controls': `simple-tabpanel-${index}`,
+  //   };
+  // }
+
   return (
     <div>
-      <TopDecoration style={{ backgroundColor: 'var(--color-pink)' }}>
+      {/* <TopDecoration style={{ backgroundColor: 'var(--color-pink)' }}>
         <img
           src='./helpers.png'
           alt='needed-people'
@@ -24,7 +40,7 @@ export default function AvailableHelpers() {
             transform: 'translate(-50%, 0)',
           }}
         />
-      </TopDecoration>
+      </TopDecoration> */}
       <MainTab style={{ backgroundColor: 'var(--color-purple)' }}>
         <MainPhrase>
           <strong style={{ fontSize: 'inherit' }}>

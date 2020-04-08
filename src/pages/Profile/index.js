@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Column } from '../../globalComponents';
 import {
   ProfilePhotoContainer,
@@ -9,8 +9,10 @@ import {
   Label,
   InputBlock,
 } from './styles';
+import InputMask from 'react-input-mask';
 
-export default function index() {
+export default function Profile() {
+  const [phone, setPhone] = useState();
   return (
     <Column>
       <ProfilePhotoContainer>
@@ -38,7 +40,20 @@ export default function index() {
         </InputBlock>
         <InputBlock>
           <Label>seu telefone</Label>
-          <Input></Input>
+          <InputMask
+            mask='(99) 99999-9999'
+            value={phone}
+            onChange={(e) => setPhone(e.target.value)}
+          >
+            {(inputProps) => (
+              <Input
+                {...inputProps}
+                placeholder='(00) 00000-0000'
+                type='tel'
+                disableUnderline
+              />
+            )}
+          </InputMask>
         </InputBlock>
         <BottomContainer></BottomContainer>
       </MainContainer>

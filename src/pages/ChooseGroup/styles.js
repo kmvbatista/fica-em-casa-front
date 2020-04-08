@@ -1,8 +1,7 @@
 import styled from 'styled-components';
+import { Column } from '../../globalComponents';
 
-export const Container = styled.div`
-  display: flex;
-  flex-direction: column;
+export const Container = styled(Column)`
   min-height: 100vh;
 `;
 
@@ -37,16 +36,10 @@ export const Box1 = styled.div`
   align-items: center;
 `;
 
-export const Box2 = styled.div`
-  flex-direction: column;
-  display: flex;
-  height: 50vh;
+export const Box2 = styled(Box1)`
   transform: translate(0, -2em);
   border-radius: 0 2.5em 0 0;
-  padding-bottom: 2em;
   background-color: var(--color-purple);
-  justify-content: center;
-  align-items: center;
 `;
 
 export const CenteredBox = styled.div`

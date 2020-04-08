@@ -21,7 +21,7 @@ export const MainContainer = styled.div`
 `;
 
 export const BottomContainer = styled.div`
-  background-color: rgba(0, 0, 0, 0.15);
+  background-color: rgba(0, 0, 0, 0.2);
   width: 100%;
   height: 65%;
   left: 0;
@@ -49,6 +49,9 @@ export const Input = styled.input`
   width: 100%;
   line-height: 2;
   margin-top: 0.7em;
+  &::placeholder {
+    color: white;
+  }
 `;
 
 export const Label = styled.label`

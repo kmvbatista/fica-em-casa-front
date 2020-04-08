@@ -17,13 +17,17 @@ import { Column, Row } from '../../../globalComponents';
 import Collapse from '@material-ui/core/Collapse';
 import ArrowButton from './ArrowButton/arrowButton';
 
-export default function PersonCard({ person }) {
+export default function PersonCard({ person, backgroundColor }) {
   const [isExpanded, setIsExpanded] = useState(false);
   return (
     <Column style={{ marginBottom: '2em' }}>
       <PeopleCard
         key={person.distance}
-        style={!isExpanded ? { borderRadius: '10px' } : {}}
+        style={
+          !isExpanded
+            ? { borderRadius: '10px', backgroundColor: backgroundColor }
+            : { backgroundColor: backgroundColor }
+        }
       >
         <PersonAvatar
           style={{
@@ -63,7 +67,7 @@ export default function PersonCard({ person }) {
         </Row>
       </PeopleCard>
       <Collapse in={isExpanded}>
-        <CollapsibleCard>
+        <CollapsibleCard style={{ backgroundColor: backgroundColor }}>
           <p
             style={{
               fontSize: '1.4em',

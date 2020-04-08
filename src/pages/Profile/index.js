@@ -7,6 +7,7 @@ import {
   Input,
   BottomContainer,
   Label,
+  InputBlock,
 } from './styles';
 
 export default function index() {
@@ -19,25 +20,27 @@ export default function index() {
         </Column>
       </ProfilePhotoContainer>
       <MainContainer>
-        <Label style={{ color: 'var(--color-purple-dark)' }}>apelido</Label>
-        <Input
-          style={{
-            fontSize: '3em',
-            fontFamily: 'BalooThambi2-Bolder',
-            marginTop: '.2em',
-          }}
-        ></Input>
-        <BottomContainer>
-          <div>
-            <Label>seu nome</Label>
+        <InputBlock>
+          <Label style={{ color: 'var(--color-purple-dark)' }}>apelido</Label>
+          <Input
+            style={{
+              fontSize: '3em',
+              fontFamily: 'BalooThambi2-Bolder',
+              marginTop: '.2em',
+              lineHeight: '1.8',
+            }}
+          ></Input>
+        </InputBlock>
+        <InputBlock>
+          <Label>seu nome</Label>
 
-            <Input></Input>
-          </div>
-          <div>
-            <Label>seu telefone</Label>
-            <Input></Input>
-          </div>
-        </BottomContainer>
+          <Input></Input>
+        </InputBlock>
+        <InputBlock>
+          <Label>seu telefone</Label>
+          <Input></Input>
+        </InputBlock>
+        <BottomContainer></BottomContainer>
       </MainContainer>
     </Column>
   );

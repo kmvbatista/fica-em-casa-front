@@ -12,23 +12,23 @@ export const MainContainer = styled.div`
   background-color: var(--color-purple);
   border-radius: 20px 0 0 0;
   padding: 6em;
-  height: 63vh;
+  height: 80vh;
   transform: translate(0, -2.1em);
   position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 `;
 
 export const BottomContainer = styled.div`
   background-color: rgba(0, 0, 0, 0.15);
   width: 100%;
-  height: 60%;
-  padding: 3em 6em;
+  height: 65%;
   left: 0;
   border-radius: 0 20px 0 0;
   position: absolute;
   bottom: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
+  z-index: -1;
 `;
 
 export const PhotoCard = styled.div`
@@ -55,4 +55,8 @@ export const Label = styled.label`
   font-weight: bold;
   font-size: 1.5em;
   color: #f2f1f1b3;
+`;
+
+export const InputBlock = styled.div`
+  margin-bottom: 1em;
 `;

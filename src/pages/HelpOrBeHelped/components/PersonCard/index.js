@@ -17,7 +17,7 @@ import { Column, Row } from '../../../../globalComponents';
 import Collapse from '@material-ui/core/Collapse';
 import ArrowButton from './ArrowButton/arrowButton';
 
-export default function PersonCard({ person, backgroundColor }) {
+export default function PersonCard({ person, backgroundColor, children }) {
   const [isExpanded, setIsExpanded] = useState(false);
   return (
     <Column style={{ marginBottom: '2em' }}>
@@ -75,7 +75,7 @@ export default function PersonCard({ person, backgroundColor }) {
               fontWeight: '200',
             }}
           >
-            {person.name.split(' ')[0]} precisa de ajuda com
+            {person.name.split(' ')[0]} {children}
           </p>
           <Row style={{ margin: '.8em 0' }}>
             {person.needHelpWith.map((it) => (

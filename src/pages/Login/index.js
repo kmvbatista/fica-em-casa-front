@@ -31,7 +31,7 @@ export default function Login() {
         email={email}
         setEmail={setEmail}
         password={setPassword}
-        handleSubmit={() => history.push('/profile')}
+        handleSubmit={() => history.push('/help')}
       ></InitialForm>
     </div>
   );

@@ -12,17 +12,16 @@ export default function AvailableHelpers() {
       <MainTab style={{ backgroundColor: 'var(--color-purple)' }}>
         <MainPhrase>
           <strong style={{ fontSize: 'inherit' }}>
-            {peopleData.length} vizinhos
+            {peopleData.length} vizinhos{' '}
           </strong>
           combinam com o que você precisa e
           <strong style={{ fontSize: 'inherit' }}> vão te ajudar</strong>!
         </MainPhrase>
         <Column>
           {peopleData.map((person) => (
-            <PersonCard
-              backgroundColor={'#ffffff1c'}
-              person={person}
-            ></PersonCard>
+            <PersonCard backgroundColor={'#ffffff1c'} person={person}>
+              pode te ajudar com
+            </PersonCard>
           ))}
         </Column>
       </MainTab>

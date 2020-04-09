@@ -10,14 +10,14 @@ export default function AvailableNeeded() {
     <MainTab>
       <MainPhrase>
         <strong style={{ fontSize: 'inherit' }}>
-          {peopleData.length} vizinhos
+          {peopleData.length} vizinhos{' '}
         </strong>
         combinam com o que você pode
-        <strong style={{ fontSize: 'inherit' }}>ajudar!</strong>
+        <strong style={{ fontSize: 'inherit' }}> ajudar!</strong>
       </MainPhrase>
       <Column>
         {peopleData.map((person) => (
-          <PersonCard person={person}></PersonCard>
+          <PersonCard person={person}>precisa de ajuda com:</PersonCard>
         ))}
       </Column>
     </MainTab>

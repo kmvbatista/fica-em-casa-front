@@ -68,6 +68,7 @@ function usePortal(id) {
   function getRootElem() {
     if (!rootElemRef.current) {
       rootElemRef.current = document.createElement('div');
+      rootElemRef.current.classList.add('modal-container');
     }
     return rootElemRef.current;
   }

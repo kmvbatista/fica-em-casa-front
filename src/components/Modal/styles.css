@@ -1,0 +1,21 @@
+#modal {
+  z-index: 10001;
+  background-color: rgba(0, 0, 0, 0.8);
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.closeButton {
+  position: absolute;
+  right: 1em;
+  top: 1em;
+  font-size: 2em;
+  color: red;
+  cursor: pointer;
+}

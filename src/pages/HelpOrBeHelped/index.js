@@ -1,46 +1,52 @@
 import React from 'react';
 import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
-import { TabContainer, TopDecorationImage, TopDecoration } from './styles';
+import { TabContainer, TopDecorationImage, TopDecoration, Tab } from './styles';
 import AvailableHelpers from './components/AvailableHelpers';
 import AvailableNeeded from './components/AvailableNeeded';
+import { Row } from '../../globalComponents';
 
 export default function HelpBeHelped() {
   const [value, setValue] = React.useState('one');
-  const [isHelping, setIsHelping] = React.useState(true);
+  const [isHelping, setIsHelping] = React.useState(false);
 
-  const handleChange = (event, newValue) => {
+  const toggleIsHelping = () => {
     setIsHelping(!isHelping);
   };
 
-  function a11yProps(index) {
-    return {
-      id: `simple-tab-${index}`,
-      'aria-controls': `simple-tabpanel-${index}`,
-    };
-  }
-
   return (
-    <div>
-      <TopDecoration isHelping={isHelping}>
+    <div style={{ position: 'relative' }}>
+      <TopDecoration
+        isHelping={isHelping}
+        style={{ display: 'flex', alignItems: 'flex-end' }}
+      >
         <TopDecorationImage isHelping={isHelping}></TopDecorationImage>
+        <TabContainer>
+          <Tab
+            isHelping={isHelping}
+            highLight={isHelping}
+            style={{ left: '0' }}
+            onClick={toggleIsHelping}
+          >
+            <strong style={{ display: 'block', textAlign: 'center' }}>
+              Quer te ajudar
+            </strong>
+          </Tab>
+          <Tab
+            isHelping={isHelping}
+            highLight={!isHelping}
+            style={{ right: '0' }}
+            onClick={toggleIsHelping}
+          >
+            <strong style={{ display: 'block', textAlign: 'center' }}>
+              Precisa de ajuda
+            </strong>
+          </Tab>
+        </TabContainer>
       </TopDecoration>
-      <TabContainer isHelping={isHelping}>
-        <Tabs
-          value={value}
-          onChange={handleChange}
-          aria-label='wrapped label tabs example'
-        >
-          <Tab value='one' label='Quero ajudar' wrapped {...a11yProps('one')} />
-          <Tab value='two' label='Preciso de ajuda' {...a11yProps('two')} />
-        </Tabs>
-      </TabContainer>
-      {isHelping && <AvailableHelpers></AvailableHelpers>}
-      {!isHelping && (
-        <div value={value} index='two'>
-          <AvailableNeeded></AvailableNeeded>
-        </div>
-      )}
+      <div style={{ zIndex: '10', position: 'absolute', width: '100%' }}>
+        {isHelping && <AvailableHelpers></AvailableHelpers>}
+        {!isHelping && <AvailableNeeded></AvailableNeeded>}
+      </div>
     </div>
   );
 }

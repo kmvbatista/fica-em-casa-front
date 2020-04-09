@@ -7,7 +7,6 @@ export const Title = styled.h3`
 `;
 
 export const TopDecoration = styled.div`
-  height: 15vh;
   background-color: var(--color-purple);
   position: relative;
 `;
@@ -17,4 +16,5 @@ export const Container = styled.div`
   color: white;
   padding: 3.5em;
   padding-bottom: 4.5em;
+  position: relative;
 `;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Row } from '../../../globalComponents';
 import {
   ConfirmationButton,
@@ -10,25 +10,14 @@ import {
   Quantity,
 } from './styles';
 
-export default function ModalContent({ cardInfo }) {
-  return (
-    <ModalContainer>
-      <Row style={{ alignItems: 'center' }}>
-        <Card>
-          <img
-            src={cardInfo.imageUrl}
-            style={{ height: '2.5em' }}
-            alt={cardInfo.name}
-          />
-        </Card>
-        <strong style={{ fontSize: '3em' }}>{cardInfo.name}</strong>
-      </Row>
-      <MainContainer>
-        <p style={{ marginBottom: '1em' }}>
-          Digite abaixo o que você está precisando, e, se for necessário,
-          especifique a quantidade. Por exemplo:
-        </p>
+export default function ModalContent({ cardInfo, closeModal }) {
+  const [showExample, setShowExample] = useState(true);
+
+  const getExample = () => {
+    return (
+      <>
         <div style={{ marginBottom: '1em' }}>
+          <p> Por exemplo:</p>
           <p>Olá, preciso de alguém para ir ao mercado.</p>
           <p>Preciso dos seguintes itens: </p>
         </div>
@@ -84,9 +73,40 @@ export default function ModalContent({ cardInfo }) {
             </Quantity>
           </Row>
         </ItemsContainer>
+      </>
+    );
+  };
+
+  const handleFinish = () => {
+    if (showExample) {
+      return setShowExample(false);
+    }
+    closeModal();
+  };
+
+  return (
+    <ModalContainer>
+      <Row style={{ alignItems: 'center' }}>
+        <Card>
+          <img
+            src={cardInfo.imageUrl}
+            style={{ height: '2.5em' }}
+            alt={cardInfo.name}
+          />
+        </Card>
+        <strong style={{ fontSize: '3em' }}>{cardInfo.name}</strong>
+      </Row>
+      <MainContainer>
+        <p style={{ marginBottom: '1em' }}>
+          Digite abaixo o que você está precisando, e, se for necessário,
+          especifique a quantidade.
+        </p>
+        {showExample && getExample()}
       </MainContainer>
-      <ConfirmationButton>
-        <strong style={{ fontSize: '1.25em' }}>Pronto!</strong>
+      <ConfirmationButton onClick={handleFinish}>
+        <strong style={{ fontSize: '1.25em' }}>
+          {showExample ? 'Pronto!' : 'Finalizar!'}
+        </strong>
       </ConfirmationButton>
     </ModalContainer>
   );

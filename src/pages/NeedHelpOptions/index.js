@@ -17,10 +17,17 @@ export default function NeedHelpOptions() {
 
   const getModal = () => {
     return (
-      <Modal close={() => setShowModal(false)}>
-        <ModalContent cardInfo={cardSelectedInfo}></ModalContent>
+      <Modal close={toggleShowModal}>
+        <ModalContent
+          cardInfo={cardSelectedInfo}
+          closeModal={toggleShowModal}
+        ></ModalContent>
       </Modal>
     );
+  };
+
+  const toggleShowModal = () => {
+    setShowModal(!showModal);
   };
 
   return (
@@ -37,7 +44,7 @@ export default function NeedHelpOptions() {
             key={el.name}
             onClick={() => {
               setCardSelectedInfo(el);
-              setShowModal(true);
+              toggleShowModal();
             }}
           >
             <img src={el.imageUrl} alt={el.name} style={{ height: '2.5em' }} />

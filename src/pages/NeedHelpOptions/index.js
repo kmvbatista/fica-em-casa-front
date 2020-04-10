@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   ColumnContainer,
   Grid,
@@ -8,8 +8,28 @@ import {
 } from '../../globalComponents';
 import { SubTitle, Title } from './styles';
 import cardData from '../../assets/productCategory.json';
+import Modal from '../../components/Modal';
+import ModalContent from './ModalContent';
 
 export default function NeedHelpOptions() {
+  const [showModal, setShowModal] = useState(false);
+  const [cardSelectedInfo, setCardSelectedInfo] = useState();
+
+  const getModal = () => {
+    return (
+      <Modal close={toggleShowModal}>
+        <ModalContent
+          cardInfo={cardSelectedInfo}
+          closeModal={toggleShowModal}
+        ></ModalContent>
+      </Modal>
+    );
+  };
+
+  const toggleShowModal = () => {
+    setShowModal(!showModal);
+  };
+
   return (
     <ColumnContainer>
       <Title>Preciso de ajuda</Title>
@@ -20,7 +40,13 @@ export default function NeedHelpOptions() {
       </SubTitle>
       <Grid>
         {cardData.map((el) => (
-          <OptionCard key={el.name}>
+          <OptionCard
+            key={el.name}
+            onClick={() => {
+              setCardSelectedInfo(el);
+              toggleShowModal();
+            }}
+          >
             <img src={el.imageUrl} alt={el.name} style={{ height: '2.5em' }} />
             <GridText>{el.name}</GridText>
           </OptionCard>
@@ -36,6 +62,7 @@ export default function NeedHelpOptions() {
           </p>
         </div>
       </GetModalButton>
+      {showModal && getModal()}
     </ColumnContainer>
   );
 }

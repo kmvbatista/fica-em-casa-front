@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import Wait from './Components/Wait';
+import StayHome from './Components/StayHome';
 import api from '../../services/api';
 
-import SecondForm from './Components/SecondForm/SecondForm';
+import ThirdForm from './Components/ThirdForm/ThirdForm';
 
-export default function SignIn() {
+export default function Login2() {
   const [telefone, setTelefone] = useState('');
   const [password, setPassword] = useState('');
 
@@ -27,13 +27,13 @@ export default function SignIn() {
 
   return (
     <div style={{ padding: 0 }}>
-      <Wait></Wait>
-      <SecondForm
+      <StayHome></StayHome>
+      <ThirdForm
         telefone={telefone}
         setTelefone={setTelefone}
         password={setPassword}
-        handleSubmit={() => history.push('/login2')}
-      ></SecondForm>
+        handleSubmit={() => history.push('/choose-group')}
+      ></ThirdForm>
     </div>
   );
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import {useHistory} from 'react-router-dom'
+import { useHistory } from 'react-router-dom';
 import {
   Container,
   Box1,
@@ -12,14 +12,32 @@ import {
   SecondaryText,
   Image,
 } from './styles';
-
+import api from '../../services/api';
 
 export default function ChooseGroup() {
-const history = useHistory();
+  const history = useHistory();
+  const dataComing = history.location.state;
+
+  const handleSubmit = async () => {
+    const dataToSend = Object.assign(dataComing, { isNeeded: false });
+    const response = await api.post('signup', dataToSend);
+    const { user, token } = response.data;
+    document.cookie = `token: ${JSON.stringify(token)}; user: ${JSON.stringify(
+      user,
+    )};`;
+    history.push('/help');
+  };
 
   return (
     <Container>
-      <Box1 onClick={() => history.push('need-help-form')}>
+      <Box1
+        onClick={() =>
+          history.push(
+            'need-help-form',
+            Object.assign(dataComing, { isNeeded: true }),
+          )
+        }
+      >
         <TitleContainer>
           <Title>
             Faço parte do<br></br>
@@ -47,7 +65,7 @@ const history = useHistory();
           </div>
         </CenteredBox>
       </Box1>
-      <Box2>
+      <Box2 onClick={handleSubmit}>
         <TitleContainer>
           <Title>
             Não faço parte<br></br>

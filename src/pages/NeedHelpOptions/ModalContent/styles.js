@@ -20,7 +20,7 @@ export const Card = styled(OptionCard)`
 export const ModalContainer = styled(Column)`
   width: 100%;
   height: 100%;
-  padding: 5em 4.5em;
+  padding: 4em 4.5em;
   justify-content: space-between;
   position: relative;
 `;

@@ -58,14 +58,7 @@ export default function ModalContent({ cardInfo }) {
             </Quantity>
           </Row>
           <Row>-Verdura</Row>
-          <Row>
-            -Papel higiênico .{' '}
-            <Quantity>
-              un <QuantityButton>+</QuantityButton>
-              <div>2</div>
-              <QuantityButton>-</QuantityButton>
-            </Quantity>
-          </Row>
+
           <Row>
             -Sabonete Dove{' '}
             <Quantity>

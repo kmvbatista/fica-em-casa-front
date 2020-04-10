@@ -41,14 +41,18 @@ export const ItemsContainer = styled(Column)`
 
 export const Quantity = styled.div`
   margin-left: 1.5em;
+  & > * {
+    height: 1.5em;
+    width: 1.5em;
+    display: inline-block;
+    text-align: center;
+  }
 `;
 export const QuantityButton = styled.button`
   border: none;
   outline: none;
   background-color: var(--color-yellow);
   text-align: center;
-  height: 1em;
-  width: 1em;
   border-radius: 26%;
   margin: 0 0.3em;
 `;

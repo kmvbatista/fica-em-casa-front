@@ -37,7 +37,8 @@ export default function ModalContent({ cardInfo }) {
             -Candida unid.{' '}
             <Quantity>
               {' '}
-              <QuantityButton>+</QuantityButton>2
+              <QuantityButton>+</QuantityButton>
+              <div>2</div>
               <QuantityButton>-</QuantityButton>
             </Quantity>
           </Row>
@@ -45,7 +46,8 @@ export default function ModalContent({ cardInfo }) {
             -Feijão kg{' '}
             <Quantity>
               {' '}
-              <QuantityButton>+</QuantityButton>2
+              <QuantityButton>+</QuantityButton>
+              <div>2</div>
               <QuantityButton>-</QuantityButton>
             </Quantity>
           </Row>
@@ -53,7 +55,8 @@ export default function ModalContent({ cardInfo }) {
             -Arroz kg{' '}
             <Quantity>
               {' '}
-              <QuantityButton>+</QuantityButton>5
+              <QuantityButton>+</QuantityButton>
+              <div>5</div>
               <QuantityButton>-</QuantityButton>
             </Quantity>
           </Row>
@@ -61,7 +64,8 @@ export default function ModalContent({ cardInfo }) {
           <Row>
             -Papel higiênico unid.{' '}
             <Quantity>
-              <QuantityButton>+</QuantityButton>2
+              <QuantityButton>+</QuantityButton>
+              <div>2</div>
               <QuantityButton>-</QuantityButton>
             </Quantity>
           </Row>
@@ -69,7 +73,8 @@ export default function ModalContent({ cardInfo }) {
             -Sabonete Dove{' '}
             <Quantity>
               {' '}
-              <QuantityButton>+</QuantityButton>2
+              <QuantityButton>+</QuantityButton>
+              <div>2</div>
               <QuantityButton>-</QuantityButton>
             </Quantity>
           </Row>
@@ -77,7 +82,8 @@ export default function ModalContent({ cardInfo }) {
             -Leite un
             <Quantity>
               {' '}
-              <QuantityButton>+</QuantityButton>4
+              <QuantityButton>+</QuantityButton>
+              <div>4</div>
               <QuantityButton>-</QuantityButton>
             </Quantity>
           </Row>
@@ -85,7 +91,8 @@ export default function ModalContent({ cardInfo }) {
             -Ovos un
             <Quantity>
               {' '}
-              <QuantityButton>+</QuantityButton>12
+              <QuantityButton>+</QuantityButton>
+              <div>12</div>
               <QuantityButton>-</QuantityButton>
             </Quantity>
           </Row>

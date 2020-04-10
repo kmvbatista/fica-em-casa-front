@@ -18,6 +18,7 @@
   font-size: 2em;
   color: red;
   cursor: pointer;
+  z-index: 1000;
 }
 
 .modal-container {

@@ -36,6 +36,7 @@ export const ItemsContainer = styled(Column)`
     margin-bottom: 1em;
     width: 100%;
     justify-content: space-between;
+    align-items: center;
   }
 `;
 

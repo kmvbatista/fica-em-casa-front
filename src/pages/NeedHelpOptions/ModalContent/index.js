@@ -34,37 +34,34 @@ export default function ModalContent({ cardInfo }) {
         </div>
         <ItemsContainer>
           <Row>
-            -Candida unid.{' '}
+            -Candida .{' '}
             <Quantity>
-              {' '}
-              <QuantityButton>+</QuantityButton>
+              un<QuantityButton>+</QuantityButton>
               <div>2</div>
               <QuantityButton>-</QuantityButton>
             </Quantity>
           </Row>
           <Row>
-            -Feijão kg{' '}
+            -Feijão{' '}
             <Quantity>
-              {' '}
-              <QuantityButton>+</QuantityButton>
+              kg <QuantityButton>+</QuantityButton>
               <div>2</div>
               <QuantityButton>-</QuantityButton>
             </Quantity>
           </Row>
           <Row>
-            -Arroz kg{' '}
+            -Arroz{' '}
             <Quantity>
-              {' '}
-              <QuantityButton>+</QuantityButton>
+              kg <QuantityButton>+</QuantityButton>
               <div>5</div>
               <QuantityButton>-</QuantityButton>
             </Quantity>
           </Row>
           <Row>-Verdura</Row>
           <Row>
-            -Papel higiênico unid.{' '}
+            -Papel higiênico .{' '}
             <Quantity>
-              <QuantityButton>+</QuantityButton>
+              un <QuantityButton>+</QuantityButton>
               <div>2</div>
               <QuantityButton>-</QuantityButton>
             </Quantity>
@@ -72,26 +69,23 @@ export default function ModalContent({ cardInfo }) {
           <Row>
             -Sabonete Dove{' '}
             <Quantity>
-              {' '}
-              <QuantityButton>+</QuantityButton>
+              un <QuantityButton>+</QuantityButton>
               <div>2</div>
               <QuantityButton>-</QuantityButton>
             </Quantity>
           </Row>
           <Row>
-            -Leite un
+            -Leite
             <Quantity>
-              {' '}
-              <QuantityButton>+</QuantityButton>
+              un <QuantityButton>+</QuantityButton>
               <div>4</div>
               <QuantityButton>-</QuantityButton>
             </Quantity>
           </Row>
           <Row>
-            -Ovos un
+            -Ovos
             <Quantity>
-              {' '}
-              <QuantityButton>+</QuantityButton>
+              un <QuantityButton>+</QuantityButton>
               <div>12</div>
               <QuantityButton>-</QuantityButton>
             </Quantity>

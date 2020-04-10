@@ -13,7 +13,7 @@ export default function Login() {
   const handleSubmit = async () => {
     const dataToSend = { email, password };
     try {
-      const response = await api.post('/sessions', dataToSend);
+      const response = await api.post('/help', dataToSend);
       console.log(response);
       const { user, token } = response.data;
       document.cookie = `token: ${JSON.stringify(
@@ -31,7 +31,7 @@ export default function Login() {
         email={email}
         setEmail={setEmail}
         password={setPassword}
-        handleSubmit={() => history.push('/help')}
+        handleSubmit={() => history.push('/need-help-options')}
       ></InitialForm>
     </div>
   );

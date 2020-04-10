@@ -1,7 +1,7 @@
 import React, { lazy, Suspense } from 'react';
 import { Route, Switch } from 'react-router-dom';
 const FirstSignup = lazy(() => import('../pages/FirstSignup/index'));
-// const SecondSignup = lazy(() => import('../pages/SecondSignup/index'));
+const SecondSignup = lazy(() => import('../pages/SecondSignup/index'));
 const ChoseGroup = lazy(() => import('../pages/ChooseGroup/index'));
 const NeedHelpForm = lazy(() => import('../pages/NeedHelpForm/index'));
 const NeedHelpOptions = lazy(() => import('../pages/NeedHelpOptions/index'));
@@ -16,9 +16,9 @@ export default function Routes() {
         <Route exact path='/first-signup'>
           <FirstSignup></FirstSignup>
         </Route>
-        {/* <Route exact path='/second-signup'>
+        <Route exact path='/second-signup'>
           <SecondSignup></SecondSignup>
-        </Route> */}
+        </Route>
         <Route exact path='/choose-group'>
           <ChoseGroup></ChoseGroup>
         </Route>

@@ -1,27 +1,21 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import Wait from './Components/Wait';
-import api from '../../services/api';
 
 import SecondForm from './Components/SecondForm/SecondForm';
+import { useEffect } from 'react';
 
 export default function SignIn() {
-  const [telefone, setTelefone] = useState('');
-  const [password, setPassword] = useState('');
-
   const history = useHistory();
+  const dataComing = history.location.state;
+  const [phone, setPhone] = useState(dataComing.phone);
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
 
   const handleSubmit = async () => {
-    const dataToSend = { telefone, password };
-    try {
-      const response = await api.post('/sessions', dataToSend);
-      console.log(response);
-      const { user, token } = response.data;
-      document.cookie = `token: ${JSON.stringify(
-        token,
-      )}; user: ${JSON.stringify(user)};`;
-    } catch (error) {
-      console.log(error);
+    if (password == confirmPassword) {
+      const dataToNextPage = { phone, password, confirmPassword };
+      history.push('choose-group', dataToNextPage);
     }
   };
 
@@ -29,10 +23,13 @@ export default function SignIn() {
     <div style={{ padding: 0 }}>
       <Wait></Wait>
       <SecondForm
-        telefone={telefone}
-        setTelefone={setTelefone}
-        password={setPassword}
-        handleSubmit={() => history.push('/choose-group')}
+        phone={phone}
+        setPhone={setPhone}
+        password={password}
+        setPassword={setPassword}
+        confirmPassword={confirmPassword}
+        setConfirmPassword={setConfirmPassword}
+        handleSubmit={handleSubmit}
       ></SecondForm>
     </div>
   );

@@ -17,21 +17,20 @@ export default function InitialForm(props) {
 
         <InputBlock className='input-block'>
           <LoginInput
-            placeholder='seu nome'
-            name='nome'
-            id='nome'
+            placeholder='seu name'
+            name='name'
+            id='name'
             required
+            value={props.name}
+            onChange={(e) => props.setName(e.target.value)}
           ></LoginInput>
           <LoginInput
-            placeholder='seu email'
-            name='email'
-            id='email'
-            required
-          ></LoginInput>
-          <LoginInput
-            placeholder='seu endereço'
-            name='password'
-            id='password'
+            onChange={(e) => props.setPhone(e.target.value)}
+            placeholder='seu telefone'
+            name='tel'
+            id='tel'
+            type='tel'
+            value={props.phone}
             required
           ></LoginInput>
           <RegisterButton onClick={() => props.handleSubmit()}>

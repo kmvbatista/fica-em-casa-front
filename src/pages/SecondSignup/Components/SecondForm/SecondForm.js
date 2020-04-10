@@ -14,7 +14,9 @@ export default function SecondForm(props) {
     <div className='container'>
       <Container>
         <Title>
-          <strong style={{ fontSize: 'inherit' }}>Agora crie o seu login e senha!</strong>
+          <strong style={{ fontSize: 'inherit' }}>
+            Agora crie o seu login e senha!
+          </strong>
         </Title>
 
         <InputBlock className='input-block'>
@@ -22,18 +24,24 @@ export default function SecondForm(props) {
             placeholder='Seu telefone'
             name='telefone'
             id='telefone'
+            value={props.phone}
+            onChange={(e) => props.setPhone(e.target.value)}
             required
           ></LoginInput>
           <LoginInput
             placeholder='Criar senha'
+            type='password'
             name='password'
-            id='password'
             required
+            value={props.password}
+            onChange={(e) => props.setPassword(e.target.value)}
           ></LoginInput>
           <LoginInput
             placeholder='Confirmar senha'
-            name='password'
-            id='password'
+            type='password'
+            value={props.confirmPassword}
+            onChange={(e) => props.setConfirmPassword(e.target.value)}
+            name='confirmPassword'
             required
           ></LoginInput>
           <RegisterButton onClick={() => props.handleSubmit()}>

@@ -5,33 +5,24 @@ import Welcome from './components/Welcome/Welcome';
 import api from '../../services/api';
 import InitialForm from './components/InitialForm/InitialForm';
 export default function Login() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [name, setName] = useState('');
+  const [phone, setPhone] = useState('');
 
   const history = useHistory();
 
   const handleSubmit = async () => {
-    const dataToSend = { email, password };
-    try {
-      const response = await api.post('/help', dataToSend);
-      console.log(response);
-      const { user, token } = response.data;
-      document.cookie = `token: ${JSON.stringify(
-        token,
-      )}; user: ${JSON.stringify(user)};`;
-    } catch (error) {
-      console.log(error);
-    }
+    history.push('second-signup', { name, phone });
   };
 
   return (
     <div style={{ padding: 0 }}>
       <Welcome></Welcome>
       <InitialForm
-        email={email}
-        setEmail={setEmail}
-        password={setPassword}
-        handleSubmit={() => history.push('/need-help-options')}
+        phone={phone}
+        setPhone={setPhone}
+        name={name}
+        setName={setName}
+        handleSubmit={handleSubmit}
       ></InitialForm>
     </div>
   );

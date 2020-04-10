@@ -14,14 +14,14 @@ export const TitleContainer = styled.div`
 
 export const Title = styled.text`
   font-weight: bolder;
-  font-size: 2em;
+  font-size: 2.5em;
   color: white;
   text-align: center;
 `;
 
 export const SubTitle = styled.text`
   color: white;
-  font-size: 2em;
+  font-size: 2.5em;
   font-weight: 500;
 `;
 
@@ -54,13 +54,13 @@ export const CenteredBox = styled.div`
 `;
 
 export const HighlightText = styled.text`
-  font-size: 3em;
+  font-size: 3.5em;
   font-weight: bolder;
 `;
 
 export const SecondaryText = styled.text`
-  font-size: 2.2em;
-  font-weight: 400;
+  font-size: 3.2em;
+  font-weight: 500;
 `;
 
 export const Image = styled.img`

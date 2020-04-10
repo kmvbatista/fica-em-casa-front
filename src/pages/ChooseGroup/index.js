@@ -20,6 +20,7 @@ export default function ChooseGroup() {
 
   const handleSubmit = async () => {
     const dataToSend = Object.assign(dataComing, { isNeeded: false });
+    console.log(dataToSend);
     const response = await api.post('signup', dataToSend);
     const { user, token } = response.data;
     document.cookie = `token: ${JSON.stringify(token)}; user: ${JSON.stringify(
@@ -40,7 +41,7 @@ export default function ChooseGroup() {
       >
         <TitleContainer>
           <Title>
-            Faço parte do<br></br>
+            <strong>Faço parte do</strong> <br></br>
           </Title>
           <SubTitle>grupo de risco</SubTitle>
         </TitleContainer>
@@ -59,7 +60,8 @@ export default function ChooseGroup() {
             }}
           >
             <HighlightText>
-              Preciso<br></br>
+              <strong>Preciso</strong>
+              <br></br>
             </HighlightText>
             <SecondaryText>de ajuda</SecondaryText>
           </div>
@@ -68,7 +70,8 @@ export default function ChooseGroup() {
       <Box2 onClick={handleSubmit}>
         <TitleContainer>
           <Title>
-            Não faço parte<br></br>
+            <strong>Não faço parte</strong>
+            <br></br>
           </Title>
           <SubTitle>do grupo de risco</SubTitle>
         </TitleContainer>
@@ -87,7 +90,8 @@ export default function ChooseGroup() {
 
             <div style={{ position: 'absolute', left: '12%', top: '35%' }}>
               <HighlightText>
-                Quero<br></br>
+                <strong>Quero</strong>
+                <br></br>
               </HighlightText>
               <SecondaryText>ajudar</SecondaryText>
             </div>

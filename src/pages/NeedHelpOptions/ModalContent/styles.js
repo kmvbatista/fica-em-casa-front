@@ -57,3 +57,30 @@ export const QuantityButton = styled.button`
   border-radius: 26%;
   margin: 0 0.3em;
 `;
+
+export const ItemInput = styled.input`
+  border: none;
+  border-bottom: 2px solid var(--color-yellow);
+  height: 3em;
+  line-height: 15px;
+  background-color: transparent;
+  color: white;
+  outline: none;
+  width: 8em;
+  font-weight: bold;
+`;
+
+export const SelectUnit = styled.select`
+  border: none;
+  border-bottom: 2px solid var(--color-yellow);
+  height: 3em;
+  line-height: 15px;
+  background-color: transparent;
+  color: white;
+  outline: none;
+  width: fit-content;
+  margin-right: 1em;
+  & > option {
+    background-color: black;
+  }
+`;

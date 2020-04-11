@@ -1,0 +1,27 @@
+[
+  {
+    "item": "Feijão",
+    "quantity": 2,
+    "measureUnit": "quilo"
+  },
+  {
+    "item": "Arroz",
+    "quantity": 5,
+    "measureUnit": "quilo"
+  },
+  {
+    "item": "Sabonete Dove",
+    "quantity": 1,
+    "measureUnit": "quilo"
+  },
+  {
+    "item": "Leite",
+    "quantity": 3,
+    "measureUnit": "litro"
+  },
+  {
+    "item": "Ovos",
+    "quantity": 12,
+    "measureUnit": "unid"
+  }
+]

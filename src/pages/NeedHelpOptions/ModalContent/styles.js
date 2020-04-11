@@ -22,9 +22,12 @@ export const Card = styled(OptionCard)`
 export const ModalContainer = styled(Column)`
   width: 100%;
   height: 100%;
-  padding: 4em 4.5em 1em 4.5em;
   justify-content: space-between;
   position: relative;
+  padding: 4em 4.5em 1em 4.5em;
+  @media only screen and (max-width: 600px) {
+    padding: 2em 2.5em 1em 2.5em;
+  }
 `;
 
 export const MainContainer = styled(Column)`

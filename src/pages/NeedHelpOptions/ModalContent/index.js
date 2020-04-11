@@ -11,6 +11,7 @@ import {
   ItemInput,
   SelectUnit,
 } from './styles';
+import itemsExample from '../../../assets/itemsModal.json';
 
 export default function ModalContent({ cardInfo, closeModal }) {
   const [showExample, setShowExample] = useState(true);
@@ -19,7 +20,7 @@ export default function ModalContent({ cardInfo, closeModal }) {
   const itemInitialState = {
     item: '',
     quantity: 0,
-    mesureUnit: 'kilo',
+    mesureUnit: 'quilo',
   };
   let [itemToAdd, setItem] = useState(itemInitialState);
 
@@ -87,56 +88,17 @@ export default function ModalContent({ cardInfo, closeModal }) {
           <p>Preciso dos seguintes itens: </p>
         </div>
         <ItemsContainer>
-          <Row>
-            -Candida .{' '}
-            <Quantity>
-              un<QuantityButton>+</QuantityButton>
-              <div>2</div>
-              <QuantityButton>-</QuantityButton>
-            </Quantity>
-          </Row>
-          <Row>
-            -Feijão{' '}
-            <Quantity>
-              kg <QuantityButton>+</QuantityButton>
-              <div>2</div>
-              <QuantityButton>-</QuantityButton>
-            </Quantity>
-          </Row>
-          <Row>
-            -Arroz{' '}
-            <Quantity>
-              kg <QuantityButton>+</QuantityButton>
-              <div>5</div>
-              <QuantityButton>-</QuantityButton>
-            </Quantity>
-          </Row>
-          <Row>-Verdura</Row>
-
-          <Row>
-            -Sabonete Dove{' '}
-            <Quantity>
-              un <QuantityButton>+</QuantityButton>
-              <div>2</div>
-              <QuantityButton>-</QuantityButton>
-            </Quantity>
-          </Row>
-          <Row>
-            -Leite
-            <Quantity>
-              un <QuantityButton>+</QuantityButton>
-              <div>4</div>
-              <QuantityButton>-</QuantityButton>
-            </Quantity>
-          </Row>
-          <Row>
-            -Ovos
-            <Quantity>
-              un <QuantityButton>+</QuantityButton>
-              <div>12</div>
-              <QuantityButton>-</QuantityButton>
-            </Quantity>
-          </Row>
+          {itemsExample.map((it) => (
+            <Row key={it.item}>
+              -{it.item}
+              <Quantity>
+                {it.measureUnit}
+                <QuantityButton>-</QuantityButton>
+                <div>{it.quantity}</div>
+                <QuantityButton>+</QuantityButton>
+              </Quantity>
+            </Row>
+          ))}
         </ItemsContainer>
       </>
     );
@@ -176,7 +138,7 @@ export default function ModalContent({ cardInfo, closeModal }) {
                 id='unity'
                 onChange={(e) => selectMesureUnit(e.target.value)}
               >
-                <option value='kg'>kilo</option>
+                <option value='kg'>quilo</option>
                 <option value='unid.'>unid</option>
                 <option value='litro'>litro</option>
               </SelectUnit>
@@ -192,8 +154,9 @@ export default function ModalContent({ cardInfo, closeModal }) {
             src='./plus-rounded.svg'
             style={{
               width: '1.5em',
-              margin: '0.5em auto 0 auto',
+              margin: '0 auto 0 auto',
               display: 'block',
+              cursor: 'pointer',
             }}
             alt='adicione mais items'
           />

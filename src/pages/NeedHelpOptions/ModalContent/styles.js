@@ -36,8 +36,11 @@ export const MainContainer = styled(Column)`
   font-size: 1.5em;
   overflow-y: scroll;
   overflow-x: hidden;
-  &&:scrollbar-face-color {
-    color: green;
+  @media only screen and (min-width: 900px) {
+    ::-webkit-scrollbar {
+      width: 0px;
+      background: transparent;
+    }
   }
 `;
 

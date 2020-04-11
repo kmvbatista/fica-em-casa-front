@@ -148,7 +148,7 @@ export default function ModalContent({ cardInfo, closeModal }) {
             </Quantity>
           </Row>
         </ItemsContainer>
-        <div style={{ width: '7em' }}>
+        <div style={{ width: '100%' }}>
           <img
             onClick={addItem}
             src='./plus-rounded.svg'

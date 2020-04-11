@@ -6,7 +6,8 @@ const ChoseGroup = lazy(() => import('../pages/ChooseGroup/index'));
 const NeedHelpForm = lazy(() => import('../pages/NeedHelpForm/index'));
 const NeedHelpOptions = lazy(() => import('../pages/NeedHelpOptions/index'));
 const CanHelpOptions = lazy(() => import('../pages/CanHelpOptions/index'));
-const HelpBeHelped = lazy(() => import('../pages/HelpOrBeHelped/index'));
+const Friends = lazy(() => import('../pages/Friends/index'));
+const HelpOrGetHelp = lazy(() => import('../pages/HelpOrGetHelp/index'));
 const Profile = lazy(() => import('../pages/Profile/index'));
 
 export default function Routes() {
@@ -15,9 +16,6 @@ export default function Routes() {
       <Suspense fallback={<div>Loading...</div>}>
         <Route exact path='/first-signup'>
           <FirstSignup></FirstSignup>
-        </Route>
-        <Route exact path='/second-signup'>
-          <SecondSignup></SecondSignup>
         </Route>
         <Route exact path='/second-signup'>
           <SecondSignup></SecondSignup>
@@ -34,8 +32,11 @@ export default function Routes() {
         <Route exact path='/can-help-options'>
           <CanHelpOptions></CanHelpOptions>
         </Route>
-        <Route exact path='/help'>
-          <HelpBeHelped></HelpBeHelped>
+        <Route exact path='/friends'>
+          <Friends></Friends>
+        </Route>
+        <Route exact path='/help-or-get-help'>
+          <HelpOrGetHelp></HelpOrGetHelp>
         </Route>
         <Route exact path='/profile'>
           <Profile></Profile>

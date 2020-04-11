@@ -4,7 +4,7 @@ import { Column } from '../../../globalComponents';
 import peopleData from '../../../assets/peopleToHelp.json';
 import PersonCard from './PersonCard';
 
-import { MainPhrase, MainTab } from '../HelpOrBeHelped/styles';
+import { MainPhrase, MainTab } from '../HelpOrGetHelp/styles';
 
 export default function AvailableHelpers() {
   return (

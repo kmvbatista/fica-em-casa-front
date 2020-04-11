@@ -1,12 +1,10 @@
 import React from 'react';
-import Tabs from '@material-ui/core/Tabs';
-import { TabContainer, TopDecorationImage, TopDecoration, Tab } from './styles';
+import { TabContainer, Tab } from './styles';
 import AvailableHelpers from './components/AvailableHelpers';
 import AvailableNeeded from './components/AvailableNeeded';
-import { Row } from '../../globalComponents';
+import { TopDecorationImage, TopDecoration } from '../styledComponents';
 
 export default function HelpBeHelped() {
-  const [value, setValue] = React.useState('one');
   const [isHelping, setIsHelping] = React.useState(false);
 
   const toggleIsHelping = () => {

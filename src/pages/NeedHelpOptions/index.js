@@ -10,8 +10,11 @@ import { SubTitle, Title } from './styles';
 import cardData from '../../assets/productCategory.json';
 import Modal from '../../components/Modal';
 import ModalContent from './ModalContent';
+import { useHistory } from 'react-router-dom';
 
 export default function NeedHelpOptions() {
+  const history = useHistory();
+  const isFirstAccess = history.location.state;
   const [showModal, setShowModal] = useState(false);
   const [cardSelectedInfo, setCardSelectedInfo] = useState();
 
@@ -28,6 +31,14 @@ export default function NeedHelpOptions() {
 
   const toggleShowModal = () => {
     setShowModal(!showModal);
+  };
+
+  const goToFriends = () => {
+    if (isFirstAccess) {
+      history.replace('help-or-be-helped');
+    } else {
+      history.replace('friends');
+    }
   };
 
   return (
@@ -52,7 +63,7 @@ export default function NeedHelpOptions() {
           </OptionCard>
         ))}
       </Grid>
-      <GetModalButton>
+      <GetModalButton onClick={goToFriends}>
         <img src='./logo.png' alt='logo' style={{ height: '100%' }} />
         <div>
           Não achou sua necessidade acima?

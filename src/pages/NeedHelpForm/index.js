@@ -32,14 +32,15 @@ export default function NeedHelpForm() {
       sonsAverageAge: Number.parseInt(sonsAverageAge),
     });
     const response = await api.post('user', dataToSend);
-    console.log(response);
+    setCookies(response);
+    history.push('need-help-options', true);
+  };
+
+  function setCookies(response) {
     let { user, token } = response.data;
     user = JSON.stringify(user);
-    console.log(user);
     document.cookie = `user: ${user}, token: ${JSON.stringify(token)} }`;
-    console.log(document.cookie);
-    alert(document.cookie);
-  };
+  }
 
   return (
     <ColumnContainer>

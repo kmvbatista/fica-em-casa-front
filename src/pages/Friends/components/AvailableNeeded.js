@@ -3,7 +3,7 @@ import { Column } from '../../../globalComponents';
 
 import peopleData from '../../../assets/peopleToHelp.json';
 import PersonCard from './PersonCard';
-import { MainPhrase, MainTab } from '../styles';
+import { MainPhrase, MainTab } from '../styledComponents';
 
 export default function AvailableNeeded() {
   return (

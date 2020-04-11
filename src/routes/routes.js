@@ -6,8 +6,8 @@ const ChoseGroup = lazy(() => import('../pages/ChooseGroup/index'));
 const NeedHelpForm = lazy(() => import('../pages/NeedHelpForm/index'));
 const NeedHelpOptions = lazy(() => import('../pages/NeedHelpOptions/index'));
 const CanHelpOptions = lazy(() => import('../pages/CanHelpOptions/index'));
-const Friends = lazy(() => import('../pages/Friends/index'));
-const HelpOrGetHelp = lazy(() => import('../pages/HelpOrGetHelp/index'));
+const Friends = lazy(() => import('../pages/Friends/FriendsList'));
+const HelpOrGetHelp = lazy(() => import('../pages/Friends/FirstAcess'));
 const Profile = lazy(() => import('../pages/Profile/index'));
 
 export default function Routes() {

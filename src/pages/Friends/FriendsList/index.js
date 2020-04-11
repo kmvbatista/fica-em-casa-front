@@ -1,7 +1,7 @@
 import React from 'react';
 import { TabContainer, Tab } from './styles';
-import AvailableHelpers from './components/AvailableHelpers';
-import AvailableNeeded from './components/AvailableNeeded';
+import AvailableHelpers from '../components/AvailableHelpers';
+import AvailableNeeded from '../components/AvailableNeeded';
 import { TopDecorationImage, TopDecoration } from '../styledComponents';
 
 export default function HelpBeHelped() {

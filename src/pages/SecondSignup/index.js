@@ -20,7 +20,7 @@ export default function SignIn() {
         password,
         confirmPassword,
       };
-      history.push('choose-group', dataToNextPage);
+      history.push('/', dataToNextPage);
     }
   };
 

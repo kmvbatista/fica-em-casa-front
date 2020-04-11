@@ -33,7 +33,7 @@ export const Box1 = styled.div`
   flex-direction: column;
   box-sizing: content-box;
   height: ${(props) => (props.isUserLogged ? '34vh' : '50vh')};
-
+  font-size: 0.8em;
   padding-bottom: 2em;
   background-color: var(--color-pink);
   justify-content: center;
@@ -49,6 +49,8 @@ export const Box2 = styled(Box1)`
   transform: translate(0, -2em);
   border-radius: 0 2.5em 0 0;
   background-color: var(--color-purple);
+  height: ${(props) => (props.isUserLogged ? '34vh' : '50vh')};
+
   @media only screen and (min-width: 1200px) {
     transform: translate(-2em, 0em);
     border-radius: 2.5em 0 0 0;
@@ -59,6 +61,9 @@ export const Box3 = styled(Box1)`
   transform: translate(0, -4em);
   border-radius: 0 0 0 2.5em;
   background-color: var(--color-green);
+  height: ${(props) => (props.isUserLogged ? '34vh' : '50vh')};
+  display: ${(props) => (props.isUserLogged ? 'flex' : 'none')};
+
   @media only screen and (min-width: 1200px) {
     transform: translate(-4em, 0em);
   }
@@ -66,8 +71,8 @@ export const Box3 = styled(Box1)`
 
 export const CenteredBox = styled.div`
   background-color: white;
-  width: 60%;
-  height: 20vh;
+  width: 50%;
+  height: 17vh;
   border-radius: 30px;
   align-items: center;
   display: flex;

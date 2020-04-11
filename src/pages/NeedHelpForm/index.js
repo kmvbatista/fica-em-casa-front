@@ -38,8 +38,9 @@ export default function NeedHelpForm() {
 
   function setCookies(response) {
     let { user, token } = response.data;
-    user = JSON.stringify(user);
-    document.cookie = `user: ${user}, token: ${JSON.stringify(token)} }`;
+    document.cookie = `{"user": ${JSON.stringify(
+      user,
+    )}, "token": ${JSON.stringify(token)} }`;
   }
 
   return (

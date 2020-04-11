@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import {
   Container,
@@ -14,13 +14,12 @@ import {
   Image,
 } from './styles';
 import api from '../../services/api';
-import { useEffect } from 'react';
 
 export default function ChooseGroup() {
   const history = useHistory();
   const dataComing = history.location.state;
 
-  let isUserLogged = false;
+  let [isUserLogged, setUserLogged] = useState(false);
 
   useEffect(() => {
     const cookies = document.cookie;
@@ -28,11 +27,11 @@ export default function ChooseGroup() {
       try {
         const { token } = JSON.parse(cookies);
         if (token) {
-          isUserLogged = true;
+          setUserLogged(true);
         }
       } catch (error) {}
     }
-  });
+  }, []);
 
   function helperChoice() {
     if (isUserLogged) {
@@ -66,7 +65,7 @@ export default function ChooseGroup() {
 
   return (
     <Container>
-      <Box1 onClick={needyChoice}>
+      <Box1 onClick={needyChoice} isUserLogged={isUserLogged}>
         <TitleContainer>
           <Title>
             <strong>Faço parte do</strong> <br></br>
@@ -95,7 +94,7 @@ export default function ChooseGroup() {
           </div>
         </CenteredBox>
       </Box1>
-      <Box2 onClick={helperChoice}>
+      <Box2 onClick={helperChoice} isUserLogged={isUserLogged}>
         <TitleContainer>
           <Title>
             <strong>Não faço parte</strong>
@@ -126,10 +125,7 @@ export default function ChooseGroup() {
           </div>
         </CenteredBox>
       </Box2>
-      <Box3
-        onClick={viewFriendsChoice}
-        style={isUserLogged ? {} : { display: 'none' }}
-      >
+      <Box3 onClick={viewFriendsChoice} isUserLogged={isUserLogged}>
         <TitleContainer>
           <Title>
             <strong>Não faço parte</strong>

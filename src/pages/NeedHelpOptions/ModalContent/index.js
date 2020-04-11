@@ -151,9 +151,9 @@ export default function ModalContent({ cardInfo, closeModal }) {
               -{item.item}
               <Quantity>
                 {item.mesureUnit}
-                <QuantityButton>+</QuantityButton>
-                <div>{item.quantity}</div>
                 <QuantityButton>-</QuantityButton>
+                <div>{item.quantity}</div>
+                <QuantityButton>+</QuantityButton>
               </Quantity>
             </Row>
           ))}
@@ -161,6 +161,7 @@ export default function ModalContent({ cardInfo, closeModal }) {
             <ItemInput
               onFocus={handleMainInputFocus}
               onBlur={viewConfirmButton}
+              value={itemToAdd.item}
               onChange={(e) => setItemToAddName(e.target.value)}
               placeholder='adicione seu item'
               onKeyPress={(e) => {

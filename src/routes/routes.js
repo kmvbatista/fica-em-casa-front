@@ -1,5 +1,5 @@
 import React, { lazy, Suspense } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Private } from 'react-router-dom';
 const FirstSignup = lazy(() => import('../pages/FirstSignup'));
 const SecondSignup = lazy(() => import('../pages/SecondSignup'));
 const Home = lazy(() => import('../pages/Home'));
@@ -8,6 +8,7 @@ const NeedHelpOptions = lazy(() => import('../pages/NeedHelpOptions'));
 const CanHelpOptions = lazy(() => import('../pages/CanHelpOptions'));
 const Friends = lazy(() => import('../pages/Friends/FriendsList'));
 const HelpOrGetHelp = lazy(() => import('../pages/Friends/FirstAcess'));
+const Login = lazy(() => import('../pages/Login'));
 const Profile = lazy(() => import('../pages/Profile'));
 
 export default function Routes() {
@@ -28,6 +29,9 @@ export default function Routes() {
         </Route>
         <Route exact path='/help-or-get-help'>
           <HelpOrGetHelp></HelpOrGetHelp>
+        </Route>
+        <Route exact path='/login'>
+          <Login></Login>
         </Route>
         <Route exact path='/need-help-form'>
           <NeedHelpForm></NeedHelpForm>

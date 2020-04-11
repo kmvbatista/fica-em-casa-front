@@ -5,7 +5,7 @@ import api from '../../services/api';
 
 import ThirdForm from './Components/ThirdForm/ThirdForm';
 
-export default function Login2() {
+export default function Login() {
   const [telefone, setTelefone] = useState('');
   const [password, setPassword] = useState('');
 

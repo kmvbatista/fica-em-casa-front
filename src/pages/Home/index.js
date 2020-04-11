@@ -17,7 +17,7 @@ import api from '../../services/api';
 
 export default function ChooseGroup() {
   const history = useHistory();
-  const dataComing = history.location.state;
+  const dataFirstAcess = history.location.state;
 
   let [isUserLogged, setUserLogged] = useState(false);
 
@@ -30,6 +30,8 @@ export default function ChooseGroup() {
           setUserLogged(true);
         }
       } catch (error) {}
+    } else if (!dataFirstAcess && !cookies) {
+      history.replace('login');
     }
   }, []);
 
@@ -46,7 +48,7 @@ export default function ChooseGroup() {
     }
     history.push(
       'need-help-form',
-      Object.assign(dataComing, { isNeedy: true }),
+      Object.assign(dataFirstAcess, { isNeedy: true }),
     );
   }
 
@@ -55,7 +57,9 @@ export default function ChooseGroup() {
   }
 
   async function registerHelper() {
-    const dataToSend = Object.assign(dataComing, { isNeedy: false });
+    const dataToSend = Object.assign(dataFirstAcess, {
+      isNeedy: false,
+    });
     const response = await api.post('signup', dataToSend);
     const { user, token } = response.data;
     document.cookie = `token: ${JSON.stringify(token)}; user: ${JSON.stringify(

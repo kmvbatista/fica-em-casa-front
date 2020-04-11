@@ -16,7 +16,7 @@ export default function ModalContent({ cardInfo, closeModal }) {
   const [showExample, setShowExample] = useState(true);
   let [itemList, setItemList] = useState([]);
   let [itemToAdd, setItem] = useState({
-    name: '',
+    item: '',
     quantity: 0,
     mesureUnit: 'un',
   });
@@ -24,7 +24,7 @@ export default function ModalContent({ cardInfo, closeModal }) {
   const addItem = () => {
     itemList.push(itemToAdd);
     setItem({
-      name: '',
+      item: '',
       quantity: 0,
       mesureUnit: 'un',
     });
@@ -182,13 +182,8 @@ export default function ModalContent({ cardInfo, closeModal }) {
     <ModalContainer>
       <Row style={{ alignItems: 'center' }}>
         <Card>
-          <img
-            src={cardInfo.imageUrl}
-            style={{ height: '2.5em' }}
-            alt={cardInfo.name}
-          />
+          <img src={cardInfo.imageUrl} style={{ height: '2.5em' }} />
         </Card>
-        <strong style={{ fontSize: '3em' }}>{cardInfo.name}</strong>
       </Row>
       <MainContainer>
         <p style={{ marginBottom: '1em' }}>

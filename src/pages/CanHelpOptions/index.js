@@ -19,9 +19,16 @@ export default function NeedHelpOptions() {
       </SubTitle>
       <Grid>
         {cardData.map((el) => (
-          <OptionCard key={el.name} style={{ color: 'var(--color-purple)' }}>
-            <img src={el.imageUrl} alt={el.name} style={{ maxHeight: '55%' }} />
-            {el.name}
+          <OptionCard
+            key={el.category}
+            style={{ color: 'var(--color-purple)' }}
+          >
+            <img
+              src={el.imageUrl}
+              alt={el.category}
+              style={{ maxHeight: '55%' }}
+            />
+            {el.category}
           </OptionCard>
         ))}
       </Grid>

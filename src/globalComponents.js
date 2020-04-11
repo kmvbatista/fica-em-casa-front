@@ -27,15 +27,14 @@ export const OptionCard = styled.div`
   align-items: center;
   color: var(--color-pink);
   font-weight: bold;
-
-  padding: 15px 0;
+  padding: 10px 0;
   text-align: center;
-  @media only screen and (min-width: 610px) {
-    height: 5.5em;
+  @media only screen and (max-width: 900px) {
+    height: 6.5em;
     width: 6.5em;
   }
   @media only screen and (min-width: 900px) {
-    height: 6em;
+    height: 7em;
     width: 7em;
   }
 `;
@@ -61,8 +60,10 @@ export const GetModalButton = styled.div`
   background-color: white;
   color: var(--color-pink);
   font-size: 1.5em;
-  margin-top: 1.5em;
   padding: 1em;
+  width: 90%;
+  max-width: 400px;
+  margin: 1.5em auto 0 auto;
 `;
 
 export const Column = styled.div`

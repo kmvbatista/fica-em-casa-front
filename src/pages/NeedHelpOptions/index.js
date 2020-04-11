@@ -52,14 +52,18 @@ export default function NeedHelpOptions() {
       <Grid>
         {cardData.map((el) => (
           <OptionCard
-            key={el.name}
+            key={el.category}
             onClick={() => {
               setCardSelectedInfo(el);
               toggleShowModal();
             }}
           >
-            <img src={el.imageUrl} alt={el.name} style={{ height: '2.5em' }} />
-            <GridText>{el.name}</GridText>
+            <img
+              src={el.imageUrl}
+              alt={el.category}
+              style={{ height: '2.5em' }}
+            />
+            <GridText>{el.category}</GridText>
           </OptionCard>
         ))}
       </Grid>

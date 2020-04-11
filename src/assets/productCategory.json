@@ -1,50 +1,50 @@
 [
   {
-    "name": "Mercado",
+    "category": "Mercado",
     "imageUrl": "./market.png"
   },
   {
-    "name": "Farmácia",
+    "category": "Farmácia",
     "imageUrl": "./pharmacy.png"
   },
   {
-    "name": "Alimento",
+    "category": "Alimento",
     "imageUrl": "./food-donation.png"
   },
   {
-    "name": "Padaria",
+    "category": "Padaria",
     "imageUrl": "./bread.png"
   },
   {
-    "name": "Limpeza",
+    "category": "Limpeza",
     "imageUrl": "./detergent.png"
   },
   {
-    "name": "Higiene",
+    "category": "Higiene",
     "imageUrl": "./soap.png"
   },
   {
-    "name": "Assistência online",
+    "category": "Assistência online",
     "imageUrl": "./electrician.png"
   },
   {
-    "name": "Leitura",
+    "category": "Leitura",
     "imageUrl": "./bookshelf.png"
   },
   {
-    "name": "Conselho",
+    "category": "Conselho",
     "imageUrl": "./communication.png"
   },
   {
-    "name": "Vídeo aula",
+    "category": "Vídeo aula",
     "imageUrl": "./videoAula.png"
   },
   {
-    "name": "Pet",
+    "category": "Pet",
     "imageUrl": "./pet.png"
   },
   {
-    "name": "Compartilhar",
+    "category": "Compartilhar",
     "imageUrl": "./netflix.png"
   }
 ]

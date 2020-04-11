@@ -40,6 +40,10 @@ export default function ModalContent({ cardInfo, closeModal }) {
     return 'ontouchstart' in window;
   };
 
+  const handleMainInputFocus = () => {
+    hideConfirmButton();
+  };
+
   const hideConfirmButton = () => {
     setShowConfirmButton(false);
     if (isTouchDevice()) {
@@ -155,7 +159,7 @@ export default function ModalContent({ cardInfo, closeModal }) {
           ))}
           <Row>
             <ItemInput
-              onFocus={hideConfirmButton}
+              onFocus={handleMainInputFocus}
               onBlur={viewConfirmButton}
               onChange={(e) => setItemToAddName(e.target.value)}
               placeholder='adicione seu item'
@@ -181,12 +185,18 @@ export default function ModalContent({ cardInfo, closeModal }) {
             </Quantity>
           </Row>
         </ItemsContainer>
-        <img
-          onClick={addItem}
-          src='./down-arrow-yellow.svg'
-          style={{ width: '1em', marginTop: '1em' }}
-          alt='adicione mais items'
-        />
+        <div style={{ width: '7em' }}>
+          <img
+            onClick={addItem}
+            src='./plus-rounded.svg'
+            style={{
+              width: '1.5em',
+              margin: '0.5em auto 0 auto',
+              display: 'block',
+            }}
+            alt='adicione mais items'
+          />
+        </div>
       </>
     );
   };

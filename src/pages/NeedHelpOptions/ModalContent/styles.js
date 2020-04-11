@@ -73,7 +73,7 @@ export const ItemInput = styled.input`
   background-color: transparent;
   color: white;
   outline: none;
-  width: 8em;
+  width: 9em;
   font-weight: bold;
 `;
 

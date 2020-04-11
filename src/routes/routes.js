@@ -1,5 +1,7 @@
 import React, { lazy, Suspense } from 'react';
-import { Route, Switch, Private } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
+import PrivateRoute from './privateRoute';
+
 const FirstSignup = lazy(() => import('../pages/FirstSignup'));
 const SecondSignup = lazy(() => import('../pages/SecondSignup'));
 const Home = lazy(() => import('../pages/Home'));
@@ -18,30 +20,30 @@ export default function Routes() {
         <Route exact path='/'>
           <Home></Home>
         </Route>
-        <Route exact path='/can-help-options'>
+        <PrivateRoute path='/can-help-options'>
           <CanHelpOptions></CanHelpOptions>
-        </Route>
+        </PrivateRoute>
         <Route exact path='/first-signup'>
           <FirstSignup></FirstSignup>
         </Route>
-        <Route exact path='/friends'>
+        <PrivateRoute exact path='/friends'>
           <Friends></Friends>
-        </Route>
-        <Route exact path='/help-or-get-help'>
+        </PrivateRoute>
+        <PrivateRoute exact path='/help-or-get-help'>
           <HelpOrGetHelp></HelpOrGetHelp>
-        </Route>
+        </PrivateRoute>
         <Route exact path='/login'>
           <Login></Login>
         </Route>
-        <Route exact path='/need-help-form'>
+        <PrivateRoute exact path='/need-help-form'>
           <NeedHelpForm></NeedHelpForm>
-        </Route>
-        <Route exact path='/need-help-options'>
+        </PrivateRoute>
+        <PrivateRoute exact path='/need-help-options'>
           <NeedHelpOptions></NeedHelpOptions>
-        </Route>
-        <Route exact path='/profile'>
+        </PrivateRoute>
+        <PrivateRoute exact path='/profile'>
           <Profile></Profile>
-        </Route>
+        </PrivateRoute>
         <Route exact path='/second-signup'>
           <SecondSignup></SecondSignup>
         </Route>

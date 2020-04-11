@@ -20,7 +20,7 @@ export default function Routes() {
         <Route exact path='/second-signup'>
           <SecondSignup></SecondSignup>
         </Route>
-        <Route exact path='/choose-group'>
+        <Route exact path='/'>
           <ChoseGroup></ChoseGroup>
         </Route>
         <Route exact path='/need-help-form'>

@@ -4,6 +4,7 @@ import {
   Container,
   Box1,
   Box2,
+  Box3,
   CenteredBox,
   TitleContainer,
   SubTitle,
@@ -13,32 +14,59 @@ import {
   Image,
 } from './styles';
 import api from '../../services/api';
+import { useEffect } from 'react';
 
 export default function ChooseGroup() {
   const history = useHistory();
   const dataComing = history.location.state;
 
-  const handleSubmit = async () => {
+  let isUserLogged = false;
+
+  useEffect(() => {
+    const cookies = document.cookie;
+    if (cookies) {
+      try {
+        const { token } = JSON.parse(cookies);
+        if (token) {
+          isUserLogged = true;
+        }
+      } catch (error) {}
+    }
+  });
+
+  function helperChoice() {
+    if (isUserLogged) {
+      return history.push('/can-help-options');
+    }
+    registerHelper();
+  }
+
+  function needyChoice() {
+    if (isUserLogged) {
+      return history.push('/need-help-options');
+    }
+    history.push(
+      'need-help-form',
+      Object.assign(dataComing, { isNeedy: true }),
+    );
+  }
+
+  function viewFriendsChoice() {
+    history.push('friends');
+  }
+
+  async function registerHelper() {
     const dataToSend = Object.assign(dataComing, { isNeedy: false });
-    console.log(dataToSend);
     const response = await api.post('signup', dataToSend);
     const { user, token } = response.data;
     document.cookie = `token: ${JSON.stringify(token)}; user: ${JSON.stringify(
       user,
     )};`;
-    history.push('/help');
-  };
+  }
 
   return (
     <Container>
-      <Box1
-        onClick={() =>
-          history.push(
-            'need-help-form',
-            Object.assign(dataComing, { isNeedy: true }),
-          )
-        }
-      >
+      <Box1 onClick={needyChoice}>
         <TitleContainer>
           <Title>
             <strong>Faço parte do</strong> <br></br>
@@ -67,7 +95,7 @@ export default function ChooseGroup() {
           </div>
         </CenteredBox>
       </Box1>
-      <Box2 onClick={handleSubmit}>
+      <Box2 onClick={helperChoice}>
         <TitleContainer>
           <Title>
             <strong>Não faço parte</strong>
@@ -98,6 +126,41 @@ export default function ChooseGroup() {
           </div>
         </CenteredBox>
       </Box2>
+      <Box3
+        onClick={viewFriendsChoice}
+        style={isUserLogged ? {} : { display: 'none' }}
+      >
+        <TitleContainer>
+          <Title>
+            <strong>Não faço parte</strong>
+            <br></br>
+          </Title>
+          <SubTitle>do grupo de risco</SubTitle>
+        </TitleContainer>
+        <CenteredBox>
+          <div
+            style={{
+              direction: 'rtl',
+              color: 'var(--color-green)',
+            }}
+          >
+            <Image
+              style={{ right: 0, height: '105%', top: '10%' }}
+              src='./amigos.png'
+              alt='amigos'
+            ></Image>
+
+            <div style={{ position: 'absolute', left: '12%', top: '35%' }}>
+              <SecondaryText>
+                meus<br></br>
+              </SecondaryText>
+              <HighlightText>
+                <strong>Amigos</strong>
+              </HighlightText>
+            </div>
+          </div>
+        </CenteredBox>
+      </Box3>
     </Container>
   );
 }

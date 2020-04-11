@@ -67,7 +67,7 @@ export const HelpOptionCard = styled.div`
 export const GoToMapsButtonn = styled.div`
   padding: 1em 0em;
   text-align: center;
-  background-color: #6ed59e;
+  background-color: var(--color-green);
   border-radius: 10px;
   position: relative;
   cursor: pointer;

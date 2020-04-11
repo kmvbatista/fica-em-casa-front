@@ -61,7 +61,7 @@ export const GetModalButton = styled.div`
   color: var(--color-pink);
   font-size: 1.5em;
   padding: 1em;
-  width: 90%;
+  width: 100%;
   max-width: 400px;
   margin: 1.5em auto 0 auto;
 `;

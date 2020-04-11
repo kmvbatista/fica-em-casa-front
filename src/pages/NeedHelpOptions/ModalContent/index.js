@@ -14,21 +14,39 @@ import {
 
 export default function ModalContent({ cardInfo, closeModal }) {
   const [showExample, setShowExample] = useState(true);
+  const [showConfirmButton, setShowConfirmButton] = useState(true);
   let [itemList, setItemList] = useState([]);
-  let [itemToAdd, setItem] = useState({
+  const itemInitialState = {
     item: '',
     quantity: 0,
-    mesureUnit: 'un',
-  });
+    mesureUnit: 'kilo',
+  };
+  let [itemToAdd, setItem] = useState(itemInitialState);
 
   const addItem = () => {
     itemList.push(itemToAdd);
-    setItem({
-      item: '',
-      quantity: 0,
-      mesureUnit: 'un',
-    });
+    updateItem(itemInitialState);
     setItemList([...itemList]);
+  };
+
+  const viewConfirmButton = () => {
+    document.getElementById('confirmButton').style.display = 'block';
+    setTimeout(() => {
+      setShowConfirmButton(true);
+    }, 500);
+  };
+
+  const isTouchDevice = () => {
+    return 'ontouchstart' in window;
+  };
+
+  const hideConfirmButton = () => {
+    setShowConfirmButton(false);
+    if (isTouchDevice()) {
+      setTimeout(() => {
+        document.getElementById('confirmButton').style.display = 'none';
+      }, 500);
+    }
   };
 
   const increaseItem = () => {
@@ -42,7 +60,7 @@ export default function ModalContent({ cardInfo, closeModal }) {
   };
 
   const setItemToAddName = (name) => {
-    itemToAdd.name = name;
+    itemToAdd.item = name;
     updateItem(itemToAdd);
   };
 
@@ -52,6 +70,7 @@ export default function ModalContent({ cardInfo, closeModal }) {
   };
 
   const updateItem = (item) => {
+    console.log(item);
     setItem(Object.assign({}, item));
   };
 
@@ -124,8 +143,8 @@ export default function ModalContent({ cardInfo, closeModal }) {
       <>
         <ItemsContainer>
           {itemList.map((item) => (
-            <Row>
-              -{item.name}
+            <Row key={item.item}>
+              -{item.item}
               <Quantity>
                 {item.mesureUnit}
                 <QuantityButton>+</QuantityButton>
@@ -136,8 +155,9 @@ export default function ModalContent({ cardInfo, closeModal }) {
           ))}
           <Row>
             <ItemInput
+              onFocus={hideConfirmButton}
+              onBlur={viewConfirmButton}
               onChange={(e) => setItemToAddName(e.target.value)}
-              value={itemToAdd.name}
               placeholder='adicione seu item'
               onKeyPress={(e) => {
                 if (e.charCode == 13) {
@@ -193,7 +213,11 @@ export default function ModalContent({ cardInfo, closeModal }) {
         {showExample && getExample()}
         {!showExample && getItemList()}
       </MainContainer>
-      <ConfirmationButton onClick={handleFinish}>
+      <ConfirmationButton
+        id='confirmButton'
+        onClick={handleFinish}
+        style={showConfirmButton ? { opacity: '1' } : { opacity: '0' }}
+      >
         <strong style={{ fontSize: '1.25em' }}>
           {showExample ? 'Pronto!' : 'Finalizar!'}
         </strong>

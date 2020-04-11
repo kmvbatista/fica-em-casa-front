@@ -10,6 +10,7 @@ import {
 } from './styles';
 import { useHistory } from 'react-router-dom';
 import { ColumnContainer } from '../../globalComponents';
+import api from '../../services/api';
 
 export default function NeedHelpForm() {
   const history = useHistory();
@@ -22,15 +23,22 @@ export default function NeedHelpForm() {
   const [sonsAverageAge, setSonsAverageAge] = useState(10);
   const dataComing = history.location.state;
 
-  const handleSubmit = () => {
-    const birthDay = `${dayOfBirth}/${monthOfBirth}/${yearOfBirth}`;
+  const handleSubmit = async () => {
+    const birthday = `${dayOfBirth}/${monthOfBirth}/${yearOfBirth}`;
     const dataToSend = Object.assign(dataComing, {
-      birthDay,
-      sonsAtHome,
-      sonsQuantity,
-      sonsAverageAge,
+      birthday,
+      sonsAtHome: Number.parseInt(sonsAtHome),
+      sonsQuantity: Number.parseInt(sonsQuantity),
+      sonsAverageAge: Number.parseInt(sonsAverageAge),
     });
-    console.log(dataToSend);
+    const response = await api.post('user', dataToSend);
+    console.log(response);
+    let { user, token } = response.data;
+    user = JSON.stringify(user);
+    console.log(user);
+    document.cookie = `user: ${user}, token: ${JSON.stringify(token)} }`;
+    console.log(document.cookie);
+    alert(document.cookie);
   };
 
   return (

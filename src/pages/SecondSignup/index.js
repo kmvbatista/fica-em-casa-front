@@ -14,7 +14,12 @@ export default function SignIn() {
 
   const handleSubmit = async () => {
     if (password == confirmPassword) {
-      const dataToNextPage = { phone, password, confirmPassword };
+      const dataToNextPage = {
+        name: dataComing.name,
+        phone,
+        password,
+        confirmPassword,
+      };
       history.push('choose-group', dataToNextPage);
     }
   };

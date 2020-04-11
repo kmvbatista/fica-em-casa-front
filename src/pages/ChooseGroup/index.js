@@ -19,7 +19,7 @@ export default function ChooseGroup() {
   const dataComing = history.location.state;
 
   const handleSubmit = async () => {
-    const dataToSend = Object.assign(dataComing, { isNeeded: false });
+    const dataToSend = Object.assign(dataComing, { isNeedy: false });
     console.log(dataToSend);
     const response = await api.post('signup', dataToSend);
     const { user, token } = response.data;
@@ -35,7 +35,7 @@ export default function ChooseGroup() {
         onClick={() =>
           history.push(
             'need-help-form',
-            Object.assign(dataComing, { isNeeded: true }),
+            Object.assign(dataComing, { isNeedy: true }),
           )
         }
       >

@@ -13,7 +13,7 @@ import axios from 'axios';
 //   return instance;
 
 const instance = axios.create({
-  baseURL: 'http://192.168.0.6:3333',
+  baseURL: 'https://ficaemcasa-backend.herokuapp.com/',
 });
 
 instance.interceptors.request.use(function (config) {

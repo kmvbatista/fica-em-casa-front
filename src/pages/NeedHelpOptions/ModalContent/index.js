@@ -12,11 +12,10 @@ import {
   SelectUnit,
 } from './styles';
 import itemsExample from '../../../assets/itemsModal.json';
-// import api from '../../../services/api';
-// import { getUserData } from '../../../services/sessionService';
+import * as NecessityService from '../../../services/necessityService';
 
 export default function ModalContent({ cardInfo, closeModal }) {
-  const [showExample] = useState(true);
+  const [showExample, setShowExample] = useState(true);
   const [showConfirmButton, setShowConfirmButton] = useState(true);
   let [itemList, setItemList] = useState([]);
   const itemInitialState = {
@@ -79,48 +78,17 @@ export default function ModalContent({ cardInfo, closeModal }) {
     setItem(Object.assign({}, item));
   };
 
-  const handleFinish = () => {
-    // if (showExample) {
-    //   return setShowExample(false);
-    // } else {
-    //   postNecessity();
-    // }
-    // closeModal();
-    var successHandler = function (position) {
-      alert(position.coords.latitude);
-      alert(position.coords.longitude);
-    };
-
-    var errorHandler = function (errorObj) {
-      alert(errorObj.code + ': ' + errorObj.message);
-    };
-
-    navigator.geolocation.getCurrentPosition(successHandler, errorHandler, {
-      enableHighAccuracy: true,
-      maximumAge: 1000,
-    });
+  const handleFinish = async () => {
+    if (showExample) {
+      return setShowExample(false);
+    } else {
+      await NecessityService.postNecessity(
+        cardInfo.category,
+        itemList,
+        closeModal,
+      );
+    }
   };
-
-  // const postNecessity = async () => {
-  //   alert(JSON.stringify(navigator.geolocation.getCurrentPosition));
-  //   navigator.geolocation.getCurrentPosition(({ coords }) => {
-  //     alert(JSON.stringify(coords));
-  //     const user = getUserData();
-  //     const dataToSend = {
-  //       necessities: {
-  //         category: cardInfo.category.toLowerCase(),
-  //         items: itemList,
-  //         status: 'available',
-  //       },
-  //       user: Object.assign(user, {
-  //         latitude: coords.latitude,
-  //         longitude: coords.longitude,
-  //       }),
-  //     };
-  //     alert('kennedy');
-  //     const response = api.post('necessity', dataToSend);
-  //   });
-  // };
 
   const getExample = () => {
     return (

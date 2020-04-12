@@ -8,8 +8,6 @@ instance.interceptors.request.use(function (config) {
   if (document.cookie) {
     try {
       const { token } = JSON.parse(document.cookie);
-      alert(token);
-      console.log(token);
       config.headers.Authorization = token ? `Bearer ${token}` : '';
       return config;
     } catch (error) {

@@ -1,6 +1,10 @@
 export function getUserData() {
-  const { user } = JSON.parse(document.cookie);
-  return user;
+  try {
+    const { user } = JSON.parse(document.cookie);
+    return user;
+  } catch (error) {
+    console.log('não foi possível encontrar usuário logado');
+  }
 }
 
 export function setCookies(responseData) {

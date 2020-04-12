@@ -15,6 +15,7 @@ export const ColumnContainer = styled.div`
 `;
 
 export const OptionCard = styled.div`
+  position: relative;
   cursor: pointer;
   margin: auto;
   height: 8em;

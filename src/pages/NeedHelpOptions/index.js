@@ -66,6 +66,7 @@ export default function NeedHelpOptions() {
               toggleShowModal();
             }}
           >
+            <div></div>
             <img
               src={el.imageUrl}
               alt={el.category}

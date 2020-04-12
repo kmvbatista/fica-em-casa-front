@@ -10,11 +10,11 @@ import { SubTitle, Title } from './styles';
 import cardData from '../../assets/productCategory.json';
 import Modal from '../../components/Modal';
 import ModalContent from './ModalContent';
-import { useHistory } from 'react-router-dom';
+// import { useHistory } from 'react-router-dom';
 
 export default function NeedHelpOptions() {
-  const history = useHistory();
-  const isFirstAccess = history.location.state;
+  // const history = useHistory();
+  // const isFirstAccess = history.location.state;
   const [showModal, setShowModal] = useState(false);
   const [cardSelectedInfo, setCardSelectedInfo] = useState();
 
@@ -33,13 +33,13 @@ export default function NeedHelpOptions() {
     setShowModal(!showModal);
   };
 
-  const goToFriends = () => {
-    if (isFirstAccess) {
-      history.replace('help-or-be-helped');
-    } else {
-      history.replace('friends');
-    }
-  };
+  // const goToFriends = () => {
+  //   if (isFirstAccess) {
+  //     history.replace('help-or-be-helped');
+  //   } else {
+  //     history.replace('friends');
+  //   }
+  // };
 
   return (
     <ColumnContainer>

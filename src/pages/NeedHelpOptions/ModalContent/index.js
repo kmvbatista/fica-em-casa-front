@@ -12,12 +12,11 @@ import {
   SelectUnit,
 } from './styles';
 import itemsExample from '../../../assets/itemsModal.json';
-import api from '../../../services/api';
-import getLocation from '../../../services/getCurrentLocation';
-import { getUserData } from '../../../services/sessionService';
+// import api from '../../../services/api';
+// import { getUserData } from '../../../services/sessionService';
 
 export default function ModalContent({ cardInfo, closeModal }) {
-  const [showExample, setShowExample] = useState(true);
+  const [showExample] = useState(true);
   const [showConfirmButton, setShowConfirmButton] = useState(true);
   let [itemList, setItemList] = useState([]);
   const itemInitialState = {
@@ -102,26 +101,26 @@ export default function ModalContent({ cardInfo, closeModal }) {
     });
   };
 
-  const postNecessity = async () => {
-    alert(JSON.stringify(navigator.geolocation.getCurrentPosition));
-    navigator.geolocation.getCurrentPosition(({ coords }) => {
-      alert(JSON.stringify(coords));
-      const user = getUserData();
-      const dataToSend = {
-        necessities: {
-          category: cardInfo.category.toLowerCase(),
-          items: itemList,
-          status: 'available',
-        },
-        user: Object.assign(user, {
-          latitude: coords.latitude,
-          longitude: coords.longitude,
-        }),
-      };
-      alert('kennedy');
-      const response = api.post('necessity', dataToSend);
-    });
-  };
+  // const postNecessity = async () => {
+  //   alert(JSON.stringify(navigator.geolocation.getCurrentPosition));
+  //   navigator.geolocation.getCurrentPosition(({ coords }) => {
+  //     alert(JSON.stringify(coords));
+  //     const user = getUserData();
+  //     const dataToSend = {
+  //       necessities: {
+  //         category: cardInfo.category.toLowerCase(),
+  //         items: itemList,
+  //         status: 'available',
+  //       },
+  //       user: Object.assign(user, {
+  //         latitude: coords.latitude,
+  //         longitude: coords.longitude,
+  //       }),
+  //     };
+  //     alert('kennedy');
+  //     const response = api.post('necessity', dataToSend);
+  //   });
+  // };
 
   const getExample = () => {
     return (
@@ -171,7 +170,7 @@ export default function ModalContent({ cardInfo, closeModal }) {
               onChange={(e) => setItemToAddName(e.target.value)}
               placeholder='adicione seu item'
               onKeyPress={(e) => {
-                if (e.charCode == 13) {
+                if (e.charCode === 13) {
                   addItem(); // returning false will prevent the event from bubbling up.
                 }
               }}
@@ -213,7 +212,11 @@ export default function ModalContent({ cardInfo, closeModal }) {
     <ModalContainer>
       <Row style={{ alignItems: 'center' }}>
         <Card>
-          <img src={cardInfo.imageUrl} style={{ height: '2.5em' }} />
+          <img
+            alt={cardInfo.category}
+            src={cardInfo.imageUrl}
+            style={{ height: '2.5em' }}
+          />
         </Card>
         <strong style={{ fontSize: '3em' }}>{cardInfo.category}</strong>
       </Row>

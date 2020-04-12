@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import Wait from './Components/Wait';
 
 import SecondForm from './Components/SecondForm/SecondForm';
-import { useEffect } from 'react';
+// import { useEffect } from 'react';
 
 export default function SignIn() {
   const history = useHistory();
@@ -13,7 +13,7 @@ export default function SignIn() {
   const [confirmPassword, setConfirmPassword] = useState('');
 
   const handleSubmit = async () => {
-    if (password == confirmPassword) {
+    if (password === confirmPassword) {
       const dataToNextPage = {
         name: dataComing.name,
         phone,

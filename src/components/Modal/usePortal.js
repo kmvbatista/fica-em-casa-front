@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import { useRef, useEffect } from 'react';
 
 /**
  * Creates DOM element to be used as React root.
@@ -32,14 +32,14 @@ function addRootElement(rootElem) {
  * @param {String} id The id of the target container, e.g 'modal' or 'spotlight'
  * @returns {HTMLElement} The DOM node to use as the Portal target.
  */
-function usePortal(id) {
+function usePortal() {
   const rootElemRef = useRef(null);
 
   useEffect(function setupElement() {
     // Look for existing target dom element to append to
-    const existingParent = document.querySelector(`#${id}`);
+    const existingParent = document.querySelector('modal');
     // Parent is either a new root or the existing dom element
-    const parentElem = existingParent || createRootElement(id);
+    const parentElem = existingParent || createRootElement('modal');
 
     // If there is no existing DOM element, add a new one.
     if (!existingParent) {

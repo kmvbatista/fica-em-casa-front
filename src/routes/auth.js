@@ -4,7 +4,7 @@ export default function authenticate() {
     return true;
   }
   const cookies = document.cookie;
-  if (cookies && cookies != '') {
+  if (cookies && cookies !== '') {
     try {
       const { token } = JSON.parse(cookies);
       if (token) {

@@ -1,7 +1,7 @@
 import React from 'react';
 import './styles.js';
-import { Title, TopDecoration, Container } from './styles';
-import { Row } from '../../../../globalComponents.js';
+import { Title, Container } from './styles';
+// import { Row } from '../../../../globalComponents.js';
 
 export default function Wait() {
   return (
@@ -19,7 +19,6 @@ export default function Wait() {
           position: 'absolute',
           right: '0%',
           height: '50%',
-          right: '0',
         }}
       />
       <img

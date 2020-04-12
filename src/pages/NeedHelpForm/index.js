@@ -93,7 +93,8 @@ export default function NeedHelpForm() {
             history.push('/need-help-options');
           }}
           style={{
-            backgroundColor: hasChildren == false ? '#ffff00b3' : 'transparent',
+            backgroundColor:
+              hasChildren === false ? '#ffff00b3' : 'transparent',
           }}
           className='radio'
         >

@@ -1,10 +1,9 @@
-import React from 'react';
 import { createPortal } from 'react-dom';
 import usePortal from './usePortal';
 import './styles.css';
 
 const Portal = ({ children }) => {
-  const target = usePortal('modal');
+  const target = usePortal();
   return createPortal(children, target);
 };
 

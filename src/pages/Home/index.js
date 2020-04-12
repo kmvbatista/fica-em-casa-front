@@ -19,7 +19,7 @@ export default function ChooseGroup() {
   const history = useHistory();
   const dataFirstAcess = history.location.state;
 
-  let [isUserLogged, setUserLogged] = useState(false);
+  let [isUserLogged] = useState(false);
 
   useEffect(() => {
     // const cookies = document.cookie;

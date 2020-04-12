@@ -22,17 +22,17 @@ export default function ChooseGroup() {
   let [isUserLogged, setUserLogged] = useState(false);
 
   useEffect(() => {
-    const cookies = document.cookie;
-    if (cookies) {
-      try {
-        const { token } = JSON.parse(cookies);
-        if (token) {
-          setUserLogged(true);
-        }
-      } catch (error) {}
-    } else if (!dataFirstAcess && !cookies) {
-      history.replace('login');
-    }
+    // const cookies = document.cookie;
+    // if (cookies) {
+    //   try {
+    //     const { token } = JSON.parse(cookies);
+    //     if (token) {
+    //       setUserLogged(true);
+    //     }
+    //   } catch (error) {}
+    // } else if (!dataFirstAcess && !cookies) {
+    //   history.replace('login');
+    // }
   }, []);
 
   function helperChoice() {

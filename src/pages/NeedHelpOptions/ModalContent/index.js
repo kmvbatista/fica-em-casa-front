@@ -127,7 +127,7 @@ export default function ModalContent({ cardInfo, closeModal }) {
       <>
         <div style={{ marginBottom: '1em' }}>
           <p> Por exemplo:</p>
-          <p>Olá, preciso de alguém para ir ao mercado.</p>
+          <p>Olá, eu preciso de alguém para ir ao mercado.</p>
           <p>Preciso dos seguintes itens: </p>
         </div>
         <ItemsContainer>

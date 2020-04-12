@@ -139,7 +139,7 @@ export default function ModalContent({ cardInfo, closeModal }) {
               placeholder='adicione seu item'
               onKeyPress={(e) => {
                 if (e.charCode === 13) {
-                  addItem(); // returning false will prevent the event from bubbling up.
+                  addItem();
                 }
               }}
             ></ItemInput>

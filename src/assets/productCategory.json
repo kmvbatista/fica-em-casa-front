@@ -1,50 +1,62 @@
 [
   {
     "category": "Mercado",
-    "imageUrl": "./market.png"
+    "imageUrl": "./market.png",
+    "isChecked": false
   },
   {
     "category": "Farmácia",
-    "imageUrl": "./pharmacy.png"
+    "imageUrl": "./pharmacy.png",
+    "isChecked": false
   },
   {
     "category": "Alimento",
-    "imageUrl": "./food-donation.png"
+    "imageUrl": "./food-donation.png",
+    "isChecked": false
   },
   {
     "category": "Padaria",
-    "imageUrl": "./bread.png"
+    "imageUrl": "./bread.png",
+    "isChecked": false
   },
   {
     "category": "Limpeza",
-    "imageUrl": "./detergent.png"
+    "imageUrl": "./detergent.png",
+    "isChecked": false
   },
   {
     "category": "Higiene",
-    "imageUrl": "./soap.png"
+    "imageUrl": "./soap.png",
+    "isChecked": false
   },
   {
     "category": "Assistência online",
-    "imageUrl": "./electrician.png"
+    "imageUrl": "./electrician.png",
+    "isChecked": false
   },
   {
     "category": "Leitura",
-    "imageUrl": "./bookshelf.png"
+    "imageUrl": "./bookshelf.png",
+    "isChecked": false
   },
   {
     "category": "Conselho",
-    "imageUrl": "./communication.png"
+    "imageUrl": "./communication.png",
+    "isChecked": false
   },
   {
     "category": "Vídeo aula",
-    "imageUrl": "./videoAula.png"
+    "imageUrl": "./videoAula.png",
+    "isChecked": false
   },
   {
     "category": "Pet",
-    "imageUrl": "./pet.png"
+    "imageUrl": "./pet.png",
+    "isChecked": false
   },
   {
     "category": "Compartilhar",
-    "imageUrl": "./netflix.png"
+    "imageUrl": "./netflix.png",
+    "isChecked": false
   }
 ]

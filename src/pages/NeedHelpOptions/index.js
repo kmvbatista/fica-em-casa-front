@@ -10,13 +10,14 @@ import { SubTitle, Title } from './styles';
 import cardData from '../../assets/productCategory.json';
 import Modal from '../../components/Modal';
 import ModalContent from './ModalContent';
-// import { useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 export default function NeedHelpOptions() {
-  // const history = useHistory();
-  // const isFirstAccess = history.location.state;
+  const history = useHistory();
+  const isFirstAccess = history.location.state;
   const [showModal, setShowModal] = useState(false);
   const [cardSelectedInfo, setCardSelectedInfo] = useState();
+  const [cards, setCards] = useState(cardData);
 
   const getModal = () => {
     return (
@@ -24,6 +25,7 @@ export default function NeedHelpOptions() {
         <ModalContent
           cardInfo={cardSelectedInfo}
           closeModal={toggleShowModal}
+          setCardChecked={setCardChecked}
         ></ModalContent>
       </Modal>
     );
@@ -33,13 +35,19 @@ export default function NeedHelpOptions() {
     setShowModal(!showModal);
   };
 
-  // const goToFriends = () => {
-  //   if (isFirstAccess) {
-  //     history.replace('help-or-be-helped');
-  //   } else {
-  //     history.replace('friends');
-  //   }
-  // };
+  const setCardChecked = (categoryName) => {
+    const cardIndex = cards.findIndex((x) => x.category === categoryName);
+    cards[cardIndex].isChecked = true;
+    setCards([...cards]);
+  };
+
+  const goToFriends = () => {
+    if (isFirstAccess) {
+      history.replace('help-or-be-helped');
+    } else {
+      history.replace('friends');
+    }
+  };
 
   return (
     <ColumnContainer>
@@ -50,7 +58,7 @@ export default function NeedHelpOptions() {
         seleção da categoria, assim fica mais fácil de ajudar!
       </SubTitle>
       <Grid>
-        {cardData.map((el) => (
+        {cards.map((el) => (
           <OptionCard
             key={el.category}
             onClick={() => {
@@ -69,7 +77,7 @@ export default function NeedHelpOptions() {
       </Grid>
       <GetModalButton
         onClick={() => {
-          document.cookie = 'undefined';
+          goToFriends();
         }}
       >
         <img src='./logo.png' alt='logo' style={{ height: '100%' }} />

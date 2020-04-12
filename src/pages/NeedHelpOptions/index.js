@@ -67,7 +67,11 @@ export default function NeedHelpOptions() {
           </OptionCard>
         ))}
       </Grid>
-      <GetModalButton onClick={goToFriends}>
+      <GetModalButton
+        onClick={() => {
+          document.cookie = 'undefined';
+        }}
+      >
         <img src='./logo.png' alt='logo' style={{ height: '100%' }} />
         <div>
           Não achou sua necessidade acima?

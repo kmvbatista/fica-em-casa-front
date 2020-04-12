@@ -12,6 +12,9 @@ import {
   SelectUnit,
 } from './styles';
 import itemsExample from '../../../assets/itemsModal.json';
+import api from '../../../services/api';
+import getLocation from '../../../services/getCurrentLocation';
+import { getUserData } from '../../../services/sessionService';
 
 export default function ModalContent({ cardInfo, closeModal }) {
   const [showExample, setShowExample] = useState(true);
@@ -23,12 +26,6 @@ export default function ModalContent({ cardInfo, closeModal }) {
     mesureUnit: 'quilo',
   };
   let [itemToAdd, setItem] = useState(itemInitialState);
-
-  const addItem = () => {
-    itemList.push(itemToAdd);
-    updateItem(itemInitialState);
-    setItemList([...itemList]);
-  };
 
   const viewConfirmButton = () => {
     document.getElementById('confirmButton').style.display = 'block';
@@ -53,6 +50,11 @@ export default function ModalContent({ cardInfo, closeModal }) {
       }, 500);
     }
   };
+  const addItem = () => {
+    itemList.push(itemToAdd);
+    updateItem(itemInitialState);
+    setItemList([...itemList]);
+  };
 
   const increaseItem = () => {
     itemToAdd.quantity++;
@@ -75,8 +77,50 @@ export default function ModalContent({ cardInfo, closeModal }) {
   };
 
   const updateItem = (item) => {
-    console.log(item);
     setItem(Object.assign({}, item));
+  };
+
+  const handleFinish = () => {
+    // if (showExample) {
+    //   return setShowExample(false);
+    // } else {
+    //   postNecessity();
+    // }
+    // closeModal();
+    var successHandler = function (position) {
+      alert(position.coords.latitude);
+      alert(position.coords.longitude);
+    };
+
+    var errorHandler = function (errorObj) {
+      alert(errorObj.code + ': ' + errorObj.message);
+    };
+
+    navigator.geolocation.getCurrentPosition(successHandler, errorHandler, {
+      enableHighAccuracy: true,
+      maximumAge: 1000,
+    });
+  };
+
+  const postNecessity = async () => {
+    alert(JSON.stringify(navigator.geolocation.getCurrentPosition));
+    navigator.geolocation.getCurrentPosition(({ coords }) => {
+      alert(JSON.stringify(coords));
+      const user = getUserData();
+      const dataToSend = {
+        necessities: {
+          category: cardInfo.category.toLowerCase(),
+          items: itemList,
+          status: 'available',
+        },
+        user: Object.assign(user, {
+          latitude: coords.latitude,
+          longitude: coords.longitude,
+        }),
+      };
+      alert('kennedy');
+      const response = api.post('necessity', dataToSend);
+    });
   };
 
   const getExample = () => {
@@ -165,19 +209,13 @@ export default function ModalContent({ cardInfo, closeModal }) {
     );
   };
 
-  const handleFinish = () => {
-    if (showExample) {
-      return setShowExample(false);
-    }
-    closeModal();
-  };
-
   return (
     <ModalContainer>
       <Row style={{ alignItems: 'center' }}>
         <Card>
           <img src={cardInfo.imageUrl} style={{ height: '2.5em' }} />
         </Card>
+        <strong style={{ fontSize: '3em' }}>{cardInfo.category}</strong>
       </Row>
       <MainContainer>
         <p style={{ marginBottom: '1em' }}>

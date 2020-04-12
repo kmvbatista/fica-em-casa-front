@@ -20,15 +20,19 @@ export default function ThirdForm(props) {
         <InputBlock className='input-block'>
           <LoginInput
             placeholder='Seu telefone'
-            name='telefone'
-            id='telefone'
+            name='phone'
+            id='phone'
             required
+            value={props.phone}
+            onChange={(e) => props.setPhone(e.target.value)}
           ></LoginInput>
           <LoginInput
             placeholder='Sua senha'
             name='password'
             id='password'
             required
+            value={props.password}
+            onChange={(e) => props.setPassword(e.target.value)}
           ></LoginInput>
           <RegisterButton onClick={() => props.handleSubmit()}>
             Acessar

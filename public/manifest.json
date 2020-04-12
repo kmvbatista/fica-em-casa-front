@@ -1,8 +1,7 @@
 {
-  "short_name": "Solidarity",
-  "name": "Solidarity",
-  "icons": [
-  ],
+  "short_name": "Fica em casa",
+  "name": "Fica em casa",
+  "icons": [],
   "start_url": ".",
   "display": "standalone",
   "theme_color": "#ffffff",

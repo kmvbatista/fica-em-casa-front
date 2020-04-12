@@ -1,17 +1,17 @@
-import React, { lazy, Suspense } from 'react';
+import React, { Suspense } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import PrivateRoute from './privateRoute';
 
-const FirstSignup = lazy(() => import('../pages/FirstSignup'));
-const SecondSignup = lazy(() => import('../pages/SecondSignup'));
-const Home = lazy(() => import('../pages/Home'));
-const NeedHelpForm = lazy(() => import('../pages/NeedHelpForm'));
-const NeedHelpOptions = lazy(() => import('../pages/NeedHelpOptions'));
-const CanHelpOptions = lazy(() => import('../pages/CanHelpOptions'));
-const Friends = lazy(() => import('../pages/Friends/FriendsList'));
-const HelpOrGetHelp = lazy(() => import('../pages/Friends/FirstAcess'));
-const Login = lazy(() => import('../pages/Login'));
-const Profile = lazy(() => import('../pages/Profile'));
+const FirstSignup = import('../pages/FirstSignup');
+const SecondSignup = import('../pages/SecondSignup');
+const Home = import('../pages/Home');
+const NeedHelpForm = import('../pages/NeedHelpForm');
+const NeedHelpOptions = import('../pages/NeedHelpOptions');
+const CanHelpOptions = import('../pages/CanHelpOptions');
+const Friends = import('../pages/Friends/FriendsList');
+const HelpOrGetHelp = import('../pages/Friends/FirstAcess');
+const Login = import('../pages/Login');
+const Profile = import('../pages/Profile');
 
 export default function Routes() {
   return (

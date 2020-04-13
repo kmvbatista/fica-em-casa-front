@@ -13,6 +13,7 @@ import {
 } from './styles';
 import itemsExample from '../../../assets/itemsModal.json';
 import * as NecessityService from '../../../services/necessityService';
+import swal from 'sweetalert';
 
 export default function ModalContent({ cardInfo, closeModal, setCardChecked }) {
   const [showExample, setShowExample] = useState(true);
@@ -86,6 +87,11 @@ export default function ModalContent({ cardInfo, closeModal, setCardChecked }) {
         cardInfo.category,
         itemList,
         closeModal,
+      );
+      swal(
+        'Necessidade cadastrada com sucesso!',
+        'Esperamos que dê tudo certo!',
+        'success',
       );
       setCardChecked(cardInfo.category);
     }

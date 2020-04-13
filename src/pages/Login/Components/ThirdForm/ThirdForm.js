@@ -7,6 +7,7 @@ import {
   RegisterButton,
   Title,
 } from './styles';
+import LoaderContainer from '../../../../components/LoaderContainer';
 
 export default function ThirdForm(props) {
   return (
@@ -33,9 +34,18 @@ export default function ThirdForm(props) {
             value={props.password}
             onChange={(e) => props.setPassword(e.target.value)}
           ></LoginInput>
-          <RegisterButton onClick={() => props.handleSubmit()}>
-            Acessar
-          </RegisterButton>
+          <LoaderContainer
+            color={'var(--color-pink)'}
+            isLoading={props.isLoading}
+          >
+            <RegisterButton
+              onClick={() => {
+                props.handleSubmit();
+              }}
+            >
+              Acessar
+            </RegisterButton>
+          </LoaderContainer>
         </InputBlock>
       </Container>
     </div>

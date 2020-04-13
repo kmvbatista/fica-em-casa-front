@@ -28,7 +28,6 @@ export const InputBlock = styled.div`
   justify-content: center;
 `;
 export const RegisterButton = styled.button`
-  margin-top: 5px;
   border-radius: 30px;
   outline: none;
   border: none;

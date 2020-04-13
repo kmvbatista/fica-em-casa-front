@@ -14,7 +14,7 @@ import {
 import itemsExample from '../../../assets/itemsModal.json';
 import * as NecessityService from '../../../services/necessityService';
 
-export default function ModalContent({ cardInfo, closeModal }) {
+export default function ModalContent({ cardInfo, closeModal, setCardChecked }) {
   const [showExample, setShowExample] = useState(true);
   const [showConfirmButton, setShowConfirmButton] = useState(true);
   let [itemList, setItemList] = useState([]);
@@ -87,6 +87,7 @@ export default function ModalContent({ cardInfo, closeModal }) {
         itemList,
         closeModal,
       );
+      setCardChecked(cardInfo.category);
     }
   };
 

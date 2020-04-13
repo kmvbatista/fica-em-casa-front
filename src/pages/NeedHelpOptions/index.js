@@ -11,6 +11,7 @@ import cardData from '../../assets/productCategory.json';
 import Modal from '../../components/Modal';
 import ModalContent from './ModalContent';
 import { useHistory } from 'react-router-dom';
+import IsChecked from './isChecked';
 
 export default function NeedHelpOptions() {
   const history = useHistory();
@@ -66,7 +67,7 @@ export default function NeedHelpOptions() {
               toggleShowModal();
             }}
           >
-            <div></div>
+            <IsChecked isChecked={el.isChecked}></IsChecked>
             <img
               src={el.imageUrl}
               alt={el.category}

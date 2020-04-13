@@ -2,7 +2,7 @@
   {
     "category": "Mercado",
     "imageUrl": "./market.png",
-    "isChecked": false
+    "isChecked": true
   },
   {
     "category": "Farmácia",

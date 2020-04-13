@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import {
   Container,
@@ -13,27 +13,19 @@ import {
   SecondaryText,
   Image,
 } from './styles';
-import api from '../../services/api';
+import { registerUser, getUserData } from '../../services/sessionService';
+import Loader from '../../components/Loader';
+import swal from 'sweetalert';
 
 export default function ChooseGroup() {
   const history = useHistory();
   const dataFirstAcess = history.location.state;
 
-  let [isUserLogged] = useState(false);
+  let [isUserLogged, setUserLogged] = useState(getUserData() != undefined);
 
-  useEffect(() => {
-    // const cookies = document.cookie;
-    // if (cookies) {
-    //   try {
-    //     const { token } = JSON.parse(cookies);
-    //     if (token) {
-    //       setUserLogged(true);
-    //     }
-    //   } catch (error) {}
-    // } else if (!dataFirstAcess && !cookies) {
-    //   history.replace('login');
-    // }
-  }, []);
+  // useEffect(() => {
+
+  // }, []);
 
   function helperChoice() {
     if (isUserLogged) {
@@ -60,11 +52,18 @@ export default function ChooseGroup() {
     const dataToSend = Object.assign(dataFirstAcess, {
       isNeedy: false,
     });
-    const response = await api.post('signup', dataToSend);
-    const { user, token } = response.data;
-    document.cookie = `token: ${JSON.stringify(token)}; user: ${JSON.stringify(
-      user,
-    )};`;
+    swal({
+      title: 'Por favor, aguarde...',
+      content: Loader(),
+      buttons: {},
+    });
+    try {
+      await registerUser(dataToSend);
+      swal('Dados cadastrados com sucesso', '', 'success');
+      history.push('can-help-options');
+    } catch (e) {
+      swal('Houve um erro na requisição', e.response.data.error, 'error');
+    }
   }
 
   return (

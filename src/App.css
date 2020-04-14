@@ -50,19 +50,19 @@ html {
 /* margin media queries */
 @media only screen and (min-width: 600px) {
   body {
-    margin: 5em 5em;
+    margin: 5em 5em 0 5em;
   }
 }
 
 @media only screen and (min-width: 900px) {
   body {
-    margin: 8em 8em;
+    margin: 5em 8em 0 8em;
   }
 }
 
 @media only screen and (min-width: 1200px) {
   body {
-    margin: 8.5em 8.5em;
+    margin: 8.5em 8.5em 0 8.5em;
   }
 }
 

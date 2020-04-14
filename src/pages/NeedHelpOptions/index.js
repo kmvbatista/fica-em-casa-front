@@ -5,6 +5,7 @@ import {
   OptionCard,
   GetModalButton,
   GridText,
+  CardImage,
 } from '../../globalComponents';
 import { SubTitle, Title } from './styles';
 import cardData from '../../assets/productCategory.json';
@@ -58,6 +59,7 @@ export default function NeedHelpOptions() {
         <br />É muito importante que você descreva a sua necessidade após a
         seleção da categoria, assim fica mais fácil de ajudar!
       </SubTitle>
+
       <Grid>
         {cards.map((el) => (
           <OptionCard
@@ -71,29 +73,16 @@ export default function NeedHelpOptions() {
               isChecked={el.isChecked}
               color={'var(--color-pink)'}
             ></IsChecked>
-            <img
-              src={el.imageUrl}
-              alt={el.category}
-              style={{ height: '2.5em' }}
-            />
+            <CardImage src={el.imageUrl} alt={el.category} />
             <GridText>{el.category}</GridText>
           </OptionCard>
         ))}
+        <OptionCard>
+          <CardImage src={'./logo.png'} alt={'Outras opçoes'} />
+          <GridText>{'Outros'}</GridText>
+        </OptionCard>
       </Grid>
-      <GetModalButton
-        onClick={() => {
-          goToFriends();
-        }}
-      >
-        <img src='./logo.png' alt='logo' style={{ height: '100%' }} />
-        <div>
-          Não achou sua necessidade acima?
-          <br />
-          <p style={{ marginTop: '5px', fontWeight: 'bold' }}>
-            Digite ela aqui!
-          </p>
-        </div>
-      </GetModalButton>
+
       {showModal && getModal()}
     </ColumnContainer>
   );

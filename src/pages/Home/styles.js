@@ -40,7 +40,7 @@ export const Box1 = styled.div`
   align-items: center;
   @media only screen and (min-width: 1200px) {
     height: 80vh;
-    width: 34vw;
+    width: ${(props) => (props.isUserLogged ? '34vw' : '50vw')};
     padding: 0;
   }
 `;
@@ -83,12 +83,12 @@ export const CenteredBox = styled.div`
   }
 `;
 
-export const HighlightText = styled.text`
+export const HighlightText = styled.p`
   font-size: 3.5em;
   font-weight: bolder;
 `;
 
-export const SecondaryText = styled.text`
+export const SecondaryText = styled.p`
   font-size: 3.2em;
   font-weight: 500;
 `;

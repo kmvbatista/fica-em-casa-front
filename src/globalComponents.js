@@ -5,21 +5,23 @@ export const ColumnContainer = styled.div`
   min-height: 100vh;
   flex-direction: column;
   background-color: var(--color-pink);
-  padding: 6em 4em 0 4em;
+  padding: 4em 4em 0 4em;
+  align-items: flex-start;
+  @media only screen and (min-width: 600px) {
+    padding: 6em 5em;
+  }
   @media only screen and (min-width: 1400px) {
-    padding: 6em 10em 0 10em;
+    padding: 6em 10em;
   }
   @media only screen and (min-width: 1800px) {
-    padding: 6em 20em 0 20em;
+    padding: 6em 20em;
   }
 `;
 
 export const OptionCard = styled.div`
   position: relative;
   cursor: pointer;
-  margin: auto;
-  height: 8em;
-  width: 8em;
+  margin-left: auto;
   border-radius: 17px;
   background-color: white;
   display: flex;
@@ -30,13 +32,41 @@ export const OptionCard = styled.div`
   font-weight: bold;
   padding: 10px 0;
   text-align: center;
+
   @media only screen and (max-width: 900px) {
-    height: 6.5em;
-    width: 6.5em;
+    height: 10em;
+    width: 10em;
   }
+  @media only screen and (max-width: 600px) {
+    height: 8em;
+    width: 8em;
+  }
+
+  @media only screen and (min-width: 400px) {
+    height: 9em;
+    width: 9em;
+  }
+
   @media only screen and (min-width: 900px) {
-    height: 7em;
-    width: 7em;
+    height: 12em;
+    width: 12em;
+  }
+`;
+
+export const CardImage = styled.img`
+  @media only screen and (max-width: 900px) {
+    width: 3.5em;
+  }
+  @media only screen and (max-width: 400px) {
+    width: 2.5em;
+  }
+
+  @media only screen and (min-width: 400px) {
+    width: 3em;
+  }
+
+  @media only screen and (min-width: 900px) {
+    width: 4em;
   }
 `;
 
@@ -46,8 +76,26 @@ export const GridText = styled.p`
 
 export const Grid = styled.div`
   display: grid;
-  grid-template-columns: auto auto auto;
-  grid-gap: 1.2em;
+  grid-template-columns: repeat(3, 8em);
+  grid-auto-rows: 1fr;
+  grid-gap: 2.5em;
+  align-self: center;
+  margin-top: 5%;
+
+  @media only screen and (min-width: 400px) {
+    grid-template-columns: repeat(3, 9em);
+    grid-gap: 3em;
+  }
+
+  @media only screen and (min-width: 900px) {
+    grid-template-columns: repeat(4, 10em);
+    grid-gap: 5em;
+  }
+
+  @media only screen and (min-width: 900px) {
+    grid-template-columns: repeat(4, 12em);
+    grid-gap: 6em;
+  }
 `;
 
 export const GetModalButton = styled.div`

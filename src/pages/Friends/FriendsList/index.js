@@ -2,7 +2,8 @@ import React from 'react';
 import { TabContainer, Tab } from './styles';
 import AvailableHelpers from '../components/AvailableHelpers';
 import AvailableNeeded from '../components/AvailableNeeded';
-import { TopDecorationImage, TopDecoration } from '../styledComponents';
+import { TopDecoration } from '../styledComponents';
+import UserProfile from '../components/UserProfile';
 
 export default function HelpBeHelped() {
   const [isHelping, setIsHelping] = React.useState(false);
@@ -15,9 +16,14 @@ export default function HelpBeHelped() {
     <div style={{ position: 'relative' }}>
       <TopDecoration
         isHelping={isHelping}
-        style={{ display: 'flex', alignItems: 'flex-end' }}
+        style={{
+          display: 'flex',
+          flexFlow: 'column',
+          justifyContent: 'space-between',
+          alignItems: 'flex-start',
+        }}
       >
-        <TopDecorationImage isHelping={isHelping}></TopDecorationImage>
+        <UserProfile></UserProfile>
         <TabContainer>
           <Tab
             isHelping={isHelping}

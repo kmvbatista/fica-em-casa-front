@@ -11,8 +11,14 @@ export default function UserProfile(props) {
       <ProfileContainer>
         <ProfileImage></ProfileImage>
         <Column style={{ justifyContent: 'space-around' }}>
-          <strong style={{ fontSize: '3em' }}>Carlos</strong>
-          <p style={{ fontSize: '1.5em' }}>Você ainda quer ajudar?</p>
+          <strong style={{ fontSize: '3em', marginBottom: '.2em' }}>
+            {props.userName.split(' ')[0]},
+          </strong>
+          <p style={{ fontSize: '1.8em' }}>
+            {props.isHelping
+              ? 'Você ainda precisa de ajuda?'
+              : 'Você ainda pode ajudar?'}
+          </p>
         </Column>
         <div>
           <Switch

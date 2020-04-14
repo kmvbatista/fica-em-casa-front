@@ -4,9 +4,11 @@ import AvailableHelpers from '../components/AvailableHelpers';
 import AvailableNeeded from '../components/AvailableNeeded';
 import { TopDecoration } from '../styledComponents';
 import UserProfile from '../components/UserProfile';
+import { getUserData } from '../../../services/sessionService';
 
 export default function HelpBeHelped() {
   const [isHelping, setIsHelping] = React.useState(false);
+  const [userLogged, setUserLogged] = React.useState(getUserData());
 
   const toggleIsHelping = () => {
     setIsHelping(!isHelping);
@@ -23,7 +25,10 @@ export default function HelpBeHelped() {
           alignItems: 'flex-start',
         }}
       >
-        <UserProfile></UserProfile>
+        <UserProfile
+          userName={userLogged.name}
+          isHelping={isHelping}
+        ></UserProfile>
         <TabContainer>
           <Tab
             isHelping={isHelping}

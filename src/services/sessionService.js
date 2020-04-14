@@ -12,10 +12,11 @@ export function getUserData() {
 
 export function setCookies(responseData) {
   try {
+    const expiryDate = new Date('12/12/2023');
     const { user, token } = responseData;
     document.cookie = `{"user": ${JSON.stringify(
       user,
-    )}, "token": ${JSON.stringify(token)} }`;
+    )}, "token": ${JSON.stringify(token)} }; expires=${expiryDate}`;
   } catch (error) {
     console.log('Houve um erro ao setar os cookies');
   }

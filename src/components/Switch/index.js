@@ -17,9 +17,21 @@ const Switch = ({ isOn, handleToggle, onColor }) => {
         htmlFor={`react-switch-new`}
       >
         {isOn ? (
-          <strong style={{ fontSize: '1.5em', marginLeft: '1em' }}>Sim</strong>
+          <p
+            style={{
+              fontSize: '1.8em',
+              marginLeft: '.5em',
+              fontWeight: 'bold',
+            }}
+          >
+            Sim
+          </p>
         ) : (
-          <strong style={{ fontSize: '1.5em', marginLeft: '60%' }}>Não</strong>
+          <p
+            style={{ fontSize: '1.8em', marginLeft: '50%', fontWeight: 'bold' }}
+          >
+            Não
+          </p>
         )}
 
         <span className={`react-switch-button`} />

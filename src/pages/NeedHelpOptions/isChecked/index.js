@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function IsChecked({ isChecked }) {
+export default function IsChecked({ isChecked, color }) {
   return (
     <>
       <div
@@ -11,7 +11,7 @@ export default function IsChecked({ isChecked }) {
           borderRadius: 'inherit',
           display: isChecked ? 'flex' : 'none',
           zIndex: '1',
-          backgroundColor: 'var(--color-pink)',
+          backgroundColor: color,
           filter: 'opacity(0.7)',
         }}
       ></div>

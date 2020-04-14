@@ -67,7 +67,10 @@ export default function NeedHelpOptions() {
               toggleShowModal();
             }}
           >
-            <IsChecked isChecked={el.isChecked}></IsChecked>
+            <IsChecked
+              isChecked={el.isChecked}
+              color={'var(--color-pink)'}
+            ></IsChecked>
             <img
               src={el.imageUrl}
               alt={el.category}

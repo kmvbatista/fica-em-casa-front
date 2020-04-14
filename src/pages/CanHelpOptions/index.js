@@ -72,8 +72,11 @@ export default function NeedHelpOptions() {
             style={{ color: 'var(--color-purple)' }}
             onClick={() => postCategoryAssistance(el.category)}
           >
-            <IsChecked isChecked={el.isChecked}></IsChecked>
-            {el.isLoading ? (
+            <IsChecked
+              isChecked={el.isChecked}
+              color={'var(--color-purple)'}
+            ></IsChecked>
+            {el.isLoading && !el.isChecked ? (
               <Loading
                 height='30%'
                 width='30%'

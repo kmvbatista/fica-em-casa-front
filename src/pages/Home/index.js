@@ -17,7 +17,7 @@ import { registerUser, getUserData } from '../../services/sessionService';
 import Loader from '../../components/Loader';
 import swal from 'sweetalert';
 
-export default function ChooseGroup() {
+export default function ChooseGroup({ children }) {
   const history = useHistory();
   const dataFirstAcess = history.location.state;
 
@@ -67,7 +67,7 @@ export default function ChooseGroup() {
   }
 
   return (
-    <Container>
+    <Container style={{ position: 'relative' }}>
       <Box1 onClick={needyChoice} isUserLogged={isUserLogged}>
         <TitleContainer>
           <Title>
@@ -97,6 +97,7 @@ export default function ChooseGroup() {
           </div>
         </CenteredBox>
       </Box1>
+      {children}
       <Box2 onClick={helperChoice} isUserLogged={isUserLogged}>
         <TitleContainer>
           <Title>

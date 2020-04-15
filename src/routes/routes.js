@@ -13,15 +13,15 @@ import HelpOrGetHelp from '../pages/Friends/FirstAcess';
 import Login from '../pages/Login';
 import Profile from '../pages/Profile';
 
-export default function Routes() {
+export default function Routes({ children }) {
   return (
     <Switch>
       <Suspense fallback={<div>Loading...</div>}>
         <Route exact path='/'>
-          <Home></Home>
+          <Home>{children}</Home>
         </Route>
         <PrivateRoute path='/can-help-options'>
-          <CanHelpOptions></CanHelpOptions>
+          <CanHelpOptions>{children}</CanHelpOptions>
         </PrivateRoute>
         <Route exact path='/first-signup'>
           <FirstSignup></FirstSignup>
@@ -39,7 +39,7 @@ export default function Routes() {
           <NeedHelpForm></NeedHelpForm>
         </PrivateRoute>
         <PrivateRoute exact path='/need-help-options'>
-          <NeedHelpOptions></NeedHelpOptions>
+          <NeedHelpOptions>{children}</NeedHelpOptions>
         </PrivateRoute>
         <PrivateRoute exact path='/profile'>
           <Profile></Profile>

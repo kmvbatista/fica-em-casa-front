@@ -14,7 +14,7 @@ import ModalContent from './ModalContent';
 import { useHistory } from 'react-router-dom';
 import IsChecked from './isChecked';
 
-export default function NeedHelpOptions() {
+export default function NeedHelpOptions({ children }) {
   const history = useHistory();
   const isFirstAccess = history.location.state;
   const [showModal, setShowModal] = useState(false);
@@ -53,6 +53,7 @@ export default function NeedHelpOptions() {
 
   return (
     <ColumnContainer>
+      {children}
       <Title>Preciso de ajuda</Title>
       <SubTitle>
         Pode escolher mais de uma opção, tá?

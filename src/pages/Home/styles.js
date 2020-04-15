@@ -29,6 +29,7 @@ export const SubTitle = styled.text`
 `;
 
 export const Box1 = styled.div`
+  cursor: pointer;
   display: flex;
   flex-direction: column;
   box-sizing: content-box;

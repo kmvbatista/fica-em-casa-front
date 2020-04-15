@@ -12,6 +12,8 @@ import Friends from '../pages/Friends/FriendsList';
 import HelpOrGetHelp from '../pages/Friends/FirstAcess';
 import Login from '../pages/Login';
 import Profile from '../pages/Profile';
+import NeedHelpLoadingMatch from '../pages/NeedHelpLoadingMatch';
+import CanHelpLoadingMatch from '../pages/CanHelpLoadingMatch';
 
 export default function Routes() {
   return (
@@ -46,6 +48,12 @@ export default function Routes() {
         </PrivateRoute>
         <Route exact path='/second-signup'>
           <SecondSignup></SecondSignup>
+        </Route>
+        <Route exact path='/need-help-matching'>
+          <NeedHelpLoadingMatch></NeedHelpLoadingMatch>
+        </Route>
+        <Route exact path='/can-help-matching'>
+          <CanHelpLoadingMatch></CanHelpLoadingMatch>
         </Route>
       </Suspense>
     </Switch>

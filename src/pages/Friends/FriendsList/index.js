@@ -6,7 +6,7 @@ import { TopDecoration } from '../styledComponents';
 import UserProfile from '../components/UserProfile';
 import { getUserData } from '../../../services/sessionService';
 
-export default function HelpBeHelped() {
+export default function HelpBeHelped({ children }) {
   const [isHelping, setIsHelping] = React.useState(false);
   const [userLogged, setUserLogged] = React.useState(getUserData());
 
@@ -56,6 +56,7 @@ export default function HelpBeHelped() {
         {isHelping && <AvailableHelpers></AvailableHelpers>}
         {!isHelping && <AvailableNeeded></AvailableNeeded>}
       </div>
+      {children}
     </div>
   );
 }

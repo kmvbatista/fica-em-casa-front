@@ -14,7 +14,7 @@ import swal from 'sweetalert';
 import Loading from 'react-loading';
 import IsChecked from '../NeedHelpOptions/isChecked';
 
-export default function NeedHelpOptions() {
+export default function NeedHelpOptions({ children }) {
   const [cards, setCards] = useState([]);
   useEffect(() => {
     getCards();
@@ -58,7 +58,9 @@ export default function NeedHelpOptions() {
   };
 
   return (
-    <ColumnContainer style={{ backgroundColor: 'var(--color-purple)' }}>
+    <ColumnContainer
+      style={{ backgroundColor: 'var(--color-purple)', position: 'relative' }}
+    >
       <Title>Quero ajudar</Title>
       <SubTitle>
         Escolha as categorias nas quais você pode ajudar.
@@ -103,6 +105,7 @@ export default function NeedHelpOptions() {
           <p style={{ marginTop: '5px', fontWeight: 'bold' }}>Digite aqui!</p>
         </div>
       </GetModalButton>
+      {children}
     </ColumnContainer>
   );
 }

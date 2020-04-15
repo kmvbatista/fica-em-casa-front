@@ -11,10 +11,10 @@ import {
 } from './styles';
 import InputMask from 'react-input-mask';
 
-export default function Profile() {
+export default function Profile({ children }) {
   const [phone, setPhone] = useState();
   return (
-    <Column>
+    <Column style={{ position: 'relative' }}>
       <ProfilePhotoContainer>
         <Column style={{ alignItems: 'center' }}>
           <PhotoCard></PhotoCard>
@@ -57,6 +57,7 @@ export default function Profile() {
         </InputBlock>
         <BottomContainer></BottomContainer>
       </MainContainer>
+      {children}
     </Column>
   );
 }

@@ -52,7 +52,7 @@ export default function NeedHelpOptions({ children }) {
   };
 
   return (
-    <ColumnContainer>
+    <ColumnContainer style={{ position: 'relative' }}>
       {children}
       <Title>Preciso de ajuda</Title>
       <SubTitle>
@@ -83,7 +83,7 @@ export default function NeedHelpOptions({ children }) {
           <GridText>{'Outros'}</GridText>
         </OptionCard>
       </Grid>
-
+      {children}
       {showModal && getModal()}
     </ColumnContainer>
   );

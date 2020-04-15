@@ -27,10 +27,10 @@ export default function Routes({ children }) {
           <FirstSignup></FirstSignup>
         </Route>
         <PrivateRoute exact path='/friends'>
-          <Friends></Friends>
+          <Friends>{children}</Friends>
         </PrivateRoute>
         <PrivateRoute exact path='/help-or-get-help'>
-          <HelpOrGetHelp></HelpOrGetHelp>
+          <HelpOrGetHelp>{children}</HelpOrGetHelp>
         </PrivateRoute>
         <Route exact path='/login'>
           <Login></Login>
@@ -42,7 +42,7 @@ export default function Routes({ children }) {
           <NeedHelpOptions>{children}</NeedHelpOptions>
         </PrivateRoute>
         <PrivateRoute exact path='/profile'>
-          <Profile></Profile>
+          <Profile>{children}</Profile>
         </PrivateRoute>
         <Route exact path='/second-signup'>
           <SecondSignup></SecondSignup>

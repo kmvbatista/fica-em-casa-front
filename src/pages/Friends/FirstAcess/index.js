@@ -4,7 +4,7 @@ import AvailableHelpers from '../components/AvailableHelpers';
 import AvailableNeeded from '../components/AvailableNeeded';
 import { useHistory } from 'react-router-dom';
 
-export default function FriendsFirstAcess() {
+export default function FriendsFirstAcess({ children }) {
   const history = useHistory();
   const isHelping = history.location.state;
   return (
@@ -19,6 +19,7 @@ export default function FriendsFirstAcess() {
         {isHelping && <AvailableHelpers></AvailableHelpers>}
         {!isHelping && <AvailableNeeded></AvailableNeeded>}
       </div>
+      {children}
     </div>
   );
 }

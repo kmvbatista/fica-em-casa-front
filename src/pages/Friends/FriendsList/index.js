@@ -5,13 +5,33 @@ import AvailableNeeded from '../components/AvailableNeeded';
 import { TopDecoration } from '../styledComponents';
 import UserProfile from '../components/UserProfile';
 import { getUserData } from '../../../services/sessionService';
+import { useEffect } from 'react';
+import * as SearchService from '../../../services/SearchService';
 
 export default function HelpBeHelped({ children }) {
   const [isHelping, setIsHelping] = React.useState(false);
   const [userLogged, setUserLogged] = React.useState(getUserData());
+  const [needyPeople, setNeedyPeople] = React.useState([]);
+  const [errorMessage, setErrorMessage] = React.useState();
 
   const toggleIsHelping = () => {
     setIsHelping(!isHelping);
+  };
+
+  useEffect(() => {
+    getNeedy();
+  }, []);
+
+  const getNeedy = async () => {
+    navigator.geolocation.getCurrentPosition(async ({ coords }) => {
+      const data = await SearchService.getNearNeedy(coords);
+      console.log(data);
+      if (Array.isArray(data)) {
+        setNeedyPeople(data);
+      } else {
+        setErrorMessage(data);
+      }
+    });
   };
 
   return (
@@ -54,7 +74,12 @@ export default function HelpBeHelped({ children }) {
       </TopDecoration>
       <div style={{ zIndex: '10', position: 'absolute', width: '100%' }}>
         {isHelping && <AvailableHelpers></AvailableHelpers>}
-        {!isHelping && <AvailableNeeded></AvailableNeeded>}
+        {!isHelping && (
+          <AvailableNeeded
+            errorMessage={errorMessage}
+            needyPeople={needyPeople}
+          ></AvailableNeeded>
+        )}
       </div>
       {children}
     </div>

@@ -24,3 +24,18 @@ export const Container = styled.div`
   justify-content: center;
   align-items: center;
 `;
+
+export const SetCategoriesButton = styled.button`
+  margin-top: 5px;
+  border-radius: 30px;
+  outline: none;
+  border: none;
+  color: white;
+  background-color: var(--color-purple);
+  padding: 1em 0.5em;
+  box-shadow: 0px 10px 20px rgba(230, 31, 123, 0.5);
+  font-size: 2em;
+  font-weight: bold;
+  margin: 2em;
+  cursor: pointer;
+`;

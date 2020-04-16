@@ -1,7 +1,6 @@
 import React from 'react';
 import { Column } from '../../../globalComponents';
 
-import peopleData from '../../../assets/peopleToHelp.json';
 import PersonCard from './PersonCard';
 import { MainPhrase, MainTab } from '../styledComponents';
 import { SetCategoriesButton } from './UserProfile/styles';
@@ -12,11 +11,15 @@ export default function AvailableNeeded({ needyPeople, errorMessage }) {
     <MainTab>
       {errorMessage ? (
         ErrorMessage(errorMessage)
+      ) : needyPeople.length == 0 ? (
+        ErrorMessage(
+          'Não há ninguém na sua região que você possa ajudar.\nAdote mais categorias para encontrar mais pessoas!',
+        )
       ) : (
         <>
           <MainPhrase>
             <strong style={{ fontSize: 'inherit' }}>
-              {peopleData.length} vizinhos{' '}
+              {needyPeople.length} vizinhos{' '}
             </strong>
             combinam com o que você pode
             <strong style={{ fontSize: 'inherit' }}> ajudar!</strong>
@@ -45,7 +48,10 @@ const ErrorMessage = (errorMessage) => {
         padding: '10em 0',
       }}
     >
-      <strong style={{ fontSize: '2.5em' }}>{errorMessage}</strong>
+      {errorMessage.split('\n').map((x) => (
+        <strong style={{ fontSize: '2.5em' }}>{x}</strong>
+      ))}
+
       <SetCategoriesButton onClick={() => history.push('/can-help-options')}>
         Selecionar Categorias
       </SetCategoriesButton>

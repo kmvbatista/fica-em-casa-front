@@ -4,6 +4,8 @@ import {
   Grid,
   OptionCard,
   GetModalButton,
+  GridText,
+  CardImage,
 } from '../../globalComponents';
 import { SubTitle, Title } from './styles';
 import cardData from '../../assets/productCategory.json';
@@ -13,6 +15,7 @@ import * as AssistanceService from '../../services/assistanceService';
 import swal from 'sweetalert';
 import Loading from 'react-loading';
 import IsChecked from '../NeedHelpOptions/isChecked';
+import * as UserService from '../../services/userService';
 
 export default function NeedHelpOptions({ children }) {
   const [cards, setCards] = useState([]);
@@ -20,9 +23,13 @@ export default function NeedHelpOptions({ children }) {
     getCards();
   }, []);
 
-  const getCards = () => {
+  const getCards = async () => {
+    const userAssistCategories = await UserService.getAssistCategories();
+    debugger;
     const dataWithLoading = cardData.map((x) => {
-      x.isLoading = false;
+      if (userAssistCategories && userAssistCategories.includes(x.category)) {
+        x.isChecked = true;
+      }
       return x;
     });
     setCards(dataWithLoading);
@@ -92,19 +99,14 @@ export default function NeedHelpOptions({ children }) {
                 style={{ maxHeight: '55%' }}
               />
             )}
-
             {el.category}
           </OptionCard>
         ))}
+        <OptionCard>
+          <CardImage src={'./logo.png'} alt={'Outras opçoes'} />
+          <GridText>{'Outros'}</GridText>
+        </OptionCard>
       </Grid>
-      <GetModalButton style={{ color: 'var(--color-purple)' }}>
-        <img src='./logo.png' alt='logo' style={{ height: '100%' }} />
-        <div>
-          Pode ajudar com algo mais?
-          <br />
-          <p style={{ marginTop: '5px', fontWeight: 'bold' }}>Digite aqui!</p>
-        </div>
-      </GetModalButton>
       {children}
     </ColumnContainer>
   );

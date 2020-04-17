@@ -8,16 +8,18 @@ import {
   ItemsContainer,
   Quantity,
 } from '../../../../NeedHelpOptions/ModalContent/styles';
+import { getUserData } from '../../../../../services/sessionService';
 
 export default function ModalContent({ necessity, closeModal, personName }) {
   const confirmHelp = () => {
     closeModal();
   };
+  const user = getUserData();
 
   return (
     <ModalContainer>
       <Row style={{ alignItems: 'center' }}>
-        <Card>
+        <Card style={{ height: '7em', width: '7em' }}>
           <img
             alt={necessity.category}
             src={`./${necessity.category}.svg`}
@@ -27,25 +29,19 @@ export default function ModalContent({ necessity, closeModal, personName }) {
         <strong style={{ fontSize: '3em' }}>{necessity.category}</strong>
       </Row>
       <MainContainer>
-        <p style={{ marginBottom: '1em' }}>
-          Olá, o {personName} está precisando de ajuda.
+        <p style={{ marginBottom: '1em', fontSize: '2em' }}>
+          {personName} está precisando de ajuda.
         </p>
         <div style={{ marginBottom: '1em' }}>
-          <p> Por exemplo:</p>
-          <p>Olá, preciso de ajuda com {necessity.category.toLowerCase()}.</p>
-          {necessity.items && necessity.items.length > 0 ? (
-            <p>Preciso dos seguintes itens: </p>
-          ) : null}
+          <p style={{ fontSize: '1.6em' }}>
+            Olá, {user.name}, preciso de ajuda com {necessity.category}.
+          </p>
         </div>
         <ItemsContainer>
           {necessity.items.map((it) => (
-            <Row key={it.item}>
-              -{it.item}
-              <Quantity>
-                {it.unitMeasure}
-                <div>{it.quantity}</div>
-              </Quantity>
-            </Row>
+            <p style={{ fontSize: '1.5em' }}>
+              -{`${it.quantity} ${it.unitMeasure} de ${it.item}`}
+            </p>
           ))}
         </ItemsContainer>
       </MainContainer>

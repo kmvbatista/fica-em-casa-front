@@ -12,6 +12,7 @@ export const LoginInput = styled.input`
   background-color: rgba(110, 36, 195, 0.06);
   height: 4em;
   line-height: 25px;
+  text-align: center;
 `;
 
 export const Title = styled.h3`

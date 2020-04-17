@@ -29,7 +29,7 @@ export default function ThirdForm(props) {
           <LoginInput
             placeholder='Sua senha'
             name='password'
-            id='password'
+            type='password'
             required
             value={props.password}
             onChange={(e) => props.setPassword(e.target.value)}

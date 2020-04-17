@@ -31,13 +31,13 @@ export const PersonAvatar = styled.div`
 `;
 
 export const PersonName = styled.p`
-  font-size: 1.5em;
+  font-size: 2em;
   font-weight: bold;
-  margin-bottom: 0.5em;
+  margin-bottom: 0.2em;
 `;
 
 export const Distance = styled.p`
-  font-size: 1.3em;
+  font-size: 1.6em;
   font-weight: 200;
   color: var(--color-grey-light3);
 `;
@@ -62,6 +62,7 @@ export const HelpOptionCard = styled.div`
   background-color: white;
   padding: 0.85em 1.1em;
   margin-right: 0.8em;
+  cursor: pointer;
 `;
 
 export const GoToMapsButtonn = styled.div`

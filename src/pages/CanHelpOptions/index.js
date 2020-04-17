@@ -3,7 +3,6 @@ import {
   ColumnContainer,
   Grid,
   OptionCard,
-  GetModalButton,
   GridText,
   CardImage,
 } from '../../globalComponents';

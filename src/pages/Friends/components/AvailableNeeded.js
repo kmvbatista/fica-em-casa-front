@@ -26,7 +26,7 @@ export default function AvailableNeeded({ needyPeople, errorMessage }) {
           </MainPhrase>
           <Column>
             {needyPeople.map((person) => (
-              <PersonCard key={person.name} person={person}>
+              <PersonCard key={person.userName} person={person}>
                 precisa de ajuda com:
               </PersonCard>
             ))}

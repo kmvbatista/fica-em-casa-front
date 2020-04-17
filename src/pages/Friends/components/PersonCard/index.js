@@ -16,13 +16,33 @@ import { Column, Row } from '../../../../globalComponents';
 
 import Collapse from '@material-ui/core/Collapse';
 import ArrowButton from './ArrowButton/arrowButton';
+import ModalContent from './ModalContent';
+import Modal from '../../../../components/Modal';
 
 export default function PersonCard({ person, backgroundColor, children }) {
   const [isExpanded, setIsExpanded] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+
+  const toggleShowModal = () => {
+    setShowModal(!showModal);
+  };
+
+  const getModal = (necessity) => {
+    return (
+      <Modal close={toggleShowModal}>
+        <ModalContent
+          closeModal={toggleShowModal}
+          necessity={necessity}
+          personName={person.userName}
+        ></ModalContent>
+      </Modal>
+    );
+  };
+
   return (
     <Column style={{ marginBottom: '2em' }}>
       <PeopleCard
-        key={person.distance}
+        key={person.userDistance}
         style={
           !isExpanded
             ? { borderRadius: '10px', backgroundColor: backgroundColor }
@@ -31,14 +51,18 @@ export default function PersonCard({ person, backgroundColor, children }) {
       >
         <PersonAvatar
           style={{
-            backgroundImage: `url(${person.photoUrl})`,
+            backgroundImage: `url(${
+              person.photoUrl
+                ? ''
+                : 'https://assets-br.wemystic.com.br/20191113010228/homem-capri-850x640.jpg'
+            })`,
           }}
         ></PersonAvatar>
         <Column style={{ marginRight: '5%' }}>
           <PersonName>
-            <strong style={{ fontSize: 'inherit' }}>{person.name}</strong>
+            <strong style={{ fontSize: 'inherit' }}>{person.userName}</strong>
           </PersonName>
-          <Distance>{person.distance}km perto de você</Distance>
+          <Distance>{person.userDistance}km perto de você</Distance>
         </Column>
         <Row style={{ width: '30%' }}>
           <ContactIcon>
@@ -77,7 +101,7 @@ export default function PersonCard({ person, backgroundColor, children }) {
               fontWeight: '200',
             }}
           >
-            {person.name.split(' ')[0]} {children}
+            {person.userName.split(' ')[0]} {children}
           </p>
           <Row style={{ margin: '.8em 0' }}>
             {person.necessities.map((it) => (
@@ -93,7 +117,7 @@ export default function PersonCard({ person, backgroundColor, children }) {
           <GoToMapsButtonn>
             <GoToMapsIcon src='./location.svg'></GoToMapsIcon>
             <a
-              href={`https://www.google.com/maps/dir/-26.921264,-49.148829/${person.userLocation.latitude},${person.userLocation.longitude}`}
+              href={`https://www.google.com/maps/dir/-26.921264,-49.148829/${person.userLocation.coordinates[0]},${person.userLocation.coordinates[1]}`}
             >
               Traçar mapa usando o Google Maps
             </a>

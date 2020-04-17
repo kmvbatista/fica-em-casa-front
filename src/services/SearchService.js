@@ -9,7 +9,7 @@ export const getNearNeedy = async (coords) => {
         longitude: coords.longitude,
       },
     );
-    console.log(response);
+    return response.data;
   } catch (e) {
     return e.response.data.error;
   }

@@ -52,14 +52,16 @@ export default function PersonCard({ person, backgroundColor, children }) {
             />
           </ContactIcon>
           <ContactIcon>
-            <img
-              src='./phone.svg'
-              alt='whatsapp icon'
-              style={{
-                width: '70%',
-                borderRadius: 'inherit',
-              }}
-            />
+            <a href={`tel:${person.userPhone}`}>
+              <img
+                src='./phone.svg'
+                alt='whatsapp icon'
+                style={{
+                  width: '70%',
+                  borderRadius: 'inherit',
+                }}
+              />
+            </a>
           </ContactIcon>
           <div onClick={() => setIsExpanded(!isExpanded)}>
             <ArrowButton></ArrowButton>
@@ -78,11 +80,11 @@ export default function PersonCard({ person, backgroundColor, children }) {
             {person.name.split(' ')[0]} {children}
           </p>
           <Row style={{ margin: '.8em 0' }}>
-            {person.needHelpWith.map((it) => (
-              <HelpOptionCard>
+            {person.necessities.map((it) => (
+              <HelpOptionCard onClick={() => getModal(it)}>
                 <img
-                  src={`./${it}.png`}
-                  alt={it}
+                  src={`./${it.category}.svg`}
+                  alt={it.category}
                   style={{ width: '1.5em', height: '1.5em' }}
                 />
               </HelpOptionCard>
@@ -90,7 +92,11 @@ export default function PersonCard({ person, backgroundColor, children }) {
           </Row>
           <GoToMapsButtonn>
             <GoToMapsIcon src='./location.svg'></GoToMapsIcon>
-            <strong>Traçar mapa usando o Google Maps</strong>
+            <a
+              href={`https://www.google.com/maps/dir/-26.921264,-49.148829/${person.userLocation.latitude},${person.userLocation.longitude}`}
+            >
+              Traçar mapa usando o Google Maps
+            </a>
           </GoToMapsButtonn>
         </CollapsibleCard>
       </Collapse>

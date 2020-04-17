@@ -58,7 +58,7 @@ export default function NeedHelpOptions({ children }) {
       swal(
         'Não foi possível adotar a categoria ' + category + '!',
         'Por favor, tente novamente',
-        error,
+        'error',
       );
     }
   };

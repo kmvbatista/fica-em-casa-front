@@ -13,7 +13,7 @@ import {
   SecondaryText,
   Image,
 } from './styles';
-import { registerUser, getUserData } from '../../services/sessionService';
+import * as SessionService from '../../services/sessionService';
 import Loader from '../../components/Loader';
 import swal from 'sweetalert';
 
@@ -21,7 +21,9 @@ export default function ChooseGroup({ children }) {
   const history = useHistory();
   const dataFirstAcess = history.location.state;
 
-  let [isUserLogged, setUserLogged] = useState(getUserData() != undefined);
+  let [isUserLogged, setUserLogged] = useState(
+    SessionService.getUserData() != undefined,
+  );
 
   // useEffect(() => {
 
@@ -52,17 +54,11 @@ export default function ChooseGroup({ children }) {
     const dataToSend = Object.assign(dataFirstAcess, {
       isNeedy: false,
     });
-    swal({
-      title: 'Por favor, aguarde...',
-      content: Loader(),
-      buttons: {},
-    });
     try {
-      await registerUser(dataToSend);
-      swal('Dados cadastrados com sucesso', '', 'success');
+      await SessionService.registerUser(dataToSend);
       history.push('can-help-options');
-    } catch (e) {
-      swal('Houve um erro na requisição', e.response.data.error, 'error');
+    } catch (error) {
+      console.log(error.message);
     }
   }
 

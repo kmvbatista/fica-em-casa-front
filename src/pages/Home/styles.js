@@ -15,14 +15,14 @@ export const TitleContainer = styled.div`
   justify-content: center;
 `;
 
-export const Title = styled.text`
+export const Title = styled.p`
   font-weight: bolder;
   font-size: 2.5em;
   color: white;
   text-align: center;
 `;
 
-export const SubTitle = styled.text`
+export const SubTitle = styled.p`
   color: white;
   font-size: 2.5em;
   font-weight: 500;

@@ -1,4 +1,6 @@
 import api from './api';
+import swal from 'sweetalert';
+import Loader from '../components/Loader';
 
 export function getUserData() {
   try {
@@ -23,6 +25,16 @@ export function setCookies(responseData) {
 }
 
 export async function registerUser(dataToSend) {
-  const response = await api.post('user', dataToSend);
-  setCookies(response.data);
+  try {
+    swal({
+      title: 'Estamos fazendo seu cadastro...',
+      content: Loader(),
+      buttons: {},
+    });
+    const response = await api.post('/user', dataToSend);
+    setCookies(response.data);
+    swal('Dados cadastrados com sucesso', '', 'success');
+  } catch (error) {
+    swal('Tente novamente mais tarde ;(', '', 'error');
+  }
 }

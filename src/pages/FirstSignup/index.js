@@ -12,7 +12,6 @@ import {
   LoginTitle,
   RegisterButton,
 } from './styles';
-import './styles.css';
 
 export default function Login() {
   const [name, setName] = useState('');
@@ -36,28 +35,26 @@ export default function Login() {
       <InitialForm>
         <Title>Faça o seu cadastro para continuar...</Title>
 
-        <InputBlock className='input-block'>
-          <LoginInput
-            placeholder='seu nome'
-            name='name'
-            id='name'
-            required
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          ></LoginInput>
-          <LoginInput
-            onChange={(e) => setPhone(e.target.value)}
-            placeholder='seu telefone'
-            name='tel'
-            id='tel'
-            type='tel'
-            value={phone}
-            required
-          ></LoginInput>
-          <RegisterButton onClick={() => handleSubmit()}>
-            cadastrar-se
-          </RegisterButton>
-        </InputBlock>
+        <LoginInput
+          placeholder='seu nome'
+          name='name'
+          id='name'
+          required
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        ></LoginInput>
+        <LoginInput
+          onChange={(e) => setPhone(e.target.value)}
+          placeholder='seu telefone'
+          name='tel'
+          id='tel'
+          type='tel'
+          value={phone}
+          required
+        ></LoginInput>
+        <RegisterButton onClick={() => handleSubmit()}>
+          cadastrar-se
+        </RegisterButton>
       </InitialForm>
     </Container>
   );

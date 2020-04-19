@@ -1,12 +1,10 @@
 import React from 'react';
-import { Column } from '../../../globalComponents';
-
-import peopleData from '../../../assets/peopleToHelp.json';
 import PersonCard from './PersonCard';
 
 import { MainPhrase, MainTab } from '../styledComponents';
+import { Grid } from './PersonCard/styles';
 
-export default function AvailableHelpers() {
+export default function AvailableHelpers({ peopleData }) {
   return (
     <div>
       <MainTab style={{ backgroundColor: 'var(--color-purple)' }}>
@@ -17,13 +15,13 @@ export default function AvailableHelpers() {
           combinam com o que você precisa e
           <strong style={{ fontSize: 'inherit' }}> vão te ajudar</strong>!
         </MainPhrase>
-        <Column>
+        <Grid>
           {peopleData.map((person) => (
             <PersonCard backgroundColor={'#ffffff1c'} person={person}>
               pode te ajudar com
             </PersonCard>
           ))}
-        </Column>
+        </Grid>
       </MainTab>
     </div>
   );

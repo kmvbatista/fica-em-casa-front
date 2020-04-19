@@ -5,6 +5,7 @@ import PersonCard from './PersonCard';
 import { MainPhrase, MainTab } from '../styledComponents';
 import { SetCategoriesButton } from './UserProfile/styles';
 import { useHistory } from 'react-router-dom';
+import { Grid } from './PersonCard/styles';
 
 export default function AvailableNeeded({ needyPeople, errorMessage }) {
   return (
@@ -24,13 +25,13 @@ export default function AvailableNeeded({ needyPeople, errorMessage }) {
             combinam com o que você pode
             <strong style={{ fontSize: 'inherit' }}> ajudar!</strong>
           </MainPhrase>
-          <Column>
+          <Grid>
             {needyPeople.map((person) => (
               <PersonCard key={person.userName} person={person}>
                 precisa de ajuda com:
               </PersonCard>
             ))}
-          </Column>
+          </Grid>
         </>
       )}
     </MainTab>

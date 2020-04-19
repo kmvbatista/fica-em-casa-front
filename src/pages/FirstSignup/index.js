@@ -7,9 +7,7 @@ import {
   Title,
   Welcome,
   InitialForm,
-  InputBlock,
   LoginInput,
-  LoginTitle,
   RegisterButton,
 } from './styles';
 

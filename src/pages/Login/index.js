@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import api from '../../services/api';
 import { loginUser } from '../../services/sessionService';
 
 import swal from 'sweetalert';

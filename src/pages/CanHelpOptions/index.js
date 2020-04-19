@@ -41,13 +41,13 @@ export default function NeedHelpOptions({ children }) {
   };
 
   const toggleIsCardChecked = (category) => {
-    const index = cards.findIndex((x) => x.category == category);
+    const index = cards.findIndex((x) => x.category === category);
     cards[index].isChecked = !cards[index].isChecked;
     setCards([...cards]);
   };
 
   const toggleCardLoading = (category) => {
-    const index = cards.findIndex((x) => x.category == category);
+    const index = cards.findIndex((x) => x.category === category);
     cards[index].isLoading = !cards[index].isLoading;
     setCards([...cards]);
   };

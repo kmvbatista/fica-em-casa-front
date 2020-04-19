@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Row, Column } from '../../../../globalComponents';
+import { Column } from '../../../../globalComponents';
 import { ProfileImage, ProfileContainer, Container } from './styles';
 import Switch from '../../../../components/Switch';
 

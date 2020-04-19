@@ -20,7 +20,7 @@ export default function ChooseGroup({ children }) {
   const dataFirstAcess = history.location.state;
 
   let [isUserLogged, setUserLogged] = useState(
-    SessionService.getUserData() != undefined,
+    SessionService.getUserData() !== undefined,
   );
 
   // useEffect(() => {

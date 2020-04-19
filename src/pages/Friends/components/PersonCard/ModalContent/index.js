@@ -6,7 +6,6 @@ import {
   ConfirmationButton,
   MainContainer,
   ItemsContainer,
-  Quantity,
 } from '../../../../NeedHelpOptions/ModalContent/styles';
 import { getUserData } from '../../../../../services/sessionService';
 

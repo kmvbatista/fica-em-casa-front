@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Column } from '../../globalComponents';
 
 export const ProfilePhotoContainer = styled.div`
   height: 35vh;
@@ -6,6 +7,11 @@ export const ProfilePhotoContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  @media only screen and (min-width: 600px) {
+    height: unset;
+    width: 40%;
+    border-radius: 5px 0 0 5px;
+  }
 `;
 
 export const MainContainer = styled.div`
@@ -14,10 +20,17 @@ export const MainContainer = styled.div`
   padding: 6em;
   height: 80vh;
   transform: translate(0, -2.1em);
+
   position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  @media only screen and (min-width: 600px) {
+    transform: translate(-2.1em, 0);
+    width: 70%;
+    border-radius: 20px 5px 5px 0;
+    overflow: hidden;
+  }
 `;
 
 export const BottomContainer = styled.div`
@@ -62,4 +75,13 @@ export const Label = styled.label`
 
 export const InputBlock = styled.div`
   margin-bottom: 1em;
+`;
+
+export const ProfileContainer = styled(Column)`
+  @media only screen and (min-width: 600px) {
+    flex-direction: row;
+  }
+`;
+export const PhotoContainer = styled(Column)`
+  align-items: center;
 `;

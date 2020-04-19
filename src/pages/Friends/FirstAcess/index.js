@@ -7,7 +7,7 @@ import peopleData from '../../../assets/peopleToHelp.json';
 
 export default function FriendsFirstAcess({ children }) {
   const history = useHistory();
-  const isHelping = history.location.state == 'helper';
+  const isHelping = history.location.state === 'helper';
   return (
     <div style={{ position: 'relative' }}>
       <TopDecoration

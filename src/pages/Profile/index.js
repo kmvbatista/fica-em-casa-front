@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Column } from '../../globalComponents';
 import {
   ProfilePhotoContainer,
   MainContainer,
@@ -8,18 +7,20 @@ import {
   BottomContainer,
   Label,
   InputBlock,
+  PhotoContainer,
+  ProfileContainer,
 } from './styles';
 import InputMask from 'react-input-mask';
 
 export default function Profile({ children }) {
   const [phone, setPhone] = useState();
   return (
-    <Column style={{ position: 'relative' }}>
+    <ProfileContainer style={{ position: 'relative' }}>
       <ProfilePhotoContainer>
-        <Column style={{ alignItems: 'center' }}>
+        <PhotoContainer>
           <PhotoCard></PhotoCard>
           <strong style={{ fontSize: '2em' }}>Adicionar foto</strong>
-        </Column>
+        </PhotoContainer>
       </ProfilePhotoContainer>
       <MainContainer>
         <InputBlock>
@@ -58,6 +59,6 @@ export default function Profile({ children }) {
         <BottomContainer></BottomContainer>
       </MainContainer>
       {children}
-    </Column>
+    </ProfileContainer>
   );
 }

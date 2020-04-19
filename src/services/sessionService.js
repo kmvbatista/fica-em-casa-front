@@ -24,6 +24,18 @@ export function setCookies(responseData) {
   }
 }
 
+export function updateUserCookies(user) {
+  try {
+    const expiryDate = new Date('12/12/2023');
+    const { token } = JSON.parse(document.cookie);
+    document.cookie = `{"user": ${JSON.stringify(
+      user,
+    )}, "token": ${JSON.stringify(token)} }; expires=${expiryDate}`;
+  } catch (error) {
+    console.log('Houve um erro ao setar os cookies');
+  }
+}
+
 export async function registerUser(dataToSend) {
   try {
     swal({

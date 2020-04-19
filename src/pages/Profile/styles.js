@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { Column } from '../../globalComponents';
+import { RegisterButton } from '../FirstSignup/styles';
 
 export const ProfilePhotoContainer = styled.div`
   height: 35vh;
@@ -84,4 +85,17 @@ export const ProfileContainer = styled(Column)`
 `;
 export const PhotoContainer = styled(Column)`
   align-items: center;
+`;
+
+export const SaveButton = styled(RegisterButton)`
+  background-color: white;
+  width: unset;
+  border-radius: 20px;
+  padding: 0.5em 1em;
+  height: unset;
+  box-shadow: unset;
+  color: var(--color-pink);
+  @media only screen and (min-width: 600px) {
+    color: var(--color-purple);
+  }
 `;

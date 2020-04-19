@@ -42,7 +42,7 @@ export default function Routes({ children }) {
           <NeedHelpOptions>{children}</NeedHelpOptions>
         </PrivateRoute>
         <PrivateRoute exact path='/profile'>
-          <Profile>{children}</Profile>
+          <Profile></Profile>
         </PrivateRoute>
         <Route exact path='/second-signup'>
           <SecondSignup></SecondSignup>

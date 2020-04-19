@@ -1,38 +1,140 @@
 [
   {
-    "name": "João Carlos",
+    "userName": "João Carlos",
     "photoUrl": "https://assets-br.wemystic.com.br/20191113010228/homem-capri-850x640.jpg",
-    "distance": 2,
-    "needHelpWith": [
-      "market",
-      "pharmacy",
-      "food-donation",
-      "bread",
-      "detergent"
+    "userDistance": 2,
+    "userPhone": "47996207702",
+    "userLocation": {
+      "coordinates": [-26.908442, -49.150391]
+    },
+    "necessities": [
+      {
+        "category": "Mercado",
+        "items": [
+          { "item": "feijão", "quantity": 2, "unitMeasure": "kg" },
+          { "item": "arroz", "quantity": 3, "unitMeasure": "kg" },
+          { "item": "leite", "quantity": 1, "unitMeasure": "litro" }
+        ]
+      }
     ]
   },
   {
-    "name": "Leonardo Silva",
+    "userName": "Leonardo Silva",
     "photoUrl": "https://img.ibxk.com.br/2019/02/17/17124052466014.jpg?w=704",
-    "distance": 3,
+    "userDistance": 3,
+    "userPhone": "47996207702",
+    "userLocation": {
+      "coordinates": [-26.904462, -49.137173]
+    },
+    "necessities": [
+      {
+        "category": "Mercado",
+        "items": [
+          { "item": "feijão", "quantity": 2, "unitMeasure": "kg" },
+          { "item": "arroz", "quantity": 3, "unitMeasure": "kg" },
+          { "item": "leite", "quantity": 1, "unitMeasure": "litro" }
+        ]
+      },
+      {
+        "category": "Conselho"
+      }
+    ],
     "needHelpWith": ["bookshelf", "pharmacy", "soap", "market", "detergent"]
   },
   {
-    "name": "Luzia Costa",
+    "userName": "Luzia Costa",
     "photoUrl": "https://meapaixonei.com.br/wp-content/uploads/2017/10/sinais-que-comprovam-que-voce-tem-se-tornado-uma-pessoa-melhor-a-cada-dia-300x197.jpg",
-    "distance": 1,
-    "needHelpWith": [
-      "communication",
-      "pharmacy",
-      "food-donation",
-      "videoAula",
-      "detergent"
+    "userDistance": 1,
+    "userPhone": "47996207702",
+    "userLocation": {
+      "coordinates": [-26.91246, -49.151292]
+    },
+
+    "necessities": [
+      {
+        "category": "Pet",
+        "items": [
+          { "item": "feijão", "quantity": 2, "unitMeasure": "kg" },
+          { "item": "arroz", "quantity": 3, "unitMeasure": "kg" },
+          { "item": "leite", "quantity": 1, "unitMeasure": "litro" }
+        ]
+      }
     ]
   },
   {
-    "name": "Márcia Pena",
+    "userName": "Márcia Pena",
     "photoUrl": "https://image.freepik.com/fotos-gratis/retrato-de-uma-mulher-na-idade-adulta_163305-929.jpg",
-    "distance": 0,
-    "needHelpWith": ["pet", "pharmacy", "food-donation", "netflix", "detergent"]
+    "userDistance": 0,
+    "userPhone": "47996207702",
+    "userLocation": {
+      "coordinates": [-26.903671, -49.087323]
+    },
+    "necessities": [
+      {
+        "category": "Doações",
+        "items": [
+          { "item": "feijão", "quantity": 2, "unitMeasure": "kg" },
+          { "item": "arroz", "quantity": 3, "unitMeasure": "kg" },
+          { "item": "leite", "quantity": 1, "unitMeasure": "litro" }
+        ]
+      }
+    ]
+  },
+  {
+    "userName": "Joaquina",
+    "photoUrl": "https://image.freepik.com/fotos-gratis/retrato-de-uma-mulher-na-idade-adulta_163305-929.jpg",
+    "userDistance": 0,
+    "userPhone": "47996207702",
+    "userLocation": {
+      "coordinates": [-26.903671, -49.087323]
+    },
+    "necessities": [
+      {
+        "category": "Doações",
+        "items": [
+          { "item": "feijão", "quantity": 2, "unitMeasure": "kg" },
+          { "item": "arroz", "quantity": 3, "unitMeasure": "kg" },
+          { "item": "leite", "quantity": 1, "unitMeasure": "litro" }
+        ]
+      }
+    ]
+  },
+  {
+    "userName": "Marcela Pereira",
+    "photoUrl": "https://image.freepik.com/fotos-gratis/retrato-de-uma-mulher-na-idade-adulta_163305-929.jpg",
+    "userDistance": 0,
+    "userPhone": "47996207702",
+    "userLocation": {
+      "coordinates": [-26.903671, -49.087323]
+    },
+    "necessities": [
+      {
+        "category": "Doações",
+        "items": [
+          { "item": "feijão", "quantity": 2, "unitMeasure": "kg" },
+          { "item": "arroz", "quantity": 3, "unitMeasure": "kg" },
+          { "item": "leite", "quantity": 1, "unitMeasure": "litro" }
+        ]
+      }
+    ]
+  },
+  {
+    "userName": "Joana Costa",
+    "photoUrl": "https://image.freepik.com/fotos-gratis/retrato-de-uma-mulher-na-idade-adulta_163305-929.jpg",
+    "userDistance": 0,
+    "userPhone": "47996207702",
+    "userLocation": {
+      "coordinates": [-26.903671, -49.087323]
+    },
+    "necessities": [
+      {
+        "category": "Doações",
+        "items": [
+          { "item": "feijão", "quantity": 2, "unitMeasure": "kg" },
+          { "item": "arroz", "quantity": 3, "unitMeasure": "kg" },
+          { "item": "leite", "quantity": 1, "unitMeasure": "litro" }
+        ]
+      }
+    ]
   }
 ]

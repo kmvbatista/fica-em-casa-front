@@ -15,9 +15,13 @@ import swal from 'sweetalert';
 import Loading from 'react-loading';
 import IsChecked from '../NeedHelpOptions/isChecked';
 import * as UserService from '../../services/userService';
+import { useHistory } from 'react-router-dom';
 
 export default function NeedHelpOptions({ children }) {
+  const [isFirstAcess, setIsFirstAccess] = useState(false);
   const [cards, setCards] = useState([]);
+  const history = useHistory();
+
   useEffect(() => {
     getCards();
   }, []);
@@ -106,6 +110,9 @@ export default function NeedHelpOptions({ children }) {
           <GridText>{'Outros'}</GridText>
         </OptionCard>
       </Grid>
+      <button onClick={() => history.push('friends-first-access', 'helper')}>
+        ver amigos
+      </button>
       {children}
     </ColumnContainer>
   );

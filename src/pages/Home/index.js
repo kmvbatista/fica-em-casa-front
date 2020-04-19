@@ -14,8 +14,6 @@ import {
   Image,
 } from './styles';
 import * as SessionService from '../../services/sessionService';
-import Loader from '../../components/Loader';
-import swal from 'sweetalert';
 
 export default function ChooseGroup({ children }) {
   const history = useHistory();
@@ -30,6 +28,9 @@ export default function ChooseGroup({ children }) {
   // }, []);
 
   function helperChoice() {
+    if (dataFirstAcess) {
+      return history.push('/can-help-options', true);
+    }
     if (isUserLogged) {
       return history.push('/can-help-options');
     }

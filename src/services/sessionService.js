@@ -38,3 +38,12 @@ export async function registerUser(dataToSend) {
     swal('Tente novamente mais tarde ;(', '', 'error');
   }
 }
+
+export async function loginUser(dataToSend) {
+  try {
+    const response = await api.post('/sessions', dataToSend);
+    setCookies(response.data);
+  } catch (error) {
+    throw error;
+  }
+}

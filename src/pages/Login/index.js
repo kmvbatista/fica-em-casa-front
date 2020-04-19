@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import StayHome from './Components/StayHome';
 import api from '../../services/api';
-import { setCookies } from '../../services/sessionService';
+import { loginUser } from '../../services/sessionService';
 
-import ThirdForm from './Components/ThirdForm/ThirdForm';
 import swal from 'sweetalert';
 import {
   Welcome,
@@ -27,8 +25,7 @@ export default function Login() {
     const dataToSend = { phone, password };
     try {
       setIsLoading(true);
-      const response = await api.post('/sessions', dataToSend);
-      setCookies(response.data);
+      await loginUser(dataToSend);
       history.replace('/');
     } catch (error) {
       setIsLoading(false);

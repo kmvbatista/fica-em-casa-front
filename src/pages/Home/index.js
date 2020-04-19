@@ -94,7 +94,7 @@ export default function ChooseGroup({ children }) {
           </div>
         </CenteredBox>
       </Box1>
-      {children}
+
       <Box2 onClick={helperChoice} isUserLogged={isUserLogged}>
         <TitleContainer>
           <Title>
@@ -158,6 +158,7 @@ export default function ChooseGroup({ children }) {
           </div>
         </CenteredBox>
       </Box3>
+      {children}
     </Container>
   );
 }

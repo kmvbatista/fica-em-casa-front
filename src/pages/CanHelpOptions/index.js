@@ -32,7 +32,10 @@ export default function NeedHelpOptions({ children }) {
   const getCards = async () => {
     const userAssistCategories = await UserService.getAssistCategories();
     const dataWithLoading = cardData.map((x) => {
-      if (userAssistCategories && userAssistCategories.includes(x.category)) {
+      if (
+        userAssistCategories &&
+        userAssistCategories.find((y) => y.category === x.category)
+      ) {
         x.isChecked = true;
       }
       return x;
@@ -116,9 +119,6 @@ export default function NeedHelpOptions({ children }) {
           </OptionCard>
         </Grid>
       </Column>
-      <button onClick={() => history.push('friends-first-access', 'helper')}>
-        ver amigos
-      </button>
       {children}
     </ColumnContainer>
   );

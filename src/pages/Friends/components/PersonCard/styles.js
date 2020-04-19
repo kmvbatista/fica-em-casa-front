@@ -10,7 +10,6 @@ export const PeopleCard = styled.div`
   padding: 0.7em 0;
   border-radius: 10px 10px 0 0;
   position: relative;
-  margin-bottom: 0.1em;
 `;
 
 export const CollapsibleCard = styled.div`
@@ -79,4 +78,13 @@ export const GoToMapsIcon = styled.img`
   bottom: 0;
   left: 1em;
   height: 89%;
+`;
+
+export const Grid = styled.div`
+  display: grid;
+  grid-template-columns: 1;
+  @media only screen and (min-width: 600px) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 4em;
+  }
 `;

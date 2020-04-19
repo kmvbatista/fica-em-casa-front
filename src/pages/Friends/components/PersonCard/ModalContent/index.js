@@ -38,11 +38,12 @@ export default function ModalContent({ necessity, closeModal, personName }) {
           </p>
         </div>
         <ItemsContainer>
-          {necessity.items.map((it) => (
-            <p style={{ fontSize: '1.5em' }}>
-              -{`${it.quantity} ${it.unitMeasure} de ${it.item}`}
-            </p>
-          ))}
+          {necessity.items &&
+            necessity.items.map((it) => (
+              <p style={{ fontSize: '1.5em' }}>
+                -{`${it.quantity} ${it.unitMeasure} de ${it.item}`}
+              </p>
+            ))}
         </ItemsContainer>
       </MainContainer>
       <ConfirmationButton onClick={confirmHelp}>

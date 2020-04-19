@@ -9,7 +9,7 @@ import NeedHelpForm from '../pages/NeedHelpForm';
 import NeedHelpOptions from '../pages/NeedHelpOptions';
 import CanHelpOptions from '../pages/CanHelpOptions';
 import Friends from '../pages/Friends/FriendsList';
-import HelpOrGetHelp from '../pages/Friends/FirstAcess';
+import FriendsFirstAccess from '../pages/Friends/FirstAcess';
 import Login from '../pages/Login';
 import Profile from '../pages/Profile';
 
@@ -29,8 +29,8 @@ export default function Routes({ children }) {
         <PrivateRoute exact path='/friends'>
           <Friends>{children}</Friends>
         </PrivateRoute>
-        <PrivateRoute exact path='/help-or-get-help'>
-          <HelpOrGetHelp>{children}</HelpOrGetHelp>
+        <PrivateRoute exact path='/friends-first-access'>
+          <FriendsFirstAccess>{children}</FriendsFirstAccess>
         </PrivateRoute>
         <Route exact path='/login'>
           <Login></Login>

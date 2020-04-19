@@ -44,7 +44,7 @@ export default function PersonCard({ person, backgroundColor, children }) {
 
   return (
     <>
-      <Column style={{ marginBottom: '2em' }}>
+      <Column>
         <PeopleCard
           key={person.userDistance.toString().slice}
           style={
@@ -55,7 +55,9 @@ export default function PersonCard({ person, backgroundColor, children }) {
         >
           <PersonAvatar
             style={{
-              backgroundImage: `url(${person.photoUrl ? '' : './mulher.png'})`,
+              backgroundImage: `url(${
+                person.photoUrl ? person.photoUrl : './mulher.png'
+              })`,
             }}
           ></PersonAvatar>
           <Column style={{ marginRight: '5%' }}>

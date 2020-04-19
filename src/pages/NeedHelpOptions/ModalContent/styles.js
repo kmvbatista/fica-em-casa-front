@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import { OptionCard, Column } from '../../../globalComponents';
+import { OptionCard } from '../../../optionsComponents';
+import { Column } from '../../../globalComponents';
 
 export const ConfirmationButton = styled.button`
   outline: none;

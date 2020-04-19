@@ -5,8 +5,11 @@ import {
   OptionCard,
   GridText,
   CardImage,
-} from '../../globalComponents';
-import { SubTitle, Title } from './styles';
+  SubTitle,
+  Title,
+  TextContainer,
+} from '../../optionsComponents';
+import { Column } from '../../globalComponents';
 import cardData from '../../assets/productCategory.json';
 import { useState } from 'react';
 import { useEffect } from 'react';
@@ -28,7 +31,6 @@ export default function NeedHelpOptions({ children }) {
 
   const getCards = async () => {
     const userAssistCategories = await UserService.getAssistCategories();
-    debugger;
     const dataWithLoading = cardData.map((x) => {
       if (userAssistCategories && userAssistCategories.includes(x.category)) {
         x.isChecked = true;
@@ -71,45 +73,49 @@ export default function NeedHelpOptions({ children }) {
     <ColumnContainer
       style={{ backgroundColor: 'var(--color-purple)', position: 'relative' }}
     >
-      <Title>Quero ajudar</Title>
-      <SubTitle>
-        Escolha as categorias nas quais você pode ajudar.
-        <br />
-        Pode escolher mais de uma opção, tá?
-      </SubTitle>
-      <Grid>
-        {cards.map((el) => (
-          <OptionCard
-            key={el.category}
-            style={{ color: 'var(--color-purple)' }}
-            onClick={() => postCategoryAssistance(el.category)}
-          >
-            <IsChecked
-              isChecked={el.isChecked}
-              color={'var(--color-purple)'}
-            ></IsChecked>
-            {el.isLoading && !el.isChecked ? (
-              <Loading
-                height='30%'
-                width='30%'
-                type='spinningBubbles'
-                color='var(--color-purple)'
-              ></Loading>
-            ) : (
-              <img
-                src={el.imageUrl}
-                alt={el.category}
-                style={{ maxHeight: '55%' }}
-              />
-            )}
-            {el.category}
+      <Column style={{ alignItems: 'center' }}>
+        <TextContainer>
+          <Title>Quero ajudar</Title>
+          <SubTitle>
+            Escolha as categorias nas quais você pode ajudar.
+            <br />
+            Pode escolher mais de uma opção, tá?
+          </SubTitle>
+        </TextContainer>
+        <Grid>
+          {cards.map((el) => (
+            <OptionCard
+              key={el.category}
+              style={{ color: 'var(--color-purple)' }}
+              onClick={() => postCategoryAssistance(el.category)}
+            >
+              <IsChecked
+                isChecked={el.isChecked}
+                color={'var(--color-purple)'}
+              ></IsChecked>
+              {el.isLoading && !el.isChecked ? (
+                <Loading
+                  height='30%'
+                  width='30%'
+                  type='spinningBubbles'
+                  color='var(--color-purple)'
+                ></Loading>
+              ) : (
+                <img
+                  src={el.imageUrl}
+                  alt={el.category}
+                  style={{ maxHeight: '55%' }}
+                />
+              )}
+              {el.category}
+            </OptionCard>
+          ))}
+          <OptionCard>
+            <CardImage src={'./logo.png'} alt={'Outras opçoes'} />
+            <GridText>{'Outros'}</GridText>
           </OptionCard>
-        ))}
-        <OptionCard>
-          <CardImage src={'./logo.png'} alt={'Outras opçoes'} />
-          <GridText>{'Outros'}</GridText>
-        </OptionCard>
-      </Grid>
+        </Grid>
+      </Column>
       <button onClick={() => history.push('friends-first-access', 'helper')}>
         ver amigos
       </button>

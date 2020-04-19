@@ -12,6 +12,7 @@ export default function HelpBeHelped({ children }) {
   const [isHelping, setIsHelping] = React.useState(false);
   const [userLogged, setUserLogged] = React.useState(getUserData());
   const [needyPeople, setNeedyPeople] = React.useState([]);
+  const [helpers, setHelpers] = React.useState([]);
   const [errorMessage, setErrorMessage] = React.useState();
 
   const toggleIsHelping = () => {
@@ -73,7 +74,12 @@ export default function HelpBeHelped({ children }) {
         </TabContainer>
       </TopDecoration>
       <div style={{ zIndex: '10', position: 'absolute', width: '100%' }}>
-        {isHelping && <AvailableHelpers></AvailableHelpers>}
+        {isHelping && (
+          <AvailableHelpers
+            errorMessage={errorMessage}
+            needyPeople={needyPeople}
+          ></AvailableHelpers>
+        )}
         {!isHelping && (
           <AvailableNeeded
             errorMessage={errorMessage}

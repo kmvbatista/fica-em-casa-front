@@ -9,10 +9,8 @@ import {
   InputBox,
 } from './styles';
 import { useHistory } from 'react-router-dom';
-import { ColumnContainer } from '../../globalComponents';
-import swal from 'sweetalert';
+import { ColumnContainer } from '../../optionsComponents';
 import * as SessionService from '../../services/sessionService';
-import Loader from '../../components/Loader';
 
 export default function NeedHelpForm() {
   const history = useHistory();

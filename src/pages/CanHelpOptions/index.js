@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   ColumnContainer,
   Grid,
@@ -11,8 +11,6 @@ import {
 } from '../../optionsComponents';
 import { Column } from '../../globalComponents';
 import cardData from '../../assets/productCategory.json';
-import { useState } from 'react';
-import { useEffect } from 'react';
 import * as AssistanceService from '../../services/assistanceService';
 import swal from 'sweetalert';
 import Loading from 'react-loading';
@@ -85,39 +83,48 @@ export default function NeedHelpOptions({ children }) {
             Pode escolher mais de uma opção, tá?
           </SubTitle>
         </TextContainer>
-        <Grid>
-          {cards.map((el) => (
-            <OptionCard
-              key={el.category}
-              style={{ color: 'var(--color-purple)' }}
-              onClick={() => postCategoryAssistance(el.category)}
-            >
-              <IsChecked
-                isChecked={el.isChecked}
-                color={'var(--color-purple)'}
-              ></IsChecked>
-              {el.isLoading && !el.isChecked ? (
-                <Loading
-                  height='30%'
-                  width='30%'
-                  type='spinningBubbles'
-                  color='var(--color-purple)'
-                ></Loading>
-              ) : (
-                <img
-                  src={el.imageUrl}
-                  alt={el.category}
-                  style={{ maxHeight: '55%' }}
-                />
-              )}
-              {el.category}
+        {cards.length > 0 ? (
+          <Grid>
+            {cards.map((el) => (
+              <OptionCard
+                key={el.category}
+                style={{ color: 'var(--color-purple)' }}
+                onClick={() => postCategoryAssistance(el.category)}
+              >
+                <IsChecked
+                  isChecked={el.isChecked}
+                  color={'var(--color-purple)'}
+                ></IsChecked>
+                {el.isLoading && !el.isChecked ? (
+                  <Loading
+                    height='30%'
+                    width='30%'
+                    type='spinningBubbles'
+                    color='var(--color-purple)'
+                  ></Loading>
+                ) : (
+                  <img
+                    src={el.imageUrl}
+                    alt={el.category}
+                    style={{ maxHeight: '55%' }}
+                  />
+                )}
+                {el.category}
+              </OptionCard>
+            ))}
+            <OptionCard>
+              <CardImage src={'./logo.png'} alt={'Outras opçoes'} />
+              <GridText>{'Outros'}</GridText>
             </OptionCard>
-          ))}
-          <OptionCard>
-            <CardImage src={'./logo.png'} alt={'Outras opçoes'} />
-            <GridText>{'Outros'}</GridText>
-          </OptionCard>
-        </Grid>
+          </Grid>
+        ) : (
+          <Loading
+            width={'10em'}
+            height={'10em'}
+            type={'spinningBubbles'}
+            color={'white'}
+          ></Loading>
+        )}
       </Column>
       {children}
     </ColumnContainer>

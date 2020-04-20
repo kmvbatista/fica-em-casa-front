@@ -20,7 +20,7 @@ export default function AvailableNeeded({ needyPeople, errorMessage }) {
         <>
           <MainPhrase>
             <strong style={{ fontSize: 'inherit' }}>
-              {needyPeople.length} vizinhos{' '}
+              {needyPeople.length} vizinho(s){' '}
             </strong>
             combinam com o que você pode
             <strong style={{ fontSize: 'inherit' }}> ajudar!</strong>

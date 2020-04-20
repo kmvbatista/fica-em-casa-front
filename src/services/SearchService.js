@@ -11,6 +11,8 @@ export const getNearNeedy = async (coords) => {
     );
     return response.data;
   } catch (e) {
-    return e.response.data.error;
+    if (e.response && e.response.data) {
+      return e.response.data.error;
+    }
   }
 };

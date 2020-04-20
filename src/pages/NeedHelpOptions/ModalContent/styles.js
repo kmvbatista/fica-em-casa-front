@@ -10,6 +10,7 @@ export const ConfirmationButton = styled.button`
   background-color: var(--color-yellow);
   opacity: 1;
   transition: all 0.5s;
+  cursor: pointer;
 `;
 
 export const Card = styled(OptionCard)`

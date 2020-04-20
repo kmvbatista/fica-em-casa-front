@@ -10,7 +10,7 @@ export default function AvailableHelpers({ peopleData }) {
       <MainTab style={{ backgroundColor: 'var(--color-purple)' }}>
         <MainPhrase>
           <strong style={{ fontSize: 'inherit' }}>
-            {peopleData.length} vizinhos{' '}
+            {peopleData.length} vizinho(s){' '}
           </strong>
           combinam com o que você precisa e
           <strong style={{ fontSize: 'inherit' }}> vão te ajudar</strong>!

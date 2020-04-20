@@ -87,13 +87,8 @@ export default function ModalContent({ cardInfo, closeModal, setCardChecked }) {
         cardInfo.category,
         itemList,
         closeModal,
+        () => setCardChecked(cardInfo.category),
       );
-      swal(
-        'Necessidade cadastrada com sucesso!',
-        'Esperamos que dê tudo certo!',
-        'success',
-      );
-      setCardChecked(cardInfo.category);
     }
   };
 

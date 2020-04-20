@@ -46,7 +46,7 @@ export default function PersonCard({ person, backgroundColor, children }) {
     <>
       <Column>
         <PeopleCard
-          key={person.userDistance.toString().slice}
+          key={person.userName}
           style={
             !isExpanded
               ? { borderRadius: '10px', backgroundColor: backgroundColor }
@@ -56,7 +56,7 @@ export default function PersonCard({ person, backgroundColor, children }) {
           <PersonAvatar
             style={{
               backgroundImage: `url(${
-                person.photoUrl ? person.photoUrl : './mulher.png'
+                person.photoUrl ? person.photoUrl : './user.svg'
               })`,
             }}
           ></PersonAvatar>
@@ -64,9 +64,7 @@ export default function PersonCard({ person, backgroundColor, children }) {
             <PersonName>
               <strong style={{ fontSize: 'inherit' }}>{person.userName}</strong>
             </PersonName>
-            <Distance>
-              {String(person.userDistance * 1000).slice(0, 2)}km perto de você
-            </Distance>
+            <Distance>{person.distance}km perto de você</Distance>
           </Column>
           <Row style={{ width: '30%' }}>
             <ContactIcon>
@@ -140,7 +138,7 @@ export default function PersonCard({ person, backgroundColor, children }) {
                   color: '#fff',
                 }}
                 target='_blank'
-                href={`https://www.google.com/maps/dir/-26.921264,-49.148829/${person.userLocation.coordinates[0]},${person.userLocation.coordinates[1]}`}
+                href={`https://www.google.com/maps/dir/-26.921264,-49.148829/${person.userCoordinates.latitude},${person.userCoordinates.longitude}`}
               >
                 Traçar mapa usando o Google Maps
               </a>

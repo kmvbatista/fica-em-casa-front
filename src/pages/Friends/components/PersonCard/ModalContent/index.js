@@ -40,7 +40,7 @@ export default function ModalContent({ necessity, closeModal, personName }) {
           {necessity.items &&
             necessity.items.map((it) => (
               <p style={{ fontSize: '1.5em' }}>
-                -{`${it.quantity} ${it.unitMeasure} de ${it.item}`}
+                -{`${it.quantity} ${it.measureUnit}(s) de ${it.item}`}
               </p>
             ))}
         </ItemsContainer>

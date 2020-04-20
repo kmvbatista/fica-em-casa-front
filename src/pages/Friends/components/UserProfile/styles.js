@@ -7,7 +7,7 @@ export const ProfileImage = styled.div`
   width: 7em;
   background-size: cover;
   background-image: ${(props) =>
-    props.imageUrl ? `url(${props.imageUrl})` : "url('./mulher.png')"};
+    props.imageUrl ? `url(${props.imageUrl})` : "url('./user.svg')"};
 `;
 
 export const ProfileContainer = styled(Row)`

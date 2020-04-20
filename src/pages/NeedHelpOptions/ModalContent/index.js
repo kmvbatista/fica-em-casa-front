@@ -13,16 +13,20 @@ import {
 } from './styles';
 import itemsExample from '../../../assets/itemsModal.json';
 import * as NecessityService from '../../../services/necessityService';
-import swal from 'sweetalert';
+import { getUserData } from '../../../services/sessionService';
 
 export default function ModalContent({ cardInfo, closeModal, setCardChecked }) {
+  const user = getUserData();
   const [showExample, setShowExample] = useState(true);
   const [showConfirmButton, setShowConfirmButton] = useState(true);
   let [itemList, setItemList] = useState([]);
   const itemInitialState = {
     item: '',
     quantity: 0,
-    mesureUnit: 'quilo',
+    measureUnit: 'quilo',
+    category: cardInfo.category,
+    userName: user.name,
+    userPhone: user.phone,
   };
   let [itemToAdd, setItem] = useState(itemInitialState);
 
@@ -70,8 +74,8 @@ export default function ModalContent({ cardInfo, closeModal, setCardChecked }) {
     updateItem(itemToAdd);
   };
 
-  const selectMesureUnit = (unit) => {
-    itemToAdd.mesureUnit = unit;
+  const selectMeasureUnit = (unit) => {
+    itemToAdd.measureUnit = unit;
     updateItem(itemToAdd);
   };
 
@@ -83,11 +87,8 @@ export default function ModalContent({ cardInfo, closeModal, setCardChecked }) {
     if (showExample) {
       return setShowExample(false);
     } else {
-      await NecessityService.postNecessity(
-        cardInfo.category,
-        itemList,
-        closeModal,
-        () => setCardChecked(cardInfo.category),
+      await NecessityService.postNecessity(itemList, closeModal, () =>
+        setCardChecked(cardInfo.category),
       );
     }
   };
@@ -125,7 +126,7 @@ export default function ModalContent({ cardInfo, closeModal, setCardChecked }) {
             <Row key={item.item}>
               -{item.item}
               <Quantity>
-                {item.mesureUnit}
+                {item.measureUnit}
                 <QuantityButton>-</QuantityButton>
                 <div>{item.quantity}</div>
                 <QuantityButton>+</QuantityButton>
@@ -149,7 +150,7 @@ export default function ModalContent({ cardInfo, closeModal, setCardChecked }) {
               <SelectUnit
                 name='unity'
                 id='unity'
-                onChange={(e) => selectMesureUnit(e.target.value)}
+                onChange={(e) => selectMeasureUnit(e.target.value)}
               >
                 <option value='kg'>quilo</option>
                 <option value='unid.'>unid</option>

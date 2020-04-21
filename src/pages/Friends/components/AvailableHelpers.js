@@ -17,7 +17,11 @@ export default function AvailableHelpers({ peopleData }) {
         </MainPhrase>
         <Grid>
           {peopleData.map((person) => (
-            <PersonCard backgroundColor={'#ffffff1c'} person={person}>
+            <PersonCard
+              backgroundColor={'#ffffff1c'}
+              person={person}
+              key={person.name}
+            >
               pode te ajudar com
             </PersonCard>
           ))}

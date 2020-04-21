@@ -12,19 +12,28 @@ import api from '../../../../../services/api';
 import Loading from 'react-loading';
 import swal from 'sweetalert';
 
-export default function ModalContent({ necessity, closeModal, personName }) {
+export default function ModalContent({
+  necessity,
+  closeModal,
+  personName,
+  personId,
+}) {
   const [isLoading, setLoading] = useState(false);
   const user = getUserData();
   async function confirmHelp() {
     try {
       setLoading(true);
       debugger;
-      await api.put(`/necessities/${necessity.id}/id/status`, {
+      await api.put('/necessity', {
         status: 'pending',
+        category: necessity.category,
+        userId: personId,
       });
       closeModal();
       setLoading(false);
     } catch (error) {
+      console.log(JSON.stringify(error));
+      closeModal();
       swal(
         'Houve um erro na confirmação de ajuda',
         'Tente novamente!',
@@ -58,7 +67,10 @@ export default function ModalContent({ necessity, closeModal, personName }) {
         <ItemsContainer>
           {necessity.items &&
             necessity.items.map((it) => (
-              <p style={{ fontSize: '1.5em' }}>
+              <p
+                key={necessity.items.findIndex((x) => x === it)}
+                style={{ fontSize: '1.5em' }}
+              >
                 -{`${it.quantity} ${it.measureUnit}(s) de ${it.item}`}
               </p>
             ))}

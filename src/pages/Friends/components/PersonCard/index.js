@@ -29,14 +29,13 @@ export default function PersonCard({ person, backgroundColor, children }) {
   };
 
   const getModal = () => {
-    console.log('getting modal');
-    console.log(necessity);
     return (
       <Modal close={toggleShowModal}>
         <ModalContent
           closeModal={toggleShowModal}
           necessity={necessity}
           personName={person.userName}
+          personId={person.userId}
         ></ModalContent>
       </Modal>
     );

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Row } from '../../../../../globalComponents';
 import {
   Card,
@@ -8,12 +8,31 @@ import {
   ItemsContainer,
 } from '../../../../NeedHelpOptions/ModalContent/styles';
 import { getUserData } from '../../../../../services/sessionService';
+import api from '../../../../../services/api';
+import Loading from 'react-loading';
+import swal from 'sweetalert';
 
 export default function ModalContent({ necessity, closeModal, personName }) {
-  const confirmHelp = () => {
-    closeModal();
-  };
+  const [isLoading, setLoading] = useState(false);
   const user = getUserData();
+  async function confirmHelp() {
+    try {
+      setLoading(true);
+      debugger;
+      await api.put(`/necessities/${necessity.id}/id/status`, {
+        status: 'pending',
+      });
+      closeModal();
+      setLoading(false);
+    } catch (error) {
+      swal(
+        'Houve um erro na confirmação de ajuda',
+        'Tente novamente!',
+        'error',
+      );
+      setLoading(false);
+    }
+  }
 
   return (
     <ModalContainer>
@@ -45,9 +64,18 @@ export default function ModalContent({ necessity, closeModal, personName }) {
             ))}
         </ItemsContainer>
       </MainContainer>
-      <ConfirmationButton onClick={confirmHelp}>
-        <strong style={{ fontSize: '1.25em' }}>Quero ajudar</strong>
-      </ConfirmationButton>
+      {isLoading ? (
+        <Loading
+          width='5em'
+          height='5em'
+          color={'var(--color-yellow)'}
+          type='spinningBubbles'
+        ></Loading>
+      ) : (
+        <ConfirmationButton onClick={confirmHelp}>
+          <strong style={{ fontSize: '1.25em' }}>Quero ajudar</strong>
+        </ConfirmationButton>
+      )}
     </ModalContainer>
   );
 }

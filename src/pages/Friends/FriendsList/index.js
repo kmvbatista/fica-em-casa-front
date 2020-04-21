@@ -4,13 +4,17 @@ import AvailableHelpers from '../components/AvailableHelpers';
 import AvailableNeeded from '../components/AvailableNeeded';
 import { TopDecoration } from '../styledComponents';
 import UserProfile from '../components/UserProfile';
-import { getUserData } from '../../../services/sessionService';
+import {
+  getUserData,
+  updateUserCookies,
+} from '../../../services/sessionService';
 import { useEffect } from 'react';
 import * as SearchService from '../../../services/SearchService';
+import api from '../../../services/api';
 
 export default function HelpBeHelped({ children }) {
   const [isHelping, setIsHelping] = React.useState(false);
-  const [userLogged, setUserLogged] = React.useState(getUserData());
+  const userLogged = getUserData();
   const [needyPeople, setNeedyPeople] = React.useState([]);
   const [helpers, setHelpers] = React.useState([]);
   const [errorMessage, setErrorMessage] = React.useState();
@@ -22,6 +26,12 @@ export default function HelpBeHelped({ children }) {
   useEffect(() => {
     getNeedy();
   }, []);
+
+  async function handleSwitch(isActive) {
+    await api.put('/user', { active: isActive });
+    userLogged.active = isActive;
+    updateUserCookies(userLogged);
+  }
 
   const getNeedy = async () => {
     navigator.geolocation.getCurrentPosition(async ({ coords }) => {
@@ -47,6 +57,8 @@ export default function HelpBeHelped({ children }) {
         }}
       >
         <UserProfile
+          handleSwitch={handleSwitch}
+          isActive={userLogged.active}
           userName={userLogged.name}
           isHelping={isHelping}
         ></UserProfile>

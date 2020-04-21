@@ -14,7 +14,7 @@ import cardData from '../../assets/productCategory.json';
 import * as AssistanceService from '../../services/assistanceService';
 import swal from 'sweetalert';
 import Loading from 'react-loading';
-import IsChecked from '../NeedHelpOptions/isChecked';
+import IsChecked from '../../components/isChecked';
 import * as UserService from '../../services/userService';
 import { useHistory } from 'react-router-dom';
 

@@ -18,6 +18,7 @@ import Collapse from '@material-ui/core/Collapse';
 import ArrowButton from './ArrowButton/arrowButton';
 import ModalContent from './ModalContent';
 import Modal from '../../../../components/Modal';
+import IsChecked from '../../../../components/isChecked';
 
 export default function PersonCard({ person, backgroundColor, children }) {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -118,6 +119,11 @@ export default function PersonCard({ person, backgroundColor, children }) {
                   }}
                 >
                   <HelpOptionCard>
+                    <IsChecked
+                      icon='./hourglass.svg'
+                      isChecked={false}
+                      color={'transparent'}
+                    ></IsChecked>
                     <img
                       src={`./${it.category}.svg`}
                       alt={it.category}

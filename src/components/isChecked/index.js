@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function IsChecked({ isChecked, color }) {
+export default function IsChecked({ isChecked, color, icon }) {
   return (
     <>
       <div
@@ -28,7 +28,7 @@ export default function IsChecked({ isChecked, color }) {
         }}
       >
         <img
-          src='./check.svg'
+          src={icon ? icon : './check.svg'}
           alt='categoria cadastrada'
           style={{ width: '30%' }}
         />

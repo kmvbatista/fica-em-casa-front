@@ -13,7 +13,7 @@ import cardData from '../../assets/productCategory.json';
 import Modal from '../../components/Modal';
 import ModalContent from './ModalContent';
 import { useHistory } from 'react-router-dom';
-import IsChecked from './isChecked';
+import IsChecked from '../../components/isChecked';
 import { Column } from '../../globalComponents';
 
 export default function NeedHelpOptions({ children }) {

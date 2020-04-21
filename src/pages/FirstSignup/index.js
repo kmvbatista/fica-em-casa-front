@@ -12,23 +12,43 @@ import {
 } from './styles';
 import swal from 'sweetalert';
 import InputMask from 'react-input-mask';
+import Loader from '../../components/Loader';
+import Loading from 'react-loading';
+import { Row } from '../../globalComponents';
 
 export default function Login() {
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [confirmation, setConfirmation] = useState('');
   const [isConfirmming, setConfirmming] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const history = useHistory();
 
-  const handleSubmit = async () => {};
+  const handleSubmit = async () => {
+    setIsLoading(true);
+  };
   const handleContinue = async () => {
     swal(
       `${
         name.split(' ')[0]
       }, vamos enviar um código de confirmação para o número ${phone}!`,
       'Será por sms, ok?!',
-    ).then((x) => setConfirmming(true));
+    ).then((x) => {
+      setConfirmming(true);
+      swal({
+        title: 'Aguarde enquanto enviamos o código...',
+        content: Loader(),
+        buttons: {},
+      });
+      setTimeout(() => {
+        swal(
+          'Código enviado com sucesso!!!',
+          'Por favor, insira-o abaixo!',
+          'success',
+        );
+      }, 2000);
+    });
   };
 
   return (
@@ -78,9 +98,20 @@ export default function Login() {
           </>
         )}
         {isConfirmming ? (
-          <RegisterButton onClick={handleSubmit}>
-            Confirmar número
-          </RegisterButton>
+          isLoading ? (
+            <Row style={{ justifyContent: 'center' }}>
+              <Loading
+                type='spinningBubbles'
+                color='var(--color-pink)'
+                width='6em'
+                height='6em'
+              ></Loading>
+            </Row>
+          ) : (
+            <RegisterButton onClick={handleSubmit}>
+              Confirmar número
+            </RegisterButton>
+          )
         ) : (
           <RegisterButton onClick={handleContinue}>continuar</RegisterButton>
         )}

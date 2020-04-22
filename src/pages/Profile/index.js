@@ -19,6 +19,7 @@ import api from '../../services/api';
 import { updateUserCookies } from '../../services/sessionService';
 import swal from 'sweetalert';
 import Loading from 'react-loading';
+import { Row } from '../../globalComponents';
 
 export default function Profile() {
   const userData = getUserData();
@@ -103,46 +104,59 @@ export default function Profile() {
       <MainContainer>
         <InputBlock>
           <Label style={{ color: 'var(--color-purple-dark)' }}>apelido</Label>
-          <Input
-            value={nickname}
-            onChange={(e) => {
-              handleEditting();
-              setNickname(e.target.value);
-            }}
-            style={{
-              fontSize: '3em',
-              fontFamily: 'BalooThambi2-Bolder',
-              marginTop: '.2em',
-              lineHeight: '1.8',
-            }}
-          ></Input>
+          <Row>
+            <Input
+              value={nickname}
+              onChange={(e) => {
+                handleEditting();
+                setNickname(e.target.value);
+              }}
+              style={{
+                fontSize: '3em',
+                fontFamily: 'BalooThambi2-Bolder',
+                marginTop: '.2em',
+                lineHeight: '1.8',
+              }}
+            ></Input>
+            <img src='./pencil.svg' style={{ width: '2em' }} alt='seu nome' />
+          </Row>
         </InputBlock>
         <InputBlock>
           <Label>seu nome</Label>
-          <Input
-            value={name}
-            onChange={(e) => {
-              handleEditting();
-              setName(e.target.value);
-            }}
-          ></Input>
+          <Row>
+            <Input
+              value={name}
+              onChange={(e) => {
+                handleEditting();
+                setName(e.target.value);
+              }}
+            ></Input>
+            <img src='./user.svg' style={{ width: '2em' }} alt='seu nome' />
+          </Row>
         </InputBlock>
         <InputBlock>
           <Label>seu telefone</Label>
-          <InputMask
-            mask='(99) 99999-9999'
-            value={phone}
-            onChange={(e) => setPhone(e.target.value)}
-          >
-            {(inputProps) => (
-              <Input
-                {...inputProps}
-                placeholder='(00) 00000-0000'
-                type='tel'
-                disableUnderline
-              />
-            )}
-          </InputMask>
+          <Row>
+            <InputMask
+              mask='(99) 99999-9999'
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+            >
+              {(inputProps) => (
+                <Input
+                  {...inputProps}
+                  placeholder='(00) 00000-0000'
+                  type='tel'
+                  disableUnderline
+                />
+              )}
+            </InputMask>
+            <img
+              src='./iphone.svg'
+              style={{ width: '2em' }}
+              alt='seu telefone'
+            />
+          </Row>
         </InputBlock>
         <BottomContainer></BottomContainer>
       </MainContainer>

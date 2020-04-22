@@ -18,9 +18,9 @@ export default function Routes({ children }) {
   return (
     <Switch>
       <Suspense fallback={<div>Loading...</div>}>
-        <Route exact path='/'>
+        <PrivateRoute exact path='/'>
           <Home>{children}</Home>
-        </Route>
+        </PrivateRoute>
         <PrivateRoute path='/can-help-options'>
           <CanHelpOptions>{children}</CanHelpOptions>
         </PrivateRoute>

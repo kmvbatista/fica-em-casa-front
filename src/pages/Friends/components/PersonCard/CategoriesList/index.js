@@ -2,11 +2,11 @@ import React from 'react';
 import { Row } from '../../../../../globalComponents';
 import { HelpOptionCard } from '../styles';
 import IsChecked from '../../../../../components/isChecked';
+import swal from 'sweetalert';
 
 export default function CategoriesList({
   necessities,
   helperCategories,
-  onCardClick,
   setNecessity,
   toggleShowModal,
 }) {
@@ -18,15 +18,30 @@ export default function CategoriesList({
             <div
               style={{ cursor: 'pointer' }}
               onClick={() => {
+                if (it.status === 'pending') {
+                  return swal(
+                    'Kennedy já está sendo ajudado nessa categoria!',
+                    'Agradecemos a boa intenção',
+                  );
+                }
                 setNecessity(it);
                 toggleShowModal();
               }}
             >
-              <HelpOptionCard>
+              <HelpOptionCard
+                style={{
+                  position: 'relative',
+                  display: 'flex',
+                  justifyContent: 'center',
+                  height: '3.5em',
+                  width: '3.5em',
+                  padding: '0',
+                }}
+              >
                 <IsChecked
-                  icon='./hourglass.svg'
-                  isChecked={false}
-                  color={'transparent'}
+                  icon='./clock.svg'
+                  isChecked={it.status === 'pending'}
+                  color={'var(--color-pink)'}
                 ></IsChecked>
                 <img
                   src={`./${it.category}.svg`}

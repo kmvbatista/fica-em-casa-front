@@ -30,7 +30,7 @@ export default function IsChecked({ isChecked, color, icon }) {
         <img
           src={icon ? icon : './check.svg'}
           alt='categoria cadastrada'
-          style={{ width: '30%' }}
+          style={{ width: icon ? '50%' : '30%' }}
         />
       </div>
     </>

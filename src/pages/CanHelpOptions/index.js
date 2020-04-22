@@ -45,7 +45,6 @@ export default function NeedHelpOptions({ children }) {
 
   const getCards = async () => {
     const userAssistCategories = await UserService.getAssistCategories();
-    debugger;
     const dataWithLoading = cardData.map((x) => {
       if (
         userAssistCategories &&
@@ -71,7 +70,6 @@ export default function NeedHelpOptions({ children }) {
   };
 
   async function postCategoryAssistance(category) {
-    debugger;
     toggleCardLoading(category);
     try {
       AssistanceService.postAssistance(
@@ -113,9 +111,11 @@ export default function NeedHelpOptions({ children }) {
               <OptionCard
                 key={el.category}
                 style={{ color: 'var(--color-purple)' }}
-                onClick={() =>
-                  !IsChecked && postCategoryAssistance(el.category)
-                }
+                onClick={() => {
+                  if (!el.isChecked) {
+                    postCategoryAssistance(el.category);
+                  }
+                }}
               >
                 <IsChecked
                   isChecked={el.isChecked}

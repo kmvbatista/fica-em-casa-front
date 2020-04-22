@@ -64,7 +64,6 @@ export default function Login() {
           );
         })
         .catch((error) => {
-          debugger;
           swal(
             `${error.response.data.error}`,
             'Houve erro ao tentar enviar o código',

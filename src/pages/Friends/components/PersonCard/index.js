@@ -109,10 +109,8 @@ export default function PersonCard({ person, backgroundColor, children }) {
               {person.userName} {children}
             </p>
             <CategoriesList
-              onCardClick={() => {
-                setNecessity(it);
-                toggleShowModal();
-              }}
+              setNecessity={setNecessity}
+              toggleShowModal={toggleShowModal}
               necessities={person.necessities}
               helperCategories={person.categoriesToHelp}
             ></CategoriesList>

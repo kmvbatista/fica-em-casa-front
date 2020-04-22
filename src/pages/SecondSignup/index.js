@@ -26,7 +26,7 @@ export default function SignIn() {
         password,
         confirmPassword,
       };
-      history.push('/', dataToNextPage);
+      history.replace('/', dataToNextPage);
     }
   };
 

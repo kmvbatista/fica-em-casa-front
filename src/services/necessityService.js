@@ -17,7 +17,6 @@ function success(coords, closeModal, items, setCardChecked) {
   api
     .post('necessity', dataToSend)
     .then((x) => {
-      debugger;
       closeModal();
       setCardChecked();
       swal(

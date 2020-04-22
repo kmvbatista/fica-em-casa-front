@@ -23,7 +23,6 @@ export default function ModalContent({
   async function confirmHelp() {
     try {
       setLoading(true);
-      debugger;
       await api.put('/necessity', {
         status: 'pending',
         category: necessity.category,

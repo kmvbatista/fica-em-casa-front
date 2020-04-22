@@ -7,13 +7,21 @@ export default function CategoriesList({
   necessities,
   helperCategories,
   onCardClick,
+  setNecessity,
+  toggleShowModal,
 }) {
   return (
     <>
       {necessities ? (
         <Row style={{ margin: '.8em 0' }}>
           {necessities.map((it) => (
-            <div style={{ cursor: 'pointer' }} onClick={onCardClick}>
+            <div
+              style={{ cursor: 'pointer' }}
+              onClick={() => {
+                setNecessity(it);
+                toggleShowModal();
+              }}
+            >
               <HelpOptionCard>
                 <IsChecked
                   icon='./hourglass.svg'

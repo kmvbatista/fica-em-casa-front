@@ -3,7 +3,6 @@ import swal from 'sweetalert';
 
 export async function updateUserLocation(location) {
   try {
-    debugger;
     await api.put('/user', {
       latitude: location.latitude,
       longitude: location.longitude,

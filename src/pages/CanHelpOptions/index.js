@@ -16,19 +16,36 @@ import swal from 'sweetalert';
 import Loading from 'react-loading';
 import IsChecked from '../../components/isChecked';
 import * as UserService from '../../services/userService';
+import {
+  getUserLocation,
+  updateUserLocation,
+} from '../../services/locationService';
 import { useHistory } from 'react-router-dom';
 
 export default function NeedHelpOptions({ children }) {
   const [isFirstAcess, setIsFirstAccess] = useState(false);
+  const [userLocation, setUserLocation] = useState();
+  const [hasRegisteredOption, setRegisteredOption] = useState(false);
   const [cards, setCards] = useState([]);
   const history = useHistory();
 
   useEffect(() => {
+    setCurrentLocation();
     getCards();
   }, []);
 
+  async function setCurrentLocation() {
+    try {
+      const location = await getUserLocation();
+      setUserLocation(location);
+    } catch (error) {
+      swal(error, 'Tente novamente', 'error');
+    }
+  }
+
   const getCards = async () => {
     const userAssistCategories = await UserService.getAssistCategories();
+    debugger;
     const dataWithLoading = cardData.map((x) => {
       if (
         userAssistCategories &&
@@ -53,14 +70,21 @@ export default function NeedHelpOptions({ children }) {
     setCards([...cards]);
   };
 
-  const postCategoryAssistance = async (category) => {
+  async function postCategoryAssistance(category) {
+    debugger;
     toggleCardLoading(category);
     try {
       AssistanceService.postAssistance(
         category,
         toggleCardLoading,
         toggleIsCardChecked,
-      );
+      ).then((_) => {
+        if (!hasRegisteredOption) {
+          updateUserLocation(userLocation).then((x) =>
+            setRegisteredOption(true),
+          );
+        }
+      });
     } catch (error) {
       swal(
         'Não foi possível adotar a categoria ' + category + '!',
@@ -68,7 +92,7 @@ export default function NeedHelpOptions({ children }) {
         'error',
       );
     }
-  };
+  }
 
   return (
     <ColumnContainer
@@ -89,7 +113,9 @@ export default function NeedHelpOptions({ children }) {
               <OptionCard
                 key={el.category}
                 style={{ color: 'var(--color-purple)' }}
-                onClick={() => postCategoryAssistance(el.category)}
+                onClick={() =>
+                  !IsChecked && postCategoryAssistance(el.category)
+                }
               >
                 <IsChecked
                   isChecked={el.isChecked}

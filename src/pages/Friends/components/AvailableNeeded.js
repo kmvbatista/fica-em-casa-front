@@ -3,19 +3,21 @@ import { Column } from '../../../globalComponents';
 
 import PersonCard from './PersonCard';
 import { MainPhrase, MainTab } from '../styledComponents';
-import { SetCategoriesButton } from './UserProfile/styles';
-import { useHistory } from 'react-router-dom';
 import { Grid } from './PersonCard/styles';
+import ErrorMessage from './ErrorMessage';
 
 export default function AvailableNeeded({ needyPeople, errorMessage }) {
   return (
     <MainTab>
       {errorMessage ? (
-        ErrorMessage(errorMessage)
+        <ErrorMessage errorMessage={errorMessage}></ErrorMessage>
       ) : needyPeople.length === 0 ? (
-        ErrorMessage(
-          'Não há ninguém na sua região que você possa ajudar.\nAdote mais categorias para encontrar mais pessoas!',
-        )
+        <ErrorMessage
+          isHelper={true}
+          errorMessage={
+            'Não há ninguém na sua região que você possa ajudar.\nAdote mais categorias para encontrar mais pessoas!'
+          }
+        ></ErrorMessage>
       ) : (
         <>
           <MainPhrase>
@@ -37,25 +39,3 @@ export default function AvailableNeeded({ needyPeople, errorMessage }) {
     </MainTab>
   );
 }
-
-const ErrorMessage = (errorMessage) => {
-  const history = useHistory();
-  return (
-    <Column
-      style={{
-        width: '100%',
-        height: '100%',
-        alignItems: 'center',
-        padding: '10em 0',
-      }}
-    >
-      {errorMessage.split('\n').map((x) => (
-        <strong style={{ fontSize: '2.5em' }}>{x}</strong>
-      ))}
-
-      <SetCategoriesButton onClick={() => history.push('/can-help-options')}>
-        Selecionar Categorias
-      </SetCategoriesButton>
-    </Column>
-  );
-};

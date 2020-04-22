@@ -18,12 +18,14 @@ export default function HelpBeHelped({ children }) {
   const [needyPeople, setNeedyPeople] = React.useState([]);
   const [helpers, setHelpers] = React.useState([]);
   const [errorMessage, setErrorMessage] = React.useState();
+  const [helperErrorMessage, setHelperError] = React.useState();
 
   const toggleIsHelping = () => {
     setIsHelping(!isHelping);
   };
 
   useEffect(() => {
+    getHelpers();
     getNeedy();
   }, []);
 
@@ -32,6 +34,18 @@ export default function HelpBeHelped({ children }) {
     userLogged.active = isActive;
     updateUserCookies(userLogged);
   }
+
+  const getHelpers = async () => {
+    navigator.geolocation.getCurrentPosition(async ({ coords }) => {
+      const data = await SearchService.getNearHelpers(coords);
+      console.log(data);
+      if (Array.isArray(data)) {
+        setHelpers(data);
+      } else {
+        setHelperError(data);
+      }
+    });
+  };
 
   const getNeedy = async () => {
     navigator.geolocation.getCurrentPosition(async ({ coords }) => {
@@ -88,8 +102,8 @@ export default function HelpBeHelped({ children }) {
       <div style={{ zIndex: '10', position: 'absolute', width: '100%' }}>
         {isHelping && (
           <AvailableHelpers
-            errorMessage={errorMessage}
-            needyPeople={needyPeople}
+            errorMessaged={helperErrorMessage}
+            helpers={helpers}
           ></AvailableHelpers>
         )}
         {!isHelping && (

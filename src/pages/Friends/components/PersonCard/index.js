@@ -7,7 +7,6 @@ import {
   PersonName,
   ContactIcon,
   CollapsibleCard,
-  HelpOptionCard,
   GoToMapsButtonn,
   GoToMapsIcon,
 } from './styles';
@@ -18,7 +17,7 @@ import Collapse from '@material-ui/core/Collapse';
 import ArrowButton from './ArrowButton/arrowButton';
 import ModalContent from './ModalContent';
 import Modal from '../../../../components/Modal';
-import IsChecked from '../../../../components/isChecked';
+import CategoriesList from './CategoriesList';
 
 export default function PersonCard({ person, backgroundColor, children }) {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -109,30 +108,14 @@ export default function PersonCard({ person, backgroundColor, children }) {
             >
               {person.userName} {children}
             </p>
-            <Row style={{ margin: '.8em 0' }}>
-              {person.necessities.map((it) => (
-                <div
-                  style={{ cursor: 'pointer' }}
-                  onClick={() => {
-                    setNecessity(it);
-                    toggleShowModal();
-                  }}
-                >
-                  <HelpOptionCard>
-                    <IsChecked
-                      icon='./hourglass.svg'
-                      isChecked={false}
-                      color={'transparent'}
-                    ></IsChecked>
-                    <img
-                      src={`./${it.category}.svg`}
-                      alt={it.category}
-                      style={{ width: '2.5em' }}
-                    />
-                  </HelpOptionCard>
-                </div>
-              ))}
-            </Row>
+            <CategoriesList
+              onCardClick={() => {
+                setNecessity(it);
+                toggleShowModal();
+              }}
+              necessities={person.necessities}
+              helperCategories={person.categoriesToHelp}
+            ></CategoriesList>
             <GoToMapsButtonn>
               <GoToMapsIcon src='./location.svg'></GoToMapsIcon>
               <a

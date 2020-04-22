@@ -61,7 +61,6 @@ export const HelpOptionCard = styled.div`
   background-color: white;
   padding: 0.85em 1.1em;
   margin-right: 0.8em;
-  cursor: pointer;
 `;
 
 export const GoToMapsButtonn = styled.div`

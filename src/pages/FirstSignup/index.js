@@ -15,11 +15,12 @@ import InputMask from 'react-input-mask';
 import Loader from '../../components/Loader';
 import Loading from 'react-loading';
 import { Row } from '../../globalComponents';
+import { sendPhone, sendCode } from '../../services/phoneService';
 
 export default function Login() {
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
-  const [confirmation, setConfirmation] = useState('');
+  const [token, setToken] = useState('');
   const [isConfirmming, setConfirmming] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -27,27 +28,49 @@ export default function Login() {
 
   const handleSubmit = async () => {
     setIsLoading(true);
+    sendCode(phone, token)
+      .then((res) => {
+        swal('Tudo certo! Vamos continuar com o cadastro', '', 'success').then(
+          (x) => {
+            history.push('second-signup', { name, phone });
+            setIsLoading(false);
+          },
+        );
+      })
+      .catch((error) => {
+        setIsLoading(false);
+        swal(error.response.data.error, 'Tente novamente!', 'error');
+      });
   };
   const handleContinue = async () => {
     swal(
       `${
         name.split(' ')[0]
-      }, vamos enviar um código de confirmação para o número ${phone}!`,
+      }, vamos enviar um código de confirmação para o número \n${phone}!`,
       'Será por sms, ok?!',
     ).then((x) => {
-      setConfirmming(true);
       swal({
         title: 'Aguarde enquanto enviamos o código...',
         content: Loader(),
         buttons: {},
       });
-      setTimeout(() => {
-        swal(
-          'Código enviado com sucesso!!!',
-          'Por favor, insira-o abaixo!',
-          'success',
-        );
-      }, 2000);
+      sendPhone(phone)
+        .then((_) => {
+          setConfirmming(true);
+          swal(
+            'Código enviado com sucesso!!!',
+            'Por favor, insira-o abaixo!',
+            'success',
+          );
+        })
+        .catch((error) => {
+          debugger;
+          swal(
+            `${error.response.data.error}`,
+            'Houve erro ao tentar enviar o código',
+            'error',
+          );
+        });
     });
   };
 
@@ -68,12 +91,12 @@ export default function Login() {
         )}
         {isConfirmming ? (
           <InputMask
-            mask='9 9 9 9'
-            value={confirmation}
-            onChange={(e) => setConfirmation(e.target.value)}
+            mask='* * * * * *'
+            value={token}
+            onChange={(e) => setToken(e.target.value)}
           >
             {(inputProps) => (
-              <LoginInput {...inputProps} placeholder='_ _ _ _' />
+              <LoginInput {...inputProps} placeholder='_ _ _ _ _ _' />
             )}
           </InputMask>
         ) : (
@@ -86,15 +109,22 @@ export default function Login() {
               value={name}
               onChange={(e) => setName(e.target.value)}
             ></LoginInput>
-            <LoginInput
-              onChange={(e) => setPhone(e.target.value)}
-              placeholder='seu telefone'
-              name='tel'
-              id='tel'
-              type='tel'
+            <InputMask
+              mask='(99) 99999-9999'
               value={phone}
-              required
-            ></LoginInput>
+              onChange={(e) => setPhone(e.target.value)}
+            >
+              {(inputProps) => (
+                <LoginInput
+                  {...inputProps}
+                  placeholder='seu telefone'
+                  name='tel'
+                  id='tel'
+                  type='tel'
+                  required
+                ></LoginInput>
+              )}
+            </InputMask>
           </>
         )}
         {isConfirmming ? (

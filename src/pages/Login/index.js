@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import { loginUser } from '../../services/sessionService';
 
 import swal from 'sweetalert';
@@ -80,6 +80,7 @@ export default function Login() {
             Acessar
           </RegisterButton>
         </LoaderContainer>
+        <Link to='first-signup'>Cadastrar-se</Link>
       </InitialForm>
     </Container>
   );

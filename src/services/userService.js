@@ -1,14 +1,12 @@
 import api from './api';
-import { getUserData } from './sessionService';
 
-export const getAssistCategories = async () => {
-  const user = getUserData();
+export async function getAssistCategories() {
   try {
-    const response = await api.get(`/assist/${user.id}/user`);
+    const response = await api.get('/assist/user/assists');
     return response.data;
   } catch (error) {
     if (error.response.data.error) {
       console.log(error.response.data.error);
     }
   }
-};
+}

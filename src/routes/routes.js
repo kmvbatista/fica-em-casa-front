@@ -10,6 +10,7 @@ import NeedHelpOptions from '../pages/NeedHelpOptions';
 import CanHelpOptions from '../pages/CanHelpOptions';
 import Friends from '../pages/Friends/FriendsList';
 import FriendsFirstAccess from '../pages/Friends/FirstAcess';
+import UseTerms from '../pages/UseTerm';
 import Login from '../pages/Login';
 import Profile from '../pages/Profile';
 
@@ -46,6 +47,9 @@ export default function Routes({ children }) {
         </PrivateRoute>
         <Route exact path='/second-signup'>
           <SecondSignup></SecondSignup>
+        </Route>
+        <Route exact path='/use-terms'>
+          <UseTerms></UseTerms>
         </Route>
       </Suspense>
     </Switch>

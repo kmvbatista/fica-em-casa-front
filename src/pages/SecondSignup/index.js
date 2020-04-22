@@ -9,6 +9,7 @@ import {
   InitialForm,
   Container,
 } from '../FirstSignup/styles';
+import swal from 'sweetalert';
 // import { useEffect } from 'react';
 
 export default function SignIn() {
@@ -19,6 +20,7 @@ export default function SignIn() {
   const [confirmPassword, setConfirmPassword] = useState('');
 
   const handleSubmit = async () => {
+    if (!isFormValid()) return;
     if (password === confirmPassword) {
       const dataToNextPage = {
         name: dataComing.name,
@@ -29,6 +31,28 @@ export default function SignIn() {
       history.replace('/', dataToNextPage);
     }
   };
+
+  function isFormValid() {
+    if (!phone || phone.length < 5) {
+      swal('Telefone está em formato inválido', 'Corrija por favor', 'error');
+      return false;
+    }
+    if (password != confirmPassword) {
+      swal('As duas senhas não estão iguais', 'Corrija por favor', 'error');
+      return false;
+    }
+    if (password.length < 8) {
+      swal(
+        'Insira uma senha de 8 dígitos, por favor',
+        'Corrija por favor',
+        'error',
+      );
+      setPassword('');
+      setConfirmPassword('');
+      return false;
+    }
+    return true;
+  }
 
   return (
     <Container>

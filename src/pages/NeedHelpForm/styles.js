@@ -65,9 +65,9 @@ export const Select = styled.select`
   background-color: var(--color-pink);
   color: white;
   font-size: 1em;
-  width: 50%;
   height: 3em;
   margin-right: 1em;
+  width: 8em;
 `;
 
 export const GetModalButton = styled.div`

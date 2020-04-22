@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import {
   Container,
@@ -24,9 +24,11 @@ export default function ChooseGroup({ children }) {
     SessionService.getUserData() !== undefined,
   );
 
-  // useEffect(() => {
-
-  // }, []);
+  useEffect(() => {
+    if (!dataFirstAcess) {
+      history.replace('/login');
+    }
+  }, []);
 
   function helperChoice() {
     if (isUserLogged) {
@@ -36,6 +38,7 @@ export default function ChooseGroup({ children }) {
   }
 
   function needyChoice() {
+    debugger;
     if (isUserLogged) {
       return history.push('/need-help-options');
     }

@@ -35,7 +35,7 @@ export default function NeedHelpForm() {
   };
 
   return (
-    <ColumnContainer>
+    <ColumnContainer style={{ alignItems: 'unset' }}>
       <Title>Se você faz parte do grupo de risco, preencha abaixo</Title>
       <div>
         <InputBlock

@@ -27,21 +27,41 @@ export default function Login() {
   const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async () => {
-    setIsLoading(true);
-    sendCode(phone, token)
-      .then((res) => {
-        swal('Tudo certo! Vamos continuar com o cadastro', '', 'success').then(
-          (x) => {
-            history.push('second-signup', { name, phone });
-            setIsLoading(false);
-          },
-        );
-      })
-      .catch((error) => {
-        setIsLoading(false);
-        swal(error.response.data.error, 'Tente novamente!', 'error');
-      });
+    if (!useTermsRead)
+      return swal(
+        'Você deve primeiro ler e aceitar os termos de uso.',
+        'Tente novamente',
+        'error',
+      );
+    history.push('second-signup', { name, phone });
+
+    // setIsLoading(true);
+    // sendCode(phone, token)
+    //   .then((res) => {
+    //     swal('Tudo certo! Vamos continuar com o cadastro', '', 'success').then(
+    //       (x) => {
+    //         history.push('second-signup', { name, phone });
+    //         setIsLoading(false);
+    //       },
+    //     );
+    //   })
+    //   .catch((error) => {
+    //     setIsLoading(false);
+    //     swal(error.response.data.error, 'Tente novamente!', 'error');
+    //   });
   };
+
+  function isFormValid() {
+    if (!name) {
+      swal('Insira um nome, por favor', '', 'success');
+      return false;
+    }
+    if (!phone || phone.length < 5) {
+      swal('Telefone está em formato inválido', 'Corrija por favor', 'error');
+      return false;
+    }
+  }
+
   const handleContinue = async () => {
     if (!useTermsRead)
       return swal(
@@ -148,7 +168,7 @@ export default function Login() {
             </RegisterButton>
           )
         ) : (
-          <RegisterButton onClick={handleContinue}>continuar</RegisterButton>
+          <RegisterButton onClick={handleSubmit}>continuar</RegisterButton>
         )}
 
         <Row style={{ alignItems: 'flex-start' }}>

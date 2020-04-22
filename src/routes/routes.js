@@ -18,9 +18,9 @@ export default function Routes({ children }) {
   return (
     <Switch>
       <Suspense fallback={<div>Loading...</div>}>
-        <PrivateRoute exact path='/'>
+        <Route exact path='/'>
           <Home>{children}</Home>
-        </PrivateRoute>
+        </Route>
         <PrivateRoute path='/can-help-options'>
           <CanHelpOptions>{children}</CanHelpOptions>
         </PrivateRoute>
@@ -36,9 +36,9 @@ export default function Routes({ children }) {
         <Route exact path='/login'>
           <Login></Login>
         </Route>
-        <PrivateRoute exact path='/need-help-form'>
+        <Route exact path='/need-help-form'>
           <NeedHelpForm></NeedHelpForm>
-        </PrivateRoute>
+        </Route>
         <PrivateRoute exact path='/need-help-options'>
           <NeedHelpOptions>{children}</NeedHelpOptions>
         </PrivateRoute>

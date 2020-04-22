@@ -1,8 +1,10 @@
 import React from 'react';
-import { Welcome, Container, RegisterButton } from '../FirstSignup/styles';
 import { MainBody, Header, AcceptButton } from './style';
+import { useHistory } from 'react-router-dom';
 
 export default function UseTerm() {
+  const history = useHistory();
+
   return (
     <div>
       <Header
@@ -243,7 +245,9 @@ export default function UseTerm() {
           idealizadores.
         </p>
       </MainBody>
-      <AcceptButton>Aceitar</AcceptButton>
+      <AcceptButton onClick={() => history.push('first-signup', true)}>
+        Aceitar
+      </AcceptButton>
     </div>
   );
 }

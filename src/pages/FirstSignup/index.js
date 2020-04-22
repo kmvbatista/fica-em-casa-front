@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 
 import {
   Container,
@@ -18,13 +18,13 @@ import { Row } from '../../globalComponents';
 import { sendPhone, sendCode } from '../../services/phoneService';
 
 export default function Login() {
+  const history = useHistory();
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [token, setToken] = useState('');
   const [isConfirmming, setConfirmming] = useState(false);
+  const [useTermsRead, setUseTermsRead] = useState(history.location.state);
   const [isLoading, setIsLoading] = useState(false);
-
-  const history = useHistory();
 
   const handleSubmit = async () => {
     setIsLoading(true);
@@ -43,6 +43,12 @@ export default function Login() {
       });
   };
   const handleContinue = async () => {
+    if (!useTermsRead)
+      return swal(
+        'Você deve primeiro ler e aceitar os termos de uso.',
+        'Tente novamente',
+        'error',
+      );
     swal(
       `${
         name.split(' ')[0]
@@ -144,6 +150,33 @@ export default function Login() {
         ) : (
           <RegisterButton onClick={handleContinue}>continuar</RegisterButton>
         )}
+
+        <Row style={{ alignItems: 'flex-start' }}>
+          <input
+            onClick={() => setUseTermsRead(!useTermsRead)}
+            checked={useTermsRead}
+            type='checkbox'
+            style={{ width: '2em', height: '2em' }}
+          />
+          <p
+            style={{
+              color: 'var(--color-purple)',
+              fontSize: '2em',
+              display: 'inline-block',
+              marginLeft: '1em',
+            }}
+          >
+            {' '}
+            Eu li e concordo com os{' '}
+            <Link
+              style={{ fontSize: '1em', display: 'inline-block' }}
+              to='/use-terms'
+            >
+              Termos de uso
+            </Link>
+            .
+          </p>
+        </Row>
       </InitialForm>
     </Container>
   );

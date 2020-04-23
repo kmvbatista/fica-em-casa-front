@@ -15,6 +15,9 @@ import {
 } from './styles';
 import * as SessionService from '../../services/sessionService';
 import swal from 'sweetalert';
+import { getPendingNecesseties } from '../../services/userService';
+import PendingNecessities from '../../components/PendingNecessities';
+import Loader from '../../components/Loader';
 
 export default function ChooseGroup({ children }) {
   const history = useHistory();
@@ -28,7 +31,27 @@ export default function ChooseGroup({ children }) {
     if (!isUserLogged && !dataFirstAcess) {
       history.replace('/login');
     }
+    getUserPendingNecessities();
   }, []);
+
+  async function getUserPendingNecessities() {
+    if (isUserLogged) {
+      debugger;
+      const userNecessities = await getPendingNecesseties();
+      if (userNecessities && userNecessities.length > 0) {
+        swal({
+          title: 'Notamos que amigos tentaram ajudar...',
+          content: PendingNecessities(userNecessities),
+        }).then((x) => {
+          swal({
+            title: 'Aguarde por favor...',
+            content: Loader(),
+            buttons: {},
+          });
+        });
+      }
+    }
+  }
 
   function helperChoice() {
     if (isUserLogged) {

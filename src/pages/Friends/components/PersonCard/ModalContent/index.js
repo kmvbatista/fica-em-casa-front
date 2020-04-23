@@ -25,7 +25,7 @@ export default function ModalContent({
       setLoading(true);
       await api.put('/necessity', {
         status: 'pending',
-        category: necessity.category,
+        categoriesToUpdate: [necessity.category],
         userId: personId,
       });
       closeModal();

@@ -1,10 +1,13 @@
 import styled from 'styled-components';
+import { RegisterButton } from '../FirstSignup/styles';
+import { Column } from '../../globalComponents';
+import { ColumnContainer } from '../../optionsComponents';
 
 export const Title = styled.div`
   color: white;
   font-size: 2.3em;
   font-weight: bolder;
-  margin-bottom: em;
+  margin-bottom: 1.5em;
 `;
 
 export const InputBlock = styled.div`
@@ -76,4 +79,33 @@ export const GetModalButton = styled.div`
   border-radius: 20px;
   display: flex;
   justify-content: space-around;
+`;
+
+export const RegisterUserButton = styled(RegisterButton)`
+  background-color: transparent;
+  border: 2px solid white;
+  &:hover {
+    background-color: var(--color-green);
+  }
+  /* transform: translateX(12.5%); */
+  width: 100%;
+  box-shadow: 0px 25px 20px rgba(0, 0, 0, 0.3);
+  &:active {
+    transform: scale(0.9);
+    box-shadow: 0px 40px 30px rgba(0, 0, 0, 0.3);
+  }
+`;
+
+export const FormContainer = styled(Column)`
+  @media only screen and (min-width: 600px) {
+    width: 80%;
+  }
+`;
+
+export const MainContainer = styled(ColumnContainer)`
+  padding: 2em;
+  align-items: center;
+  @media only screen and (min-width: 600px) {
+    padding: 3em 5em;
+  }
 `;

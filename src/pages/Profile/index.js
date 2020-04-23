@@ -119,17 +119,7 @@ export default function Profile() {
                 lineHeight: '1.8',
               }}
             ></Input>
-            <img
-              onClick={() =>
-                swal({
-                  content: Share(),
-                  buttons: {},
-                })
-              }
-              src='./pencil.svg'
-              style={{ width: '2em' }}
-              alt='seu nome'
-            />
+            <img src='./pencil.svg' style={{ width: '2em' }} alt='seu nome' />
           </Row>
         </InputBlock>
         <InputBlock>

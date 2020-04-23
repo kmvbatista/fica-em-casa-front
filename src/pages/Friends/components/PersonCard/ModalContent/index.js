@@ -11,6 +11,7 @@ import { getUserData } from '../../../../../services/sessionService';
 import api from '../../../../../services/api';
 import Loading from 'react-loading';
 import swal from 'sweetalert';
+import Share from '../../../../../components/Share';
 
 export default function ModalContent({
   necessity,
@@ -29,6 +30,10 @@ export default function ModalContent({
         userId: personId,
       });
       closeModal();
+      swal({
+        content: Share(),
+        buttons: {},
+      });
       setLoading(false);
     } catch (error) {
       console.log(JSON.stringify(error));

@@ -37,12 +37,20 @@ export const Text = styled.div`
 `;
 
 export const IconContainer = styled(Column)`
-  padding: 0.3em 0.3em 0.2em 0.3em;
-  border: 1px solid var(--color-purple-dark);
-  border-radius: 10px;
+  border: 1px solid #ddd;
+  border-radius: 20px;
   color: var(--color-purple-dark);
+  justify-content: center;
+  align-items: center;
   font-size: 1em;
-  & > a {
-    text-decoration: none;
+  height: 6em;
+  width: 6em;
+  & > * {
+    margin-bottom: 5px;
   }
+`;
+
+export const ShareLink = styled.a`
+  text-decoration: none;
+  font-size: 0.7em;
 `;

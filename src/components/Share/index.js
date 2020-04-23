@@ -8,7 +8,9 @@ import {
   ContinueButton,
   Text,
   IconContainer,
+  ShareLink,
 } from './styles';
+import swal from 'sweetalert';
 
 export default function Share() {
   const wrapper = document.createElement('div');
@@ -85,7 +87,7 @@ export default function Share() {
         </MainContainer>
         <ShareContainer>
           <ShareIcons>
-            <a
+            <ShareLink
               target='_blank'
               href='https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fficaemcasaapp.com.br%2F&amp;src=sdkpreparse'
               class='fb-xfbml-parse-ignore'
@@ -93,40 +95,42 @@ export default function Share() {
               <IconContainer>
                 <img
                   src='./facebook.svg'
-                  style={{ width: '1em' }}
+                  style={{ width: '2.7em' }}
                   alt='compartilhe no face'
                 />
-                <strong>Whatsapp</strong>
+                Facebook
               </IconContainer>
-            </a>
-            <a
+            </ShareLink>
+            <ShareLink
               href='https://web.whatsapp.com/send?text=Pessoal,%20se%20liga%20nesse%20app:%20https://ficaemcasaapp.com.br`'
               data-action='share/whatsapp/share'
             >
               <IconContainer>
                 <img
                   src='./shareWhatsapp.svg'
-                  style={{ width: '1em' }}
+                  style={{ width: '2.7em' }}
                   alt='compartilhe no whats'
                 />
-                <strong>Whatsapp</strong>
+                Whatsapp
               </IconContainer>
-            </a>
-            <a
+            </ShareLink>
+            <ShareLink
               href='https://web.whatsapp.com/send?text=Pessoal,%20se%20liga%20nesse%20app:%20https://ficaemcasaapp.com.br`'
               data-action='share/whatsapp/share'
             >
               <IconContainer>
                 <img
                   src='./instagram.svg'
-                  style={{ width: '1em' }}
+                  style={{ width: '2.7em' }}
                   alt='compartilhe no whats'
                 />
-                <strong>Instagram</strong>
+                Instagram
               </IconContainer>
-            </a>
+            </ShareLink>
           </ShareIcons>
-          <ContinueButton>Continuar ajudando</ContinueButton>
+          <ContinueButton onClick={() => swal.close()}>
+            Continuar ajudando
+          </ContinueButton>
         </ShareContainer>
       </Column>
     );

@@ -4,8 +4,6 @@
   "version": "0.1.0",
   "homepage": "/",
   "engines": {
-    "node": "12.14.1",
-    "yarn": "1.21.1",
     "npm": "6.13.4"
   },
   "dependencies": {

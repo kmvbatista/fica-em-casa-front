@@ -36,7 +36,6 @@ export default function ChooseGroup({ children }) {
 
   async function getUserPendingNecessities() {
     if (isUserLogged) {
-      debugger;
       const userNecessities = await getPendingNecesseties();
       if (userNecessities && userNecessities.length > 0) {
         swal({
@@ -61,7 +60,6 @@ export default function ChooseGroup({ children }) {
   }
 
   function needyChoice() {
-    debugger;
     if (isUserLogged) {
       return history.push('/need-help-options');
     }

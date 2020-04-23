@@ -44,7 +44,6 @@ export async function registerUser(dataToSend) {
       buttons: {},
     });
     const response = await api.post('/user', dataToSend);
-    debugger;
     setCookies(response.data);
     swal('Dados cadastrados com sucesso', '', 'success');
   } catch (error) {

@@ -44,7 +44,6 @@ export default function NeedHelpOptions({ children }) {
   }
 
   const getCards = async () => {
-    debugger;
     const userAssistCategories = await UserService.getAssistCategories();
     const dataWithLoading = cardData.map((x) => {
       if (

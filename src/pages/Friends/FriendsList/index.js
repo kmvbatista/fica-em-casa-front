@@ -18,9 +18,10 @@ export default function HelpBeHelped({ children }) {
   const userLogged = getUserData();
   const [needyPeople, setNeedyPeople] = React.useState([]);
   const [helpers, setHelpers] = React.useState([]);
-  const [errorMessage, setErrorMessage] = React.useState();
+  const [needyErrorMessage, setNeedyErrorMsg] = React.useState();
   const [helperErrorMessage, setHelperError] = React.useState();
-  const [isLoading, setIsLoading] = React.useState(true);
+  const [isNeedySearching, setNeedySearching] = React.useState(true);
+  const [isHelperSearching, setHelperSearching] = React.useState(true);
 
   const toggleIsHelping = () => {
     setIsHelping(!isHelping);
@@ -43,8 +44,10 @@ export default function HelpBeHelped({ children }) {
       console.log(data);
       if (Array.isArray(data)) {
         setHelpers(data);
+        setHelperSearching(false);
       } else {
         setHelperError(data);
+        setHelperSearching(false);
       }
     });
   };
@@ -55,11 +58,12 @@ export default function HelpBeHelped({ children }) {
       console.log(data);
       if (Array.isArray(data)) {
         setNeedyPeople(data);
-        if (isLoading) {
-          setIsLoading(false);
+        if (isNeedySearching) {
+          setNeedySearching(false);
         }
       } else {
-        setErrorMessage(data);
+        setNeedyErrorMsg(data);
+        setNeedySearching(false);
       }
     });
   };
@@ -84,7 +88,7 @@ export default function HelpBeHelped({ children }) {
         <TabContainer>
           <Tab
             isHelping={isHelping}
-            isLoading={isLoading}
+            isLoading={isNeedySearching}
             highLight={isHelping}
             style={{ left: '0' }}
             onClick={toggleIsHelping}
@@ -94,7 +98,7 @@ export default function HelpBeHelped({ children }) {
             </strong>
           </Tab>
           <Tab
-            isLoading={isLoading}
+            isLoading={isNeedySearching}
             isHelping={isHelping}
             highLight={!isHelping}
             style={{ right: '0' }}
@@ -106,26 +110,44 @@ export default function HelpBeHelped({ children }) {
           </Tab>
         </TabContainer>
       </TopDecoration>
-      {isLoading ? (
-        <LoadingMatch></LoadingMatch>
-      ) : (
-        <div style={{ zIndex: '10', position: 'absolute', width: '100%' }}>
-          {isHelping && (
+      <div style={{ zIndex: '10', position: 'absolute', width: '100%' }}>
+        {getAvailableHelpers()}
+        {getAvailableNeeded()}
+      </div>
+      )}
+      {children}
+    </div>
+  );
+
+  function getAvailableHelpers() {
+    return (
+      <>
+        {isHelping &&
+          (isNeedySearching ? (
+            <LoadingMatch></LoadingMatch>
+          ) : (
             <AvailableHelpers
               errorMessaged={helperErrorMessage}
               helpers={helpers}
             ></AvailableHelpers>
-          )}
-          {!isHelping && (
-            <AvailableNeeded
-              errorMessage={errorMessage}
-              needyPeople={needyPeople}
-            ></AvailableNeeded>
-          )}
-        </div>
-      )}
+          ))}
+      </>
+    );
+  }
 
-      {children}
-    </div>
-  );
+  function getAvailableNeeded() {
+    return (
+      <>
+        {!isHelping &&
+          (isNeedySearching ? (
+            <LoadingMatch></LoadingMatch>
+          ) : (
+            <AvailableNeeded
+              errorMessage={needyErrorMessage}
+              setNeedyErrorMsg={needyPeople}
+            ></AvailableNeeded>
+          ))}
+      </>
+    );
+  }
 }

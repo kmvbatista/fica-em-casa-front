@@ -32,7 +32,7 @@ export const SetCategoriesButton = styled.button`
   border: none;
   color: white;
   background-color: ${({ isHelper }) =>
-    isHelper ? 'var(--color-purple)' : 'var(--color-pink)'};
+    isHelper ? 'var(--color-pink)' : 'var(--color-purple)'};
   padding: 1em 0.5em;
   box-shadow: 0px 10px 20px rgba(230, 31, 123, 0.5);
   font-size: 2em;

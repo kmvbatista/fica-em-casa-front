@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Column } from '../../globalComponents';
 
 export const TopDecorationImage = styled.img.attrs((props) => ({
   src: props.isHelping ? './helpers.png' : './old-guys-dancing.png',
@@ -18,7 +19,7 @@ export const TopDecoration = styled.div`
   position: relative;
 `;
 
-export const MainTab = styled.div`
+export const MainTab = styled(Column)`
   background-color: var(--color-pink);
   min-height: 100vh;
   z-index: 100;

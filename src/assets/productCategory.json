@@ -1,57 +1,57 @@
 [
   {
     "category": "Mercado",
-    "imageUrl": "./market.svg",
-    "isChecked": true
+    "imageUrl": "./Mercado.svg",
+    "isChecked": false
   },
   {
     "category": "Farmácia",
-    "imageUrl": "./clinic.svg",
+    "imageUrl": "./Farmácia.svg",
     "isChecked": false
   },
   {
     "category": "Doações",
-    "imageUrl": "./food-donation.svg",
+    "imageUrl": "./Doações.svg",
     "isChecked": false
   },
   {
     "category": "Padaria",
-    "imageUrl": "./bread.svg",
+    "imageUrl": "./Padaria.svg",
     "isChecked": false
   },
   {
     "category": "Limpeza",
-    "imageUrl": "./detergent.svg",
+    "imageUrl": "./Limpeza.svg",
     "isChecked": false
   },
   {
     "category": "Assistência online",
-    "imageUrl": "./electrician.svg",
+    "imageUrl": "./Assistência online.svg",
     "isChecked": false
   },
   {
     "category": "Leitura",
-    "imageUrl": "./bookshelf.svg",
+    "imageUrl": "./Leitura.svg",
     "isChecked": false
   },
   {
     "category": "Conselho",
-    "imageUrl": "./conversation.svg",
+    "imageUrl": "./Conselho.svg",
     "isChecked": false
   },
   {
     "category": "Vídeo aula",
-    "imageUrl": "./videocall.svg",
+    "imageUrl": "./Vídeo aula.svg",
     "isChecked": false
   },
   {
     "category": "Pet",
-    "imageUrl": "./pet.svg",
+    "imageUrl": "./Pet.svg",
     "isChecked": false
   },
   {
     "category": "Compartilhar",
-    "imageUrl": "./netflix.svg",
+    "imageUrl": "./Compartilhar.svg",
     "isChecked": false
   }
 ]

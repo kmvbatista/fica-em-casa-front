@@ -7,7 +7,6 @@ import {
   PersonName,
   ContactIcon,
   CollapsibleCard,
-  HelpOptionCard,
   GoToMapsButtonn,
   GoToMapsIcon,
 } from './styles';
@@ -16,84 +15,124 @@ import { Column, Row } from '../../../../globalComponents';
 
 import Collapse from '@material-ui/core/Collapse';
 import ArrowButton from './ArrowButton/arrowButton';
+import ModalContent from './ModalContent';
+import Modal from '../../../../components/Modal';
+import CategoriesList from './CategoriesList';
 
 export default function PersonCard({ person, backgroundColor, children }) {
   const [isExpanded, setIsExpanded] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [necessity, setNecessity] = useState();
+
+  const toggleShowModal = () => {
+    setShowModal(!showModal);
+  };
+
+  const getModal = () => {
+    return (
+      <Modal close={toggleShowModal}>
+        <ModalContent
+          closeModal={toggleShowModal}
+          necessity={necessity}
+          personName={person.userName}
+          personId={person.userId}
+        ></ModalContent>
+      </Modal>
+    );
+  };
+
   return (
-    <Column style={{ marginBottom: '2em' }}>
-      <PeopleCard
-        key={person.distance}
-        style={
-          !isExpanded
-            ? { borderRadius: '10px', backgroundColor: backgroundColor }
-            : { backgroundColor: backgroundColor }
-        }
-      >
-        <PersonAvatar
-          style={{
-            backgroundImage: `url(${person.photoUrl})`,
-          }}
-        ></PersonAvatar>
-        <Column style={{ marginRight: '5%' }}>
-          <PersonName>
-            <strong style={{ fontSize: 'inherit' }}>{person.name}</strong>
-          </PersonName>
-          <Distance>{person.distance}km perto de você</Distance>
-        </Column>
-        <Row style={{ width: '30%' }}>
-          <ContactIcon>
-            <img
-              src='./whatsapp.svg'
-              alt='whatsapp icon'
-              style={{
-                width: '70%',
-                borderRadius: 'inherit',
-              }}
-            />
-          </ContactIcon>
-          <ContactIcon>
-            <img
-              src='./phone.svg'
-              alt='whatsapp icon'
-              style={{
-                width: '70%',
-                borderRadius: 'inherit',
-              }}
-            />
-          </ContactIcon>
-          <div onClick={() => setIsExpanded(!isExpanded)}>
-            <ArrowButton></ArrowButton>
-          </div>
-        </Row>
-      </PeopleCard>
-      <Collapse in={isExpanded}>
-        <CollapsibleCard style={{ backgroundColor: backgroundColor }}>
-          <p
+    <>
+      <Column>
+        <PeopleCard
+          key={person.userName}
+          style={
+            !isExpanded
+              ? { borderRadius: '10px', backgroundColor: backgroundColor }
+              : { backgroundColor: backgroundColor }
+          }
+        >
+          <PersonAvatar
             style={{
-              fontSize: '1.4em',
-              color: 'var(--color-grey-dark1)',
-              fontWeight: '200',
+              backgroundImage: `url(${
+                person.photoUrl ? person.photoUrl : './user.svg'
+              })`,
             }}
-          >
-            {person.name.split(' ')[0]} {children}
-          </p>
-          <Row style={{ margin: '.8em 0' }}>
-            {person.needHelpWith.map((it) => (
-              <HelpOptionCard>
+          ></PersonAvatar>
+          <Column style={{ marginRight: '5%' }}>
+            <PersonName>
+              <strong style={{ fontSize: 'inherit' }}>{person.userName}</strong>
+            </PersonName>
+            <Distance>{person.distance}km perto de você</Distance>
+          </Column>
+          <Row style={{ width: '30%' }}>
+            <ContactIcon>
+              <a
+                href={`https://web.whatsapp.com/send?phone=55${person.userPhone}&text=Olá,%20${person.userName}%20vi%20que%20você%20precisa%20de%20ajuda%20pelo%20fica%20em%20casa`}
+              >
                 <img
-                  src={`./${it}.png`}
-                  alt={it}
-                  style={{ width: '1.5em', height: '1.5em' }}
+                  src='./whatsapp.svg'
+                  alt='whatsapp icon'
+                  style={{
+                    width: '70%',
+                    borderRadius: 'inherit',
+                  }}
                 />
-              </HelpOptionCard>
-            ))}
+              </a>
+            </ContactIcon>
+            <ContactIcon>
+              <a href={`tel:${person.userPhone}`}>
+                <img
+                  src='./phone.svg'
+                  alt='whatsapp icon'
+                  style={{
+                    width: '70%',
+                    borderRadius: 'inherit',
+                  }}
+                />
+              </a>
+            </ContactIcon>
+            <div onClick={() => setIsExpanded(!isExpanded)}>
+              <ArrowButton></ArrowButton>
+            </div>
           </Row>
-          <GoToMapsButtonn>
-            <GoToMapsIcon src='./location.svg'></GoToMapsIcon>
-            <strong>Traçar mapa usando o Google Maps</strong>
-          </GoToMapsButtonn>
-        </CollapsibleCard>
-      </Collapse>
-    </Column>
+        </PeopleCard>
+        <Collapse in={isExpanded}>
+          <CollapsibleCard style={{ backgroundColor: backgroundColor }}>
+            <p
+              style={{
+                fontSize: '1.7em',
+                color: 'var(--color-grey-dark1)',
+                fontWeight: '200',
+              }}
+            >
+              {person.userName} {children}
+            </p>
+            <CategoriesList
+              setNecessity={setNecessity}
+              toggleShowModal={toggleShowModal}
+              necessities={person.necessities}
+              helperCategories={person.categoriesToHelp}
+            ></CategoriesList>
+            <GoToMapsButtonn>
+              <GoToMapsIcon src='./location.svg'></GoToMapsIcon>
+              <a
+                style={{
+                  fontSize: '1.5em',
+                  textDecoration: 'none',
+                  border: 'none',
+                  color: '#fff',
+                }}
+                target='_blank'
+                href={`https://www.google.com/maps/dir/-26.921264,-49.148829/${person.userCoordinates.latitude},${person.userCoordinates.longitude}`}
+              >
+                Traçar mapa usando o Google Maps
+              </a>
+            </GoToMapsButtonn>
+          </CollapsibleCard>
+        </Collapse>
+      </Column>
+      {showModal && getModal()}
+    </>
   );
 }

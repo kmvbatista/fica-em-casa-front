@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import { OptionCard, Column } from '../../../globalComponents';
+import { OptionCard } from '../../../optionsComponents';
+import { Column } from '../../../globalComponents';
 
 export const ConfirmationButton = styled.button`
   outline: none;
@@ -9,6 +10,7 @@ export const ConfirmationButton = styled.button`
   background-color: var(--color-yellow);
   opacity: 1;
   transition: all 0.5s;
+  cursor: pointer;
 `;
 
 export const Card = styled(OptionCard)`

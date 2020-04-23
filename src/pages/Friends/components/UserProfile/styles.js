@@ -7,7 +7,7 @@ export const ProfileImage = styled.div`
   width: 7em;
   background-size: cover;
   background-image: ${(props) =>
-    props.imageUrl ? `url(${props.imageUrl})` : "url('./mulher.png')"};
+    props.imageUrl ? `url(${props.imageUrl})` : "url('./user.svg')"};
 `;
 
 export const ProfileContainer = styled(Row)`
@@ -23,4 +23,20 @@ export const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+`;
+
+export const SetCategoriesButton = styled.button`
+  margin-top: 5px;
+  border-radius: 30px;
+  outline: none;
+  border: none;
+  color: white;
+  background-color: ${({ isHelper }) =>
+    isHelper ? 'var(--color-purple)' : 'var(--color-pink)'};
+  padding: 1em 0.5em;
+  box-shadow: 0px 10px 20px rgba(230, 31, 123, 0.5);
+  font-size: 2em;
+  font-weight: bold;
+  margin: 2em;
+  cursor: pointer;
 `;

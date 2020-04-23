@@ -1,25 +1,41 @@
 import React from 'react';
 import { Column } from '../../../globalComponents';
 
-import peopleData from '../../../assets/peopleToHelp.json';
 import PersonCard from './PersonCard';
 import { MainPhrase, MainTab } from '../styledComponents';
+import { Grid } from './PersonCard/styles';
+import ErrorMessage from './ErrorMessage';
 
-export default function AvailableNeeded() {
+export default function AvailableNeeded({ needyPeople, errorMessage }) {
   return (
     <MainTab>
-      <MainPhrase>
-        <strong style={{ fontSize: 'inherit' }}>
-          {peopleData.length} vizinhos{' '}
-        </strong>
-        combinam com o que você pode
-        <strong style={{ fontSize: 'inherit' }}> ajudar!</strong>
-      </MainPhrase>
-      <Column>
-        {peopleData.map((person) => (
-          <PersonCard person={person}>precisa de ajuda com:</PersonCard>
-        ))}
-      </Column>
+      {errorMessage ? (
+        <ErrorMessage errorMessage={errorMessage}></ErrorMessage>
+      ) : needyPeople.length === 0 ? (
+        <ErrorMessage
+          isHelper={true}
+          errorMessage={
+            'Não há ninguém na sua região que você possa ajudar.\nAdote mais categorias para encontrar mais pessoas!'
+          }
+        ></ErrorMessage>
+      ) : (
+        <>
+          <MainPhrase>
+            <strong style={{ fontSize: 'inherit' }}>
+              {needyPeople.length} vizinho(s){' '}
+            </strong>
+            combinam com o que você pode
+            <strong style={{ fontSize: 'inherit' }}> ajudar!</strong>
+          </MainPhrase>
+          <Grid>
+            {needyPeople.map((person) => (
+              <PersonCard key={person.userName} person={person}>
+                precisa de ajuda com:
+              </PersonCard>
+            ))}
+          </Grid>
+        </>
+      )}
     </MainTab>
   );
 }

@@ -10,7 +10,6 @@ export const PeopleCard = styled.div`
   padding: 0.7em 0;
   border-radius: 10px 10px 0 0;
   position: relative;
-  margin-bottom: 0.1em;
 `;
 
 export const CollapsibleCard = styled.div`
@@ -31,13 +30,13 @@ export const PersonAvatar = styled.div`
 `;
 
 export const PersonName = styled.p`
-  font-size: 1.5em;
+  font-size: 2em;
   font-weight: bold;
-  margin-bottom: 0.5em;
+  margin-bottom: 0.2em;
 `;
 
 export const Distance = styled.p`
-  font-size: 1.3em;
+  font-size: 1.6em;
   font-weight: 200;
   color: var(--color-grey-light3);
 `;
@@ -78,4 +77,13 @@ export const GoToMapsIcon = styled.img`
   bottom: 0;
   left: 1em;
   height: 89%;
+`;
+
+export const Grid = styled.div`
+  display: grid;
+  grid-template-columns: 1;
+  @media only screen and (min-width: 600px) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 4em;
+  }
 `;

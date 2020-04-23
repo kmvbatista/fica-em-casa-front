@@ -1,30 +1,43 @@
 import React from 'react';
-import { Column } from '../../../globalComponents';
-
-import peopleData from '../../../assets/peopleToHelp.json';
 import PersonCard from './PersonCard';
 
 import { MainPhrase, MainTab } from '../styledComponents';
+import { Grid } from './PersonCard/styles';
+import ErrorMessage from './ErrorMessage';
 
-export default function AvailableHelpers() {
+export default function AvailableHelpers({ helpers, errorMessage }) {
   return (
-    <div>
-      <MainTab style={{ backgroundColor: 'var(--color-purple)' }}>
-        <MainPhrase>
-          <strong style={{ fontSize: 'inherit' }}>
-            {peopleData.length} vizinhos{' '}
-          </strong>
-          combinam com o que você precisa e
-          <strong style={{ fontSize: 'inherit' }}> vão te ajudar</strong>!
-        </MainPhrase>
-        <Column>
-          {peopleData.map((person) => (
-            <PersonCard backgroundColor={'#ffffff1c'} person={person}>
-              pode te ajudar com
-            </PersonCard>
-          ))}
-        </Column>
-      </MainTab>
-    </div>
+    <MainTab style={{ backgroundColor: 'var(--color-purple)' }}>
+      {errorMessage ? (
+        <ErrorMessage errorMessage></ErrorMessage>
+      ) : helpers.length === 0 ? (
+        <ErrorMessage
+          errorMessage={
+            'Não há ninguém na sua região que pode te ajudar.\n Cadastre mais necessidades para encontrar mais pessoas!'
+          }
+        ></ErrorMessage>
+      ) : (
+        <>
+          <MainPhrase>
+            <strong style={{ fontSize: 'inherit' }}>
+              {helpers.length} vizinho(s){' '}
+            </strong>
+            combinam com o que você precisa e
+            <strong style={{ fontSize: 'inherit' }}> vão te ajudar</strong>!
+          </MainPhrase>
+          <Grid>
+            {helpers.map((person) => (
+              <PersonCard
+                backgroundColor={'#ffffff1c'}
+                person={person}
+                key={person.name}
+              >
+                pode te ajudar com
+              </PersonCard>
+            ))}
+          </Grid>
+        </>
+      )}
+    </MainTab>
   );
 }

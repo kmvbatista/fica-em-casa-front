@@ -4,14 +4,59 @@ import AvailableHelpers from '../components/AvailableHelpers';
 import AvailableNeeded from '../components/AvailableNeeded';
 import { TopDecoration } from '../styledComponents';
 import UserProfile from '../components/UserProfile';
-import { getUserData } from '../../../services/sessionService';
+import {
+  getUserData,
+  updateUserCookies,
+} from '../../../services/sessionService';
+import { useEffect } from 'react';
+import * as SearchService from '../../../services/SearchService';
+import api from '../../../services/api';
 
-export default function HelpBeHelped() {
+export default function HelpBeHelped({ children }) {
   const [isHelping, setIsHelping] = React.useState(false);
-  const [userLogged, setUserLogged] = React.useState(getUserData());
+  const userLogged = getUserData();
+  const [needyPeople, setNeedyPeople] = React.useState([]);
+  const [helpers, setHelpers] = React.useState([]);
+  const [errorMessage, setErrorMessage] = React.useState();
+  const [helperErrorMessage, setHelperError] = React.useState();
 
   const toggleIsHelping = () => {
     setIsHelping(!isHelping);
+  };
+
+  useEffect(() => {
+    getHelpers();
+    getNeedy();
+  }, []);
+
+  async function handleSwitch(isActive) {
+    await api.put('/user', { active: isActive });
+    userLogged.active = isActive;
+    updateUserCookies(userLogged);
+  }
+
+  const getHelpers = async () => {
+    navigator.geolocation.getCurrentPosition(async ({ coords }) => {
+      const data = await SearchService.getNearHelpers(coords);
+      console.log(data);
+      if (Array.isArray(data)) {
+        setHelpers(data);
+      } else {
+        setHelperError(data);
+      }
+    });
+  };
+
+  const getNeedy = async () => {
+    navigator.geolocation.getCurrentPosition(async ({ coords }) => {
+      const data = await SearchService.getNearNeedy(coords);
+      console.log(data);
+      if (Array.isArray(data)) {
+        setNeedyPeople(data);
+      } else {
+        setErrorMessage(data);
+      }
+    });
   };
 
   return (
@@ -26,6 +71,8 @@ export default function HelpBeHelped() {
         }}
       >
         <UserProfile
+          handleSwitch={handleSwitch}
+          isActive={userLogged.active}
           userName={userLogged.name}
           isHelping={isHelping}
         ></UserProfile>
@@ -53,9 +100,20 @@ export default function HelpBeHelped() {
         </TabContainer>
       </TopDecoration>
       <div style={{ zIndex: '10', position: 'absolute', width: '100%' }}>
-        {isHelping && <AvailableHelpers></AvailableHelpers>}
-        {!isHelping && <AvailableNeeded></AvailableNeeded>}
+        {isHelping && (
+          <AvailableHelpers
+            errorMessaged={helperErrorMessage}
+            helpers={helpers}
+          ></AvailableHelpers>
+        )}
+        {!isHelping && (
+          <AvailableNeeded
+            errorMessage={errorMessage}
+            needyPeople={needyPeople}
+          ></AvailableNeeded>
+        )}
       </div>
+      {children}
     </div>
   );
 }

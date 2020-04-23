@@ -6,7 +6,7 @@ export default function PrivateRoute({ children, path }) {
   const isAuthenticated = authenticate();
   return (
     <Route exact path={path}>
-      {isAuthenticated ? children : <Redirect to='/login'></Redirect>}
+      {isAuthenticated ? children : <Redirect to='login'></Redirect>}
     </Route>
   );
 }

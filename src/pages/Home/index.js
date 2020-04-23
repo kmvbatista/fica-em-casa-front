@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import {
   Container,
@@ -13,19 +13,22 @@ import {
   SecondaryText,
   Image,
 } from './styles';
-import { registerUser, getUserData } from '../../services/sessionService';
-import Loader from '../../components/Loader';
+import * as SessionService from '../../services/sessionService';
 import swal from 'sweetalert';
 
-export default function ChooseGroup() {
+export default function ChooseGroup({ children }) {
   const history = useHistory();
   const dataFirstAcess = history.location.state;
 
-  let [isUserLogged, setUserLogged] = useState(getUserData() != undefined);
+  let [isUserLogged, setUserLogged] = useState(
+    SessionService.getUserData() !== undefined,
+  );
 
-  // useEffect(() => {
-
-  // }, []);
+  useEffect(() => {
+    if (!dataFirstAcess) {
+      history.replace('/login');
+    }
+  }, []);
 
   function helperChoice() {
     if (isUserLogged) {
@@ -35,6 +38,7 @@ export default function ChooseGroup() {
   }
 
   function needyChoice() {
+    debugger;
     if (isUserLogged) {
       return history.push('/need-help-options');
     }
@@ -52,22 +56,16 @@ export default function ChooseGroup() {
     const dataToSend = Object.assign(dataFirstAcess, {
       isNeedy: false,
     });
-    swal({
-      title: 'Por favor, aguarde...',
-      content: Loader(),
-      buttons: {},
-    });
     try {
-      await registerUser(dataToSend);
-      swal('Dados cadastrados com sucesso', '', 'success');
+      await SessionService.registerUser(dataToSend);
       history.push('can-help-options');
-    } catch (e) {
-      swal('Houve um erro na requisição', e.response.data.error, 'error');
+    } catch (error) {
+      console.log(error.message);
     }
   }
 
   return (
-    <Container>
+    <Container style={{ position: 'relative' }}>
       <Box1 onClick={needyChoice} isUserLogged={isUserLogged}>
         <TitleContainer>
           <Title>
@@ -97,6 +95,7 @@ export default function ChooseGroup() {
           </div>
         </CenteredBox>
       </Box1>
+
       <Box2 onClick={helperChoice} isUserLogged={isUserLogged}>
         <TitleContainer>
           <Title>
@@ -160,6 +159,7 @@ export default function ChooseGroup() {
           </div>
         </CenteredBox>
       </Box3>
+      {children}
     </Container>
   );
 }

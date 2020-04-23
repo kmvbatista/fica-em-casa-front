@@ -1,10 +1,13 @@
 import styled from 'styled-components';
+import { RegisterButton } from '../FirstSignup/styles';
+import { Column } from '../../globalComponents';
+import { ColumnContainer } from '../../optionsComponents';
 
 export const Title = styled.div`
   color: white;
   font-size: 2.3em;
   font-weight: bolder;
-  margin-bottom: em;
+  margin-bottom: 1.5em;
 `;
 
 export const InputBlock = styled.div`
@@ -32,8 +35,8 @@ export const InputBox = styled.div`
   border: white 2px solid;
   border-radius: 10px;
   background-color: transparent;
-  width: 3.5em;
-  height: 3.5em;
+  width: 4em;
+  height: 4em;
   margin-right: 1em;
   display: flex;
   position: relative;
@@ -54,7 +57,7 @@ export const RadioButton = styled.div`
 `;
 
 export const Question = styled.div`
-  width: 30%;
+  width: 40%;
   margin-right: 10%;
   font-size: 1.1em;
 `;
@@ -65,9 +68,9 @@ export const Select = styled.select`
   background-color: var(--color-pink);
   color: white;
   font-size: 1em;
-  width: 50%;
   height: 3em;
   margin-right: 1em;
+  width: 8em;
 `;
 
 export const GetModalButton = styled.div`
@@ -76,4 +79,37 @@ export const GetModalButton = styled.div`
   border-radius: 20px;
   display: flex;
   justify-content: space-around;
+`;
+
+export const RegisterUserButton = styled(RegisterButton)`
+  background-color: var(--color-pink);
+  border: 2px solid white;
+  &:hover {
+    background-color: var(--color-green);
+  }
+  width: 100%;
+  box-shadow: 0px 25px 20px rgba(0, 0, 0, 0.3);
+  &:active {
+    transform: scale(0.9);
+    box-shadow: 0px 40px 30px rgba(0, 0, 0, 0.3);
+  }
+`;
+
+export const FormContainer = styled(Column)`
+  justify-content: space-between;
+  position: relative;
+  height: 95vh;
+  justify-content: space-between;
+  @media only screen and (min-width: 600px) {
+    width: 80%;
+    height: 100vh;
+  }
+`;
+
+export const MainContainer = styled(ColumnContainer)`
+  padding: 2em;
+  align-items: center;
+  @media only screen and (min-width: 600px) {
+    padding: 3em 5em;
+  }
 `;

@@ -1,11 +1,17 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
-import StayHome from './Components/StayHome';
-import api from '../../services/api';
-import { setCookies } from '../../services/sessionService';
+import { useHistory, Link } from 'react-router-dom';
+import { loginUser } from '../../services/sessionService';
 
-import ThirdForm from './Components/ThirdForm/ThirdForm';
 import swal from 'sweetalert';
+import {
+  Welcome,
+  InitialForm,
+  LoginInput,
+  RegisterButton,
+  Title,
+  Container,
+} from '../FirstSignup/styles';
+import LoaderContainer from '../../components/LoaderContainer';
 
 export default function Login() {
   const [phone, setPhone] = useState('');
@@ -18,8 +24,7 @@ export default function Login() {
     const dataToSend = { phone, password };
     try {
       setIsLoading(true);
-      const response = await api.post('/sessions', dataToSend);
-      setCookies(response.data);
+      await loginUser(dataToSend);
       history.replace('/');
     } catch (error) {
       setIsLoading(false);
@@ -28,16 +33,55 @@ export default function Login() {
   };
 
   return (
-    <div style={{ padding: 0 }}>
-      <StayHome></StayHome>
-      <ThirdForm
-        phone={phone}
-        setPhone={setPhone}
-        password={password}
-        setPassword={setPassword}
-        handleSubmit={handleSubmit}
-        isLoading={isLoading}
-      ></ThirdForm>
-    </div>
+    <Container style={{ padding: 0 }}>
+      <Welcome
+        style={{
+          backgroundColor: 'var(--color-pink)',
+          alignItems: 'center',
+          justifyContent: 'center',
+          padding: 0,
+        }}
+      >
+        <img
+          style={{ width: '10em', height: '10em', marginBottom: '2em' }}
+          src='./logo.png'
+          alt='Fica em Casa'
+        />
+        <div style={{ fontSize: '5em' }}>
+          <strong>Fica</strong> em <strong>casa</strong>
+        </div>
+      </Welcome>
+      <InitialForm>
+        <Title>
+          <strong style={{ fontSize: '1.5em' }}>Faça o seu login</strong>
+        </Title>
+        <LoginInput
+          placeholder='Seu telefone'
+          name='phone'
+          id='phone'
+          required
+          value={phone}
+          onChange={(e) => setPhone(e.target.value)}
+        ></LoginInput>
+        <LoginInput
+          placeholder='Sua senha'
+          name='password'
+          type='password'
+          required
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        ></LoginInput>
+        <LoaderContainer color={'var(--color-pink)'} isLoading={isLoading}>
+          <RegisterButton
+            onClick={() => {
+              handleSubmit();
+            }}
+          >
+            Acessar
+          </RegisterButton>
+        </LoaderContainer>
+        <Link to='first-signup'>Cadastrar-se</Link>
+      </InitialForm>
+    </Container>
   );
 }

@@ -57,7 +57,7 @@ export const RadioButton = styled.div`
 `;
 
 export const Question = styled.div`
-  width: 30%;
+  width: 40%;
   margin-right: 10%;
   font-size: 1.1em;
 `;
@@ -82,12 +82,11 @@ export const GetModalButton = styled.div`
 `;
 
 export const RegisterUserButton = styled(RegisterButton)`
-  background-color: transparent;
+  background-color: var(--color-pink);
   border: 2px solid white;
   &:hover {
     background-color: var(--color-green);
   }
-  /* transform: translateX(12.5%); */
   width: 100%;
   box-shadow: 0px 25px 20px rgba(0, 0, 0, 0.3);
   &:active {
@@ -97,8 +96,13 @@ export const RegisterUserButton = styled(RegisterButton)`
 `;
 
 export const FormContainer = styled(Column)`
+  justify-content: space-between;
+  position: relative;
+  height: 95vh;
+  justify-content: space-between;
   @media only screen and (min-width: 600px) {
     width: 80%;
+    height: 100vh;
   }
 `;
 

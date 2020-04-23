@@ -1,7 +1,7 @@
 import api from './api';
 
-export function sendPhone(phone) {
-  return api.post('/phone', { phone });
+export function sendToken(loginMethod) {
+  return api.post('/login', { loginMethod });
 }
 
 export function sendCode(phone, token) {

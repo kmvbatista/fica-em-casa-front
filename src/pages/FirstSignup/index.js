@@ -15,25 +15,23 @@ import InputMask from 'react-input-mask';
 import Loader from '../../components/Loader';
 import Loading from 'react-loading';
 import { Row } from '../../globalComponents';
-import { sendPhone, sendCode } from '../../services/phoneService';
+import { sendCode } from '../../services/phoneService';
 
 export default function Login() {
   const history = useHistory();
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
+  const [email, setEmail] = useState('');
   const [token, setToken] = useState('');
   const [isConfirmming, setConfirmming] = useState(false);
+  const [hasNoEmail, setHasNoEmail] = useState(false);
   const [useTermsRead, setUseTermsRead] = useState(history.location.state);
   const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async () => {
-    if (!useTermsRead)
-      return swal(
-        'Você deve primeiro ler e aceitar os termos de uso.',
-        'Tente novamente',
-        'error',
-      );
-    history.push('second-signup', { name, phone });
+    if (isFormValid()) {
+      history.push('second-signup', { name, phone });
+    }
 
     // setIsLoading(true);
     // sendCode(phone, token)
@@ -60,15 +58,20 @@ export default function Login() {
       swal('Telefone está em formato inválido', 'Corrija por favor', 'error');
       return false;
     }
-  }
-
-  const handleContinue = async () => {
-    if (!useTermsRead)
-      return swal(
+    if (!useTermsRead) {
+      swal(
         'Você deve primeiro ler e aceitar os termos de uso.',
         'Tente novamente',
         'error',
       );
+      return false;
+    }
+  }
+
+  const handleContinue = () => {
+    if (!isFormValid) {
+      return;
+    }
     swal(
       `${
         name.split(' ')[0]
@@ -80,24 +83,28 @@ export default function Login() {
         content: Loader(),
         buttons: {},
       });
-      sendPhone(phone)
-        .then((_) => {
-          setConfirmming(true);
-          swal(
-            'Código enviado com sucesso!!!',
-            'Por favor, insira-o abaixo!',
-            'success',
-          );
-        })
-        .catch((error) => {
-          swal(
-            `${error.response.data.error}`,
-            'Houve erro ao tentar enviar o código',
-            'error',
-          );
-        });
+      sendConfirmationCode();
     });
   };
+
+  function sendConfirmationCode() {
+    sendCode(phone)
+      .then((_) => {
+        setConfirmming(true);
+        swal(
+          'Código enviado com sucesso!!!',
+          'Por favor, insira-o abaixo!',
+          'success',
+        );
+      })
+      .catch((error) => {
+        swal(
+          `${error.response.data.error}`,
+          'Houve erro ao tentar enviar o código',
+          'error',
+        );
+      });
+  }
 
   return (
     <Container>
@@ -134,22 +141,36 @@ export default function Login() {
               value={name}
               onChange={(e) => setName(e.target.value)}
             ></LoginInput>
-            <InputMask
-              mask='(99) 99999-9999'
-              value={phone}
-              onChange={(e) => setPhone(e.target.value)}
-            >
-              {(inputProps) => (
+            {hasNoEmail ? (
+              <InputMask
+                mask='(99) 99999-9999'
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+              >
+                {(inputProps) => (
+                  <LoginInput
+                    {...inputProps}
+                    placeholder='seu telefone'
+                    name='tel'
+                    id='tel'
+                    type='tel'
+                    required
+                  ></LoginInput>
+                )}
+              </InputMask>
+            ) : (
+              <Row>
                 <LoginInput
-                  {...inputProps}
-                  placeholder='seu telefone'
-                  name='tel'
-                  id='tel'
-                  type='tel'
+                  placeholder='seu email'
+                  name='email'
+                  id='email'
                   required
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                 ></LoginInput>
-              )}
-            </InputMask>
+                <button>Não tenho email</button>
+              </Row>
+            )}
           </>
         )}
         {isConfirmming ? (
@@ -168,7 +189,7 @@ export default function Login() {
             </RegisterButton>
           )
         ) : (
-          <RegisterButton onClick={handleSubmit}>continuar</RegisterButton>
+          <RegisterButton onClick={handleContinue}>continuar</RegisterButton>
         )}
 
         <Row style={{ alignItems: 'flex-start' }}>

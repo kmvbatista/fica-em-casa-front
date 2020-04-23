@@ -35,8 +35,8 @@ export const InputBox = styled.div`
   border: white 2px solid;
   border-radius: 10px;
   background-color: transparent;
-  width: 3.5em;
-  height: 3.5em;
+  width: 4em;
+  height: 4em;
   margin-right: 1em;
   display: flex;
   position: relative;

@@ -4,12 +4,19 @@ import { Row } from '../../../globalComponents';
 export const Tab = styled.div`
   background-color: ${(props) =>
     props.isHelping ? 'var(--color-purple)' : 'var(--color-pink)'};
+
   border-radius: 0 2em 0 0;
   width: 54%;
   padding: 1em 3em;
   position: absolute;
   font-size: 1.4em;
   cursor: pointer;
+  ${(props) =>
+    props.isLoading &&
+    `
+    background-color: white;
+    color: var(--color-purple);
+  `}
   ${(props) =>
     props.highLight
       ? `

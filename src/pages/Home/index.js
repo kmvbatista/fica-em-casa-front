@@ -25,7 +25,7 @@ export default function ChooseGroup({ children }) {
   );
 
   useEffect(() => {
-    if (!dataFirstAcess) {
+    if (!isUserLogged && !dataFirstAcess) {
       history.replace('/login');
     }
   }, []);

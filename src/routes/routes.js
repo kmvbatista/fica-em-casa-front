@@ -13,8 +13,6 @@ import FriendsFirstAccess from '../pages/Friends/FirstAcess';
 import UseTerms from '../pages/UseTerm';
 import Login from '../pages/Login';
 import Profile from '../pages/Profile';
-import NeedHelpLoadingMatch from '../pages/NeedHelpLoadingMatch';
-import CanHelpLoadingMatch from '../pages/CanHelpLoadingMatch';
 
 export default function Routes({ children }) {
   return (
@@ -48,12 +46,6 @@ export default function Routes({ children }) {
       </PrivateRoute>
       <Route exact path='/second-signup'>
         <SecondSignup></SecondSignup>
-      </Route>
-      <Route exact path='/need-help-matching'>
-        <NeedHelpLoadingMatch></NeedHelpLoadingMatch>
-      </Route>
-      <Route exact path='/can-help-matching'>
-        <CanHelpLoadingMatch></CanHelpLoadingMatch>
       </Route>
       <Route exact path='/use-terms'>
         <UseTerms></UseTerms>

@@ -11,6 +11,7 @@ import {
 import { useEffect } from 'react';
 import * as SearchService from '../../../services/SearchService';
 import api from '../../../services/api';
+import LoadingMatch from '../../../components/NeedHelpLoadingMatch';
 
 export default function HelpBeHelped({ children }) {
   const [isHelping, setIsHelping] = React.useState(false);
@@ -19,6 +20,7 @@ export default function HelpBeHelped({ children }) {
   const [helpers, setHelpers] = React.useState([]);
   const [errorMessage, setErrorMessage] = React.useState();
   const [helperErrorMessage, setHelperError] = React.useState();
+  const [isLoading, setIsLoading] = React.useState(true);
 
   const toggleIsHelping = () => {
     setIsHelping(!isHelping);
@@ -53,6 +55,9 @@ export default function HelpBeHelped({ children }) {
       console.log(data);
       if (Array.isArray(data)) {
         setNeedyPeople(data);
+        if (isLoading) {
+          setIsLoading(false);
+        }
       } else {
         setErrorMessage(data);
       }
@@ -79,6 +84,7 @@ export default function HelpBeHelped({ children }) {
         <TabContainer>
           <Tab
             isHelping={isHelping}
+            isLoading={isLoading}
             highLight={isHelping}
             style={{ left: '0' }}
             onClick={toggleIsHelping}
@@ -88,6 +94,7 @@ export default function HelpBeHelped({ children }) {
             </strong>
           </Tab>
           <Tab
+            isLoading={isLoading}
             isHelping={isHelping}
             highLight={!isHelping}
             style={{ right: '0' }}
@@ -99,20 +106,25 @@ export default function HelpBeHelped({ children }) {
           </Tab>
         </TabContainer>
       </TopDecoration>
-      <div style={{ zIndex: '10', position: 'absolute', width: '100%' }}>
-        {isHelping && (
-          <AvailableHelpers
-            errorMessaged={helperErrorMessage}
-            helpers={helpers}
-          ></AvailableHelpers>
-        )}
-        {!isHelping && (
-          <AvailableNeeded
-            errorMessage={errorMessage}
-            needyPeople={needyPeople}
-          ></AvailableNeeded>
-        )}
-      </div>
+      {isLoading ? (
+        <LoadingMatch></LoadingMatch>
+      ) : (
+        <div style={{ zIndex: '10', position: 'absolute', width: '100%' }}>
+          {isHelping && (
+            <AvailableHelpers
+              errorMessaged={helperErrorMessage}
+              helpers={helpers}
+            ></AvailableHelpers>
+          )}
+          {!isHelping && (
+            <AvailableNeeded
+              errorMessage={errorMessage}
+              needyPeople={needyPeople}
+            ></AvailableNeeded>
+          )}
+        </div>
+      )}
+
       {children}
     </div>
   );

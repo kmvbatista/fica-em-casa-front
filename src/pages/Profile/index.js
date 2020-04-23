@@ -20,6 +20,7 @@ import { updateUserCookies } from '../../services/sessionService';
 import swal from 'sweetalert';
 import Loading from 'react-loading';
 import { Row } from '../../globalComponents';
+import Share from '../../components/Share';
 
 export default function Profile() {
   const userData = getUserData();
@@ -118,7 +119,17 @@ export default function Profile() {
                 lineHeight: '1.8',
               }}
             ></Input>
-            <img src='./pencil.svg' style={{ width: '2em' }} alt='seu nome' />
+            <img
+              onClick={() =>
+                swal({
+                  content: Share(),
+                  buttons: {},
+                })
+              }
+              src='./pencil.svg'
+              style={{ width: '2em' }}
+              alt='seu nome'
+            />
           </Row>
         </InputBlock>
         <InputBlock>

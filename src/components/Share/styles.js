@@ -12,10 +12,7 @@ export const MainContainer = styled(Column)`
   justify-content: space-between;
 `;
 
-export const ShareContainer = styled.div`
-  height: 30%;
-  background-color: white;
-`;
+export const ShareContainer = styled.div``;
 
 export const ContinueButton = styled(RegisterButton)`
   background-color: var(--color-purple);
@@ -32,9 +29,20 @@ export const ContinueButton = styled(RegisterButton)`
 
 export const ShareIcons = styled(Row)`
   height: 5em;
-  margin: 2% 0;
+  margin: 5% 0;
+  justify-content: space-around;
 `;
 export const Text = styled.div`
   padding: 0 24%;
-  margin-top: 3%;
+`;
+
+export const IconContainer = styled(Column)`
+  padding: 0.3em 0.3em 0.2em 0.3em;
+  border: 1px solid var(--color-purple-dark);
+  border-radius: 10px;
+  color: var(--color-purple-dark);
+  font-size: 1em;
+  & > a {
+    text-decoration: none;
+  }
 `;

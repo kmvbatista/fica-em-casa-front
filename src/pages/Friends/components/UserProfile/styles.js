@@ -3,11 +3,12 @@ import { Row } from '../../../../globalComponents';
 
 export const ProfileImage = styled.div`
   border-radius: 20px;
+  border: 1px solid white;
   height: 7em;
   width: 7em;
   background-size: cover;
   background-image: ${(props) =>
-    props.imageUrl ? `url(${props.imageUrl})` : "url('./user.svg')"};
+    props.userPhoto ? `url(${props.userPhoto})` : "url('./user.svg')"};
 `;
 
 export const ProfileContainer = styled(Row)`

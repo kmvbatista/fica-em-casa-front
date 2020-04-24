@@ -83,6 +83,7 @@ export default function HelpBeHelped({ children }) {
           handleSwitch={handleSwitch}
           isActive={userLogged.active}
           userName={userLogged.name}
+          userPhoto={userLogged.photoUrl}
           isHelping={isHelping}
         ></UserProfile>
         <TabContainer>

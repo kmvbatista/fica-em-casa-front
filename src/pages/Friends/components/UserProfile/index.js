@@ -28,7 +28,7 @@ export default function UserProfile(props) {
   return (
     <Container>
       <ProfileContainer>
-        <ProfileImage></ProfileImage>
+        <ProfileImage userPhoto={props.userPhoto}></ProfileImage>
         <Column style={{ justifyContent: 'space-around' }}>
           <strong style={{ fontSize: '3em', marginBottom: '.2em' }}>
             {props.userName.split(' ')[0]},

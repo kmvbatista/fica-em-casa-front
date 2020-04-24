@@ -64,8 +64,6 @@ export default function Profile() {
       updateUserCookies(userData);
       swal('Foto salva com sucesso', '', 'success');
     } catch (error) {
-      debugger;
-      console.error(error);
       swal(
         `${
           error.response
@@ -144,6 +142,7 @@ export default function Profile() {
             style={{
               backgroundImage: `url(${photo || './user.svg'})`,
               backgroundSize: 'cover',
+              border: '1px solid white',
             }}
           ></PhotoCard>
           <strong style={{ fontSize: '2em' }}>Alterar foto</strong>

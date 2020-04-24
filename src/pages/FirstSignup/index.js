@@ -30,9 +30,13 @@ export default function Login() {
   const [hasNoEmail, setHasNoEmail] = useState(false);
   const [useTermsRead, setUseTermsRead] = useState(history.location.state);
   const [isLoading, setIsLoading] = useState(false);
+  const [alreadyHasCode, setAlreadyHasCode] = useState(false);
 
-  const handleSubmit = async () => {
+  const confirmCode = async () => {
     setIsLoading(true);
+    if (!token && token.split(' ').join('').length != 6) {
+      return swal('Insira um token válido, por favor', '', 'error');
+    }
     if (isFormValid()) {
       sendCode(`${ddi}${phone}`, email, hasNoEmail, token)
         .then((res) => {
@@ -90,6 +94,9 @@ export default function Login() {
     if (!isFormValid()) {
       return;
     }
+    if (alreadyHasCode) {
+      return confirmCode();
+    }
     swal(
       `Iremos enviar o código de confirmação para ${
         hasNoEmail ? 'número \n' + phone : 'email \n' + email
@@ -115,7 +122,21 @@ export default function Login() {
     }
     if (hasNoEmail) {
       if (!phone || phone.length < 5) {
-        swal('Telefone está em formato inválido', 'Corrija por favor', 'error');
+        swal(
+          'O telefone está em formato inválido',
+          'Corrija por favor',
+          'error',
+        );
+        return false;
+      }
+    } else {
+      if (
+        !email ||
+        !email.match(
+          /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+        )
+      ) {
+        swal('O email está em formato inválido', 'Corrija por favor', 'error');
         return false;
       }
     }
@@ -198,23 +219,45 @@ export default function Login() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                 ></LoginInput>
-                <TextLink
-                  onClick={() => {
-                    swal(
-                      'Deseja escolher o telefone como forma de fazer login?',
-                      { buttons: ['Não, continuar com email', 'Sim'] },
-                    ).then((change) => {
-                      if (change) {
-                        setHasNoEmail(true);
-                      }
-                    });
-                  }}
-                >
-                  não tenho email
-                </TextLink>
+                <Row style={{ justifyContent: 'space-around' }}>
+                  <TextLink
+                    onClick={() => {
+                      setAlreadyHasCode(!alreadyHasCode);
+                    }}
+                  >
+                    {alreadyHasCode
+                      ? 'não tenho um código'
+                      : 'já tenho um código'}
+                  </TextLink>
+                  <TextLink
+                    onClick={() => {
+                      swal(
+                        'Deseja escolher o telefone como forma de fazer login?',
+                        { buttons: ['Não, continuar com email', 'Sim'] },
+                      ).then((change) => {
+                        if (change) {
+                          setHasNoEmail(true);
+                        }
+                      });
+                    }}
+                  >
+                    não tenho email
+                  </TextLink>
+                </Row>
               </Column>
             )}
           </>
+        )}
+        {alreadyHasCode && (
+          <InputMask
+            mask='* * * * * *'
+            value={token}
+            onChange={(e) => setToken(e.target.value)}
+          >
+            {(inputProps) => (
+              <LoginInput {...inputProps} placeholder='_ _ _ _ _ _' />
+            )}
+          </InputMask>
         )}
         {isConfirmming ? (
           isLoading ? (
@@ -227,9 +270,15 @@ export default function Login() {
               ></Loading>
             </Row>
           ) : (
-            <RegisterButton onClick={handleSubmit}>
-              Confirmar número
-            </RegisterButton>
+            <Column>
+              <RegisterButton onClick={confirmCode}>confirmar</RegisterButton>
+              <Row>
+                <TextLink onClick={() => handleContinue()}>reenviar</TextLink>
+                <TextLink onClick={() => setConfirmming(false)}>
+                  alterar email
+                </TextLink>
+              </Row>
+            </Column>
           )
         ) : (
           <RegisterButton onClick={handleContinue}>continuar</RegisterButton>
@@ -240,6 +289,7 @@ export default function Login() {
             onClick={() => setUseTermsRead(!useTermsRead)}
             checked={useTermsRead}
             type='checkbox'
+            id='useTerms'
             style={{ width: '2em', height: '2em' }}
           />
           <p
@@ -251,7 +301,7 @@ export default function Login() {
             }}
           >
             {' '}
-            Eu li e concordo com os{' '}
+            <label htmlFor='useTerms'>Eu li e concordo com os </label>
             <Link
               style={{ fontSize: '1em', display: 'inline-block' }}
               to='/use-terms'

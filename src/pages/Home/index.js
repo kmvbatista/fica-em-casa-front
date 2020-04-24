@@ -16,12 +16,14 @@ import {
 import * as SessionService from '../../services/sessionService';
 import swal from 'sweetalert';
 import { getPendingNecesseties } from '../../services/userService';
+import { updateNecessitiesStatus } from '../../services/necessityService';
 import PendingNecessities from '../../components/PendingNecessities';
 import Loader from '../../components/Loader';
 
 export default function ChooseGroup({ children }) {
   const history = useHistory();
   const dataFirstAcess = history.location.state;
+  const [necessitiesToComplete, setNecessitiesToComplete] = useState([]);
 
   let [isUserLogged, setUserLogged] = useState(
     SessionService.getUserData() !== undefined,
@@ -40,13 +42,18 @@ export default function ChooseGroup({ children }) {
       if (userNecessities && userNecessities.length > 0) {
         swal({
           title: 'Notamos que amigos tentaram ajudar...',
-          content: PendingNecessities(userNecessities),
+          content: PendingNecessities(
+            userNecessities,
+            necessitiesToComplete,
+            setNecessitiesToComplete,
+          ),
         }).then((x) => {
           swal({
             title: 'Aguarde por favor...',
             content: Loader(),
             buttons: {},
           });
+          updateNecessitiesStatus(necessitiesToComplete, 'done');
         });
       }
     }
@@ -114,6 +121,7 @@ export default function ChooseGroup({ children }) {
               position: 'absolute',
               right: '20%',
               color: 'var(--color-pink)',
+              top: '35%',
             }}
           >
             <HighlightText>

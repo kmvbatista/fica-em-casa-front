@@ -19,7 +19,8 @@ export default function PendingNecessities(
   }
 
   function handleClick(item) {
-    if (!listToSend.contains(item)) {
+    debugger;
+    if (!listToSend.includes(item)) {
       addItem(item);
     } else {
       removeItem(item);
@@ -38,7 +39,7 @@ export default function PendingNecessities(
             {x.category}
           </label>{' '}
           <input
-            onClick={handleClick}
+            onClick={() => handleClick(x.category)}
             id={x.category}
             name={x.category}
             type='checkbox'

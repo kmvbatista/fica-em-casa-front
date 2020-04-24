@@ -8,8 +8,9 @@ import {
   SubTitle,
   Title,
   TextContainer,
+  GoToNextPage,
 } from '../../optionsComponents';
-import { Column } from '../../globalComponents';
+import { Column, Row } from '../../globalComponents';
 import cardData from '../../assets/productCategory.json';
 import * as AssistanceService from '../../services/assistanceService';
 import swal from 'sweetalert';
@@ -106,43 +107,53 @@ export default function NeedHelpOptions({ children }) {
           </SubTitle>
         </TextContainer>
         {cards.length > 0 ? (
-          <Grid>
-            {cards.map((el) => (
-              <OptionCard
-                key={el.category}
-                style={{ color: 'var(--color-purple)' }}
-                onClick={() => {
-                  if (!el.isChecked) {
-                    postCategoryAssistance(el.category);
-                  }
-                }}
-              >
-                <IsChecked
-                  isChecked={el.isChecked}
-                  color={'var(--color-purple)'}
-                ></IsChecked>
-                {el.isLoading && !el.isChecked ? (
-                  <Loading
-                    height='30%'
-                    width='30%'
-                    type='spinningBubbles'
-                    color='var(--color-purple)'
-                  ></Loading>
-                ) : (
-                  <img
-                    src={el.imageUrl}
-                    alt={el.category}
-                    style={{ maxHeight: '55%' }}
-                  />
-                )}
-                {el.category}
+          <>
+            <Grid>
+              {cards.map((el) => (
+                <OptionCard
+                  key={el.category}
+                  style={{ color: 'var(--color-purple)' }}
+                  onClick={() => {
+                    if (!el.isChecked) {
+                      postCategoryAssistance(el.category);
+                    }
+                  }}
+                >
+                  <IsChecked
+                    isChecked={el.isChecked}
+                    color={'var(--color-purple)'}
+                  ></IsChecked>
+                  {el.isLoading && !el.isChecked ? (
+                    <Loading
+                      height='30%'
+                      width='30%'
+                      type='spinningBubbles'
+                      color='var(--color-purple)'
+                    ></Loading>
+                  ) : (
+                    <img
+                      src={el.imageUrl}
+                      alt={el.category}
+                      style={{ maxHeight: '55%' }}
+                    />
+                  )}
+                  {el.category}
+                </OptionCard>
+              ))}
+              <OptionCard>
+                <CardImage src={'./logo.png'} alt={'Outras opçoes'} />
+                <GridText>{'Outros'}</GridText>
               </OptionCard>
-            ))}
-            <OptionCard>
-              <CardImage src={'./logo.png'} alt={'Outras opçoes'} />
-              <GridText>{'Outros'}</GridText>
-            </OptionCard>
-          </Grid>
+            </Grid>
+            <GoToNextPage>
+              <img
+                onClick={() => history.push('friends')}
+                src='./next.svg'
+                style={{ width: '3.5em', cursor: 'pointer' }}
+                alt='ver amigos'
+              />
+            </GoToNextPage>
+          </>
         ) : (
           <Loading
             width={'10em'}

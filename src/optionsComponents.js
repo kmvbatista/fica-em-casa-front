@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Row } from './globalComponents';
 
 export const ColumnContainer = styled.div`
   position: relative;
@@ -121,6 +122,15 @@ export const SubTitle = styled.p`
 
 export const TextContainer = styled.div`
   width: 90%;
+  @media only screen and (min-width: 600px) {
+    width: 100%;
+  }
+`;
+
+export const GoToNextPage = styled(Row)`
+  margin-top: 2.5em;
+  justify-content: flex-end;
+  width: 94%;
   @media only screen and (min-width: 600px) {
     width: 100%;
   }

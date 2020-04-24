@@ -123,7 +123,7 @@ export default function HelpBeHelped({ children }) {
     return (
       <>
         {isHelping &&
-          (isNeedySearching ? (
+          (isHelperSearching ? (
             <LoadingMatch></LoadingMatch>
           ) : (
             <AvailableHelpers
@@ -144,7 +144,7 @@ export default function HelpBeHelped({ children }) {
           ) : (
             <AvailableNeeded
               errorMessage={needyErrorMessage}
-              setNeedyErrorMsg={needyPeople}
+              needyPeople={needyPeople}
             ></AvailableNeeded>
           ))}
       </>

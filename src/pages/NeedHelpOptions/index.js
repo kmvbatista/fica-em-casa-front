@@ -8,6 +8,7 @@ import {
   SubTitle,
   TextContainer,
   Title,
+  GoToNextPage,
 } from '../../optionsComponents';
 import cardData from '../../assets/productCategory.json';
 import Modal from '../../components/Modal';
@@ -87,6 +88,14 @@ export default function NeedHelpOptions({ children }) {
             <GridText>{'Outros'}</GridText>
           </OptionCard>
         </Grid>
+        <GoToNextPage>
+          <img
+            onClick={() => history.push('friends')}
+            src='./next.svg'
+            style={{ width: '3.5em', cursor: 'pointer' }}
+            alt='ver amigos'
+          />
+        </GoToNextPage>
       </Column>
       {children}
       {showModal && getModal()}

@@ -79,6 +79,7 @@ export const InputBlock = styled.div`
 `;
 
 export const ProfileContainer = styled(Column)`
+  position: relative;
   @media only screen and (min-width: 600px) {
     flex-direction: row;
   }

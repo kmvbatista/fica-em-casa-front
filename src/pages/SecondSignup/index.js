@@ -9,8 +9,8 @@ import {
   InitialForm,
   Container,
 } from '../FirstSignup/styles';
+import InputMask from 'react-input-mask';
 import swal from 'sweetalert';
-// import { useEffect } from 'react';
 
 export default function SignIn() {
   const history = useHistory();
@@ -24,6 +24,8 @@ export default function SignIn() {
     if (password === confirmPassword) {
       const dataToNextPage = {
         name: dataComing.name,
+        login: dataComing.login,
+        useTermsRead: dataComing.useTermsRead,
         phone,
         password,
         confirmPassword,
@@ -96,14 +98,22 @@ export default function SignIn() {
         </Title>
       </Welcome>
       <InitialForm>
-        <LoginInput
-          placeholder='Seu telefone'
-          name='telefone'
-          id='telefone'
+        <InputMask
+          mask='(99) 99999-9999'
           value={phone}
           onChange={(e) => setPhone(e.target.value)}
-          required
-        ></LoginInput>
+        >
+          {(inputProps) => (
+            <LoginInput
+              {...inputProps}
+              placeholder='seu telefone'
+              name='tel'
+              id='tel'
+              type='tel'
+              required
+            ></LoginInput>
+          )}
+        </InputMask>
         <LoginInput
           placeholder='Criar senha'
           type='password'

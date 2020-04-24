@@ -38,13 +38,24 @@ export default function Login() {
             '',
             'success',
           ).then((x) => {
-            history.push('second-signup', { name, phone });
+            history.push('second-signup', {
+              name,
+              login: hasNoEmail ? phone : email,
+              phone,
+              useTermsRead,
+            });
             setIsLoading(false);
           });
         })
         .catch((error) => {
           setIsLoading(false);
-          swal(error.response.data.error, 'Tente novamente!', 'error');
+          swal(
+            error.response
+              ? error.response.data.error
+              : 'Houve um erro na requisição',
+            'Tente novamente!',
+            'error',
+          );
         });
     }
   };
@@ -73,7 +84,6 @@ export default function Login() {
   }
 
   const handleContinue = () => {
-    debugger;
     if (!isFormValid()) {
       return;
     }
@@ -187,8 +197,14 @@ export default function Login() {
                     fontSize: '1.4em',
                   }}
                   onClick={() => {
-                    swal('Ok, então insira o seu telefone, por favor!', '', '');
-                    setHasNoEmail(true);
+                    swal(
+                      'Deseja escolher o telefone como forma de fazer login?',
+                      { buttons: ['Não, continuar com email', 'Sim'] },
+                    ).then((change) => {
+                      if (change) {
+                        setHasNoEmail(true);
+                      }
+                    });
                   }}
                 >
                   não tenho email

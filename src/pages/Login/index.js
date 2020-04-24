@@ -14,21 +14,29 @@ import {
 import LoaderContainer from '../../components/LoaderContainer';
 
 export default function Login() {
-  const [phone, setPhone] = useState('');
+  const [login, setlogin] = useState('');
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
   const history = useHistory();
 
   const handleSubmit = async () => {
-    const dataToSend = { phone, password };
+    const dataToSend = { login, password };
     try {
       setIsLoading(true);
       await loginUser(dataToSend);
       history.replace('/');
     } catch (error) {
       setIsLoading(false);
-      swal('Senha ou email inválidos!', 'Tente novamente.', 'error');
+      swal(
+        `${
+          error.response
+            ? error.response.data.error
+            : 'Senha ou email inválidos!'
+        }`,
+        'Tente novamente.',
+        'error',
+      );
     }
   };
 
@@ -57,11 +65,11 @@ export default function Login() {
         </Title>
         <LoginInput
           placeholder='Seu telefone'
-          name='phone'
-          id='phone'
+          name='login'
+          id='login'
           required
-          value={phone}
-          onChange={(e) => setPhone(e.target.value)}
+          value={login}
+          onChange={(e) => setlogin(e.target.value)}
         ></LoginInput>
         <LoginInput
           placeholder='Sua senha'

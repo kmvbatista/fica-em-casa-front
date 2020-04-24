@@ -81,7 +81,15 @@ export default function ChooseGroup({ children }) {
       await SessionService.registerUser(dataToSend);
       history.push('can-help-options');
     } catch (error) {
-      console.log(error.message);
+      swal(
+        `${
+          error.response
+            ? error.response.data.error
+            : 'Tente novamente mais tarde!'
+        }`,
+        'Houve um erro na requisição',
+        'error',
+      );
     }
   }
 

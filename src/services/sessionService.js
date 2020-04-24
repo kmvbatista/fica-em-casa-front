@@ -7,7 +7,6 @@ export function getUserData() {
     const { user } = JSON.parse(document.cookie);
     return user;
   } catch (error) {
-    console.log('não foi possível encontrar usuário logado');
     return undefined;
   }
 }
@@ -37,19 +36,15 @@ export function updateUserCookies(user) {
 }
 
 export async function registerUser(dataToSend) {
-  try {
-    swal({
-      title: 'Estamos fazendo seu cadastro...',
-      content: Loader(),
-      buttons: {},
-    });
-    const response = await api.post('/user', dataToSend);
-    setCookies(response.data);
-    swal('Dados cadastrados com sucesso', '', 'success');
-  } catch (error) {
-    swal('Tente novamente mais tarde ;(', '', 'error');
-    throw error;
-  }
+  swal({
+    title: 'Estamos fazendo seu cadastro...',
+    content: Loader(),
+    buttons: {},
+  });
+  const response = await api.post('/user', dataToSend);
+  debugger;
+  setCookies(response.data);
+  swal('Dados cadastrados com sucesso', '', 'success');
 }
 
 export async function loginUser(dataToSend) {

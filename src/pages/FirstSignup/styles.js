@@ -81,7 +81,7 @@ export const RegisterButton = styled.button`
   box-shadow: 0px 10px 20px rgba(230, 31, 123, 0.5);
   font-size: 1.5em;
   font-weight: bold;
-  height: 3.7em;
+  height: 3.5em;
   &:active {
     transform: scale(0.9);
     box-shadow: 0px 25px 20px rgba(230, 31, 123, 0.5);
@@ -94,7 +94,7 @@ export const LoginInput = styled.input`
   border-radius: 1.5em;
   border: none;
   background-color: rgba(110, 36, 195, 0.06);
-  height: 3.7em;
+  height: 3.5em;
   line-height: 25px;
   font-size: 1.5em;
   text-align: center;

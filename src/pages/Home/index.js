@@ -138,7 +138,8 @@ export default function ChooseGroup({ children }) {
               position: 'absolute',
               right: '20%',
               color: 'var(--color-pink)',
-              top: '35%',
+              top: '50%',
+              transform: 'translateY(-50%)',
             }}
           >
             <HighlightText>
@@ -171,7 +172,14 @@ export default function ChooseGroup({ children }) {
               alt='quero-ajudar'
             ></Image>
 
-            <div style={{ position: 'absolute', left: '12%', top: '35%' }}>
+            <div
+              style={{
+                position: 'absolute',
+                left: '12%',
+                top: '50%',
+                transform: 'translateY(-50%)',
+              }}
+            >
               <HighlightText>
                 <strong>Quero</strong>
                 <br></br>
@@ -202,7 +210,14 @@ export default function ChooseGroup({ children }) {
               alt='amigos'
             ></Image>
 
-            <div style={{ position: 'absolute', left: '12%', top: '35%' }}>
+            <div
+              style={{
+                position: 'absolute',
+                left: '12%',
+                top: '50%',
+                transform: 'translateY(-50%)',
+              }}
+            >
               <SecondaryText>
                 meus<br></br>
               </SecondaryText>

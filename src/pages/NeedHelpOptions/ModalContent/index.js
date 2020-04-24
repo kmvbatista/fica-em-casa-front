@@ -46,6 +46,7 @@ export default function ModalContent({ cardInfo, closeModal, setCardChecked }) {
   const hideConfirmButton = () => {
     setShowConfirmButton(false);
     if (isTouchDevice()) {
+      console.log('é touch');
       setTimeout(() => {
         document.getElementById('confirmButton').style.display = 'none';
       }, 500);

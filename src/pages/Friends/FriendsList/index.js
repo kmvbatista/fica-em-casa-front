@@ -41,7 +41,6 @@ export default function HelpBeHelped({ children }) {
   const getHelpers = async () => {
     navigator.geolocation.getCurrentPosition(async ({ coords }) => {
       const data = await SearchService.getNearHelpers(coords);
-      console.log(data);
       if (Array.isArray(data)) {
         setHelpers(data);
         setHelperSearching(false);
@@ -55,7 +54,6 @@ export default function HelpBeHelped({ children }) {
   const getNeedy = async () => {
     navigator.geolocation.getCurrentPosition(async ({ coords }) => {
       const data = await SearchService.getNearNeedy(coords);
-      console.log(data);
       if (Array.isArray(data)) {
         setNeedyPeople(data);
         if (isNeedySearching) {
@@ -120,22 +118,6 @@ export default function HelpBeHelped({ children }) {
     </div>
   );
 
-  function getAvailableHelpers() {
-    return (
-      <>
-        {isHelping &&
-          (isHelperSearching ? (
-            <LoadingMatch></LoadingMatch>
-          ) : (
-            <AvailableHelpers
-              errorMessaged={helperErrorMessage}
-              helpers={helpers}
-            ></AvailableHelpers>
-          ))}
-      </>
-    );
-  }
-
   function getAvailableNeeded() {
     return (
       <>
@@ -147,6 +129,22 @@ export default function HelpBeHelped({ children }) {
               errorMessage={needyErrorMessage}
               needyPeople={needyPeople}
             ></AvailableNeeded>
+          ))}
+      </>
+    );
+  }
+
+  function getAvailableHelpers() {
+    return (
+      <>
+        {isHelping &&
+          (isHelperSearching ? (
+            <LoadingMatch></LoadingMatch>
+          ) : (
+            <AvailableHelpers
+              errorMessaged={helperErrorMessage}
+              helpers={helpers}
+            ></AvailableHelpers>
           ))}
       </>
     );

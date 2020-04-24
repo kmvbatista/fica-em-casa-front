@@ -9,9 +9,13 @@ export default function AvailableHelpers({ helpers, errorMessage }) {
   return (
     <MainTab style={{ backgroundColor: 'var(--color-purple)' }}>
       {errorMessage ? (
-        <ErrorMessage errorMessage></ErrorMessage>
+        <ErrorMessage
+          errorMessage={errorMessage}
+          isHelper={true}
+        ></ErrorMessage>
       ) : helpers.length === 0 ? (
         <ErrorMessage
+          isHelper={true}
           errorMessage={
             'Não há ninguém na sua região que pode te ajudar.\n Cadastre mais necessidades para encontrar mais pessoas!'
           }

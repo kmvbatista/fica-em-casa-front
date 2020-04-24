@@ -10,10 +10,13 @@ export default function AvailableNeeded({ needyPeople, errorMessage }) {
   return (
     <MainTab>
       {errorMessage ? (
-        <ErrorMessage errorMessage={errorMessage}></ErrorMessage>
+        <ErrorMessage
+          errorMessage={errorMessage}
+          isHelper={false}
+        ></ErrorMessage>
       ) : needyPeople.length === 0 ? (
         <ErrorMessage
-          isHelper={true}
+          isHelper={false}
           errorMessage={
             'Não há ninguém na sua região que você possa ajudar.\nAdote mais categorias para encontrar mais pessoas!'
           }

@@ -11,6 +11,9 @@ const column = css`
 
 export const Container = styled.div`
   padding: 0px;
+  @media only screen and (max-width: 600px) {
+    height: 100vh;
+  }
   @media only screen and (min-width: 600px) {
     display: flex;
     justify-content: center;
@@ -50,6 +53,9 @@ export const InitialForm = styled.div`
   justify-content: space-around;
   ${column}
   height: 50vh;
+  @media only screen and (max-width: 600px) {
+    height: calc(65% + 2em);
+  }
   @media only screen and (min-width: 600px) {
     transform: translate(-2em, 0em);
     ${desktopContainer}

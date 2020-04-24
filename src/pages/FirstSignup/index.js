@@ -278,7 +278,7 @@ export default function Login() {
             checked={useTermsRead}
             type='checkbox'
             id='useTerms'
-            style={{ width: '2em', height: '2em' }}
+            style={{ width: '1.4em', height: '1.4em' }}
           />
           <p
             style={{
@@ -289,9 +289,11 @@ export default function Login() {
             }}
           >
             {' '}
-            <label htmlFor='useTerms'>Eu li e concordo com os </label>
+            <label style={{ fontSize: '.7em' }} htmlFor='useTerms'>
+              Eu li e concordo com os{' '}
+            </label>
             <Link
-              style={{ fontSize: '1em', display: 'inline-block' }}
+              style={{ fontSize: '.7em', display: 'inline-block' }}
               to='/use-terms'
             >
               Termos de uso

@@ -12,9 +12,7 @@ import {
   MainContainer,
 } from './styles';
 import { useHistory } from 'react-router-dom';
-import { ColumnContainer } from '../../optionsComponents';
 import * as SessionService from '../../services/sessionService';
-import { Column } from '../../globalComponents';
 
 export default function NeedHelpForm() {
   const history = useHistory();
@@ -36,6 +34,7 @@ export default function NeedHelpForm() {
       sonsAverageAge: Number.parseInt(sonsAverageAge),
     });
     await SessionService.registerUser(dataToSend);
+    history.replace('need-help-options');
   };
 
   return (

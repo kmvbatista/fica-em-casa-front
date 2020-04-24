@@ -180,7 +180,7 @@ export default function ModalContent({ cardInfo, closeModal, setCardChecked }) {
   return (
     <ModalContainer>
       <Row style={{ alignItems: 'center' }}>
-        <Card>
+        <Card style={{ height: '7em', width: '7em' }}>
           <img
             alt={cardInfo.category}
             src={cardInfo.imageUrl}

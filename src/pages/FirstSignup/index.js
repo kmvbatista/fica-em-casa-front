@@ -17,11 +17,13 @@ import Loader from '../../components/Loader';
 import Loading from 'react-loading';
 import { Row, Column } from '../../globalComponents';
 import { sendCode, sendToken } from '../../services/phoneService';
+import DDISelect from '../../components/DDISelect';
 
 export default function Login() {
   const history = useHistory();
   const [name, setName] = useState('');
-  const [phone, setPhone] = useState('055');
+  const [phone, setPhone] = useState('');
+  const [ddi, setDDI] = useState('55');
   const [email, setEmail] = useState('');
   const [token, setToken] = useState('');
   const [isConfirmming, setConfirmming] = useState(false);
@@ -166,22 +168,18 @@ export default function Login() {
             ></LoginInput>
             {hasNoEmail ? (
               <Column>
-                <InputMask
-                  mask='+999 (99) 99999-9999'
-                  value={phone}
-                  onChange={(e) => setPhone(e.target.value)}
-                >
-                  {(inputProps) => (
-                    <LoginInput
-                      {...inputProps}
-                      placeholder='seu telefone'
-                      name='tel'
-                      id='tel'
-                      type='tel'
-                      required
-                    ></LoginInput>
-                  )}
-                </InputMask>
+                <Row>
+                  <DDISelect setDDI={setDDI} value={ddi}></DDISelect>
+                  <LoginInput
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
+                    placeholder='seu telefone'
+                    name='tel'
+                    id='tel'
+                    type='tel'
+                    required
+                  ></LoginInput>
+                </Row>
                 <TextLink
                   onClick={() => {
                     setHasNoEmail(false);

@@ -17,13 +17,12 @@ import Loader from '../../components/Loader';
 import Loading from 'react-loading';
 import { Row, Column } from '../../globalComponents';
 import { sendCode, sendToken } from '../../services/phoneService';
-import DDISelect from '../../components/DDISelect';
+import PhoneInput from '../../components/PhoneInput';
 
 export default function Login() {
   const history = useHistory();
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
-  const [ddi, setDDI] = useState('+55');
   const [email, setEmail] = useState('');
   const [token, setToken] = useState('');
   const [isConfirmming, setConfirmming] = useState(false);
@@ -38,7 +37,7 @@ export default function Login() {
       return swal('Insira um token válido, por favor', '', 'error');
     }
     if (isFormValid()) {
-      sendCode(`${ddi}${phone}`, email, hasNoEmail, token)
+      sendCode(phone, email, hasNoEmail, token)
         .then((res) => {
           swal(
             'Tudo certo! Vamos continuar com o cadastro',
@@ -68,7 +67,7 @@ export default function Login() {
   };
 
   function sendConfirmationCode() {
-    sendToken(`${ddi}${phone}`, email, hasNoEmail)
+    sendToken(phone, email, hasNoEmail)
       .then((_) => {
         setConfirmming(true);
         swal(
@@ -189,18 +188,7 @@ export default function Login() {
             ></LoginInput>
             {hasNoEmail ? (
               <Column>
-                <Row>
-                  <DDISelect setDDI={setDDI} value={ddi}></DDISelect>
-                  <LoginInput
-                    value={phone}
-                    onChange={(e) => setPhone(e.target.value)}
-                    placeholder='seu telefone'
-                    name='tel'
-                    id='tel'
-                    type='tel'
-                    required
-                  ></LoginInput>
-                </Row>
+                <PhoneInput setPhone={setPhone} phone={phone}></PhoneInput>
                 <TextLink
                   onClick={() => {
                     setHasNoEmail(false);
@@ -272,7 +260,7 @@ export default function Login() {
           ) : (
             <Column>
               <RegisterButton onClick={confirmCode}>confirmar</RegisterButton>
-              <Row>
+              <Row style={{ justifyContent: 'space-around', width: '100%' }}>
                 <TextLink onClick={() => handleContinue()}>reenviar</TextLink>
                 <TextLink onClick={() => setConfirmming(false)}>
                   alterar email

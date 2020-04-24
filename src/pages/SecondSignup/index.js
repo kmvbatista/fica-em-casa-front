@@ -11,6 +11,7 @@ import {
 } from '../FirstSignup/styles';
 import InputMask from 'react-input-mask';
 import swal from 'sweetalert';
+import PhoneInput from '../../components/PhoneInput';
 
 export default function SignIn() {
   const history = useHistory();
@@ -21,17 +22,15 @@ export default function SignIn() {
 
   const handleSubmit = async () => {
     if (!isFormValid()) return;
-    if (password === confirmPassword) {
-      const dataToNextPage = {
-        name: dataComing.name,
-        login: dataComing.login,
-        useTermsRead: dataComing.useTermsRead,
-        phone,
-        password,
-        confirmPassword,
-      };
-      history.replace('/', dataToNextPage);
-    }
+    const dataToNextPage = {
+      name: dataComing.name,
+      login: dataComing.login,
+      useTermsRead: dataComing.useTermsRead,
+      phone,
+      password,
+      confirmPassword,
+    };
+    history.replace('/', dataToNextPage);
   };
 
   function isFormValid() {
@@ -98,22 +97,9 @@ export default function SignIn() {
         </Title>
       </Welcome>
       <InitialForm>
-        <InputMask
-          mask='(99) 99999-9999'
-          value={phone}
-          onChange={(e) => setPhone(e.target.value)}
-        >
-          {(inputProps) => (
-            <LoginInput
-              {...inputProps}
-              placeholder='seu telefone'
-              name='tel'
-              id='tel'
-              type='tel'
-              required
-            ></LoginInput>
-          )}
-        </InputMask>
+        {!dataComing.phone && (
+          <PhoneInput value={phone} setPhone={setPhone}></PhoneInput>
+        )}
         <LoginInput
           placeholder='Criar senha'
           type='password'

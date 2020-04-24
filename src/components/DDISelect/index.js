@@ -22,10 +22,8 @@ export default function DDISelect({ value, setDDI }) {
           setDDI(e.target.value);
         }}
       >
-        <option value='93'>
-          93 <label htmlFor='a'>Afeganistao</label>
-        </option>
-        <option value='+27'>AFRICA DOUL</option>
+        <option value='93'>Afeganistao</option>
+        <option value='+27'>AFRICA DO SUL</option>
         <option value='+1'>ALASCA</option>
         <option value='+355'>ALBANIA</option>
         <option value='+49'>ALEMANHA</option>

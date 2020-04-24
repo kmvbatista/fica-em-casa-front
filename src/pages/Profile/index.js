@@ -20,13 +20,15 @@ import { updateUserCookies } from '../../services/sessionService';
 import swal from 'sweetalert';
 import Loading from 'react-loading';
 import { Row } from '../../globalComponents';
-import Share from '../../components/Share';
+import Loader from '../../components/Loader';
 
 export default function Profile() {
   const userData = getUserData();
   const [phone, setPhone] = useState(userData.phone);
   const [nickname, setNickname] = useState(userData.nickname || '');
   const [name, setName] = useState(userData.name);
+  const [photo, setPhoto] = useState(userData.photoUrl);
+  const [photoToPost, setPhotoToPost] = useState();
   const [isEditted, setIsEditted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const history = useHistory();
@@ -41,6 +43,38 @@ export default function Profile() {
     } catch (error) {
       setIsLoading(false);
       swal('Houve um erro na sua requisição', 'Tente novamente!', 'error');
+    }
+  }
+
+  async function postPhoto(file) {
+    if (!file) {
+      return;
+    }
+    const data = new FormData();
+    data.append('file', file);
+    try {
+      swal({
+        title: 'Aguarde enquanto salvamos sua foto...',
+        content: Loader(),
+        buttons: {},
+      });
+      const response = await api.post('/files', data);
+      userData.photoUrl = response.data.avatar;
+      setPhoto(userData.photoUrl);
+      updateUserCookies(userData);
+      swal('Foto salva com sucesso', '', 'success');
+    } catch (error) {
+      debugger;
+      console.error(error);
+      swal(
+        `${
+          error.response
+            ? error.response.data.error
+            : 'Houve um erro enquanto tentávamos salvar sua foto!'
+        }`,
+        'Tente novamente.',
+        'error',
+      );
     }
   }
 
@@ -90,12 +124,25 @@ export default function Profile() {
   }
 
   return (
-    <ProfileContainer style={{ position: 'relative' }}>
+    <ProfileContainer>
       <ProfilePhotoContainer>
-        <PhotoContainer style={{ cursor: 'pointer' }}>
+        <PhotoContainer style={{ position: 'relative' }}>
+          <input
+            style={{
+              opacity: 0,
+              width: '100%',
+              height: '100%',
+              cursor: 'pointer',
+              position: 'absolute',
+            }}
+            type='file'
+            onChange={(event) => {
+              postPhoto(event.target.files[0]);
+            }}
+          />
           <PhotoCard
             style={{
-              backgroundImage: `url(${userData.photoUrl || './user.svg'})`,
+              backgroundImage: `url(${photo || './user.svg'})`,
               backgroundSize: 'cover',
             }}
           ></PhotoCard>

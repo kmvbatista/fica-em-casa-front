@@ -23,7 +23,7 @@ export default function Login() {
   const history = useHistory();
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
-  const [ddi, setDDI] = useState('55');
+  const [ddi, setDDI] = useState('+55');
   const [email, setEmail] = useState('');
   const [token, setToken] = useState('');
   const [isConfirmming, setConfirmming] = useState(false);
@@ -34,7 +34,7 @@ export default function Login() {
   const handleSubmit = async () => {
     setIsLoading(true);
     if (isFormValid()) {
-      sendCode(phone, email, hasNoEmail, token)
+      sendCode(`${ddi}${phone}`, email, hasNoEmail, token)
         .then((res) => {
           swal(
             'Tudo certo! Vamos continuar com o cadastro',
@@ -63,27 +63,27 @@ export default function Login() {
     }
   };
 
-  function isFormValid() {
-    if (!name) {
-      swal('Insira um nome, por favor', '', 'error');
-      return false;
-    }
-    if (hasNoEmail) {
-      if (!phone || phone.length < 5) {
-        swal('Telefone está em formato inválido', 'Corrija por favor', 'error');
-        return false;
-      }
-    }
-
-    if (!useTermsRead) {
-      swal(
-        'Você deve primeiro ler e aceitar os termos de uso.',
-        'Tente novamente',
-        'error',
-      );
-      return false;
-    }
-    return true;
+  function sendConfirmationCode() {
+    sendToken(`${ddi}${phone}`, email, hasNoEmail)
+      .then((_) => {
+        setConfirmming(true);
+        swal(
+          'Código enviado com sucesso!!!',
+          'Por favor, insira-o abaixo!',
+          'success',
+        );
+      })
+      .catch((error) => {
+        swal(
+          `${
+            error.response
+              ? error.response.data.error
+              : 'Tente novamente, por favor'
+          }`,
+          'Houve erro ao tentar enviar o código',
+          'error',
+        );
+      });
   }
 
   const handleContinue = () => {
@@ -108,27 +108,27 @@ export default function Login() {
     });
   };
 
-  function sendConfirmationCode() {
-    sendToken(phone, email, hasNoEmail)
-      .then((_) => {
-        setConfirmming(true);
-        swal(
-          'Código enviado com sucesso!!!',
-          'Por favor, insira-o abaixo!',
-          'success',
-        );
-      })
-      .catch((error) => {
-        swal(
-          `${
-            error.response
-              ? error.response.data.error
-              : 'Tente novamente, por favor'
-          }`,
-          'Houve erro ao tentar enviar o código',
-          'error',
-        );
-      });
+  function isFormValid() {
+    if (!name) {
+      swal('Insira um nome, por favor', '', 'error');
+      return false;
+    }
+    if (hasNoEmail) {
+      if (!phone || phone.length < 5) {
+        swal('Telefone está em formato inválido', 'Corrija por favor', 'error');
+        return false;
+      }
+    }
+
+    if (!useTermsRead) {
+      swal(
+        'Você deve primeiro ler e aceitar os termos de uso.',
+        'Tente novamente',
+        'error',
+      );
+      return false;
+    }
+    return true;
   }
 
   return (

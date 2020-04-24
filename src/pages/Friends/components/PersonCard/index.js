@@ -63,7 +63,7 @@ export default function PersonCard({ person, backgroundColor, children }) {
           <PersonAvatar
             style={{
               backgroundImage: `url(${
-                person.photoUrl ? person.photoUrl : './user.svg'
+                person.photoUrl ? person.userPhoto : './user.svg'
               })`,
             }}
           ></PersonAvatar>
@@ -76,7 +76,7 @@ export default function PersonCard({ person, backgroundColor, children }) {
           <Row style={{ width: '30%' }}>
             <ContactIcon>
               <a
-                href={`https://web.whatsapp.com/send?phone=55${person.userPhone}&text=Olá,%20${person.userName}%20vi%20que%20você%20precisa%20de%20ajuda%20pelo%20fica%20em%20casa`}
+                href={`https://web.whatsapp.com/send?phone=${person.userPhone}&text=Olá,%20${person.userName}%20vi%20que%20você%20precisa%20de%20ajuda%20pelo%20fica%20em%20casa`}
               >
                 <img
                   src='./whatsapp.svg'

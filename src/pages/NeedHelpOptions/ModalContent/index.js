@@ -25,8 +25,6 @@ export default function ModalContent({ cardInfo, closeModal, setCardChecked }) {
     quantity: 0,
     measureUnit: 'quilo',
     category: cardInfo.category,
-    userName: user.name,
-    userPhone: user.phone,
   };
   let [itemToAdd, setItem] = useState(itemInitialState);
 

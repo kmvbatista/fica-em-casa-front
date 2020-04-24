@@ -14,8 +14,8 @@ import swal from 'sweetalert';
 import InputMask from 'react-input-mask';
 import Loader from '../../components/Loader';
 import Loading from 'react-loading';
-import { Row } from '../../globalComponents';
-import { sendCode } from '../../services/phoneService';
+import { Row, Column } from '../../globalComponents';
+import { sendCode, sendToken } from '../../services/phoneService';
 
 export default function Login() {
   const history = useHistory();
@@ -29,35 +29,38 @@ export default function Login() {
   const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async () => {
+    setIsLoading(true);
     if (isFormValid()) {
-      history.push('second-signup', { name, phone });
+      sendCode(phone, email, hasNoEmail, token)
+        .then((res) => {
+          swal(
+            'Tudo certo! Vamos continuar com o cadastro',
+            '',
+            'success',
+          ).then((x) => {
+            history.push('second-signup', { name, phone });
+            setIsLoading(false);
+          });
+        })
+        .catch((error) => {
+          setIsLoading(false);
+          swal(error.response.data.error, 'Tente novamente!', 'error');
+        });
     }
-
-    // setIsLoading(true);
-    // sendCode(phone, token)
-    //   .then((res) => {
-    //     swal('Tudo certo! Vamos continuar com o cadastro', '', 'success').then(
-    //       (x) => {
-    //         history.push('second-signup', { name, phone });
-    //         setIsLoading(false);
-    //       },
-    //     );
-    //   })
-    //   .catch((error) => {
-    //     setIsLoading(false);
-    //     swal(error.response.data.error, 'Tente novamente!', 'error');
-    //   });
   };
 
   function isFormValid() {
     if (!name) {
-      swal('Insira um nome, por favor', '', 'success');
+      swal('Insira um nome, por favor', '', 'error');
       return false;
     }
-    if (!phone || phone.length < 5) {
-      swal('Telefone está em formato inválido', 'Corrija por favor', 'error');
-      return false;
+    if (hasNoEmail) {
+      if (!phone || phone.length < 5) {
+        swal('Telefone está em formato inválido', 'Corrija por favor', 'error');
+        return false;
+      }
     }
+
     if (!useTermsRead) {
       swal(
         'Você deve primeiro ler e aceitar os termos de uso.',
@@ -66,10 +69,12 @@ export default function Login() {
       );
       return false;
     }
+    return true;
   }
 
   const handleContinue = () => {
-    if (!isFormValid) {
+    debugger;
+    if (!isFormValid()) {
       return;
     }
     swal(
@@ -88,7 +93,7 @@ export default function Login() {
   };
 
   function sendConfirmationCode() {
-    sendCode(phone)
+    sendToken(phone, email, hasNoEmail)
       .then((_) => {
         setConfirmming(true);
         swal(
@@ -99,7 +104,11 @@ export default function Login() {
       })
       .catch((error) => {
         swal(
-          `${error.response.data.error}`,
+          `${
+            error.response
+              ? error.response.data.error
+              : 'Tente novamente, por favor'
+          }`,
           'Houve erro ao tentar enviar o código',
           'error',
         );
@@ -159,7 +168,7 @@ export default function Login() {
                 )}
               </InputMask>
             ) : (
-              <Row>
+              <Column>
                 <LoginInput
                   placeholder='seu email'
                   name='email'
@@ -168,8 +177,23 @@ export default function Login() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                 ></LoginInput>
-                <button>Não tenho email</button>
-              </Row>
+                <p
+                  style={{
+                    textDecoration: 'underline',
+                    textAlign: 'center',
+                    cursor: 'pointer',
+                    color: 'var(--color-purple-dark)',
+                    marginTop: '1em',
+                    fontSize: '1.4em',
+                  }}
+                  onClick={() => {
+                    swal('Ok, então insira o seu telefone, por favor!', '', '');
+                    setHasNoEmail(true);
+                  }}
+                >
+                  não tenho email
+                </p>
+              </Column>
             )}
           </>
         )}

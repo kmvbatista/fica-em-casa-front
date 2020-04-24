@@ -9,6 +9,7 @@ export default function CategoriesList({
   helperCategories,
   setNecessity,
   toggleShowModal,
+  personName,
 }) {
   return (
     <>
@@ -20,7 +21,7 @@ export default function CategoriesList({
               onClick={() => {
                 if (it.status === 'pending') {
                   return swal(
-                    'Kennedy já está sendo ajudado nessa categoria!',
+                    `${personName} já está sendo ajudado(a) nessa categoria!`,
                     'Agradecemos a boa intenção',
                   );
                 }

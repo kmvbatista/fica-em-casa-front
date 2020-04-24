@@ -117,6 +117,7 @@ export default function PersonCard({ person, backgroundColor, children }) {
               {person.userName} {children}
             </p>
             <CategoriesList
+              personName={person.userName}
               setNecessity={setNecessity}
               toggleShowModal={toggleShowModal}
               necessities={necessities}

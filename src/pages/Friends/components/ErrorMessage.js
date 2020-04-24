@@ -7,9 +7,9 @@ export default function ErrorMessage({ errorMessage, isHelper }) {
   const history = useHistory();
   function navigate() {
     if (isHelper) {
-      history.push('can-help-options');
-    } else {
       history.push('need-help-options');
+    } else {
+      history.push('can-help-options');
     }
   }
   return (

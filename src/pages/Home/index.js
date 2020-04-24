@@ -37,25 +37,42 @@ export default function ChooseGroup({ children }) {
   }, []);
 
   async function getUserPendingNecessities() {
-    if (isUserLogged) {
-      const userNecessities = await getPendingNecesseties();
-      if (userNecessities && userNecessities.length > 0) {
+    try {
+      if (isUserLogged) {
         swal({
-          title: 'Notamos que amigos tentaram ajudar...',
-          content: PendingNecessities(
-            userNecessities,
-            necessitiesToComplete,
-            setNecessitiesToComplete,
-          ),
-        }).then((x) => {
-          swal({
-            title: 'Aguarde por favor...',
-            content: Loader(),
-            buttons: {},
-          });
-          updateNecessitiesStatus(necessitiesToComplete, 'done');
+          title: 'Aguarde, por favor...',
+          content: Loader(),
+          buttons: {},
         });
+        const userNecessities = await getPendingNecesseties();
+        if (userNecessities && userNecessities.length > 0) {
+          swal({
+            title: 'Notamos que amigos tentaram ajudar...',
+            content: PendingNecessities(
+              userNecessities,
+              necessitiesToComplete,
+              setNecessitiesToComplete,
+            ),
+          }).then((x) => {
+            swal({
+              title: 'Aguarde por favor...',
+              content: Loader(),
+              buttons: {},
+            });
+            updateNecessitiesStatus(necessitiesToComplete, 'done');
+          });
+        } else {
+          swal.close();
+        }
       }
+    } catch (error) {
+      swal(
+        error.response
+          ? error.response.data.error
+          : 'Não conseguimos buscar suas necessidades pendentes',
+        'Tentaremos novamente depois',
+        'error',
+      );
     }
   }
 

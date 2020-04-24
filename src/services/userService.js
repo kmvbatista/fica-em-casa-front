@@ -11,12 +11,6 @@ export async function getAssistCategories() {
   }
 }
 export async function getPendingNecesseties() {
-  try {
-    const response = await api.get('/necessity/status/pending');
-    return response.data;
-  } catch (error) {
-    if (error.response.data.error) {
-      console.log(error.response.data.error);
-    }
-  }
+  const response = await api.get('/necessity/status/pending');
+  return response.data;
 }

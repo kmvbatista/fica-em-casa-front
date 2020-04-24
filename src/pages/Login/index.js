@@ -88,7 +88,9 @@ export default function Login() {
             Acessar
           </RegisterButton>
         </LoaderContainer>
-        <Link to='first-signup'>Cadastrar-se</Link>
+        <Link style={{ textAlign: 'center' }} to='first-signup'>
+          Cadastrar-se
+        </Link>
       </InitialForm>
     </Container>
   );

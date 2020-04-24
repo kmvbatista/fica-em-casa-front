@@ -110,3 +110,12 @@ export const LoginInput = styled.input`
     border: 1px solid var(--color-purple-dark);
   }
 `;
+
+export const TextLink = styled.p`
+  text-decoration: underline;
+  text-align: center;
+  cursor: pointer;
+  color: var(--color-purple-dark);
+  margin-top: 1em;
+  font-size: 1.4em;
+`;

@@ -9,6 +9,7 @@ import {
   InitialForm,
   LoginInput,
   RegisterButton,
+  TextLink,
 } from './styles';
 import swal from 'sweetalert';
 import InputMask from 'react-input-mask';
@@ -20,7 +21,7 @@ import { sendCode, sendToken } from '../../services/phoneService';
 export default function Login() {
   const history = useHistory();
   const [name, setName] = useState('');
-  const [phone, setPhone] = useState('');
+  const [phone, setPhone] = useState('055');
   const [email, setEmail] = useState('');
   const [token, setToken] = useState('');
   const [isConfirmming, setConfirmming] = useState(false);
@@ -88,17 +89,20 @@ export default function Login() {
       return;
     }
     swal(
-      `${
-        name.split(' ')[0]
-      }, vamos enviar um código de confirmação para o número \n${phone}!`,
-      'Será por sms, ok?!',
-    ).then((x) => {
-      swal({
-        title: 'Aguarde enquanto enviamos o código...',
-        content: Loader(),
-        buttons: {},
-      });
-      sendConfirmationCode();
+      `Iremos enviar o código de confirmação para ${
+        hasNoEmail ? 'número \n' + phone : 'email \n' + email
+      }. Ok?`,
+      hasNoEmail ? 'Esse envio será por sms, confira nas mensagens' : '',
+      { buttons: ['Agora não', 'Sim'] },
+    ).then((accepted) => {
+      if (accepted) {
+        swal({
+          title: 'Aguarde enquanto enviamos o código...',
+          content: Loader(),
+          buttons: {},
+        });
+        sendConfirmationCode();
+      }
     });
   };
 
@@ -161,22 +165,31 @@ export default function Login() {
               onChange={(e) => setName(e.target.value)}
             ></LoginInput>
             {hasNoEmail ? (
-              <InputMask
-                mask='(99) 99999-9999'
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
-              >
-                {(inputProps) => (
-                  <LoginInput
-                    {...inputProps}
-                    placeholder='seu telefone'
-                    name='tel'
-                    id='tel'
-                    type='tel'
-                    required
-                  ></LoginInput>
-                )}
-              </InputMask>
+              <Column>
+                <InputMask
+                  mask='+999 (99) 99999-9999'
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
+                >
+                  {(inputProps) => (
+                    <LoginInput
+                      {...inputProps}
+                      placeholder='seu telefone'
+                      name='tel'
+                      id='tel'
+                      type='tel'
+                      required
+                    ></LoginInput>
+                  )}
+                </InputMask>
+                <TextLink
+                  onClick={() => {
+                    setHasNoEmail(false);
+                  }}
+                >
+                  usar email
+                </TextLink>
+              </Column>
             ) : (
               <Column>
                 <LoginInput
@@ -187,15 +200,7 @@ export default function Login() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                 ></LoginInput>
-                <p
-                  style={{
-                    textDecoration: 'underline',
-                    textAlign: 'center',
-                    cursor: 'pointer',
-                    color: 'var(--color-purple-dark)',
-                    marginTop: '1em',
-                    fontSize: '1.4em',
-                  }}
+                <TextLink
                   onClick={() => {
                     swal(
                       'Deseja escolher o telefone como forma de fazer login?',
@@ -208,7 +213,7 @@ export default function Login() {
                   }}
                 >
                   não tenho email
-                </p>
+                </TextLink>
               </Column>
             )}
           </>

@@ -23,10 +23,17 @@ export default function PersonCard({ person, backgroundColor, children }) {
   const [isExpanded, setIsExpanded] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [necessity, setNecessity] = useState();
+  let [necessities, setNecessities] = useState(person.necessities);
 
   const toggleShowModal = () => {
     setShowModal(!showModal);
   };
+
+  function turnCategoryPending(category) {
+    const index = necessities.findIndex((x) => x.category == category);
+    necessities[index].status = 'pending';
+    setNecessities([...necessities]);
+  }
 
   const getModal = () => {
     return (
@@ -36,6 +43,7 @@ export default function PersonCard({ person, backgroundColor, children }) {
           necessity={necessity}
           personName={person.userName}
           personId={person.userId}
+          turnCategoryPending={turnCategoryPending}
         ></ModalContent>
       </Modal>
     );
@@ -111,7 +119,7 @@ export default function PersonCard({ person, backgroundColor, children }) {
             <CategoriesList
               setNecessity={setNecessity}
               toggleShowModal={toggleShowModal}
-              necessities={person.necessities}
+              necessities={necessities}
               helperCategories={person.categoriesToHelp}
             ></CategoriesList>
             <GoToMapsButtonn>

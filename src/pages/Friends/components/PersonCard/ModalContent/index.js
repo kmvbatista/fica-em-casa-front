@@ -18,6 +18,7 @@ export default function ModalContent({
   closeModal,
   personName,
   personId,
+  turnCategoryPending,
 }) {
   const [isLoading, setLoading] = useState(false);
   const user = getUserData();
@@ -30,11 +31,12 @@ export default function ModalContent({
         userId: personId,
       });
       closeModal();
+      setLoading(false);
       swal({
         content: Share(),
         buttons: {},
       });
-      setLoading(false);
+      turnCategoryPending(necessity.category);
     } catch (error) {
       console.log(JSON.stringify(error));
       closeModal();
@@ -81,12 +83,14 @@ export default function ModalContent({
         </ItemsContainer>
       </MainContainer>
       {isLoading ? (
-        <Loading
-          width='5em'
-          height='5em'
-          color={'var(--color-yellow)'}
-          type='spinningBubbles'
-        ></Loading>
+        <Row style={{ width: '100%', justifyContent: 'center' }}>
+          <Loading
+            width='5em'
+            height='5em'
+            color={'var(--color-yellow)'}
+            type='spinningBubbles'
+          ></Loading>
+        </Row>
       ) : (
         <ConfirmationButton onClick={confirmHelp}>
           <strong style={{ fontSize: '1.25em' }}>Quero ajudar</strong>

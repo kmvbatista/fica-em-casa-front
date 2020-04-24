@@ -29,6 +29,12 @@ export const Input = styled.input`
   font-size: 1.5em;
   text-align: center;
   font-weight: 200;
+  ::-webkit-outer-spin-button,
+  ::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  -moz-appearance: textfield;
 `;
 
 export const InputBox = styled.div`
@@ -110,6 +116,6 @@ export const MainContainer = styled(ColumnContainer)`
   padding: 2em;
   align-items: center;
   @media only screen and (min-width: 600px) {
-    padding: 3em 5em;
+    padding: 7em 5em;
   }
 `;

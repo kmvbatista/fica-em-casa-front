@@ -16,7 +16,7 @@ import InputMask from 'react-input-mask';
 import Loader from '../../components/Loader';
 import Loading from 'react-loading';
 import { Row, Column } from '../../globalComponents';
-import { sendCode, sendToken } from '../../services/phoneService';
+import { sendCode, sendToken } from '../../services/tokenService';
 import PhoneInput from '../../components/PhoneInput';
 
 export default function Login() {

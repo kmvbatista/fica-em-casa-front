@@ -35,6 +35,10 @@ export const Input = styled.input`
     margin: 0;
   }
   -moz-appearance: textfield;
+  &::placeholder {
+    color: var(--color-grey);
+    font-size: 0.7em;
+  }
 `;
 
 export const InputBox = styled.div`
@@ -63,7 +67,7 @@ export const RadioButton = styled.div`
 `;
 
 export const Question = styled.div`
-  width: 40%;
+  width: 80%;
   margin-right: 10%;
   font-size: 1.1em;
 `;
@@ -104,11 +108,9 @@ export const RegisterUserButton = styled(RegisterButton)`
 export const FormContainer = styled(Column)`
   justify-content: space-between;
   position: relative;
-  height: 95vh;
   justify-content: space-between;
   @media only screen and (min-width: 600px) {
     width: 80%;
-    height: 100vh;
   }
 `;
 
@@ -116,6 +118,6 @@ export const MainContainer = styled(ColumnContainer)`
   padding: 2em;
   align-items: center;
   @media only screen and (min-width: 600px) {
-    padding: 4em 5em 10 5em;
+    padding: 4em 5em 4em 5em;
   }
 `;

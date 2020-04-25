@@ -14,6 +14,7 @@ import {
 import { useHistory } from 'react-router-dom';
 import * as SessionService from '../../services/sessionService';
 import swal from 'sweetalert';
+import { Row } from '../../globalComponents';
 
 export default function NeedHelpForm() {
   const history = useHistory();
@@ -64,6 +65,7 @@ export default function NeedHelpForm() {
                     value={dayOfBirth}
                     onChange={(e) => setDayOfBirth(e.target.value)}
                     type='number'
+                    placeholder='ex: 10'
                   />
                 </InputBox>
                 <InputBox>
@@ -71,6 +73,7 @@ export default function NeedHelpForm() {
                     value={monthOfBirth}
                     onChange={(e) => setMonthOfBirth(e.target.value)}
                     type='number'
+                    placeholder='12'
                   />
                 </InputBox>
                 <InputBox>
@@ -78,6 +81,7 @@ export default function NeedHelpForm() {
                     value={yearOfBirth}
                     onChange={(e) => setYearOfBirth(e.target.value)}
                     type='number'
+                    placeholder='87'
                   />
                 </InputBox>
               </div>
@@ -85,27 +89,29 @@ export default function NeedHelpForm() {
           </div>
           <InputBlock>
             <Question>Você tem filhos?</Question>
-            <RadioButton
-              onClick={() => setHasChildren(true)}
-              className='radio'
-              style={{
-                backgroundColor: hasChildren ? '#ffff0099' : 'transparent',
-              }}
-            >
-              sim
-            </RadioButton>
-            <RadioButton
-              onClick={() => {
-                setHasChildren(false);
-              }}
-              style={{
-                backgroundColor:
-                  hasChildren === false ? '#ffff00b3' : 'transparent',
-              }}
-              className='radio'
-            >
-              não
-            </RadioButton>
+            <Row>
+              <RadioButton
+                onClick={() => setHasChildren(true)}
+                className='radio'
+                style={{
+                  backgroundColor: hasChildren ? '#ffff0099' : 'transparent',
+                }}
+              >
+                sim
+              </RadioButton>
+              <RadioButton
+                onClick={() => {
+                  setHasChildren(false);
+                }}
+                style={{
+                  backgroundColor:
+                    hasChildren === false ? '#ffff00b3' : 'transparent',
+                }}
+                className='radio'
+              >
+                não
+              </RadioButton>
+            </Row>
           </InputBlock>
           <div
             style={{

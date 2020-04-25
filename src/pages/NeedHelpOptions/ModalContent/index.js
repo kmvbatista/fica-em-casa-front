@@ -13,7 +13,6 @@ import {
 } from './styles';
 import itemsExample from '../../../assets/itemsModal.json';
 import * as NecessityService from '../../../services/necessityService';
-import { getUserData } from '../../../services/sessionService';
 
 export default function ModalContent({ cardInfo, closeModal, setCardChecked }) {
   const [showExample, setShowExample] = useState(true);
@@ -22,7 +21,7 @@ export default function ModalContent({ cardInfo, closeModal, setCardChecked }) {
   const itemInitialState = {
     item: '',
     quantity: 0,
-    measureUnit: 'quilo',
+    measureUnit: 'unid',
     category: cardInfo.category,
   };
   let [itemToAdd, setItem] = useState(itemInitialState);

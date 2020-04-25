@@ -63,7 +63,7 @@ export default function PersonCard({ person, backgroundColor, children }) {
           <PersonAvatar
             style={{
               backgroundImage: `url(${
-                person.photoUrl ? person.userPhoto : './user.svg'
+                person.userPhoto ? person.userPhoto : './user.svg'
               })`,
             }}
           ></PersonAvatar>

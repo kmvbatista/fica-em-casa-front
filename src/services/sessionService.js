@@ -36,25 +36,14 @@ export function updateUserCookies(user) {
 }
 
 export async function registerUser(dataToSend) {
-  try {
-    swal({
-      title: 'Estamos fazendo seu cadastro...',
-      content: Loader(),
-      buttons: {},
-    });
-    const response = await api.post('/user', dataToSend);
-    debugger;
-    setCookies(response.data);
-    swal('Dados cadastrados com sucesso', '', 'success');
-  } catch (error) {
-    swal(
-      error.response
-        ? error.response.data.error
-        : 'Houve um erro na sua requisição',
-      '',
-      'error',
-    );
-  }
+  swal({
+    title: 'Estamos fazendo seu cadastro...',
+    content: Loader(),
+    buttons: {},
+  });
+  const response = await api.post('/user', dataToSend);
+  setCookies(response.data);
+  swal('Dados cadastrados com sucesso', '', 'success');
 }
 
 export async function loginUser(dataToSend) {

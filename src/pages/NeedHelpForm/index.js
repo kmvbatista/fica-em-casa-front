@@ -13,6 +13,7 @@ import {
 } from './styles';
 import { useHistory } from 'react-router-dom';
 import * as SessionService from '../../services/sessionService';
+import swal from 'sweetalert';
 
 export default function NeedHelpForm() {
   const history = useHistory();
@@ -26,15 +27,25 @@ export default function NeedHelpForm() {
   const dataComing = history.location.state;
 
   const handleSubmit = async () => {
-    const birthday = `${dayOfBirth}/${monthOfBirth}/${yearOfBirth}`;
-    const dataToSend = Object.assign(dataComing, {
-      birthday,
-      sonsAtHome: Number.parseInt(sonsAtHome),
-      sonsQuantity: Number.parseInt(sonsQuantity),
-      sonsAverageAge: Number.parseInt(sonsAverageAge),
-    });
-    await SessionService.registerUser(dataToSend);
-    history.replace('need-help-options');
+    try {
+      const birthday = `${dayOfBirth}/${monthOfBirth}/${yearOfBirth}`;
+      const dataToSend = Object.assign(dataComing, {
+        birthday,
+        sonsAtHome: Number.parseInt(sonsAtHome),
+        sonsQuantity: Number.parseInt(sonsQuantity),
+        sonsAverageAge: Number.parseInt(sonsAverageAge),
+      });
+      await SessionService.registerUser(dataToSend);
+      history.replace('need-help-options');
+    } catch (error) {
+      swal(
+        error.response
+          ? error.response.data.error
+          : 'Houve um erro na sua requisição',
+        '',
+        'error',
+      );
+    }
   };
 
   return (

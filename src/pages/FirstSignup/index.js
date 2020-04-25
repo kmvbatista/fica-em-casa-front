@@ -221,7 +221,7 @@ export default function Login() {
                     onClick={() => {
                       swal(
                         'Deseja escolher o telefone como forma de fazer login?',
-                        { buttons: ['Não, continuar com email', 'Sim'] },
+                        { buttons: ['Continuar com email', 'Sim'] },
                       ).then((change) => {
                         if (change) {
                           setHasNoEmail(true);

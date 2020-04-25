@@ -58,3 +58,13 @@ export async function postNecessity(category) {
     throw error;
   }
 }
+
+export async function getUserNecessities() {
+  const response = await api.get('/necessity/user/necessities');
+  console.log(response);
+  return response.data;
+}
+
+export async function deleteSimpleNecessity(id) {
+  await api.delete(`necessity/${id}`);
+}

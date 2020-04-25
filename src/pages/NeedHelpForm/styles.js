@@ -116,6 +116,6 @@ export const MainContainer = styled(ColumnContainer)`
   padding: 2em;
   align-items: center;
   @media only screen and (min-width: 600px) {
-    padding: 7em 5em;
+    padding: 4em 5em 10 5em;
   }
 `;

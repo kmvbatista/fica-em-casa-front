@@ -27,22 +27,26 @@
   {
     "category": "Assistência online",
     "imageUrl": "./Assistência online.svg",
-    "isChecked": false
+    "isChecked": false,
+    "isSimple": true
   },
   {
     "category": "Leitura",
     "imageUrl": "./Leitura.svg",
-    "isChecked": false
+    "isChecked": false,
+    "isSimple": true
   },
   {
     "category": "Conselho",
     "imageUrl": "./Conselho.svg",
-    "isChecked": false
+    "isChecked": false,
+    "isSimple": true
   },
   {
     "category": "Vídeo aula",
     "imageUrl": "./Vídeo aula.svg",
-    "isChecked": false
+    "isChecked": false,
+    "isSimple": true
   },
   {
     "category": "Pet",
@@ -52,6 +56,7 @@
   {
     "category": "Compartilhar",
     "imageUrl": "./Compartilhar.svg",
-    "isChecked": false
+    "isChecked": false,
+    "isSimple": true
   }
 ]

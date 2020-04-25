@@ -1,11 +1,7 @@
 import api from './api';
 import { getUserData } from './sessionService';
 
-export async function postAssistance(
-  category,
-  toggleLoader,
-  toggleIsCardChecked,
-) {
+export async function postAssistance(category) {
   const user = getUserData();
   const dataToSend = {
     userId: user.id,
@@ -13,11 +9,9 @@ export async function postAssistance(
     userPhone: user.phone,
     category,
   };
-  try {
-    await api.post('assist', dataToSend);
-    toggleIsCardChecked(category);
-  } catch (error) {
-    toggleLoader(category);
-    alert('houve um erro ao se conectar com o servidor');
-  }
+  await api.post('assist', dataToSend);
+}
+
+export async function deleteAssistance(id) {
+  await api.delete(`assist/${id}`);
 }

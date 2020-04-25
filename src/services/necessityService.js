@@ -17,37 +17,54 @@ export async function updateNecessitiesStatus(categoriesToUpdate, status) {
   }
 }
 
-export const postNecessity = (items, closeModal, setCardChecked) => {
-  navigator.geolocation.getCurrentPosition(
-    ({ coords }) => success(coords, closeModal, items, setCardChecked),
-    (e) => failure(),
-  );
-};
-
-function success(coords, closeModal, items, setCardChecked) {
+export async function postNecessityItems(items) {
   const dataToSend = {
     necessities: items,
-    latitude: coords.latitude,
-    longitude: coords.longitude,
   };
-  api
-    .post('necessity', dataToSend)
-    .then((x) => {
-      closeModal();
-      setCardChecked();
-      swal(
-        'Necessidade cadastrada com sucesso!',
-        'Esperamos que dê tudo certo!',
-        'success',
-      );
-    })
-    .catch((x) => {
-      closeModal();
-      swal('Houve um erro no cadastro!', 'Tente novamente!', 'error');
-    });
+  try {
+    await api.post('necessity', dataToSend);
+
+    swal(
+      'Necessidade cadastrada com sucesso!',
+      'Esperamos que dê tudo certo!',
+      'success',
+    );
+  } catch (error) {
+    swal('Houve um erro no cadastro!', 'Tente novamente!', 'error');
+    throw error;
+  }
 }
 
-function failure(closeModal) {
-  closeModal();
-  swal('Houve um erro ao buscar a localização', 'Tente novamente!', 'error');
+export async function postNecessity(category) {
+  const dataToSend = {
+    necessities: [
+      {
+        category,
+        item: ' ',
+        quantity: 1,
+        measureUnit: ' ',
+      },
+    ],
+  };
+  try {
+    await api.post('necessity', dataToSend);
+    swal(
+      'Necessidade cadastrada com sucesso!',
+      'Esperamos que dê tudo certo!',
+      'success',
+    );
+  } catch (error) {
+    swal('Houve um erro no cadastro!', 'Tente novamente!', 'error');
+    throw error;
+  }
+}
+
+export async function getUserNecessities() {
+  const response = await api.get('/necessity/user/necessities');
+  console.log(response);
+  return response.data;
+}
+
+export async function deleteSimpleNecessity(id) {
+  await api.delete(`necessity/${id}`);
 }

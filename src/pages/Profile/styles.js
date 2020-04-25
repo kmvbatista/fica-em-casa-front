@@ -9,9 +9,9 @@ export const ProfilePhotoContainer = styled.div`
   justify-content: center;
   align-items: center;
   @media only screen and (min-width: 600px) {
-    height: unset;
     width: 40%;
     border-radius: 5px 0 0 5px;
+    height: 100%;
   }
 `;
 
@@ -31,6 +31,7 @@ export const MainContainer = styled.div`
     width: 70%;
     border-radius: 20px 5px 5px 0;
     overflow: hidden;
+    height: 100vh;
   }
 `;
 
@@ -82,6 +83,7 @@ export const ProfileContainer = styled(Column)`
   position: relative;
   @media only screen and (min-width: 600px) {
     flex-direction: row;
+    height: 100vh;
   }
 `;
 export const PhotoContainer = styled(Column)`

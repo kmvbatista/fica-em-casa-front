@@ -68,3 +68,19 @@ export async function getUserNecessities() {
 export async function deleteSimpleNecessity(id) {
   await api.delete(`necessity/${id}`);
 }
+
+export async function deleteMany(necessities) {
+  await api.delete(`/necessity`, {
+    data: { necessities },
+  });
+}
+export async function deleteByCategory(category) {
+  debugger;
+  await api.delete(`/necessity/category/many`, {
+    data: { category },
+  });
+}
+
+export async function addMany(necessities) {
+  await api.post(`/necessity`, { necessities });
+}

@@ -27,7 +27,7 @@ export default function NeedHelpOptions({ children }) {
   const [showModal, setShowModal] = useState(false);
   const [cardSelectedInfo, setCardSelectedInfo] = useState();
   const [cards, setCards] = useState([]);
-  const [deleteOrdUpdateCard, setDeleteCardModal] = useState(false);
+  const [deleteOrUpdateCard, setDeleteOrUpdateModal] = useState(false);
 
   useEffect(() => {
     getCards();
@@ -40,8 +40,9 @@ export default function NeedHelpOptions({ children }) {
           cardInfo={cardSelectedInfo}
           closeModal={toggleShowModal}
           setCardChecked={setCardChecked}
-          setDeleteCardModal={setDeleteCardModal}
-          deleteOrdUpdateCard={deleteOrdUpdateCard}
+          setDeleteCardModal={setDeleteOrUpdateModal}
+          deleteOrUpdateCard={deleteOrUpdateCard}
+          refresh={getCards}
         ></ModalContent>
       </Modal>
     );
@@ -83,20 +84,9 @@ export default function NeedHelpOptions({ children }) {
     if (card.isSimple) {
       return deleteSimpleCard(card.items[0]._id, card.category);
     }
-    setDeleteCardModal(true);
-    swal({
-      title: 'Deseja remover ou alterar a necessidade',
-      buttons: {
-        cancel: 'Não quero fazer nada',
-        erase: 'Apagar',
-        update: 'Atualizar',
-      },
-    }).then((choice) => {
-      if (choice) {
-        setDeleteCardModal(choice);
-        alert(choice);
-      }
-    });
+    setDeleteOrUpdateModal(true);
+    setCardSelectedInfo(card);
+    toggleShowModal();
   }
 
   async function deleteSimpleCard(id, category) {
@@ -167,44 +157,59 @@ export default function NeedHelpOptions({ children }) {
             seleção da categoria, assim fica mais fácil de ajudar!
           </SubTitle>
         </TextContainer>
-        <Grid>
-          {cards.map((el) => (
-            <OptionCard key={el.category} onClick={() => handleCardClick(el)}>
-              <IsChecked
-                isChecked={el.isChecked}
-                color={'var(--color-pink)'}
-              ></IsChecked>
-              {el.isLoading && !el.isChecked ? (
-                <Loading
-                  height='30%'
-                  width='30%'
-                  type='spinningBubbles'
-                  color='var(--color-purple)'
-                ></Loading>
-              ) : (
-                <img
-                  src={el.imageUrl}
-                  alt={el.category}
-                  style={{ maxHeight: '55%' }}
-                />
-              )}
-              <GridText>{el.category}</GridText>
-            </OptionCard>
-          ))}
-          <OptionCard>
-            <CardImage src={'./logo.png'} alt={'Outras opçoes'} />
-            <GridText>{'Outros'}</GridText>
-          </OptionCard>
-        </Grid>
-        <GoToNextPage>
-          <img
-            onClick={() => history.push('friends')}
-            src='./next.svg'
-            style={{ width: '3.5em', cursor: 'pointer' }}
-            alt='ver amigos'
-          />
-        </GoToNextPage>
+        {cards.length > 0 ? (
+          <>
+            <Grid>
+              {cards.map((el) => (
+                <OptionCard
+                  key={el.category}
+                  onClick={() => handleCardClick(el)}
+                >
+                  <IsChecked
+                    isChecked={el.isChecked}
+                    color={'var(--color-pink)'}
+                  ></IsChecked>
+                  {el.isLoading && !el.isChecked ? (
+                    <Loading
+                      height='30%'
+                      width='30%'
+                      type='spinningBubbles'
+                      color='var(--color-purple)'
+                    ></Loading>
+                  ) : (
+                    <img
+                      src={el.imageUrl}
+                      alt={el.category}
+                      style={{ maxHeight: '55%' }}
+                    />
+                  )}
+                  <GridText>{el.category}</GridText>
+                </OptionCard>
+              ))}
+              <OptionCard>
+                <CardImage src={'./logo.png'} alt={'Outras opçoes'} />
+                <GridText>{'Outros'}</GridText>
+              </OptionCard>
+            </Grid>
+            <GoToNextPage>
+              <img
+                onClick={() => history.push('friends')}
+                src='./next.svg'
+                style={{ width: '3.5em', cursor: 'pointer' }}
+                alt='ver amigos'
+              />
+            </GoToNextPage>
+          </>
+        ) : (
+          <Loading
+            width={'10em'}
+            height={'10em'}
+            type={'spinningBubbles'}
+            color={'white'}
+          ></Loading>
+        )}
       </Column>
+
       {children}
       {showModal && getModal()}
     </ColumnContainer>

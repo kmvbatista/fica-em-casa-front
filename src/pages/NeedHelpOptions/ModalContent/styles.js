@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { OptionCard } from '../../../optionsComponents';
-import { Column } from '../../../globalComponents';
+import { Column, Row } from '../../../globalComponents';
 
 export const ConfirmationButton = styled.button`
   outline: none;
@@ -60,13 +60,14 @@ export const ItemsContainer = styled(Column)`
   }
 `;
 
-export const Quantity = styled.div`
-  margin-left: 1.5em;
+export const Quantity = styled(Row)`
+  align-items: center;
   & > * {
     height: 1.5em;
     width: 1.5em;
     display: inline-block;
     text-align: center;
+    margin: 0.5em;
   }
 `;
 export const QuantityButton = styled.button`

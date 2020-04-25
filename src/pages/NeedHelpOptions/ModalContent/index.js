@@ -13,14 +13,15 @@ import {
 } from './styles';
 import itemsExample from '../../../assets/itemsModal.json';
 import * as NecessityService from '../../../services/necessityService';
-import swal from 'sweetalert';
+import UpdateModal from './UpdateModal/index';
 
 export default function ModalContent({
   cardInfo,
   closeModal,
   setCardChecked,
-  deleteOrdUpdateCard,
+  deleteOrUpdateCard,
   setDeleteCardModal,
+  refresh,
 }) {
   const [showExample, setShowExample] = useState(true);
   const [showConfirmButton, setShowConfirmButton] = useState(true);
@@ -94,17 +95,11 @@ export default function ModalContent({
         await NecessityService.postNecessityItems(itemList);
         setCardChecked(cardInfo.category);
         closeModal();
+        refresh();
       } catch (error) {
         closeModal();
       }
     }
-  };
-
-  const deleteNecessity = async () => {
-    swal({
-      title: 'Deseja remover ou alterar a necessidade',
-      buttons: ['Não quero fazer nada', 'Remover', 'Atualizar'],
-    });
   };
 
   const getExample = () => {
@@ -194,34 +189,45 @@ export default function ModalContent({
   };
 
   return (
-    <ModalContainer>
-      <Row style={{ alignItems: 'center' }}>
-        <Card style={{ height: '7em', width: '7em' }}>
-          <img
-            alt={cardInfo.category}
-            src={cardInfo.imageUrl}
-            style={{ height: '2.5em' }}
-          />
-        </Card>
-        <strong style={{ fontSize: '3em' }}>{cardInfo.category}</strong>
-      </Row>
-      <MainContainer>
-        <p style={{ marginBottom: '1em' }}>
-          Digite abaixo o que você está precisando, e, se for necessário,
-          especifique a quantidade.
-        </p>
-        {showExample && getExample()}
-        {!showExample && getItemList()}
-      </MainContainer>
-      <ConfirmationButton
-        id='confirmButton'
-        onClick={postNecessity}
-        style={showConfirmButton ? { opacity: '1' } : { opacity: '0' }}
-      >
-        <strong style={{ fontSize: '1.25em' }}>
-          {showExample ? 'Pronto!' : 'Finalizar!'}
-        </strong>
-      </ConfirmationButton>
-    </ModalContainer>
+    <>
+      {deleteOrUpdateCard ? (
+        <UpdateModal
+          refresh={refresh}
+          cardInfo={cardInfo}
+          closeModal={closeModal}
+          setDeleteCardModal={setDeleteCardModal}
+        ></UpdateModal>
+      ) : (
+        <ModalContainer>
+          <Row style={{ alignItems: 'center' }}>
+            <Card style={{ height: '7em', width: '7em' }}>
+              <img
+                alt={cardInfo.category}
+                src={cardInfo.imageUrl}
+                style={{ height: '2.5em' }}
+              />
+            </Card>
+            <strong style={{ fontSize: '3em' }}>{cardInfo.category}</strong>
+          </Row>
+          <MainContainer>
+            <p style={{ marginBottom: '1em' }}>
+              Digite abaixo o que você está precisando, e, se for necessário,
+              especifique a quantidade.
+            </p>
+            {showExample && getExample()}
+            {!showExample && getItemList()}
+          </MainContainer>
+          <ConfirmationButton
+            id='confirmButton'
+            onClick={postNecessity}
+            style={showConfirmButton ? { opacity: '1' } : { opacity: '0' }}
+          >
+            <strong style={{ fontSize: '1.25em' }}>
+              {showExample ? 'Pronto!' : 'Finalizar!'}
+            </strong>
+          </ConfirmationButton>
+        </ModalContainer>
+      )}
+    </>
   );
 }

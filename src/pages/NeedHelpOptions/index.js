@@ -27,6 +27,7 @@ export default function NeedHelpOptions({ children }) {
   const [showModal, setShowModal] = useState(false);
   const [cardSelectedInfo, setCardSelectedInfo] = useState();
   const [cards, setCards] = useState([]);
+  const [deleteOrdUpdateCard, setDeleteCardModal] = useState(false);
 
   useEffect(() => {
     getCards();
@@ -39,6 +40,8 @@ export default function NeedHelpOptions({ children }) {
           cardInfo={cardSelectedInfo}
           closeModal={toggleShowModal}
           setCardChecked={setCardChecked}
+          setDeleteCardModal={setDeleteCardModal}
+          deleteOrdUpdateCard={deleteOrdUpdateCard}
         ></ModalContent>
       </Modal>
     );
@@ -78,9 +81,22 @@ export default function NeedHelpOptions({ children }) {
 
   function handleCheckedCardClick(card) {
     if (card.isSimple) {
-      console.log(card);
       return deleteSimpleCard(card.items[0]._id, card.category);
     }
+    setDeleteCardModal(true);
+    swal({
+      title: 'Deseja remover ou alterar a necessidade',
+      buttons: {
+        cancel: 'Não quero fazer nada',
+        erase: 'Apagar',
+        update: 'Atualizar',
+      },
+    }).then((choice) => {
+      if (choice) {
+        setDeleteCardModal(choice);
+        alert(choice);
+      }
+    });
   }
 
   async function deleteSimpleCard(id, category) {
@@ -109,6 +125,14 @@ export default function NeedHelpOptions({ children }) {
     } catch (error) {}
   }
 
+  const goToFriends = () => {
+    if (isFirstAccess) {
+      history.replace('help-or-be-helped');
+    } else {
+      history.replace('friends');
+    }
+  };
+
   const toggleShowModal = () => {
     setShowModal(!showModal);
   };
@@ -117,14 +141,6 @@ export default function NeedHelpOptions({ children }) {
     const cardIndex = cards.findIndex((x) => x.category === categoryName);
     cards[cardIndex].isChecked = true;
     setCards([...cards]);
-  };
-
-  const goToFriends = () => {
-    if (isFirstAccess) {
-      history.replace('help-or-be-helped');
-    } else {
-      history.replace('friends');
-    }
   };
 
   const toggleIsCardChecked = (category) => {

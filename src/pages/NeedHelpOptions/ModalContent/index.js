@@ -13,8 +13,15 @@ import {
 } from './styles';
 import itemsExample from '../../../assets/itemsModal.json';
 import * as NecessityService from '../../../services/necessityService';
+import swal from 'sweetalert';
 
-export default function ModalContent({ cardInfo, closeModal, setCardChecked }) {
+export default function ModalContent({
+  cardInfo,
+  closeModal,
+  setCardChecked,
+  deleteOrdUpdateCard,
+  setDeleteCardModal,
+}) {
   const [showExample, setShowExample] = useState(true);
   const [showConfirmButton, setShowConfirmButton] = useState(true);
   let [itemList, setItemList] = useState([]);
@@ -44,7 +51,6 @@ export default function ModalContent({ cardInfo, closeModal, setCardChecked }) {
   const hideConfirmButton = () => {
     setShowConfirmButton(false);
     if (isTouchDevice()) {
-      console.log('é touch');
       setTimeout(() => {
         document.getElementById('confirmButton').style.display = 'none';
       }, 500);
@@ -92,6 +98,13 @@ export default function ModalContent({ cardInfo, closeModal, setCardChecked }) {
         closeModal();
       }
     }
+  };
+
+  const deleteNecessity = async () => {
+    swal({
+      title: 'Deseja remover ou alterar a necessidade',
+      buttons: ['Não quero fazer nada', 'Remover', 'Atualizar'],
+    });
   };
 
   const getExample = () => {

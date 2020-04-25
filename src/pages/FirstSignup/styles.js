@@ -17,7 +17,7 @@ export const Container = styled.div`
   @media only screen and (min-width: 600px) {
     display: flex;
     justify-content: center;
-    height: 75vh;
+    height: 100vh;
   }
 `;
 
@@ -40,7 +40,6 @@ export const Welcome = styled.div`
   ${column}
   justify-content: center;
   @media only screen and (min-width: 600px) {
-    border-radius: 1em;
     ${desktopContainer}
   }
 `;

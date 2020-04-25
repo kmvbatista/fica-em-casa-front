@@ -39,8 +39,8 @@ export const Box1 = styled.div`
   background-color: var(--color-pink);
   justify-content: center;
   align-items: center;
-  @media only screen and (min-width: 1200px) {
-    height: 80vh;
+  @media only screen and (min-width: 900px) {
+    height: 100vh;
     width: ${(props) => (props.isUserLogged ? '34vw' : '50vw')};
     padding: 0;
   }

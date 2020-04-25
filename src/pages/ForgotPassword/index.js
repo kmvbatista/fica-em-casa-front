@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { useHistory, Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import * as SessionService from '../../services/sessionService';
-import { Row, Column } from '../../globalComponents';
+import { Column, Row } from '../../globalComponents';
 
 import swal from 'sweetalert';
 import {
@@ -11,10 +11,12 @@ import {
   RegisterButton,
   Title,
   Container,
+  TextLink,
 } from '../FirstSignup/styles';
 import LoaderContainer from '../../components/LoaderContainer';
 import InputMask from 'react-input-mask';
 import PhoneInput from '../../components/PhoneInput';
+import { isEmailValid } from '../../services/emailValidator';
 
 export default function Login() {
   const [login, setlogin] = useState('');
@@ -57,6 +59,14 @@ export default function Login() {
     }
   }
 
+  function handleAlreadyHasCode() {
+    if (isEmailValid(login)) {
+      setIsInsertingToken(true);
+    } else {
+      swal('Insira um email antes, por favor!', '', 'error');
+    }
+  }
+
   async function sendConfirmation() {
     if (!isFormValid()) {
       return;
@@ -66,9 +76,10 @@ export default function Login() {
       const dataToSend = { login, token, password, confirmPassword };
       await SessionService.sendConfirmation(dataToSend);
       setIsLoading(false);
-      swal('Deu tudo certo, prossiga!', '', 'success').then((x) =>
-        history.replace('/'),
-      );
+      swal({
+        title: 'Código enviado com sucesso. \nFaça login por favor',
+        icon: 'success',
+      }).then((x) => history.replace('/login'));
     } catch (error) {
       setIsLoading(false);
       swal(
@@ -87,11 +98,7 @@ export default function Login() {
     if (loginWithPhone && login.length < 6) {
       swal('Por favor, insira um telefone válido', '', 'error');
       return false;
-    } else if (
-      !login.match(
-        /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-      )
-    ) {
+    } else if (!isEmailValid(login)) {
       swal('Por favor, insira um email válido', '', 'error');
       return false;
     }
@@ -109,6 +116,7 @@ export default function Login() {
         return false;
       }
     }
+    return true;
   }
 
   return (
@@ -135,26 +143,37 @@ export default function Login() {
           <strong style={{ fontSize: '1.5em' }}>Faça o seu login</strong>
         </Title>
         {!isInsertingToken &&
-          (loginWithPhone ? (
+          (!loginWithPhone ? (
             <Column>
               <LoginInput
-                placeholder='Seu email'
+                placeholder='seu email'
                 name='login'
                 id='login'
                 required
                 value={login}
                 onChange={(e) => setlogin(e.target.value)}
               ></LoginInput>
+              <Row style={{ width: '100%', justifyContent: 'space-around' }}>
+                <TextLink onClick={() => setLoginWithPhone(!loginWithPhone)}>
+                  faço login com telefone
+                </TextLink>
+                <TextLink onClick={handleAlreadyHasCode}>
+                  já tenho um código
+                </TextLink>
+              </Row>
             </Column>
           ) : (
             <Column>
               <PhoneInput phone={login} setPhone={setlogin}></PhoneInput>
+              <TextLink onClick={() => setLoginWithPhone(!loginWithPhone)}>
+                faço login com email
+              </TextLink>
             </Column>
           ))}
         {isInsertingToken && (
           <>
             <LoginInput
-              placeholder='Sua senha'
+              placeholder='nova senha'
               name='password'
               type='password'
               required
@@ -162,12 +181,12 @@ export default function Login() {
               onChange={(e) => setPassword(e.target.value)}
             ></LoginInput>
             <LoginInput
-              placeholder='Confirmação de senha'
+              placeholder='confirmação de nova senha'
               name='password'
               type='password'
               required
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
             ></LoginInput>
             <InputMask
               mask='* * * * * *'
@@ -178,11 +197,21 @@ export default function Login() {
                 <LoginInput {...inputProps} placeholder='_ _ _ _ _ _' />
               )}
             </InputMask>
+            <TextLink
+              onClick={() => {
+                setIsInsertingToken(false);
+                setToken('');
+                setConfirmPassword('');
+                setPassword('');
+              }}
+            >
+              reenviar código
+            </TextLink>
           </>
         )}
         <LoaderContainer color={'var(--color-pink)'} isLoading={isLoading}>
           <RegisterButton onClick={handleButtonClick}>
-            {isInsertingToken ? 'Enviar token' : 'Continuar'}
+            {isInsertingToken ? 'Confirmar' : 'Enviar token'}
           </RegisterButton>
         </LoaderContainer>
       </InitialForm>

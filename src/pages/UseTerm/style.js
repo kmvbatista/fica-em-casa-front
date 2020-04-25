@@ -14,6 +14,7 @@ export const MainBody = styled(Column)`
   & > p {
     margin-bottom: 2em;
     font-size: 1.5em;
+    line-height: 21px;
   }
   & > strong {
     margin-bottom: 1.5em;

@@ -89,40 +89,42 @@ export default function Share() {
           <ShareIcons>
             <ShareLink
               target='_blank'
-              href='https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fficaemcasaapp.com.br%2F&amp;src=sdkpreparse'
+              href='https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fficaemcasaapp.com.br%2F&amp;src=sdkpreparse'
               class='fb-xfbml-parse-ignore'
             >
               <IconContainer>
                 <img
                   src='./facebook.svg'
                   style={{ width: '2.7em' }}
-                  alt='compartilhe no face'
+                  alt='Compartilhe no Facebok'
                 />
                 Facebook
               </IconContainer>
             </ShareLink>
             <ShareLink
-              href='https://web.whatsapp.com/send?text=Pessoal,%20se%20liga%20nesse%20app:%20https://ficaemcasaapp.com.br`'
+              target='_blank'
+              href='https://api.whatsapp.com/send?text=Oi%2C%20conhece%20algu%C3%A9m%20que%20precisa%20de%20ajuda%20ou%20pode%20ajudar%20nessa%20quarentena%3F%20Olha%20esse%20app%20que%20legal%3A%0Dficaemcasaapp.com.br'
               data-action='share/whatsapp/share'
             >
               <IconContainer>
                 <img
                   src='./shareWhatsapp.svg'
                   style={{ width: '2.7em' }}
-                  alt='compartilhe no whats'
+                  alt='Compartilhe no Whatsapp'
                 />
                 Whatsapp
               </IconContainer>
             </ShareLink>
             <ShareLink
-              href='https://web.whatsapp.com/send?text=Pessoal,%20se%20liga%20nesse%20app:%20https://ficaemcasaapp.com.br`'
-              data-action='share/whatsapp/share'
+              target="_blank"
+              href='https://www.instagram.com/ficaemcasaapp/'
+              data-action='share/instagram/share'
             >
               <IconContainer>
                 <img
                   src='./instagram.svg'
                   style={{ width: '2.7em' }}
-                  alt='compartilhe no whats'
+                  alt='Compartilhe no Instagram'
                 />
                 Instagram
               </IconContainer>

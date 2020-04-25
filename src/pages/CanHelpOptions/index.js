@@ -11,7 +11,7 @@ import {
   GoToNextPage,
 } from '../../optionsComponents';
 import { Column, Row } from '../../globalComponents';
-import cardData from '../../assets/productCategory.json';
+import cardsFromJson from '../../assets/productCategory.json';
 import * as AssistanceService from '../../services/assistanceService';
 import swal from 'sweetalert';
 import Loading from 'react-loading';
@@ -28,6 +28,7 @@ export default function NeedHelpOptions({ children }) {
   const [userLocation, setUserLocation] = useState();
   const [hasRegisteredOption, setRegisteredOption] = useState(false);
   const [cards, setCards] = useState([]);
+  const jsonCards = [...cardsFromJson];
   const history = useHistory();
 
   useEffect(() => {
@@ -46,17 +47,17 @@ export default function NeedHelpOptions({ children }) {
 
   const getCards = async () => {
     const userAssistCategories = await UserService.getAssistCategories();
-    const dataWithLoading = cardData.map((x) => {
-      if (
-        userAssistCategories &&
-        userAssistCategories.find((y) => y.category === x.category)
-      ) {
-        x.isChecked = true;
-      }
-      return x;
-    });
+    const dataWithLoading = jsonCards.map((x) => ({
+      category: x.category,
+      imageUrl: x.imageUrl,
+      isChecked: isCardChecked(x.category, userAssistCategories),
+    }));
     setCards(dataWithLoading);
   };
+
+  const isCardChecked = (category, userAssistCategories) =>
+    userAssistCategories &&
+    userAssistCategories.find((y) => y.category === category);
 
   const toggleIsCardChecked = (category) => {
     const index = cards.findIndex((x) => x.category === category);

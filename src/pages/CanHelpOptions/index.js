@@ -47,17 +47,22 @@ export default function NeedHelpOptions({ children }) {
 
   const getCards = async () => {
     const userAssistCategories = await UserService.getAssistCategories();
-    const dataWithLoading = jsonCards.map((x) => ({
-      category: x.category,
-      imageUrl: x.imageUrl,
-      isChecked: isCardChecked(x.category, userAssistCategories),
-    }));
+    if (!userAssistCategories || userAssistCategories.length === 0) {
+      return setCards([...jsonCards]);
+    }
+    const dataWithLoading = jsonCards.map((cat) => {
+      const categoryAssist = userAssistCategories.find(
+        (x) => x.category === cat.category,
+      );
+      return {
+        category: cat.category,
+        imageUrl: cat.imageUrl,
+        isChecked: categoryAssist !== undefined,
+        id: categoryAssist && categoryAssist._id,
+      };
+    });
     setCards(dataWithLoading);
   };
-
-  const isCardChecked = (category, userAssistCategories) =>
-    userAssistCategories &&
-    userAssistCategories.find((y) => y.category === category);
 
   const toggleIsCardChecked = (category) => {
     const index = cards.findIndex((x) => x.category === category);
@@ -72,19 +77,12 @@ export default function NeedHelpOptions({ children }) {
   };
 
   async function postCategoryAssistance(category) {
-    toggleCardLoading(category);
     try {
-      AssistanceService.postAssistance(
-        category,
-        toggleCardLoading,
-        toggleIsCardChecked,
-      ).then((_) => {
-        if (!hasRegisteredOption) {
-          updateUserLocation(userLocation).then((x) =>
-            setRegisteredOption(true),
-          );
-        }
-      });
+      await AssistanceService.postAssistance(category);
+      toggleIsCardChecked(category);
+      if (!hasRegisteredOption) {
+        updateUserLocation(userLocation).then((x) => setRegisteredOption(true));
+      }
     } catch (error) {
       swal(
         'Não foi possível adotar a categoria ' + category + '!',
@@ -92,6 +90,30 @@ export default function NeedHelpOptions({ children }) {
         'error',
       );
     }
+  }
+
+  async function deleteAssist(card) {
+    try {
+      toggleIsCardChecked(card.category);
+      await AssistanceService.deleteAssistance(card.id);
+    } catch (error) {
+      toggleIsCardChecked(card.category);
+      swal(
+        'Não foi possível remover a categoria ' + card.category + '!',
+        'Por favor, tente novamente',
+        'error',
+      );
+    }
+  }
+
+  async function handleCardClick(card) {
+    toggleCardLoading(card.category);
+    if (card.isChecked) {
+      await deleteAssist(card);
+    } else {
+      await postCategoryAssistance(card.category);
+    }
+    toggleCardLoading(card.category);
   }
 
   return (
@@ -114,11 +136,7 @@ export default function NeedHelpOptions({ children }) {
                 <OptionCard
                   key={el.category}
                   style={{ color: 'var(--color-purple)' }}
-                  onClick={() => {
-                    if (!el.isChecked) {
-                      postCategoryAssistance(el.category);
-                    }
-                  }}
+                  onClick={() => handleCardClick(el)}
                 >
                   <IsChecked
                     isChecked={el.isChecked}

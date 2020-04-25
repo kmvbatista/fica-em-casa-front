@@ -272,7 +272,7 @@ export default function Login() {
           <RegisterButton onClick={handleContinue}>continuar</RegisterButton>
         )}
 
-        <Row style={{ alignItems: 'flex-start' }}>
+        <Row style={{ alignItems: 'center' }}>
           <input
             onClick={() => setUseTermsRead(!useTermsRead)}
             checked={useTermsRead}

@@ -28,7 +28,6 @@ export default function Profile() {
   const [nickname, setNickname] = useState(userData.nickname || '');
   const [name, setName] = useState(userData.name);
   const [photo, setPhoto] = useState(userData.photoUrl);
-  const [photoToPost, setPhotoToPost] = useState();
   const [isEditted, setIsEditted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const history = useHistory();
@@ -59,7 +58,7 @@ export default function Profile() {
         buttons: {},
       });
       const response = await api.post('/files', data);
-      userData.photoUrl = response.data.avatar;
+      userData.photoUrl = response.data.photoUrl;
       setPhoto(userData.photoUrl);
       updateUserCookies(userData);
       swal('Foto salva com sucesso', '', 'success');

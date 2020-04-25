@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory, Link } from 'react-router-dom';
 import { loginUser } from '../../services/sessionService';
+import { Row } from '../../globalComponents';
 
 import swal from 'sweetalert';
 import {
@@ -88,9 +89,14 @@ export default function Login() {
             Acessar
           </RegisterButton>
         </LoaderContainer>
-        <Link style={{ textAlign: 'center' }} to='first-signup'>
-          Cadastrar-se
-        </Link>
+        <Row style={{ justifyContent: 'space-around', width: '100%' }}>
+          <Link style={{ textAlign: 'center' }} to='first-signup'>
+            Cadastrar-se
+          </Link>
+          <Link style={{ textAlign: 'center' }} to='forgot-password'>
+            Esqueci minha senha
+          </Link>
+        </Row>
       </InitialForm>
     </Container>
   );

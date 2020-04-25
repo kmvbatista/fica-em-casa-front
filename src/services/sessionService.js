@@ -54,3 +54,11 @@ export async function loginUser(dataToSend) {
     throw error;
   }
 }
+
+export async function sendForgotPwdToken(login) {
+  await api.post('/password/forgot', { login });
+}
+
+export async function sendConfirmation(dataToSend) {
+  await api.post('/password/reset', dataToSend);
+}

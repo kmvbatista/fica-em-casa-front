@@ -13,6 +13,7 @@ import FriendsFirstAccess from '../pages/Friends/FirstAcess';
 import UseTerms from '../pages/UseTerm';
 import Login from '../pages/Login';
 import Profile from '../pages/Profile';
+import ForgotPassword from '../pages/ForgotPassword';
 
 export default function Routes({ children }) {
   return (
@@ -34,6 +35,9 @@ export default function Routes({ children }) {
       </PrivateRoute>
       <Route exact path='/login'>
         <Login></Login>
+      </Route>
+      <Route exact path='/forgot-password'>
+        <ForgotPassword></ForgotPassword>
       </Route>
       <Route exact path='/need-help-form'>
         <NeedHelpForm></NeedHelpForm>

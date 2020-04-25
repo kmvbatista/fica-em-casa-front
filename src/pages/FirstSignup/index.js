@@ -18,6 +18,7 @@ import Loading from 'react-loading';
 import { Row, Column } from '../../globalComponents';
 import { sendCode, sendToken } from '../../services/tokenService';
 import PhoneInput from '../../components/PhoneInput';
+import { isEmailValid } from '../../services/emailValidator';
 
 export default function Login() {
   const history = useHistory();
@@ -129,12 +130,7 @@ export default function Login() {
         return false;
       }
     } else {
-      if (
-        !email ||
-        !email.match(
-          /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-        )
-      ) {
+      if (!email || !isEmailValid(email)) {
         swal('O email está em formato inválido', 'Corrija por favor', 'error');
         return false;
       }

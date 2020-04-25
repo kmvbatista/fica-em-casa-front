@@ -16,6 +16,7 @@ import ModalContent from './ModalContent';
 import { useHistory } from 'react-router-dom';
 import IsChecked from '../../components/isChecked';
 import { Column } from '../../globalComponents';
+import * as NecessityService from '../../services/necessityService';
 
 export default function NeedHelpOptions({ children }) {
   const history = useHistory();
@@ -23,6 +24,14 @@ export default function NeedHelpOptions({ children }) {
   const [showModal, setShowModal] = useState(false);
   const [cardSelectedInfo, setCardSelectedInfo] = useState();
   const [cards, setCards] = useState(cardData);
+  const simpleNecessities = [
+    'Assistência online',
+    'Leitura',
+    'Conselho',
+    'Vídeo aula',
+    'Compartilhar',
+    'Outros',
+  ];
 
   const getModal = () => {
     return (
@@ -35,6 +44,21 @@ export default function NeedHelpOptions({ children }) {
       </Modal>
     );
   };
+
+  function handleCardClick(card) {
+    if (card.isSimple) {
+      return postSimpleNecessity(card.category);
+    }
+    setCardSelectedInfo(card);
+    toggleShowModal();
+  }
+
+  async function postSimpleNecessity(category) {
+    try {
+      await NecessityService.postNecessity(category);
+      setCardChecked(category);
+    } catch (error) {}
+  }
 
   const toggleShowModal = () => {
     setShowModal(!showModal);
@@ -68,13 +92,7 @@ export default function NeedHelpOptions({ children }) {
         </TextContainer>
         <Grid>
           {cards.map((el) => (
-            <OptionCard
-              key={el.category}
-              onClick={() => {
-                setCardSelectedInfo(el);
-                toggleShowModal();
-              }}
-            >
+            <OptionCard key={el.category} onClick={() => handleCardClick(el)}>
               <IsChecked
                 isChecked={el.isChecked}
                 color={'var(--color-pink)'}

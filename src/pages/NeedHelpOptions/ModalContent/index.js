@@ -16,7 +16,6 @@ import * as NecessityService from '../../../services/necessityService';
 import { getUserData } from '../../../services/sessionService';
 
 export default function ModalContent({ cardInfo, closeModal, setCardChecked }) {
-  const user = getUserData();
   const [showExample, setShowExample] = useState(true);
   const [showConfirmButton, setShowConfirmButton] = useState(true);
   let [itemList, setItemList] = useState([]);
@@ -82,13 +81,17 @@ export default function ModalContent({ cardInfo, closeModal, setCardChecked }) {
     setItem(Object.assign({}, item));
   };
 
-  const handleFinish = async () => {
+  const postNecessity = async () => {
     if (showExample) {
       return setShowExample(false);
     } else {
-      await NecessityService.postNecessity(itemList, closeModal, () =>
-        setCardChecked(cardInfo.category),
-      );
+      try {
+        await NecessityService.postNecessityItems(itemList);
+        setCardChecked(cardInfo.category);
+        closeModal();
+      } catch (error) {
+        closeModal();
+      }
     }
   };
 
@@ -200,7 +203,7 @@ export default function ModalContent({ cardInfo, closeModal, setCardChecked }) {
       </MainContainer>
       <ConfirmationButton
         id='confirmButton'
-        onClick={handleFinish}
+        onClick={postNecessity}
         style={showConfirmButton ? { opacity: '1' } : { opacity: '0' }}
       >
         <strong style={{ fontSize: '1.25em' }}>

@@ -119,7 +119,7 @@ export default function SignIn() {
           <PhoneInput value={phone} setPhone={setPhone}></PhoneInput>
         )}
         <LoginInput
-          placeholder='Criar senha'
+          placeholder='criar senha'
           type='password'
           name='password'
           required
@@ -127,7 +127,7 @@ export default function SignIn() {
           onChange={(e) => setPassword(e.target.value)}
         ></LoginInput>
         <LoginInput
-          placeholder='Confirmar senha'
+          placeholder='confirmar senha'
           type='password'
           value={confirmPassword}
           onChange={(e) => setConfirmPassword(e.target.value)}

@@ -242,6 +242,7 @@ export default function Profile() {
               border: '1px solid white',
               width: '80%',
               backgroundColor: 'var(--color-green)',
+              boxShadow: '0px 10px 20px rgba(var(--color-green), 0.5)',
             }}
           >
             Alterar senha

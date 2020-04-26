@@ -4,6 +4,7 @@ import PersonCard from './PersonCard';
 import { MainPhrase, MainTab } from '../styledComponents';
 import { Grid } from './PersonCard/styles';
 import ErrorMessage from './ErrorMessage';
+import LocationErrorMessage from './LocationErrorMessage';
 
 export default function AvailableNeeded({
   needyPeople,
@@ -13,7 +14,9 @@ export default function AvailableNeeded({
   return (
     <MainTab>
       {!userLocation ? (
-        <ErrorMessage avoidButton errorMessage=''></ErrorMessage>
+        <LocationErrorMessage
+          buttonsColor={'var(--color-purple)'}
+        ></LocationErrorMessage>
       ) : errorMessage ? (
         <ErrorMessage
           errorMessage={errorMessage}

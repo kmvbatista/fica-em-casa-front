@@ -45,8 +45,8 @@ export default function HelpBeHelped({ children }) {
     } catch (error) {
       setUserLocation(undefined);
       await swal(
-        'Não conseguimos buscar tua localização',
-        'Por favor configure',
+        'Não conseguimos buscar sua localização!',
+        'Verifique se seu gps está ativado. Aí estão algumas dicas:',
         'error',
       );
     }

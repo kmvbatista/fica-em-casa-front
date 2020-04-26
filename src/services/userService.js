@@ -6,7 +6,6 @@ export async function getAssistCategories() {
     return response.data;
   } catch (error) {
     if (error.response.data.error) {
-      console.log(error.response.data.error);
     }
   }
 }

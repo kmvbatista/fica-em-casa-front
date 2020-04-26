@@ -8,7 +8,6 @@ export async function updateUserLocation(location) {
       longitude: location.longitude,
     });
   } catch (error) {
-    console.log(error);
     swal(
       'Houve um erro de comunicação com nossos servidores.',
       'Tente novamente!',

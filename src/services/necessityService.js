@@ -60,7 +60,6 @@ export async function postNecessity(category) {
 
 export async function getUserNecessities() {
   const response = await api.get('/necessity/user/necessities');
-  console.log(response);
   return response.data;
 }
 

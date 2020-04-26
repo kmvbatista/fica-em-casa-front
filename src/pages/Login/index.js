@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useHistory, Link } from 'react-router-dom';
 import { loginUser } from '../../services/sessionService';
-import { Row } from '../../globalComponents';
+import { Row, Column } from '../../globalComponents';
+import PhoneInput from '../../components/PhoneInput';
 
 import swal from 'sweetalert';
 import {
@@ -11,6 +12,7 @@ import {
   RegisterButton,
   Title,
   Container,
+  TextLink,
 } from '../FirstSignup/styles';
 import LoaderContainer from '../../components/LoaderContainer';
 
@@ -18,6 +20,7 @@ export default function Login() {
   const [login, setlogin] = useState('');
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [logWithPhone, setLogWithPhone] = useState(false);
 
   const history = useHistory();
 
@@ -53,7 +56,7 @@ export default function Login() {
       >
         <img
           style={{ width: '10em', height: '10em', marginBottom: '2em' }}
-          src='./logo.png'
+          src='./ficaemcasa.svg'
           alt='Fica em Casa'
         />
         <div style={{ fontSize: '5em' }}>
@@ -64,14 +67,34 @@ export default function Login() {
         <Title>
           <strong style={{ fontSize: '1.5em' }}>Faça o seu login</strong>
         </Title>
-        <LoginInput
-          placeholder='Seu telefone'
-          name='login'
-          id='login'
-          required
-          value={login}
-          onChange={(e) => setlogin(e.target.value)}
-        ></LoginInput>
+        {logWithPhone ? (
+          <Column>
+            <PhoneInput setPhone={setlogin}></PhoneInput>
+            <TextLink
+              onClick={() => setLogWithPhone(!logWithPhone)}
+              style={{ marginTop: '1em' }}
+            >
+              faço login com telefone
+            </TextLink>
+          </Column>
+        ) : (
+          <Column>
+            <LoginInput
+              placeholder='Seu email'
+              name='login'
+              id='login'
+              required
+              value={login}
+              onChange={(e) => setlogin(e.target.value)}
+            ></LoginInput>
+            <TextLink
+              style={{ marginTop: '1em' }}
+              onClick={() => setLogWithPhone(!logWithPhone)}
+            >
+              faço login com telefone
+            </TextLink>
+          </Column>
+        )}
         <LoginInput
           placeholder='Sua senha'
           name='password'

@@ -43,7 +43,6 @@ export default function ModalContent({
       });
       turnCategoryPending(necessity.category);
     } catch (error) {
-      console.log(JSON.stringify(error));
       closeModal();
       swal(
         'Houve um erro na confirmação de ajuda',

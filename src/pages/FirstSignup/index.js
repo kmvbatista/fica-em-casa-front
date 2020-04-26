@@ -185,13 +185,24 @@ export default function Login() {
             {hasNoEmail ? (
               <Column>
                 <PhoneInput setPhone={setPhone} phone={phone}></PhoneInput>
-                <TextLink
-                  onClick={() => {
-                    setHasNoEmail(false);
-                  }}
-                >
-                  usar email
-                </TextLink>
+                <Row style={{ justifyContent: 'space-around', width: '100%' }}>
+                  <TextLink
+                    onClick={() => {
+                      setAlreadyHasCode(!alreadyHasCode);
+                    }}
+                  >
+                    {alreadyHasCode
+                      ? 'não tenho um código'
+                      : 'já tenho um código'}
+                  </TextLink>
+                  <TextLink
+                    onClick={() => {
+                      setHasNoEmail(false);
+                    }}
+                  >
+                    usar email
+                  </TextLink>
+                </Row>
               </Column>
             ) : (
               <Column>

@@ -131,7 +131,7 @@ export default function Login() {
       >
         <img
           style={{ width: '10em', height: '10em', marginBottom: '2em' }}
-          src='./logo.png'
+          src='./ficaemcasa.svg'
           alt='Fica em Casa'
         />
         <div style={{ fontSize: '5em' }}>

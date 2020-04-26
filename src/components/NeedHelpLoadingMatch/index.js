@@ -37,7 +37,7 @@ export default function LoadingMatch() {
 
         <PingContainer>
           <MainPing>
-            <img src='./logo.png' alt='logo' style={{ height: '100%' }} />
+            <img src='./ficaemcasa.svg' alt='logo' style={{ height: '100%' }} />
           </MainPing>
           <OuterPing></OuterPing>
           <OuterPingMd></OuterPingMd>

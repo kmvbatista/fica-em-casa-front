@@ -40,9 +40,20 @@ export default function Login() {
         }`,
         'Tente novamente.',
         'error',
-      );
+      ).catch((x) => {
+        swal(
+          `${'Houve um erro ao fazer o login'}`,
+          'Tente novamente.',
+          'error',
+        );
+      });
     }
   };
+
+  function changeLoginWay() {
+    setLogWithPhone(!logWithPhone);
+    setlogin('');
+  }
 
   return (
     <Container style={{ padding: 0 }}>
@@ -70,11 +81,8 @@ export default function Login() {
         {logWithPhone ? (
           <Column>
             <PhoneInput setPhone={setlogin}></PhoneInput>
-            <TextLink
-              onClick={() => setLogWithPhone(!logWithPhone)}
-              style={{ marginTop: '1em' }}
-            >
-              faço login com telefone
+            <TextLink onClick={changeLoginWay} style={{ marginTop: '1em' }}>
+              faço login com email
             </TextLink>
           </Column>
         ) : (
@@ -87,10 +95,7 @@ export default function Login() {
               value={login}
               onChange={(e) => setlogin(e.target.value)}
             ></LoginInput>
-            <TextLink
-              style={{ marginTop: '1em' }}
-              onClick={() => setLogWithPhone(!logWithPhone)}
-            >
+            <TextLink style={{ marginTop: '1em' }} onClick={changeLoginWay}>
               faço login com telefone
             </TextLink>
           </Column>

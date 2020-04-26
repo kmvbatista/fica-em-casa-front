@@ -34,10 +34,15 @@ export const SetCategoriesButton = styled.button`
   color: white;
   background-color: ${({ isHelper }) =>
     isHelper ? 'var(--color-pink)' : 'var(--color-purple)'};
-  padding: 1em 0.5em;
+  padding: 1em 0.1em;
   box-shadow: 0px 10px 20px rgba(230, 31, 123, 0.5);
   font-size: 2em;
   font-weight: bold;
   margin: 2em;
   cursor: pointer;
+  width: 90%;
+  @media only screen and (min-width: 600px) {
+    width: unset;
+    padding: 1em 0.8em;
+  }
 `;

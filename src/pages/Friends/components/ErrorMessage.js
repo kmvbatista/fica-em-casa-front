@@ -25,7 +25,7 @@ export default function ErrorMessage({ errorMessage, isHelper }) {
         <strong style={{ fontSize: '2.5em' }}>{x}</strong>
       ))}
       <SetCategoriesButton isHelper={isHelper} onClick={navigate}>
-        Adicionar +Categorias
+        Adicionar mais categorias
       </SetCategoriesButton>
     </Column>
   );

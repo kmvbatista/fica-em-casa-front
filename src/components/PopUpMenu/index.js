@@ -40,7 +40,16 @@ class Dropdown extends React.Component {
               <Link to='profile'>Meu perfil</Link>
             </li>
             <li>
-              <Link to='/'>Tela principal</Link>
+              <Link to='need-help-options'>Preciso de ajuda</Link>
+            </li>
+            <li>
+              <Link to='can-help-options'>Quero ajudar</Link>
+            </li>
+            <li>
+              <Link to='friends'>Meus amigos</Link>
+            </li>
+            <li>
+              <Link to='/'>Tela inicial</Link>
             </li>
             <li>
               <Link to='login' onClick={() => (document.cookie = 'undefined')}>

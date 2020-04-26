@@ -21,6 +21,8 @@ import swal from 'sweetalert';
 import Loading from 'react-loading';
 import { Row } from '../../globalComponents';
 import Loader from '../../components/Loader';
+import PhoneInput from '../../components/PhoneInput';
+import ProfilePhoneInput from '../../components/ProfilePhoneInput';
 
 export default function Profile() {
   const userData = getUserData();
@@ -183,20 +185,10 @@ export default function Profile() {
         <InputBlock>
           <Label>seu telefone</Label>
           <Row>
-            <InputMask
-              mask='(99) 99999-9999'
-              value={phone}
-              onChange={(e) => setPhone(e.target.value)}
-            >
-              {(inputProps) => (
-                <Input
-                  {...inputProps}
-                  placeholder='(00) 00000-0000'
-                  type='tel'
-                  disableUnderline
-                />
-              )}
-            </InputMask>
+            <ProfilePhoneInput
+              phone={phone}
+              setPhone={setPhone}
+            ></ProfilePhoneInput>
             <img
               src='./iphone.svg'
               style={{ width: '2em' }}

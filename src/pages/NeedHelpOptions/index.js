@@ -10,7 +10,7 @@ import {
   Title,
   GoToNextPage,
 } from '../../optionsComponents';
-import cardData from '../../assets/productCategory.json';
+import jsonCards from '../../assets/productCategory.json';
 import Modal from '../../components/Modal';
 import ModalContent from './ModalContent';
 import { useHistory } from 'react-router-dom';
@@ -20,6 +20,11 @@ import * as NecessityService from '../../services/necessityService';
 import { useEffect } from 'react';
 import swal from 'sweetalert';
 import Loading from 'react-loading';
+import {
+  getUserLocation,
+  updateUserLocation,
+} from '../../services/locationService';
+import LocationErrorMessage from '../Friends/components/LocationErrorMessage';
 
 export default function NeedHelpOptions({ children }) {
   const history = useHistory();
@@ -28,9 +33,11 @@ export default function NeedHelpOptions({ children }) {
   const [cardSelectedInfo, setCardSelectedInfo] = useState();
   const [cards, setCards] = useState([]);
   const [deleteOrUpdateCard, setDeleteOrUpdateModal] = useState(false);
+  const [userLocation, setUserLocation] = useState({});
+  const [didUpdatedLocation, setDidUpdatedLocation] = useState(false);
 
   useEffect(() => {
-    getCards();
+    initiate();
   }, []);
 
   const getModal = () => {
@@ -43,30 +50,55 @@ export default function NeedHelpOptions({ children }) {
           setDeleteCardModal={setDeleteOrUpdateModal}
           deleteOrUpdateCard={deleteOrUpdateCard}
           refresh={getCards}
+          userLocation={userLocation}
         ></ModalContent>
       </Modal>
     );
   };
 
-  async function getCards() {
-    const userNecessities = await NecessityService.getUserNecessities();
-    if (!userNecessities || userNecessities.length === 0) {
-      return setCards([...cardData]);
+  async function initiate() {
+    try {
+      const coords = await getUserLocation();
+      setUserLocation({
+        latitude: coords.latitude,
+        longitude: coords.longitude,
+      });
+      if (coords) {
+        getCards();
+      }
+    } catch (error) {
+      setUserLocation(undefined);
     }
-    const dataWithLoading = cardData.map((cat) => {
-      const categoryAssist = userNecessities.find(
-        (x) => x.category === cat.category,
+  }
+
+  async function getCards() {
+    try {
+      const userNecessities = await NecessityService.getUserNecessities();
+      if (!userNecessities || userNecessities.length === 0) {
+        return setCards([...jsonCards]);
+      }
+      const dataWithLoading = jsonCards.map((cat) => {
+        const categoryAssist = userNecessities.find(
+          (x) => x.category === cat.category,
+        );
+        return {
+          category: cat.category,
+          items: categoryAssist && categoryAssist.items,
+          imageUrl: cat.imageUrl,
+          isChecked: categoryAssist !== undefined,
+          isSimple: cat.isSimple,
+        };
+      });
+      setCards(dataWithLoading);
+    } catch (error) {
+      swal(
+        error.response
+          ? error.response.data.error
+          : 'Houve um erro ao buscar suas necessidades!',
+        'Tente novamente mais tarde!',
+        'error',
       );
-      return {
-        category: cat.category,
-        items: categoryAssist && categoryAssist.items,
-        imageUrl: cat.imageUrl,
-        isChecked: categoryAssist !== undefined,
-        isSimple: cat.isSimple,
-      };
-    });
-    setCards(dataWithLoading);
-    console.log(dataWithLoading);
+    }
   }
 
   function handleCardClick(card) {
@@ -112,6 +144,10 @@ export default function NeedHelpOptions({ children }) {
     try {
       await NecessityService.postNecessity(category);
       setCardChecked(category);
+      if (!didUpdatedLocation && userLocation) {
+        await updateUserLocation(userLocation);
+        setDidUpdatedLocation(true);
+      }
     } catch (error) {}
   }
 
@@ -157,7 +193,12 @@ export default function NeedHelpOptions({ children }) {
             seleção da categoria, assim fica mais fácil de ajudar!
           </SubTitle>
         </TextContainer>
-        {cards.length > 0 ? (
+        {!userLocation && (
+          <LocationErrorMessage
+            buttonsColor={'var(--color-purple)'}
+          ></LocationErrorMessage>
+        )}
+        {userLocation && cards.length > 0 ? (
           <>
             <Grid>
               {cards.map((el) => (

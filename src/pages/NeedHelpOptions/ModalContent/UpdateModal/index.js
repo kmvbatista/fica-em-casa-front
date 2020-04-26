@@ -16,12 +16,14 @@ import BottomButtons from './BottomButtons';
 import Loading from 'react-loading';
 import swal from 'sweetalert';
 import { useEffect } from 'react';
+import { updateUserLocation } from '../../../../services/locationService';
 
 export default function UpdateModal({
   cardInfo,
   closeModal,
   refresh,
   setDeleteCardModal,
+  userLocation,
 }) {
   const [itemsToDelete, setItemsToDelete] = useState([]);
   const [itemsToAdd, setItemsToAdd] = useState([]);
@@ -66,6 +68,7 @@ export default function UpdateModal({
       closeModal();
       swal('Dados atualizados com sucesso', '', 'success');
       refresh();
+      updateUserLocation(userLocation);
     } catch (error) {
       setIsLoading(false);
       swal('Houve um erro na atualização', '', 'error');

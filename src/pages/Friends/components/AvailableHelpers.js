@@ -4,11 +4,21 @@ import PersonCard from './PersonCard';
 import { MainPhrase, MainTab } from '../styledComponents';
 import { Grid } from './PersonCard/styles';
 import ErrorMessage from './ErrorMessage';
+import locationErrorMessage from '../../../assets/locationFailMessage.json';
 
-export default function AvailableHelpers({ helpers, errorMessage }) {
+export default function AvailableHelpers({
+  helpers,
+  errorMessage,
+  userLocation,
+}) {
   return (
     <MainTab style={{ backgroundColor: 'var(--color-purple)' }}>
-      {errorMessage ? (
+      {!userLocation ? (
+        <ErrorMessage
+          avoidButton
+          errorMessage={locationErrorMessage}
+        ></ErrorMessage>
+      ) : errorMessage ? (
         <ErrorMessage
           errorMessage={errorMessage}
           isHelper={true}
@@ -35,6 +45,7 @@ export default function AvailableHelpers({ helpers, errorMessage }) {
                 backgroundColor={'#ffffff1c'}
                 person={person}
                 key={person.name}
+                userLocation={userLocation}
               >
                 pode te ajudar com
               </PersonCard>

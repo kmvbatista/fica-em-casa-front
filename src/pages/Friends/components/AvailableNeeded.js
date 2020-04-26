@@ -1,15 +1,23 @@
 import React from 'react';
-import { Column } from '../../../globalComponents';
-
+import locationErrorMessage from '../../../assets/locationFailMessage.json';
 import PersonCard from './PersonCard';
 import { MainPhrase, MainTab } from '../styledComponents';
 import { Grid } from './PersonCard/styles';
 import ErrorMessage from './ErrorMessage';
 
-export default function AvailableNeeded({ needyPeople, errorMessage }) {
+export default function AvailableNeeded({
+  needyPeople,
+  errorMessage,
+  userLocation,
+}) {
   return (
     <MainTab>
-      {errorMessage ? (
+      {!userLocation ? (
+        <ErrorMessage
+          avoidButton
+          errorMessage={locationErrorMessage.message}
+        ></ErrorMessage>
+      ) : errorMessage ? (
         <ErrorMessage
           errorMessage={errorMessage}
           isHelper={false}
@@ -32,7 +40,11 @@ export default function AvailableNeeded({ needyPeople, errorMessage }) {
           </MainPhrase>
           <Grid>
             {needyPeople.map((person) => (
-              <PersonCard key={person.userName} person={person}>
+              <PersonCard
+                userLocation={userLocation}
+                key={person.userName}
+                person={person}
+              >
                 precisa de ajuda com:
               </PersonCard>
             ))}

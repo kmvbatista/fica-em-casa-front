@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { SetCategoriesButton } from './UserProfile/styles';
 import { Column } from '../../../globalComponents';
 
-export default function ErrorMessage({ errorMessage, isHelper }) {
+export default function ErrorMessage({ errorMessage, isHelper, avoidButton }) {
   const history = useHistory();
   function navigate() {
     if (isHelper) {
@@ -24,10 +24,12 @@ export default function ErrorMessage({ errorMessage, isHelper }) {
       {errorMessage.split('\n').map((x) => (
         <strong style={{ fontSize: '2.5em' }}>{x}</strong>
       ))}
-
-      <SetCategoriesButton isHelper={isHelper} onClick={navigate}>
-        Selecionar Categorias
-      </SetCategoriesButton>
+      {avoidButton && <> </>}
+      {!avoidButton && (
+        <SetCategoriesButton isHelper={isHelper} onClick={navigate}>
+          Selecionar Categorias
+        </SetCategoriesButton>
+      )}
     </Column>
   );
 }

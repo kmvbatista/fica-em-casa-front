@@ -19,10 +19,16 @@ import ModalContent from './ModalContent';
 import Modal from '../../../../components/Modal';
 import CategoriesList from './CategoriesList';
 
-export default function PersonCard({ person, backgroundColor, children }) {
+export default function PersonCard({
+  person,
+  backgroundColor,
+  children,
+  userLocation,
+}) {
   const [isExpanded, setIsExpanded] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [necessity, setNecessity] = useState();
+
   let [necessities, setNecessities] = useState(person.necessities);
 
   const toggleShowModal = () => {
@@ -71,7 +77,9 @@ export default function PersonCard({ person, backgroundColor, children }) {
             <PersonName>
               <strong style={{ fontSize: 'inherit' }}>{person.userName}</strong>
             </PersonName>
-            <Distance>{person.distance}km perto de você</Distance>
+            {person.distance && (
+              <Distance>{person.distance}km perto de você</Distance>
+            )}
           </Column>
           <Row style={{ width: '30%' }}>
             <ContactIcon>
@@ -123,21 +131,23 @@ export default function PersonCard({ person, backgroundColor, children }) {
               necessities={necessities}
               helperCategories={person.categoriesToHelp}
             ></CategoriesList>
-            <GoToMapsButtonn>
-              <GoToMapsIcon src='./location.svg'></GoToMapsIcon>
-              <a
-                style={{
-                  fontSize: '1.5em',
-                  textDecoration: 'none',
-                  border: 'none',
-                  color: '#fff',
-                }}
-                target='_blank'
-                href={`https://www.google.com/maps/dir/-26.921264,-49.148829/${person.userCoordinates.latitude},${person.userCoordinates.longitude}`}
-              >
-                Traçar mapa usando o Google Maps
-              </a>
-            </GoToMapsButtonn>
+            {person.coordinates.latitude && userLocation && (
+              <GoToMapsButtonn>
+                <GoToMapsIcon src='./location.svg'></GoToMapsIcon>
+                <a
+                  style={{
+                    fontSize: '1.5em',
+                    textDecoration: 'none',
+                    border: 'none',
+                    color: '#fff',
+                  }}
+                  target='_blank'
+                  href={`https://www.google.com/maps/dir/${userLocation.latitude},${userLocation.longitude}/${person.coordinates.latitude},${person.coordinates.longitude}`}
+                >
+                  Traçar mapa usando o Google Maps
+                </a>
+              </GoToMapsButtonn>
+            )}
           </CollapsibleCard>
         </Collapse>
       </Column>

@@ -12,6 +12,8 @@ import { useEffect } from 'react';
 import * as SearchService from '../../../services/SearchService';
 import api from '../../../services/api';
 import LoadingMatch from '../../../components/NeedHelpLoadingMatch';
+import { getUserLocation } from '../../../services/locationService';
+import swal from 'sweetalert';
 
 export default function HelpBeHelped({ children }) {
   const [isHelping, setIsHelping] = React.useState(false);
@@ -22,15 +24,44 @@ export default function HelpBeHelped({ children }) {
   const [helperErrorMessage, setHelperError] = React.useState();
   const [isNeedySearching, setNeedySearching] = React.useState(true);
   const [isHelperSearching, setHelperSearching] = React.useState(true);
+  const [userLocation, setUserLocation] = React.useState();
 
   const toggleIsHelping = () => {
     setIsHelping(!isHelping);
   };
 
   useEffect(() => {
-    getHelpers();
-    getNeedy();
+    getUsers();
   }, []);
+
+  async function getLocation() {
+    try {
+      const coords = await getUserLocation();
+      setUserLocation({
+        latitude: coords.latitude,
+        longitude: coords.longitude,
+      });
+      return coords;
+    } catch (error) {
+      setUserLocation(undefined);
+      await swal(
+        'Não conseguimos buscar tua localização',
+        'Por favor configure',
+        'error',
+      );
+    }
+  }
+
+  async function getUsers() {
+    const coords = await getLocation();
+    if (coords) {
+      getNeedy(coords);
+      getHelpers(coords);
+    } else {
+      setHelperSearching(false);
+      setNeedySearching(false);
+    }
+  }
 
   async function handleSwitch(isActive) {
     await api.put('/user', { active: isActive });
@@ -38,32 +69,28 @@ export default function HelpBeHelped({ children }) {
     updateUserCookies(userLogged);
   }
 
-  const getHelpers = async () => {
-    navigator.geolocation.getCurrentPosition(async ({ coords }) => {
-      const data = await SearchService.getNearHelpers(coords);
-      if (Array.isArray(data)) {
-        setHelpers(data);
-        setHelperSearching(false);
-      } else {
-        setHelperError(data);
-        setHelperSearching(false);
-      }
-    });
+  const getHelpers = async (coords) => {
+    const data = await SearchService.getNearHelpers(coords);
+    if (Array.isArray(data)) {
+      setHelpers(data);
+      setHelperSearching(false);
+    } else {
+      setHelperError(data);
+      setHelperSearching(false);
+    }
   };
 
-  const getNeedy = async () => {
-    navigator.geolocation.getCurrentPosition(async ({ coords }) => {
-      const data = await SearchService.getNearNeedy(coords);
-      if (Array.isArray(data)) {
-        setNeedyPeople(data);
-        if (isNeedySearching) {
-          setNeedySearching(false);
-        }
-      } else {
-        setNeedyErrorMsg(data);
+  const getNeedy = async (coords) => {
+    const data = await SearchService.getNearNeedy(coords);
+    if (Array.isArray(data)) {
+      setNeedyPeople(data);
+      if (isNeedySearching) {
         setNeedySearching(false);
       }
-    });
+    } else {
+      setNeedyErrorMsg(data);
+      setNeedySearching(false);
+    }
   };
 
   return (
@@ -126,6 +153,7 @@ export default function HelpBeHelped({ children }) {
             <AvailableNeeded
               errorMessage={needyErrorMessage}
               needyPeople={needyPeople}
+              userLocation={userLocation}
             ></AvailableNeeded>
           ))}
       </>
@@ -142,6 +170,7 @@ export default function HelpBeHelped({ children }) {
             <AvailableHelpers
               errorMessaged={helperErrorMessage}
               helpers={helpers}
+              userLocation={userLocation}
             ></AvailableHelpers>
           ))}
       </>

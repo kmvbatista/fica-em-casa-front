@@ -19,7 +19,7 @@ export default function Menu() {
       <img
         src='./back.svg'
         onClick={() => history.goBack()}
-        style={{ width: '5em', padding: '1em' }}
+        style={{ width: '5em', padding: '1em', cursor: 'pointer' }}
         alt='Voltar'
       />
       <Dropdown></Dropdown>

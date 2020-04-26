@@ -88,6 +88,7 @@ export default function Profile() {
       });
       if (accepted) {
         await UserService.deleteAccount();
+        document.cookie = undefined;
         history.replace('login');
       } else {
         swal('Agradecemos por continuar com a gente :)', '', 'success');

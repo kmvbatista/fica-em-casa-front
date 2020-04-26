@@ -22,13 +22,10 @@ import Loader from '../../components/Loader';
 
 export default function ChooseGroup({ children }) {
   const history = useHistory();
-  const userJustRegistered =
+  const dataComming =
     history.location.state && history.location.state.userJustRegistered;
   const [necessitiesToComplete, setNecessitiesToComplete] = useState([]);
-
-  let [isUserLogged, setUserLogged] = useState(
-    SessionService.getUserData() !== undefined,
-  );
+  const [userJustRegistered, setUserJustRegistered] = useState(dataComming);
 
   useEffect(() => {
     getUserPendingNecessities();
@@ -75,12 +72,14 @@ export default function ChooseGroup({ children }) {
   }
 
   function helperChoice() {
+    setUserJustRegistered(false);
     return history.push('/can-help-options');
   }
 
   function needyChoice() {
-    if (isUserLogged) {
-      history.push('need-help-form');
+    if (userJustRegistered) {
+      setUserJustRegistered(false);
+      return history.push('need-help-form');
     }
     return history.push('/need-help-options');
   }

@@ -12,9 +12,10 @@ import {
   MainContainer,
 } from './styles';
 import { useHistory } from 'react-router-dom';
-import * as SessionService from '../../services/sessionService';
 import swal from 'sweetalert';
 import { Row } from '../../globalComponents';
+import { updateUser } from '../../services/userService';
+import LoaderContainer from '../../components/LoaderContainer';
 
 export default function NeedHelpForm() {
   const history = useHistory();
@@ -25,20 +26,28 @@ export default function NeedHelpForm() {
   const [sonsAtHome, setSonsAtHome] = useState(0);
   const [sonsQuantity, setSonsQuantity] = useState(1);
   const [sonsAverageAge, setSonsAverageAge] = useState(10);
-  const dataComing = history.location.state;
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async () => {
     try {
+      setIsLoading(true);
       const birthday = `${dayOfBirth}/${monthOfBirth}/${yearOfBirth}`;
-      const dataToSend = Object.assign(dataComing, {
+      const dataToSend = {
         birthday,
         sonsAtHome: Number.parseInt(sonsAtHome),
         sonsQuantity: Number.parseInt(sonsQuantity),
         sonsAverageAge: Number.parseInt(sonsAverageAge),
-      });
-      await SessionService.registerUser(dataToSend);
+      };
+      await updateUser(dataToSend);
+      setIsLoading(false);
+      await swal(
+        'Dados salvos com sucesso!',
+        'Cadastre agora suas necessidades.',
+        'success',
+      );
       history.replace('need-help-options');
     } catch (error) {
+      setIsLoading(false);
       swal(
         error.response
           ? error.response.data.error
@@ -154,9 +163,11 @@ export default function NeedHelpForm() {
             </InputBlock>
           </div>
         </div>
-        <RegisterUserButton onClick={handleSubmit}>
-          confirmar
-        </RegisterUserButton>
+        <LoaderContainer isLoading={isLoading}>
+          <RegisterUserButton onClick={handleSubmit}>
+            confirmar
+          </RegisterUserButton>
+        </LoaderContainer>
       </FormContainer>
     </MainContainer>
   );

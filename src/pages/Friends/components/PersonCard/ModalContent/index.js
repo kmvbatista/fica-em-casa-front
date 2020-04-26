@@ -12,6 +12,7 @@ import api from '../../../../../services/api';
 import Loading from 'react-loading';
 import swal from 'sweetalert';
 import Share from '../../../../../components/Share';
+import jsonCards from '../../../../../assets/productCategory.json';
 
 export default function ModalContent({
   necessity,
@@ -22,6 +23,10 @@ export default function ModalContent({
 }) {
   const [isLoading, setLoading] = useState(false);
   const user = getUserData();
+  const isSimple = jsonCards.find(
+    (x) => x.category === necessity.category && x.isSimple,
+  );
+
   async function confirmHelp() {
     try {
       setLoading(true);
@@ -56,7 +61,7 @@ export default function ModalContent({
           <img
             alt={necessity.category}
             src={`./${necessity.category}.svg`}
-            style={{ height: '2.5em' }}
+            style={{ width: '5em' }}
           />
         </Card>
         <strong style={{ fontSize: '3em' }}>{necessity.category}</strong>
@@ -71,7 +76,8 @@ export default function ModalContent({
           </p>
         </div>
         <ItemsContainer>
-          {necessity.items &&
+          {!isSimple &&
+            necessity.items &&
             necessity.items.map((it) => (
               <p
                 key={necessity.items.findIndex((x) => x === it)}

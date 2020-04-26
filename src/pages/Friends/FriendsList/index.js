@@ -120,7 +120,7 @@ export default function HelpBeHelped({ children }) {
             onClick={toggleIsHelping}
           >
             <strong style={{ display: 'block', textAlign: 'center' }}>
-              Quem precisa de ajuda
+              Quero ajudar
             </strong>
           </Tab>
           <Tab
@@ -131,7 +131,7 @@ export default function HelpBeHelped({ children }) {
             onClick={toggleIsHelping}
           >
             <strong style={{ display: 'block', textAlign: 'center' }}>
-              Quem pode te ajudar
+              Preciso de ajuda
             </strong>
           </Tab>
         </TabContainer>

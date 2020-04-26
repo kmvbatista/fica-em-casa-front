@@ -26,7 +26,7 @@ export default function AvailableHelpers({
         <ErrorMessage
           isHelper={true}
           errorMessage={
-            'Não há ninguém na sua região que pode te ajudar.\n Cadastre mais necessidades para encontrar mais pessoas!'
+            'Poxa, não achamos alguém próximo\n que possa ajudar, mas não desanime.\n'
           }
         ></ErrorMessage>
       ) : (

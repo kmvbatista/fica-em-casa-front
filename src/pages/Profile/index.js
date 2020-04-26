@@ -80,8 +80,8 @@ export default function Profile() {
   async function deleteAccount() {
     try {
       const accepted = await swal({
-        title: 'Tens certeza que quer exluir tua conta?',
-        text: 'Essa ação é irreversível',
+        title: 'Você tem certeza que deseja excluir sua conta ?',
+        text: 'Esta ação é irreversível',
         icon: 'warning',
         buttons: ['Não', 'Sim'],
         dangerMode: true,

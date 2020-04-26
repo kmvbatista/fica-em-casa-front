@@ -10,7 +10,13 @@ export async function getAssistCategories() {
     }
   }
 }
+
 export async function getPendingNecesseties() {
   const response = await api.get('/necessity/status/pending');
+  return response.data;
+}
+
+export async function deleteAccount() {
+  const response = await api.delete('/user');
   return response.data;
 }

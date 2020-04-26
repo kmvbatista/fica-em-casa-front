@@ -11,18 +11,17 @@ import {
   ProfileContainer,
   SaveButton,
 } from './styles';
-import InputMask from 'react-input-mask';
 import Dropdown from '../../components/PopUpMenu';
 import { useHistory } from 'react-router-dom';
-import { getUserData } from '../../services/sessionService';
 import api from '../../services/api';
-import { updateUserCookies } from '../../services/sessionService';
+import { updateUserCookies, getUserData } from '../../services/sessionService';
+import * as UserService from '../../services/userService';
 import swal from 'sweetalert';
 import Loading from 'react-loading';
 import { Row } from '../../globalComponents';
 import Loader from '../../components/Loader';
-import PhoneInput from '../../components/PhoneInput';
 import ProfilePhoneInput from '../../components/ProfilePhoneInput';
+import ButtonWithLoading from '../../components/ButtonWithLoading';
 
 export default function Profile() {
   const userData = getUserData();
@@ -74,6 +73,32 @@ export default function Profile() {
         'Tente novamente.',
         'error',
       );
+    }
+  }
+
+  async function deleteAccount() {
+    try {
+      const accepted = await swal({
+        title: 'Tens certeza que quer exluir tua conta?',
+        text: 'Essa ação é irreversível',
+        icon: 'warning',
+        buttons: ['Não', 'Sim'],
+        dangerMode: true,
+      });
+      if (accepted) {
+        await UserService.deleteAccount();
+        history.replace('login');
+      } else {
+        swal('Agradecemos por continuar com a gente :)', '', 'success');
+      }
+    } catch (error) {
+      if (error.response || error.message) {
+        return swal(
+          'Houve um erro na sua requisição',
+          'Tente novamente',
+          'error',
+        );
+      }
     }
   }
 
@@ -196,6 +221,12 @@ export default function Profile() {
             />
           </Row>
         </InputBlock>
+        <ButtonWithLoading
+          onClick={deleteAccount}
+          style={{ border: '1px solid white', width: '40%' }}
+        >
+          Excluir minha conta
+        </ButtonWithLoading>
         <BottomContainer></BottomContainer>
       </MainContainer>
       <Menu></Menu>

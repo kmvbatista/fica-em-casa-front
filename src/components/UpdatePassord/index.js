@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { Column } from '../../globalComponents';
 import { UpdatePwdInput } from './styles';
 import ButtonWithLoading from '../ButtonWithLoading';
-import { updatePassword } from '../../services/userService';
+import { updateUser } from '../../services/userService';
 import swal from 'sweetalert';
 
 function GetContent() {
@@ -38,7 +38,7 @@ function GetContent() {
         return;
       }
       const dataToSend = { password, confirmPassword, oldPassword };
-      await updatePassword(dataToSend);
+      await updateUser(dataToSend);
       swal('Senha atualizada com sucesso', '', 'success');
     } catch (error) {
       swal(

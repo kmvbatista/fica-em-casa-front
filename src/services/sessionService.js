@@ -13,6 +13,8 @@ export function getUserData() {
 
 export function setCookies(responseData) {
   try {
+    debugger;
+    console.log(responseData);
     const expiryDate = new Date('12/12/2023');
     const { user, token } = responseData;
     document.cookie = `{"user": ${JSON.stringify(

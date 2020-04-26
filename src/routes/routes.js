@@ -18,9 +18,9 @@ import ForgotPassword from '../pages/ForgotPassword';
 export default function Routes({ children }) {
   return (
     <Switch>
-      <Route exact path='/'>
+      <PrivateRoute exact path='/'>
         <Home>{children}</Home>
-      </Route>
+      </PrivateRoute>
       <PrivateRoute path='/can-help-options'>
         <CanHelpOptions>{children}</CanHelpOptions>
       </PrivateRoute>

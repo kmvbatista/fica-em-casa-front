@@ -4,14 +4,14 @@ import { useHistory } from 'react-router-dom';
 import {
   Welcome,
   LoginInput,
-  RegisterButton,
   Title,
   InitialForm,
   Container,
 } from '../FirstSignup/styles';
-import InputMask from 'react-input-mask';
 import swal from 'sweetalert';
 import PhoneInput from '../../components/PhoneInput';
+import ButtonWithLoading from '../../components/ButtonWithLoading';
+import * as SessionService from '../../services/sessionService';
 
 export default function SignIn() {
   const history = useHistory();
@@ -22,7 +22,7 @@ export default function SignIn() {
 
   const handleSubmit = async () => {
     if (!isFormValid()) return;
-    const dataToNextPage = {
+    const dataToSend = {
       name: dataComing.name,
       login: dataComing.login,
       useTermsRead: dataComing.useTermsRead,
@@ -30,7 +30,25 @@ export default function SignIn() {
       password,
       confirmPassword,
     };
-    history.replace('/', dataToNextPage);
+    try {
+      await SessionService.registerUser(dataToSend);
+      await swal(
+        'Cadastro efetuado com sucesso',
+        'Bem vindo ao fica em casa!',
+        'success',
+      );
+      history.push('/', { userJustRegistered: true });
+    } catch (error) {
+      swal(
+        `${
+          error.response
+            ? error.response.data.error
+            : 'Tente novamente mais tarde!'
+        }`,
+        'Houve um erro na requisição',
+        'error',
+      );
+    }
   };
 
   function isFormValid() {
@@ -116,9 +134,12 @@ export default function SignIn() {
           name='confirmPassword'
           required
         ></LoginInput>
-        <RegisterButton onClick={() => handleSubmit()}>
-          Cadastrar
-        </RegisterButton>
+        <ButtonWithLoading
+          loaderColor={'var(--color-pink)'}
+          onClick={handleSubmit}
+        >
+          Cadastrar-se
+        </ButtonWithLoading>
       </InitialForm>
     </Container>
   );

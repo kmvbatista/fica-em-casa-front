@@ -285,7 +285,10 @@ export default function Login() {
             }}
           >
             {' '}
-            <label style={{ fontSize: '.7em' }} htmlFor='useTerms'>
+            <label
+              style={{ fontSize: '.7em', cursor: 'pointer' }}
+              htmlFor='useTerms'
+            >
               Eu li e concordo com os{' '}
             </label>
             <Link

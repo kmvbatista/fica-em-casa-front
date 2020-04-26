@@ -33,7 +33,7 @@ export const Box1 = styled.div`
   display: flex;
   flex-direction: column;
   box-sizing: content-box;
-  height: ${(props) => (props.isUserLogged ? '34vh' : '50vh')};
+  height: ${(props) => (props.userJustRegistered ? '50vh' : '34vh')};
   font-size: 0.8em;
   padding-bottom: 2em;
   background-color: var(--color-pink);
@@ -41,7 +41,7 @@ export const Box1 = styled.div`
   align-items: center;
   @media only screen and (min-width: 900px) {
     height: 100vh;
-    width: ${(props) => (props.isUserLogged ? '34vw' : '50vw')};
+    width: ${(props) => (props.userJustRegistered ? '50vw' : '34vw')};
     padding: 0;
   }
 `;
@@ -50,7 +50,7 @@ export const Box2 = styled(Box1)`
   transform: translate(0, -2em);
   border-radius: 0 2.5em 0 0;
   background-color: var(--color-purple);
-  height: ${(props) => (props.isUserLogged ? '34vh' : '50vh')};
+  height: ${(props) => (props.userJustRegistered ? '50vh' : '34vh')};
 
   @media only screen and (min-width: 1200px) {
     transform: translate(-2em, 0em);
@@ -62,8 +62,7 @@ export const Box3 = styled(Box1)`
   transform: translate(0, -4em);
   border-radius: 0 0 0 2.5em;
   background-color: var(--color-green);
-  height: ${(props) => (props.isUserLogged ? '34vh' : '50vh')};
-  display: ${(props) => (props.isUserLogged ? 'flex' : 'none')};
+  height: 34vh;
 
   @media only screen and (min-width: 1200px) {
     transform: translate(-4em, 0em);

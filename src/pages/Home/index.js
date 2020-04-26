@@ -22,7 +22,8 @@ import Loader from '../../components/Loader';
 
 export default function ChooseGroup({ children }) {
   const history = useHistory();
-  const dataFirstAcess = history.location.state;
+  const userJustRegistered =
+    history.location.state && history.location.state.userJustRegistered;
   const [necessitiesToComplete, setNecessitiesToComplete] = useState([]);
 
   let [isUserLogged, setUserLogged] = useState(
@@ -30,15 +31,12 @@ export default function ChooseGroup({ children }) {
   );
 
   useEffect(() => {
-    if (!isUserLogged && !dataFirstAcess) {
-      history.replace('/login');
-    }
     getUserPendingNecessities();
   }, []);
 
   async function getUserPendingNecessities() {
     try {
-      if (isUserLogged) {
+      if (!userJustRegistered) {
         swal({
           title: 'Aguarde, por favor...',
           content: Loader(),
@@ -77,56 +75,30 @@ export default function ChooseGroup({ children }) {
   }
 
   function helperChoice() {
-    if (isUserLogged) {
-      return history.push('/can-help-options');
-    }
-    registerHelper();
+    return history.push('/can-help-options');
   }
 
   function needyChoice() {
     if (isUserLogged) {
-      return history.push('/need-help-options');
+      history.push('need-help-form');
     }
-    history.push(
-      'need-help-form',
-      Object.assign(dataFirstAcess, { isNeedy: true }),
-    );
+    return history.push('/need-help-options');
   }
 
   function viewFriendsChoice() {
     history.push('friends');
   }
 
-  async function registerHelper() {
-    const dataToSend = Object.assign(dataFirstAcess, {
-      isNeedy: false,
-    });
-    try {
-      await SessionService.registerUser(dataToSend);
-      history.push('can-help-options');
-    } catch (error) {
-      swal(
-        `${
-          error.response
-            ? error.response.data.error
-            : 'Tente novamente mais tarde!'
-        }`,
-        'Houve um erro na requisição',
-        'error',
-      );
-    }
-  }
-
   return (
     <Container
       style={
         ({ position: 'relative' },
-        isUserLogged
-          ? { backgroundColor: 'var(--color-green)' }
-          : { backgroundColor: 'var(--color-purple)' })
+        userJustRegistered
+          ? { backgroundColor: 'var(--color-purple)' }
+          : { backgroundColor: 'var(--color-green)' })
       }
     >
-      <Box1 onClick={needyChoice} isUserLogged={isUserLogged}>
+      <Box1 onClick={needyChoice} userJustRegistered={userJustRegistered}>
         <TitleContainer>
           <Title>
             <strong>Faço parte do</strong> <br></br>
@@ -158,7 +130,7 @@ export default function ChooseGroup({ children }) {
         </CenteredBox>
       </Box1>
 
-      <Box2 onClick={helperChoice} isUserLogged={isUserLogged}>
+      <Box2 onClick={helperChoice} userJustRegistered={userJustRegistered}>
         <TitleContainer>
           <Title>
             <strong>Não faço parte</strong>
@@ -196,46 +168,49 @@ export default function ChooseGroup({ children }) {
           </div>
         </CenteredBox>
       </Box2>
-      <Box3 onClick={viewFriendsChoice} isUserLogged={isUserLogged}>
-        <TitleContainer>
-          <Title>
-            <strong>Não faço parte</strong>
-            <br></br>
-          </Title>
-          <SubTitle>do grupo de risco</SubTitle>
-        </TitleContainer>
-        <CenteredBox>
-          <div
-            style={{
-              direction: 'rtl',
-              color: 'var(--color-green)',
-            }}
-          >
-            <Image
-              style={{ right: 0, height: '105%', top: '10%' }}
-              src='./amigos.png'
-              alt='amigos'
-            ></Image>
-
+      {!userJustRegistered && (
+        <Box3 onClick={viewFriendsChoice}>
+          <TitleContainer>
+            <Title>
+              <strong>Não faço parte</strong>
+              <br></br>
+            </Title>
+            <SubTitle>do grupo de risco</SubTitle>
+          </TitleContainer>
+          <CenteredBox>
             <div
               style={{
-                position: 'absolute',
-                left: '12%',
-                top: '50%',
-                transform: 'translateY(-50%)',
+                direction: 'rtl',
+                color: 'var(--color-green)',
               }}
             >
-              <SecondaryText>
-                meus<br></br>
-              </SecondaryText>
-              <HighlightText>
-                <strong>Amigos</strong>
-              </HighlightText>
+              <Image
+                style={{ right: 0, height: '105%', top: '10%' }}
+                src='./amigos.png'
+                alt='amigos'
+              ></Image>
+
+              <div
+                style={{
+                  position: 'absolute',
+                  left: '12%',
+                  top: '50%',
+                  transform: 'translateY(-50%)',
+                }}
+              >
+                <SecondaryText>
+                  meus<br></br>
+                </SecondaryText>
+                <HighlightText>
+                  <strong>Amigos</strong>
+                </HighlightText>
+              </div>
             </div>
-          </div>
-        </CenteredBox>
-      </Box3>
-      {children}
+          </CenteredBox>
+        </Box3>
+      )}
+
+      {userJustRegistered || children}
     </Container>
   );
 }

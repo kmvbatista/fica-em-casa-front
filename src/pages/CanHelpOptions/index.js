@@ -25,7 +25,6 @@ import { useHistory } from 'react-router-dom';
 import LocationErrorMessage from '../Friends/components/LocationErrorMessage';
 
 export default function NeedHelpOptions({ children }) {
-  const [isFirstAcess, setIsFirstAccess] = useState(false);
   const [userLocation, setUserLocation] = useState({});
   const [hasRegisteredOption, setRegisteredOption] = useState(false);
   const [cards, setCards] = useState([]);

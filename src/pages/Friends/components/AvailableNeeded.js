@@ -1,5 +1,4 @@
 import React from 'react';
-import locationErrorMessage from '../../../assets/locationFailMessage.json';
 import PersonCard from './PersonCard';
 import { MainPhrase, MainTab } from '../styledComponents';
 import { Grid } from './PersonCard/styles';

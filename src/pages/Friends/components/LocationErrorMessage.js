@@ -15,6 +15,7 @@ export default function LocationErrorMessage({ buttonsColor }) {
         <br />{' '}
         {locationErrorMsg.links.map((x) => (
           <a
+            rel='noopener noreferrer'
             target='_blank'
             href={x.link}
             style={{ margin: '0 auto 1em auto' }}

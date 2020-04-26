@@ -56,7 +56,7 @@ export default function SignIn() {
       swal('Telefone está em formato inválido', 'Corrija por favor', 'error');
       return false;
     }
-    if (password != confirmPassword) {
+    if (password !== confirmPassword) {
       swal('As duas senhas não estão iguais', 'Corrija por favor', 'error');
       return false;
     }

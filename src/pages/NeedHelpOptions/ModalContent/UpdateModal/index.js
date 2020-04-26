@@ -39,7 +39,7 @@ export default function UpdateModal({
 
   useEffect(() => {
     return () => setDeleteCardModal(false);
-  }, []);
+  }, [setDeleteCardModal]);
 
   async function confirmUpdates() {
     try {

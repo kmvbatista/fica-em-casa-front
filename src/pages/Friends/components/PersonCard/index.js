@@ -35,7 +35,7 @@ export default function PersonCard({
   };
 
   function turnCategoryPending(category) {
-    const index = necessities.findIndex((x) => x.category == category);
+    const index = necessities.findIndex((x) => x.category === category);
     necessities[index].status = 'pending';
     setNecessities([...necessities]);
   }
@@ -147,6 +147,7 @@ export default function PersonCard({
                     color: '#fff',
                   }}
                   target='_blank'
+                  rel='noopener noreferrer'
                   href={`https://www.google.com/maps/dir/${userLocation.latitude},${userLocation.longitude}/${person.coordinates.latitude},${person.coordinates.longitude}`}
                 >
                   Traçar mapa usando o Google Maps

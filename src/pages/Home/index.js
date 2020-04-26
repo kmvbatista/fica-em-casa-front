@@ -13,7 +13,6 @@ import {
   SecondaryText,
   Image,
 } from './styles';
-import * as SessionService from '../../services/sessionService';
 import swal from 'sweetalert';
 import { getPendingNecesseties } from '../../services/userService';
 import { updateNecessitiesStatus } from '../../services/necessityService';

@@ -1,6 +1,5 @@
 import React from 'react';
 import { SignupSelect } from './styles';
-import { LoginInput } from '../../pages/FirstSignup/styles';
 import { Input } from '../../pages/Profile/styles';
 
 export default function Ddi({ value, setDDI }) {

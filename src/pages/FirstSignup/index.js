@@ -34,7 +34,7 @@ export default function Login() {
 
   const confirmCode = async () => {
     setIsLoading(true);
-    if (!token && token.split(' ').join('').length != 6) {
+    if (!token && token.split(' ').join('').length !== 6) {
       return swal('Insira um token válido, por favor', '', 'error');
     }
     if (isFormValid()) {

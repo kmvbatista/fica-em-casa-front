@@ -14,7 +14,7 @@ export default function PendingNecessities(
     setListToSend([...listToSend]);
   }
   function removeItem(item) {
-    const newList = listToSend.filter((x) => x != item);
+    const newList = listToSend.filter((x) => x !== item);
     setListToSend([...newList]);
   }
 

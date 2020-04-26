@@ -6,11 +6,6 @@ import ButtonWithLoading from '../ButtonWithLoading';
 import { updatePassword } from '../../services/userService';
 import swal from 'sweetalert';
 
-const [password, setPassword] = useState('');
-const [confirmPassword, setConfirmPassword] = useState('');
-const [oldPassword, setOldPassword] = useState('');
-const [errorMessage, setErrorMessage] = useState();
-
 async function handleFinish() {
   try {
     await updatePassword();
@@ -26,10 +21,14 @@ async function handleFinish() {
   }
 }
 
-function getContent() {
+function GetContent() {
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [oldPassword, setOldPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState();
   return (
     <>
-      <Column>
+      <Column style={{ height: '32em', justifyContent: 'space-around' }}>
         <UpdatePwdInput
           placeholder='Senha antiga'
           value={oldPassword}
@@ -46,7 +45,11 @@ function getContent() {
           onChange={(e) => setConfirmPassword(e.target.value)}
         ></UpdatePwdInput>
         <ButtonWithLoading
-          style={{ backgroundColor: 'var(--color-purple-dark)' }}
+          style={{
+            backgroundColor: 'var(--color-purple-dark)',
+            padding: '.7em',
+            height: 'unset',
+          }}
           onClick={handleFinish}
         >
           Confirmar
@@ -58,6 +61,6 @@ function getContent() {
 
 export default function UpdatePassord() {
   const wrapper = document.createElement('div');
-  ReactDOM.render(getContent(), wrapper);
+  ReactDOM.render(<GetContent></GetContent>, wrapper);
   return wrapper.firstChild;
 }

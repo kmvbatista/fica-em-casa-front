@@ -22,6 +22,7 @@ import { Row } from '../../globalComponents';
 import Loader from '../../components/Loader';
 import ProfilePhoneInput from '../../components/ProfilePhoneInput';
 import ButtonWithLoading from '../../components/ButtonWithLoading';
+import UpdatePassord from '../../components/UpdatePassord';
 
 export default function Profile() {
   const userData = getUserData();
@@ -103,7 +104,10 @@ export default function Profile() {
   }
 
   async function handleUpdatePassword() {
-    swal('Calma');
+    swal({
+      content: UpdatePassord(),
+      buttons: {},
+    });
   }
 
   function Menu() {

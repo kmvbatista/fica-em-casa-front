@@ -126,7 +126,7 @@ export default function Profile() {
         <img
           src='./back.svg'
           onClick={() => history.goBack()}
-          style={{ width: '5em', padding: '1em' }}
+          style={{ width: '5em', padding: '1em', cursor: 'pointer' }}
           alt='Voltar'
         />
         {isEditted ? (
@@ -156,7 +156,7 @@ export default function Profile() {
   }
 
   return (
-    <ProfileContainer>
+    <ProfileContainer style={{ backgroundColor: 'var(--color-purple)' }}>
       <ProfilePhotoContainer>
         <PhotoContainer style={{ position: 'relative' }}>
           <input

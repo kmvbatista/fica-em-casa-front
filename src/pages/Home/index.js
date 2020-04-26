@@ -118,7 +118,9 @@ export default function ChooseGroup({ children }) {
   }
 
   return (
-    <Container style={{ position: 'relative' }}>
+    <Container
+      style={{ position: 'relative', backgroundColor: 'var(--color-green)' }}
+    >
       <Box1 onClick={needyChoice} isUserLogged={isUserLogged}>
         <TitleContainer>
           <Title>

@@ -20,3 +20,8 @@ export async function deleteAccount() {
   const response = await api.delete('/user');
   return response.data;
 }
+
+export async function updatePassword(dataToSend) {
+  const response = await api.update('/user', dataToSend);
+  return response.data;
+}

@@ -102,6 +102,10 @@ export default function Profile() {
     }
   }
 
+  async function handleUpdatePassword() {
+    swal('Calma');
+  }
+
   function Menu() {
     return (
       <div
@@ -221,12 +225,24 @@ export default function Profile() {
             />
           </Row>
         </InputBlock>
-        <ButtonWithLoading
-          onClick={deleteAccount}
-          style={{ border: '1px solid white', width: '40%' }}
-        >
-          Excluir minha conta
-        </ButtonWithLoading>
+        <Row style={{ justifyContent: 'space-around', width: '100%' }}>
+          <ButtonWithLoading
+            onClick={deleteAccount}
+            style={{ border: '1px solid white', width: '80%' }}
+          >
+            Excluir minha conta
+          </ButtonWithLoading>
+          <ButtonWithLoading
+            onClick={handleUpdatePassword}
+            style={{
+              border: '1px solid white',
+              width: '80%',
+              backgroundColor: 'var(--color-green)',
+            }}
+          >
+            Alterar senha
+          </ButtonWithLoading>
+        </Row>
         <BottomContainer></BottomContainer>
       </MainContainer>
       <Menu></Menu>

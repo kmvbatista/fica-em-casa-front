@@ -99,7 +99,7 @@ export default function Login() {
     }
     swal(
       `Iremos enviar o código de confirmação para ${
-        hasNoEmail ? 'número \n' + phone : 'email \n' + email
+        hasNoEmail ? 'número \n' + phone : 'o email \n' + email
       }. Ok?`,
       hasNoEmail ? 'Esse envio será por sms, confira nas mensagens' : '',
       { buttons: ['Agora não', 'Sim'] },

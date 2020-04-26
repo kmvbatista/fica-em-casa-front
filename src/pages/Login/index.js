@@ -65,7 +65,7 @@ export default function Login() {
           <strong style={{ fontSize: '1.5em' }}>Faça o seu login</strong>
         </Title>
         <LoginInput
-          placeholder='Seu telefone'
+          placeholder='seu email ou telefone'
           name='login'
           id='login'
           required
@@ -73,7 +73,7 @@ export default function Login() {
           onChange={(e) => setlogin(e.target.value)}
         ></LoginInput>
         <LoginInput
-          placeholder='Sua senha'
+          placeholder='sua senha'
           name='password'
           type='password'
           required

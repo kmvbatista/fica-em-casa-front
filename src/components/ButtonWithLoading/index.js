@@ -3,10 +3,15 @@ import { useState } from 'react';
 import LoaderContainer from '../LoaderContainer';
 import { RegisterButton } from '../../pages/FirstSignup/styles';
 
-export default function ButtonWithLoading({ style, children, onClick }) {
+export default function ButtonWithLoading({
+  style,
+  children,
+  onClick,
+  loaderColor,
+}) {
   const [isLoading, setIsLoading] = useState(false);
   return (
-    <LoaderContainer isLoading={isLoading}>
+    <LoaderContainer isLoading={isLoading} color={loaderColor}>
       <RegisterButton
         style={style}
         onClick={async () => {

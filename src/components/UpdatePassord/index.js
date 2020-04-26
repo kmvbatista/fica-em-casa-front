@@ -83,6 +83,7 @@ function GetContent() {
             boxShadow: '0px 10px 10px rgba(85, 57, 188, 0.5)',
           }}
           onClick={handleFinish}
+          loaderColor={'var(--color-purple-dark)'}
         >
           Confirmar
         </ButtonWithLoading>

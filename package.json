@@ -7,11 +7,10 @@
     "npm": "6.13.4"
   },
   "dependencies": {
-    "@material-ui/core": "^4.9.8",
-    "@material-ui/icons": "^4.9.1",
     "axios": "^0.19.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-expand-animated": "^1.0.2",
     "react-input-mask": "^2.0.4",
     "react-loading": "^2.0.3",
     "react-router-dom": "^5.1.2",

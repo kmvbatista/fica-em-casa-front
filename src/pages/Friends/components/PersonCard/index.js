@@ -12,8 +12,8 @@ import {
 } from './styles';
 
 import { Column, Row } from '../../../../globalComponents';
-
-import Collapse from '@material-ui/core/Collapse';
+import ExpandCollapse from 'react-expand-collapse';
+import Collapse from 'react-expand-animated';
 import ArrowButton from './ArrowButton/arrowButton';
 import ModalContent from './ModalContent';
 import Modal from '../../../../components/Modal';
@@ -109,17 +109,23 @@ export default function PersonCard({
               </a>
             </ContactIcon>
             <div onClick={() => setIsExpanded(!isExpanded)}>
-              <ArrowButton></ArrowButton>
+              <ArrowButton isExpanded={isExpanded}></ArrowButton>
             </div>
           </Row>
         </PeopleCard>
-        <Collapse in={isExpanded}>
-          <CollapsibleCard style={{ backgroundColor: backgroundColor }}>
+        <Collapse
+          open={isExpanded}
+          duration={300}
+          transitions={['height', 'opacity', 'background']}
+        >
+          <CollapsibleCard
+            style={{ backgroundColor: backgroundColor, marginTop: '1px' }}
+          >
             <p
               style={{
                 fontSize: '1.7em',
                 color: 'var(--color-grey-dark1)',
-                fontWeight: '200',
+                fontWeight: '400',
               }}
             >
               {person.userName} {children}

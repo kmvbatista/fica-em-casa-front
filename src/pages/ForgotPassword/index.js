@@ -77,7 +77,7 @@ export default function Login() {
       await SessionService.sendConfirmation(dataToSend);
       setIsLoading(false);
       swal({
-        title: 'Código enviado com sucesso. \nFaça login por favor',
+        title: 'Senha alterada com sucesso. \nFaça login por favor',
         icon: 'success',
       }).then((x) => history.replace('/login'));
     } catch (error) {
@@ -140,7 +140,7 @@ export default function Login() {
       </Welcome>
       <InitialForm>
         <Title>
-          <strong style={{ fontSize: '1.5em' }}>Faça o seu login</strong>
+          <strong style={{ fontSize: '1.5em' }}>Esqueci minha senha</strong>
         </Title>
         {!isInsertingToken &&
           (!loginWithPhone ? (
@@ -211,7 +211,7 @@ export default function Login() {
         )}
         <LoaderContainer color={'var(--color-pink)'} isLoading={isLoading}>
           <RegisterButton onClick={handleButtonClick}>
-            {isInsertingToken ? 'Confirmar' : 'Enviar token'}
+            {isInsertingToken ? 'Confirmar' : 'Enviar código'}
           </RegisterButton>
         </LoaderContainer>
       </InitialForm>

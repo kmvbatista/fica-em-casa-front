@@ -25,7 +25,7 @@ export default function AvailableNeeded({
         <ErrorMessage
           isHelper={false}
           errorMessage={
-            'Poxa, não achamos alguém próximo\n que precise de ajuda, mas não desanime.\n'
+            'Poxa, parece que ainda não há \npessoas precisando de ajuda nessas categorias!'
           }
         ></ErrorMessage>
       ) : (

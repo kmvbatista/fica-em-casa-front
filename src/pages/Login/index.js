@@ -80,7 +80,7 @@ export default function Login() {
         ) : (
           <Column>
             <LoginInput
-              placeholder='Seu email'
+              placeholder='seu email'
               name='login'
               id='login'
               required
@@ -96,7 +96,7 @@ export default function Login() {
           </Column>
         )}
         <LoginInput
-          placeholder='Sua senha'
+          placeholder='sua senha'
           name='password'
           type='password'
           required

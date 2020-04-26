@@ -11,6 +11,10 @@ export default function PhoneInput({ phone, setPhone }) {
       <DDISelect setDDI={setDDI} value={ddi}></DDISelect>
       <LoginInput
         value={phoneToShow}
+        onBlur={(e) => {
+          setPhoneToShow(e.target.value);
+          setPhone(ddi + phoneToShow);
+        }}
         onChange={(e) => {
           setPhoneToShow(e.target.value);
           setPhone(ddi + phoneToShow);

@@ -12,7 +12,6 @@ import {
 } from './styles';
 
 import { Column, Row } from '../../../../globalComponents';
-import ExpandCollapse from 'react-expand-collapse';
 import Collapse from 'react-expand-animated';
 import ArrowButton from './ArrowButton/arrowButton';
 import ModalContent from './ModalContent';

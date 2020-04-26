@@ -3,7 +3,6 @@ import swal from 'sweetalert';
 
 export async function updateNecessitiesStatus(categoriesToUpdate, status) {
   try {
-    debugger;
     await api.put('/necessity', { categoriesToUpdate, status });
     swal('Ficamos felizes que deu tudo certo!', '', 'success');
   } catch (error) {
@@ -75,7 +74,6 @@ export async function deleteMany(necessities) {
   });
 }
 export async function deleteByCategory(category) {
-  debugger;
   await api.delete(`/necessity/category/many`, {
     data: { category },
   });

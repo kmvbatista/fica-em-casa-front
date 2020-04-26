@@ -19,7 +19,6 @@ export default function PendingNecessities(
   }
 
   function handleClick(item) {
-    debugger;
     if (!listToSend.includes(item)) {
       addItem(item);
     } else {

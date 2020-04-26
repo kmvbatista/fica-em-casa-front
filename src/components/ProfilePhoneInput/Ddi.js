@@ -19,7 +19,6 @@ export default function Ddi({ value, setDDI }) {
         name='ddi'
         value={value}
         onChange={(e) => {
-          debugger;
           setDDI(e.target.value);
         }}
       >

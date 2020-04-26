@@ -18,7 +18,6 @@ export default function DDISelect({ value, setDDI }) {
         name='ddi'
         value={value}
         onChange={(e) => {
-          debugger;
           setDDI(e.target.value);
         }}
       >

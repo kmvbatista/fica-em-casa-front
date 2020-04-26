@@ -60,10 +60,8 @@ export default function UpdateModal({
 
   async function deleteCategory() {
     try {
-      debugger;
       setIsLoading(true);
       await NecessityService.deleteByCategory(cardInfo.category);
-      debugger;
       setIsLoading(false);
       closeModal();
       swal('Dados atualizados com sucesso', '', 'success');

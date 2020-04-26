@@ -232,7 +232,11 @@ export default function Profile() {
         <Row style={{ justifyContent: 'space-around', width: '100%' }}>
           <ButtonWithLoading
             onClick={deleteAccount}
-            style={{ border: '1px solid white', width: '80%' }}
+            style={{
+              border: '1px solid white',
+              width: '80%',
+              boxShadow: '0px 15px 10px rgba(0,0,0, 0.1)',
+            }}
           >
             Excluir minha conta
           </ButtonWithLoading>
@@ -242,7 +246,7 @@ export default function Profile() {
               border: '1px solid white',
               width: '80%',
               backgroundColor: 'var(--color-green)',
-              boxShadow: '0px 10px 20px rgba(var(--color-green), 0.5)',
+              boxShadow: '0px 15px 10px rgba(0,0,0, 0.1)',
             }}
           >
             Alterar senha

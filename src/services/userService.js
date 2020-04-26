@@ -22,6 +22,6 @@ export async function deleteAccount() {
 }
 
 export async function updatePassword(dataToSend) {
-  const response = await api.update('/user', dataToSend);
+  const response = await api.put('/user', dataToSend);
   return response.data;
 }

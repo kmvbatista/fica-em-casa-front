@@ -37,7 +37,8 @@ function GetContent() {
       if (!isFormValid()) {
         return;
       }
-      await updatePassword();
+      const dataToSend = { password, confirmPassword, oldPassword };
+      await updatePassword(dataToSend);
       swal('Senha atualizada com sucesso', '', 'success');
     } catch (error) {
       swal(
@@ -79,7 +80,7 @@ function GetContent() {
             backgroundColor: 'var(--color-purple-dark)',
             padding: '.7em',
             height: 'unset',
-            boxShadow: '0px 10px 20px var(--color-purple-dark)',
+            boxShadow: '0px 10px 10px rgba(85, 57, 188, 0.5)',
           }}
           onClick={handleFinish}
         >

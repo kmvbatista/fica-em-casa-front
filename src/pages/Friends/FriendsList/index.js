@@ -127,7 +127,7 @@ export default function HelpBeHelped({ children }) {
             isLoading={isNeedySearching}
             isHelping={isHelping}
             highLight={!isHelping}
-            style={{ right: '0' }}
+            style={{ right: '0', zIndex: '0' }}
             onClick={toggleIsHelping}
           >
             <strong style={{ display: 'block', textAlign: 'center' }}>

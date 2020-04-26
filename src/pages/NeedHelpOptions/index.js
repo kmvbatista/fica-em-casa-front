@@ -185,70 +185,73 @@ export default function NeedHelpOptions({ children }) {
     <ColumnContainer style={{ position: 'relative' }}>
       {children}
       <Column style={{ alignItems: 'center' }}>
-        <TextContainer>
-          <Title>Preciso de ajuda</Title>
-          <SubTitle>
-            Pode escolher mais de uma opção, tá?
-            <br />É muito importante que você descreva a sua necessidade após a
-            seleção da categoria, assim fica mais fácil de ajudar!
-          </SubTitle>
-        </TextContainer>
-        {!userLocation && (
+        {!userLocation ? (
           <LocationErrorMessage
             buttonsColor={'var(--color-purple)'}
           ></LocationErrorMessage>
-        )}
-        {userLocation && cards.length > 0 ? (
-          <>
-            <Grid>
-              {cards.map((el) => (
-                <OptionCard
-                  key={el.category}
-                  onClick={() => handleCardClick(el)}
-                >
-                  <IsChecked
-                    isChecked={el.isChecked}
-                    color={'var(--color-pink)'}
-                  ></IsChecked>
-                  {el.isLoading && !el.isChecked ? (
-                    <Loading
-                      height='30%'
-                      width='30%'
-                      type='spinningBubbles'
-                      color='var(--color-purple)'
-                    ></Loading>
-                  ) : (
-                    <img
-                      src={el.imageUrl}
-                      alt={el.category}
-                      style={{ maxHeight: '55%' }}
-                    />
-                  )}
-                  <GridText>{el.category}</GridText>
-                </OptionCard>
-              ))}
-              <OptionCard>
-                <CardImage src={'./logo.png'} alt={'Outras opçoes'} />
-                <GridText>{'Outros'}</GridText>
-              </OptionCard>
-            </Grid>
-            <GoToNextPage>
-              <img
-                onClick={() => history.push('friends')}
-                src='./next.svg'
-                style={{ width: '3.5em', cursor: 'pointer' }}
-                alt='ver amigos'
-              />
-            </GoToNextPage>
-          </>
         ) : (
-          <Loading
-            width={'10em'}
-            height={'10em'}
-            type={'spinningBubbles'}
-            color={'white'}
-          ></Loading>
+          <TextContainer>
+            <Title>Preciso de ajuda</Title>
+            <SubTitle>
+              Pode escolher mais de uma opção, tá?
+              <br />É muito importante que você descreva a sua necessidade após
+              a seleção da categoria, assim fica mais fácil de ajudar!
+            </SubTitle>
+          </TextContainer>
         )}
+
+        {userLocation &&
+          (cards.length > 0 ? (
+            <>
+              <Grid>
+                {cards.map((el) => (
+                  <OptionCard
+                    key={el.category}
+                    onClick={() => handleCardClick(el)}
+                  >
+                    <IsChecked
+                      isChecked={el.isChecked}
+                      color={'var(--color-pink)'}
+                    ></IsChecked>
+                    {el.isLoading && !el.isChecked ? (
+                      <Loading
+                        height='30%'
+                        width='30%'
+                        type='spinningBubbles'
+                        color='var(--color-purple)'
+                      ></Loading>
+                    ) : (
+                      <img
+                        src={el.imageUrl}
+                        alt={el.category}
+                        style={{ maxHeight: '55%' }}
+                      />
+                    )}
+                    <GridText>{el.category}</GridText>
+                  </OptionCard>
+                ))}
+                <OptionCard>
+                  <CardImage src={'./logo.png'} alt={'Outras opçoes'} />
+                  <GridText>{'Outros'}</GridText>
+                </OptionCard>
+              </Grid>
+              <GoToNextPage>
+                <img
+                  onClick={() => history.push('friends')}
+                  src='./next.svg'
+                  style={{ width: '3.5em', cursor: 'pointer' }}
+                  alt='ver amigos'
+                />
+              </GoToNextPage>
+            </>
+          ) : (
+            <Loading
+              width={'10em'}
+              height={'10em'}
+              type={'spinningBubbles'}
+              color={'white'}
+            ></Loading>
+          ))}
       </Column>
 
       {children}

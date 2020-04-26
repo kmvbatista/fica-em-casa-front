@@ -13,10 +13,7 @@ export default function AvailableNeeded({
   return (
     <MainTab>
       {!userLocation ? (
-        <ErrorMessage
-          avoidButton
-          errorMessage={locationErrorMessage.message}
-        ></ErrorMessage>
+        <ErrorMessage avoidButton errorMessage=''></ErrorMessage>
       ) : errorMessage ? (
         <ErrorMessage
           errorMessage={errorMessage}

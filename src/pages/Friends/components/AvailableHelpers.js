@@ -14,10 +14,7 @@ export default function AvailableHelpers({
   return (
     <MainTab style={{ backgroundColor: 'var(--color-purple)' }}>
       {!userLocation ? (
-        <ErrorMessage
-          avoidButton
-          errorMessage={locationErrorMessage}
-        ></ErrorMessage>
+        <ErrorMessage avoidButton errorMessage=''></ErrorMessage>
       ) : errorMessage ? (
         <ErrorMessage
           errorMessage={errorMessage}

@@ -2,6 +2,7 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { SetCategoriesButton } from './UserProfile/styles';
 import { Column } from '../../../globalComponents';
+import locationErrorMsg from '../../../assets/locationFailMessage.json';
 
 export default function ErrorMessage({ errorMessage, isHelper, avoidButton }) {
   const history = useHistory();
@@ -24,7 +25,17 @@ export default function ErrorMessage({ errorMessage, isHelper, avoidButton }) {
       {errorMessage.split('\n').map((x) => (
         <strong style={{ fontSize: '2.5em' }}>{x}</strong>
       ))}
-      {avoidButton && <> </>}
+      {avoidButton && (
+        <Column>
+          <>
+            <p> {locationErrorMsg.message}</p>
+            <br />{' '}
+            {locationErrorMsg.links.map((x) => (
+              <a href={x.link}>{x.browser}</a>
+            ))}
+          </>
+        </Column>
+      )}
       {!avoidButton && (
         <SetCategoriesButton isHelper={isHelper} onClick={navigate}>
           Selecionar Categorias

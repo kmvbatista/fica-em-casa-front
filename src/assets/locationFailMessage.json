@@ -1,3 +1,21 @@
 {
-  "message": "Não conseguimos buscar sua localização.\n Ative-a para que você possa ver seus amigos!\n\nSegue uma ajuda para alguns navegadores:\nGoogle Chrome: http://abre.ai/a2I1\nSafari: http://abre.ai/a2I0\nFirefox: http://abre.ai/a2I2\nEdge: http://abre.ai/a2IY"
+  "message": "Não conseguimos buscar sua localização.\n Ative-a para que você possa ver seus amigos!\n\nSegue uma ajuda para alguns navegadores:",
+  "links": [
+    {
+      "browser": "Google chrome",
+      "link": "https://support.google.com/chrome/answer/142065?hl=pt-br"
+    },
+    {
+      "browser": "Safari",
+      "link": "https://support.apple.com/pt-br/HT204690"
+    },
+    {
+      "browser": "Firefox",
+      "link": "https://support.google.com/chrome/answer/142065?hl=pt-br"
+    },
+    {
+      "browser": "Edge",
+      "link": "https://windows.microsoft.com/pt-br/windows-10/location-service-privacy"
+    }
+  ]
 }

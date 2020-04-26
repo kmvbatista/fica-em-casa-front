@@ -33,11 +33,7 @@ export default function UserProfile(props) {
           <strong style={{ fontSize: '3em', marginBottom: '.2em' }}>
             {props.userName.split(' ')[0]},
           </strong>
-          <p style={{ fontSize: '1.8em' }}>
-            {props.isHelping
-              ? 'Você ainda precisa de ajuda?'
-              : 'Você ainda pode ajudar?'}
-          </p>
+          <p style={{ fontSize: '1.8em' }}>você ainda está disponível?</p>
         </Column>
         <div>
           {isLoading ? (

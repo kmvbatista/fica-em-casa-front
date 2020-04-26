@@ -109,10 +109,8 @@ export default function HelpBeHelped({ children }) {
           </Tab>
         </TabContainer>
       </TopDecoration>
-      <div style={{ zIndex: '10', position: 'absolute', width: '100%' }}>
-        {getAvailableHelpers()}
-        {getAvailableNeeded()}
-      </div>
+      {getAvailableHelpers()}
+      {getAvailableNeeded()}
       )}
       {children}
     </div>

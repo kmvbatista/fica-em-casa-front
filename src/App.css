@@ -79,23 +79,20 @@ strong {
 }
 
 :root {
-  --color-purple: #9966ff;
-  --color-purple-dark: #5539bc;
-  --color-pink: #db4266;
-  --color-pink-light: #f9b0c3;
-  --color-yellow: #fceb4a;
-  --color-yellow-light: #fdf9d5;
-  --color-blue: #5ca7dc;
-  --color-blue-dark: #254797;
-  --color-green: #6ed59e;
+  --color-purple: rgb(153, 102, 255);
+  --color-purple-dark: rgb(85, 57, 188);
+  --color-pink: rgb(219, 66, 102);
+  --color-pink-light: rgb(249, 176, 195);
+  --color-yellow: rgb(252, 235, 74);
+  --color-yellow-light: rgb(253, 249, 213);
+  --color-blue: rgb(92, 167, 220);
+  --color-blue-dark: rgb(37, 71, 151);
+  --color-green: rgb(110, 213, 158);
 
-  --color-grey-light1: #faf9f9;
-  --color-grey-light2: #f4f2f2;
-  --color-grey-light3: #f2f1f1d9;
-  --color-grey: #ccc;
-  --color-grey-dark-1: #333;
-  --color-grey-dark-2: #777;
-
-  --line-light: 1px solid var(--color-grey-light2);
-  --shadow-light: 0 2rem 4rem rgba(0, 0, 0, 0.06);
+  --color-grey-light1: rgb(250, 249, 249);
+  --color-grey-light2: rgb(244, 242, 242);
+  --color-grey-light3: rgb(242, 241, 241);
+  --color-grey: rgb(204, 204, 204);
+  --color-grey-dark-1: rgb(51, 51, 51);
+  --color-grey-dark-2: rgb(119, 119, 119);
 }

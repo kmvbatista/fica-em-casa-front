@@ -67,6 +67,7 @@ export const Box3 = styled(Box1)`
 
   @media only screen and (min-width: 1200px) {
     transform: translate(-4em, 0em);
+    border-radius: 2.5em 0 0 0;
   }
 `;
 

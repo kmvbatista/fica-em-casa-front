@@ -22,7 +22,7 @@ export async function getUserLocation() {
       ({ coords }) => resolve(coords),
       () =>
         reject(
-          'Não conseguimos buscar sua localização atual. Verifique se a seu gps e seu navegador está configurado corretamente',
+          'Não conseguimos buscar sua localização atual. Verifique se seu gps e seu navegador está configurado corretamente',
         ),
     );
   });

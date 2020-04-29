@@ -11,7 +11,6 @@ import {
   ItemInput,
   SelectUnit,
 } from './styles';
-import itemsExample from '../../../assets/itemsModal.json';
 import * as NecessityService from '../../../services/necessityService';
 import UpdateModal from './UpdateModal/index';
 import { updateUserLocation } from '../../../services/locationService';
@@ -25,13 +24,12 @@ export default function ModalContent({
   refresh,
   userLocation,
 }) {
-  const [showExample, setShowExample] = useState(true);
   const [showConfirmButton, setShowConfirmButton] = useState(true);
   let [itemList, setItemList] = useState([]);
   const itemInitialState = {
     item: '',
     quantity: 0,
-    measureUnit: 'unid',
+    measureUnit: 'unidade',
     category: cardInfo.category,
   };
   let [itemToAdd, setItem] = useState(itemInitialState);
@@ -89,45 +87,21 @@ export default function ModalContent({
     setItem(Object.assign({}, item));
   };
 
-  const postNecessity = async () => {
-    if (showExample) {
-      return setShowExample(false);
-    } else {
-      try {
-        await NecessityService.postNecessityItems(itemList);
-        setCardChecked(cardInfo.category);
-        closeModal();
-        refresh();
-        updateUserLocation(userLocation);
-      } catch (error) {
-        closeModal();
-      }
-    }
-  };
+  function deleteItem(itemName) {
+    const newItems = itemList.filter((x) => x.item !== itemName);
+    setItemList([...newItems]);
+  }
 
-  const getExample = () => {
-    return (
-      <>
-        <div style={{ marginBottom: '1em' }}>
-          <p> Por exemplo:</p>
-          <p>Olá, preciso de alguém para ir ao mercado.</p>
-          <p>Preciso dos seguintes itens: </p>
-        </div>
-        <ItemsContainer>
-          {itemsExample.map((it) => (
-            <Row key={it.item}>
-              -{it.item}
-              <Quantity>
-                {it.measureUnit}
-                <QuantityButton>-</QuantityButton>
-                <div>{it.quantity}</div>
-                <QuantityButton>+</QuantityButton>
-              </Quantity>
-            </Row>
-          ))}
-        </ItemsContainer>
-      </>
-    );
+  const postNecessity = async () => {
+    try {
+      await NecessityService.postNecessityItems(itemList);
+      setCardChecked(cardInfo.category);
+      closeModal();
+      refresh();
+      updateUserLocation(userLocation);
+    } catch (error) {
+      closeModal();
+    }
   };
 
   const getItemList = () => {
@@ -138,10 +112,16 @@ export default function ModalContent({
             <Row key={item.item}>
               -{item.item}
               <Quantity>
-                {item.measureUnit}
-                <QuantityButton>-</QuantityButton>
-                <div>{item.quantity}</div>
-                <QuantityButton>+</QuantityButton>
+                {item.quantity}
+                {` ${item.measureUnit} (s)`}
+                <img
+                  style={{ width: '1em', cursor: 'pointer' }}
+                  src='./cancel.svg'
+                  alt='apagar item'
+                  onClick={() => {
+                    deleteItem(item.item);
+                  }}
+                />
               </Quantity>
             </Row>
           ))}
@@ -164,8 +144,8 @@ export default function ModalContent({
                 id='unity'
                 onChange={(e) => selectMeasureUnit(e.target.value)}
               >
+                <option value='unidade'>unidade</option>
                 <option value='kg'>quilo</option>
-                <option value='unid.'>unid</option>
                 <option value='litro'>litro</option>
               </SelectUnit>
               <QuantityButton onClick={decreaseItem}>-</QuantityButton>
@@ -218,17 +198,14 @@ export default function ModalContent({
               Digite abaixo o que você está precisando, e, se for necessário,
               especifique a quantidade.
             </p>
-            {showExample && getExample()}
-            {!showExample && getItemList()}
+            {getItemList()}
           </MainContainer>
           <ConfirmationButton
             id='confirmButton'
             onClick={postNecessity}
             style={showConfirmButton ? { opacity: '1' } : { opacity: '0' }}
           >
-            <strong style={{ fontSize: '1.25em' }}>
-              {showExample ? 'Pronto!' : 'Finalizar!'}
-            </strong>
+            <strong style={{ fontSize: '1.25em' }}>Finalizar!</strong>
           </ConfirmationButton>
         </ModalContainer>
       )}

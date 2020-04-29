@@ -36,6 +36,7 @@ export default function NeedHelpOptions({ children }) {
   const [deleteOrUpdateCard, setDeleteOrUpdateModal] = useState(false);
   const [userLocation, setUserLocation] = useState({});
   const [didUpdatedLocation, setDidUpdatedLocation] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const store = useContext(Store);
   useEffect(() => {
     verifyLocation();
@@ -58,18 +59,23 @@ export default function NeedHelpOptions({ children }) {
   };
 
   async function verifyLocation() {
-    if (!store.location) {
-      const coords = await getUserLocation();
-      const newLocation = {
-        latitude: coords.latitude,
-        longitude: coords.longitude,
-      };
-      setUserLocation(newLocation);
-      store.location = newLocation;
-      getCards();
-    } else {
-      setUserLocation(store.location);
-      getCards();
+    try {
+      if (!store.location) {
+        const coords = await getUserLocation();
+        const newLocation = {
+          latitude: coords.latitude,
+          longitude: coords.longitude,
+        };
+        setUserLocation(newLocation);
+        store.location = newLocation;
+        getCards();
+      } else {
+        setUserLocation(store.location);
+        getCards();
+      }
+    } catch (error) {
+      setIsLoading(false);
+      setUserLocation(undefined);
     }
   }
 
@@ -203,7 +209,7 @@ export default function NeedHelpOptions({ children }) {
         )}
 
         {userLocation &&
-          (cards.length > 0 ? (
+          (isLoading ? (
             <>
               <Grid>
                 {cards.map((el) => (

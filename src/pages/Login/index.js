@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useHistory, Link } from 'react-router-dom';
 import { loginUser } from '../../services/sessionService';
 import { Row, Column } from '../../globalComponents';
 import PhoneInput from '../../components/PhoneInput';
+import Store from '../../services/DefaultContext';
 
 import swal from 'sweetalert';
 import {
@@ -22,21 +23,26 @@ export default function Login() {
   const [isLoading, setIsLoading] = useState(false);
   const [logWithPhone, setLogWithPhone] = useState(false);
 
+  const storeHandler = useContext(Store);
+
   const history = useHistory();
 
   const handleSubmit = async () => {
     const dataToSend = { login, password };
     try {
       setIsLoading(true);
-      await loginUser(dataToSend);
+      debugger;
+      const response = await loginUser(dataToSend);
+      storeHandler.setUser(response.user);
       history.replace('/');
     } catch (error) {
+      debugger;
       setIsLoading(false);
       swal(
         `${
           error.response
             ? error.response.data.error
-            : 'Senha ou email inválidos!'
+            : 'Houve um erro ao fazer o login!'
         }`,
         'Tente novamente.',
         'error',

@@ -7,7 +7,6 @@ import {
   MainContainer,
   ItemsContainer,
 } from '../../../../NeedHelpOptions/ModalContent/styles';
-import { getUserData } from '../../../../../services/sessionService';
 import api from '../../../../../services/api';
 import Loading from 'react-loading';
 import swal from 'sweetalert';
@@ -22,7 +21,7 @@ export default function ModalContent({
   turnCategoryPending,
 }) {
   const [isLoading, setLoading] = useState(false);
-  const user = getUserData();
+  const user = {};
   const isSimple = jsonCards.find(
     (x) => x.category === necessity.category && x.isSimple,
   );

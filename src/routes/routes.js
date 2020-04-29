@@ -1,7 +1,6 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
-import PrivateRoute from './privateRoute';
-
+import { Route, Switch, Redirect } from 'react-router-dom';
+import authenticate from './auth';
 import FirstSignup from '../pages/FirstSignup';
 import SecondSignup from '../pages/SecondSignup';
 import Home from '../pages/Home';
@@ -15,7 +14,7 @@ import Login from '../pages/Login';
 import Profile from '../pages/Profile';
 import ForgotPassword from '../pages/ForgotPassword';
 
-export default function Routes({ children }) {
+export default function Routes({ children, haveUserData }) {
   return (
     <Switch>
       <PrivateRoute exact path='/'>
@@ -56,4 +55,13 @@ export default function Routes({ children }) {
       </Route>
     </Switch>
   );
+
+  function PrivateRoute({ children, path }) {
+    const isAuthenticated = authenticate(haveUserData);
+    return (
+      <Route exact path={path}>
+        {isAuthenticated ? children : <Redirect to='login'></Redirect>}
+      </Route>
+    );
+  }
 }

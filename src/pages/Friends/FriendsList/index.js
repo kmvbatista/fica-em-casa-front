@@ -4,10 +4,6 @@ import AvailableHelpers from '../components/AvailableHelpers';
 import AvailableNeeded from '../components/AvailableNeeded';
 import { TopDecoration } from '../styledComponents';
 import UserProfile from '../components/UserProfile';
-import {
-  getUserData,
-  updateUserCookies,
-} from '../../../services/sessionService';
 import { useEffect } from 'react';
 import * as SearchService from '../../../services/SearchService';
 import api from '../../../services/api';
@@ -17,7 +13,7 @@ import swal from 'sweetalert';
 
 export default function HelpBeHelped({ children }) {
   const [isHelping, setIsHelping] = React.useState(false);
-  const userLogged = getUserData();
+  const userLogged = {};
   const [needyPeople, setNeedyPeople] = React.useState([]);
   const [helpers, setHelpers] = React.useState([]);
   const [needyErrorMessage, setNeedyErrorMsg] = React.useState();
@@ -66,7 +62,6 @@ export default function HelpBeHelped({ children }) {
   async function handleSwitch(isActive) {
     await api.put('/user', { active: isActive });
     userLogged.active = isActive;
-    updateUserCookies(userLogged);
   }
 
   const getHelpers = async (coords) => {

@@ -14,7 +14,6 @@ import {
 import Dropdown from '../../components/PopUpMenu';
 import { useHistory } from 'react-router-dom';
 import api from '../../services/api';
-import { updateUserCookies, getUserData } from '../../services/sessionService';
 import * as UserService from '../../services/userService';
 import swal from 'sweetalert';
 import Loading from 'react-loading';
@@ -25,7 +24,7 @@ import ButtonWithLoading from '../../components/ButtonWithLoading';
 import UpdatePassord from '../../components/UpdatePassord';
 
 export default function Profile() {
-  const userData = getUserData();
+  const userData = {};
   const [phone, setPhone] = useState(userData.phone);
   const [nickname, setNickname] = useState(userData.nickname || '');
   const [name, setName] = useState(userData.name);
@@ -38,7 +37,6 @@ export default function Profile() {
     setIsLoading(true);
     try {
       await api.put('/user', { name, phone, nickname });
-      updateUserCookies({ name, phone, nickname });
       setIsEditted(false);
       setIsLoading(false);
     } catch (error) {
@@ -62,7 +60,6 @@ export default function Profile() {
       const response = await api.post('/files', data);
       userData.photoUrl = response.data.photoUrl;
       setPhoto(userData.photoUrl);
-      updateUserCookies(userData);
       swal('Foto salva com sucesso', '', 'success');
     } catch (error) {
       swal(
@@ -88,7 +85,6 @@ export default function Profile() {
       });
       if (accepted) {
         await UserService.deleteAccount();
-        document.cookie = undefined;
         history.replace('login');
       } else {
         swal('Agradecemos por continuar com a gente :)', '', 'success');

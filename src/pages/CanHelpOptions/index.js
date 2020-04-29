@@ -168,7 +168,7 @@ export default function NeedHelpOptions({ children }) {
                   </OptionCard>
                 ))}
                 <OptionCard>
-                  <CardImage src={'./logo.png'} alt={'Outras opçoes'} />
+                  <CardImage src={'./ficaemcasa.svg'} alt={'Outras opçoes'} />
                   <GridText>{'Outros'}</GridText>
                 </OptionCard>
               </Grid>

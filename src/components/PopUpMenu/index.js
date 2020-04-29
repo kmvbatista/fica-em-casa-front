@@ -52,9 +52,7 @@ class Dropdown extends React.Component {
               <Link to='/'>Tela inicial</Link>
             </li>
             <li>
-              <Link to='login' onClick={() => (document.cookie = 'undefined')}>
-                Sair
-              </Link>
+              <Link to='login'>Sair</Link>
             </li>
           </ul>
         ) : null}

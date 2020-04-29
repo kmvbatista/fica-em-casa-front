@@ -58,5 +58,11 @@
     "imageUrl": "./Compartilhar.svg",
     "isChecked": false,
     "isSimple": true
+  },
+  {
+    "category": "Outros",
+    "imageUrl": "./ficaemcasa.svg",
+    "isChecked": false,
+    "isSimple": true
   }
 ]

@@ -36,7 +36,6 @@ export default function NeedHelpOptions({ children }) {
   const [deleteOrUpdateCard, setDeleteOrUpdateModal] = useState(false);
   const [userLocation, setUserLocation] = useState({});
   const [didUpdatedLocation, setDidUpdatedLocation] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
   const store = useContext(Store);
   useEffect(() => {
     verifyLocation();
@@ -74,7 +73,6 @@ export default function NeedHelpOptions({ children }) {
         getCards();
       }
     } catch (error) {
-      setIsLoading(false);
       setUserLocation(undefined);
     }
   }
@@ -136,6 +134,7 @@ export default function NeedHelpOptions({ children }) {
           if (accepted) {
             toggleIsCardChecked(category);
             toggleCardLoading(category);
+            debugger;
             await NecessityService.deleteSimpleNecessity(id);
             toggleCardLoading(category);
           }
@@ -150,6 +149,7 @@ export default function NeedHelpOptions({ children }) {
 
   async function postSimpleNecessity(category) {
     try {
+      toggleCardLoading(category);
       await NecessityService.postNecessity(category);
       setCardChecked(category);
       if (!didUpdatedLocation && userLocation) {
@@ -209,7 +209,7 @@ export default function NeedHelpOptions({ children }) {
         )}
 
         {userLocation &&
-          (isLoading ? (
+          (cards.length > 0 ? (
             <>
               <Grid>
                 {cards.map((el) => (
@@ -226,7 +226,7 @@ export default function NeedHelpOptions({ children }) {
                         height='30%'
                         width='30%'
                         type='spinningBubbles'
-                        color='var(--color-purple)'
+                        color='var(--color-pink)'
                       ></Loading>
                     ) : (
                       <img
@@ -238,10 +238,6 @@ export default function NeedHelpOptions({ children }) {
                     <GridText>{el.category}</GridText>
                   </OptionCard>
                 ))}
-                <OptionCard>
-                  <CardImage src={'./ficaemcasa.svg'} alt={'Outras opçoes'} />
-                  <GridText>{'Outros'}</GridText>
-                </OptionCard>
               </Grid>
               <GoToNextPage>
                 <img

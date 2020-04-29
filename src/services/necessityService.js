@@ -64,7 +64,8 @@ export async function getUserNecessities() {
 }
 
 export async function deleteSimpleNecessity(id) {
-  await api.delete(`necessity/${id}`);
+  debugger;
+  await api.delete(`/necessity`, { data: { necessities: [id] } });
 }
 
 export async function deleteMany(necessities) {

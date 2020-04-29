@@ -5,18 +5,28 @@ import Switch from '../../../../components/Switch';
 import Loading from 'react-loading';
 import swal from 'sweetalert';
 import Store from '../../../../services/DefaultContext';
+import { getUserData } from '../../../../services/userService';
 
 export default function UserProfile(props) {
   const store = useContext(Store);
   let userData = store.user;
   useEffect(() => {
-    if (!userData || !userData.name) {
-      userData = {};
-      store.refreshUserData();
-    }
+    initiate();
   }, []);
   const [isUserActive, setUserActive] = useState(userData.isActive);
   const [isLoading, setIsLoading] = useState(userData.isActive == undefined);
+
+  async function initiate() {
+    try {
+      if (!userData || !userData.name) {
+        userData = {};
+        userData = await getUserData();
+        store.user = userData;
+        setUserActive(userData.isActive);
+        setIsLoading(false);
+      }
+    } catch (error) {}
+  }
 
   async function handleToggle() {
     try {

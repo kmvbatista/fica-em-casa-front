@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import {
   ColumnContainer,
   Grid,
@@ -25,6 +25,7 @@ import {
   updateUserLocation,
 } from '../../services/locationService';
 import LocationErrorMessage from '../Friends/components/LocationErrorMessage';
+import Store from '../../services/DefaultContext';
 
 export default function NeedHelpOptions({ children }) {
   const history = useHistory();
@@ -35,9 +36,9 @@ export default function NeedHelpOptions({ children }) {
   const [deleteOrUpdateCard, setDeleteOrUpdateModal] = useState(false);
   const [userLocation, setUserLocation] = useState({});
   const [didUpdatedLocation, setDidUpdatedLocation] = useState(false);
-
+  const store = useContext(Store);
   useEffect(() => {
-    initiate();
+    verifyLocation();
   }, []);
 
   const getModal = () => {
@@ -56,18 +57,19 @@ export default function NeedHelpOptions({ children }) {
     );
   };
 
-  async function initiate() {
-    try {
+  async function verifyLocation() {
+    if (!store.location) {
       const coords = await getUserLocation();
-      setUserLocation({
+      const newLocation = {
         latitude: coords.latitude,
         longitude: coords.longitude,
-      });
-      if (coords) {
-        getCards();
-      }
-    } catch (error) {
-      setUserLocation(undefined);
+      };
+      setUserLocation(newLocation);
+      store.location = newLocation;
+      getCards();
+    } else {
+      setUserLocation(store.location);
+      getCards();
     }
   }
 

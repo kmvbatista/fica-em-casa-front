@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import {
   ColumnContainer,
   Grid,
@@ -23,8 +23,10 @@ import {
 } from '../../services/locationService';
 import { useHistory } from 'react-router-dom';
 import LocationErrorMessage from '../Friends/components/LocationErrorMessage';
+import Store from '../../services/DefaultContext';
 
 export default function NeedHelpOptions({ children }) {
+  const store = useContext(Store);
   const [userLocation, setUserLocation] = useState({});
   const [hasRegisteredOption, setRegisteredOption] = useState(false);
   const [cards, setCards] = useState([]);
@@ -32,17 +34,22 @@ export default function NeedHelpOptions({ children }) {
   const history = useHistory();
 
   useEffect(() => {
-    setCurrentLocation();
-    getCards();
+    verifyLocation();
   }, []);
 
-  async function setCurrentLocation() {
-    try {
-      const location = await getUserLocation();
-      setUserLocation(location);
-    } catch (error) {
-      setUserLocation(undefined);
-      swal(error, 'Tente novamente', 'error');
+  async function verifyLocation() {
+    if (!store.location) {
+      const coords = await getUserLocation();
+      const newLocation = {
+        latitude: coords.latitude,
+        longitude: coords.longitude,
+      };
+      setUserLocation(newLocation);
+      store.location = newLocation;
+      getCards();
+    } else {
+      setUserLocation(store.location);
+      getCards();
     }
   }
 

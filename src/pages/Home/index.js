@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import {
   Container,
@@ -18,6 +18,8 @@ import { getPendingNecesseties } from '../../services/userService';
 import { updateNecessitiesStatus } from '../../services/necessityService';
 import PendingNecessities from '../../components/PendingNecessities';
 import Loader from '../../components/Loader';
+import Store from '../../services/DefaultContext';
+import { getUserLocation } from '../../services/locationService';
 
 export default function ChooseGroup({ children }) {
   const history = useHistory();
@@ -26,19 +28,22 @@ export default function ChooseGroup({ children }) {
   const [necessitiesToComplete, setNecessitiesToComplete] = useState([]);
   const [userJustRegistered, setUserJustRegistered] = useState(dataComming);
 
+  const store = useContext(Store);
+
   useEffect(() => {
     getUserPendingNecessities();
   }, []);
 
   async function getUserPendingNecessities() {
     try {
-      if (!userJustRegistered) {
+      if (!userJustRegistered && store.hasPendingNecessities) {
         swal({
           title: 'Aguarde, por favor...',
           content: Loader(),
           buttons: {},
         });
         const userNecessities = await getPendingNecesseties();
+        store.hasPendingNecessities = false;
         if (userNecessities && userNecessities.length > 0) {
           swal({
             title: 'Notamos que amigos tentaram ajudar...',

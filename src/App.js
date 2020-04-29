@@ -13,7 +13,6 @@ function App() {
     user: {
       name: undefined,
       nickName: undefined,
-      location: undefined,
       photoUrl: undefined,
       isActive: undefined,
       phone: undefined,
@@ -32,14 +31,13 @@ function App() {
     setUser: setUser,
     helpers: storeConfig.helpers,
     needyPeople: storeConfig.needy,
+    hasPendingNecessities: true,
+    location: undefined,
     setName: (name) => {
       setUser(Object.assign(user, name));
     },
     setPhone: (phone) => {
       setUser(Object.assign(user, phone));
-    },
-    setLocation: (location) => {
-      setUser(Object.assign(user, location));
     },
     setIsActive: (isActive) => {
       setUser(Object.assign(user, isActive));

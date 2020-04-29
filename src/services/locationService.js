@@ -16,7 +16,7 @@ export async function updateUserLocation(location) {
   }
 }
 
-export async function getUserLocation() {
+async function getLocation() {
   return new Promise((resolve, reject) => {
     navigator.geolocation.getCurrentPosition(
       ({ coords }) => resolve(coords),
@@ -26,4 +26,13 @@ export async function getUserLocation() {
         ),
     );
   });
+}
+
+export async function getUserLocation() {
+  await swal(
+    'Precisamos da sua localização para buscar amigos próximos',
+    'Sem a localização, infelizmente o app não irá funcionar corretamente',
+    'info',
+  );
+  return getLocation();
 }

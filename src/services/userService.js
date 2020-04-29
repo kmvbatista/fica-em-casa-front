@@ -24,3 +24,7 @@ export async function updateUser(dataToSend) {
   const response = await api.put('/user', dataToSend);
   return response.data;
 }
+export async function getUserData() {
+  const response = await api.get('/user');
+  return response.data;
+}

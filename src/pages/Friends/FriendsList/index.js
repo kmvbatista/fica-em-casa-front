@@ -28,26 +28,38 @@ export default function HelpBeHelped({ children }) {
   };
 
   useEffect(() => {
-    debugger;
+    initiate();
+  }, []);
+
+  async function initiate() {
     if (store.helpers || store.needyPeople) {
       setNeedySearching(false);
       setHelperSearching(false);
     } else {
+      await getLocation();
       getUsers();
     }
-  }, []);
+  }
 
   async function getLocation() {
     try {
-      const coords = await getUserLocation();
-      setUserLocation({
-        latitude: coords.latitude,
-        longitude: coords.longitude,
-      });
-      return coords;
+      if (!store.location) {
+        const coords = await getUserLocation();
+        const newLocation = {
+          latitude: coords.latitude,
+          longitude: coords.longitude,
+        };
+        setUserLocation(newLocation);
+        store.location = newLocation;
+        getUsers(newLocation);
+      } else {
+        getUsers(store.location);
+      }
     } catch (error) {
       setUserLocation(undefined);
-      await swal(
+      setHelperSearching(false);
+      setNeedySearching(false);
+      swal(
         'Não conseguimos buscar sua localização!',
         'Verifique se seu gps está ativado. Aí estão algumas dicas:',
         'error',
@@ -55,14 +67,10 @@ export default function HelpBeHelped({ children }) {
     }
   }
 
-  async function getUsers() {
-    const coords = await getLocation();
-    if (coords) {
-      getNeedy(coords);
-      getHelpers(coords);
-    } else {
-      setHelperSearching(false);
-      setNeedySearching(false);
+  async function getUsers(location) {
+    if (location) {
+      getNeedy(location);
+      getHelpers(location);
     }
   }
 
@@ -70,8 +78,8 @@ export default function HelpBeHelped({ children }) {
     await api.put('/user', { active: isActive });
   }
 
-  const getHelpers = async (coords) => {
-    const data = await SearchService.getNearHelpers(coords);
+  const getHelpers = async (location) => {
+    const data = await SearchService.getNearHelpers(location);
     if (Array.isArray(data)) {
       setHelpers(data);
       store.helpers = data;
@@ -82,8 +90,8 @@ export default function HelpBeHelped({ children }) {
     }
   };
 
-  const getNeedy = async (coords) => {
-    const data = await SearchService.getNearNeedy(coords);
+  const getNeedy = async (location) => {
+    const data = await SearchService.getNearNeedy(location);
     if (Array.isArray(data)) {
       setNeedyPeople(data);
       store.needyPeople = data;

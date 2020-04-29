@@ -1,16 +1,23 @@
 import React from 'react';
 import Loading from 'react-loading';
 
-export default function LoaderContainer({ isLoading, children, color }) {
+export default function LoaderContainer({
+  containerStyle,
+  isLoading,
+  children,
+  color,
+}) {
+  let defaulContainerStyle = Object.assign(
+    {
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      width: '100%',
+    },
+    containerStyle,
+  );
   return (
-    <div
-      style={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        width: '100%',
-      }}
-    >
+    <div style={defaulContainerStyle}>
       {isLoading ? (
         <Loading
           color={color ? color : '#fff'}

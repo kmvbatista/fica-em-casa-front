@@ -45,24 +45,37 @@ export const Welcome = styled.div`
 `;
 
 export const InitialForm = styled.div`
-  padding: 5.5em 4.5em 0 4.5em;
+  padding: 3em 4.5em 0 4.5em;
+
   border-radius: 24px 0 0 0;
   background-color: white;
   transform: translate(0em, -2em);
-  justify-content: space-around;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  ::-webkit-scrollbar {
+    width: 0px;
+  }
   ${column}
+  & > * {
+    margin-bottom: 4em;
+  }
   height: 50vh;
   @media only screen and (max-width: 600px) {
     height: calc(65% + 2em);
   }
   @media only screen and (min-width: 600px) {
+    padding: 5.5em 4.5em 0 4.5em;
     transform: translate(-2em, 0em);
     ${desktopContainer}
+    & > * {
+      margin-bottom: 0em;
+    }
+    justify-content: space-around;
   }
 `;
 
 export const Title = styled.h3`
-  margin-bottom: 0.5em;
+  margin-bottom: 1.5em;
   font-weight: bold;
   font-size: 2em;
   line-height: 1;

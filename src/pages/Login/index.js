@@ -87,9 +87,6 @@ export default function Login() {
         {logWithPhone ? (
           <Column>
             <PhoneInput setPhone={setlogin}></PhoneInput>
-            <TextLink onClick={changeLoginWay} style={{ marginTop: '1em' }}>
-              faço login com email
-            </TextLink>
           </Column>
         ) : (
           <Column>
@@ -106,15 +103,20 @@ export default function Login() {
             </TextLink>
           </Column>
         )}
-        <LoginInput
-          placeholder='sua senha'
-          name='password'
-          type='password'
-          required
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        ></LoginInput>
-        <LoaderContainer color={'var(--color-pink)'} isLoading={isLoading}>
+        <Column>
+          <LoginInput
+            placeholder='sua senha'
+            name='password'
+            type='password'
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          ></LoginInput>
+        </Column>
+        <LoaderContainer
+          containerStyle={{ marginBottom: '2em' }}
+          color={'var(--color-pink)'}
+          isLoading={isLoading}
+        >
           <RegisterButton
             onClick={() => {
               handleSubmit();

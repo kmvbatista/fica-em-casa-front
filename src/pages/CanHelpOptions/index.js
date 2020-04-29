@@ -78,6 +78,12 @@ export default function NeedHelpOptions({ children }) {
     setCards([...cards]);
   };
 
+  const setCardId = (category, cardId) => {
+    const index = cards.findIndex((x) => x.category === category);
+    cards[index].id = cardId;
+    setCards([...cards]);
+  };
+
   const toggleCardLoading = (category) => {
     const index = cards.findIndex((x) => x.category === category);
     cards[index].isLoading = !cards[index].isLoading;
@@ -86,8 +92,10 @@ export default function NeedHelpOptions({ children }) {
 
   async function postCategoryAssistance(category) {
     try {
-      await AssistanceService.postAssistance(category);
+      const newAssist = await AssistanceService.postAssistance(category);
       toggleIsCardChecked(category);
+      debugger;
+      setCardId(category, newAssist._id);
       if (!hasRegisteredOption) {
         updateUserLocation(userLocation).then((x) => setRegisteredOption(true));
       }
@@ -174,10 +182,6 @@ export default function NeedHelpOptions({ children }) {
                     {el.category}
                   </OptionCard>
                 ))}
-                <OptionCard>
-                  <CardImage src={'./ficaemcasa.svg'} alt={'Outras opçoes'} />
-                  <GridText>{'Outros'}</GridText>
-                </OptionCard>
               </Grid>
               <GoToNextPage>
                 <img

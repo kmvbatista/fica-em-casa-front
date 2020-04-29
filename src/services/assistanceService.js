@@ -1,7 +1,8 @@
 import api from './api';
 
 export async function postAssistance(category) {
-  await api.post('assist', { category });
+  const response = await api.post('assist', { category });
+  return response.data;
 }
 
 export async function deleteAssistance(id) {

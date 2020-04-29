@@ -1,13 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Column } from '../../../../globalComponents';
 import { ProfileImage, ProfileContainer, Container } from './styles';
 import Switch from '../../../../components/Switch';
 import Loading from 'react-loading';
 import swal from 'sweetalert';
+import Store from '../../../../services/DefaultContext';
 
 export default function UserProfile(props) {
-  const [isUserActive, setUserActive] = useState(props.isActive);
-  const [isLoading, setIsLoading] = useState(false);
+  const store = useContext(Store);
+  let userData = store.user;
+  useEffect(() => {
+    if (!userData || !userData.name) {
+      userData = {};
+      store.refreshUserData();
+    }
+  }, []);
+  const [isUserActive, setUserActive] = useState(userData.isActive);
+  const [isLoading, setIsLoading] = useState(userData.isActive == undefined);
 
   async function handleToggle() {
     try {
@@ -31,7 +40,7 @@ export default function UserProfile(props) {
         <ProfileImage userPhoto={props.userPhoto}></ProfileImage>
         <Column style={{ justifyContent: 'space-around' }}>
           <strong style={{ fontSize: '3em', marginBottom: '.2em' }}>
-            {props.userName.split(' ')[0]},
+            {userData.name ? userData.name.split(' ')[0] : ''},
           </strong>
           <p style={{ fontSize: '1.8em' }}>você ainda está disponível?</p>
         </Column>

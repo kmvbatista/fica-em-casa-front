@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { TabContainer, Tab } from './styles';
 import AvailableHelpers from '../components/AvailableHelpers';
 import AvailableNeeded from '../components/AvailableNeeded';
@@ -10,24 +10,31 @@ import api from '../../../services/api';
 import LoadingMatch from '../../../components/NeedHelpLoadingMatch';
 import { getUserLocation } from '../../../services/locationService';
 import swal from 'sweetalert';
+import Store from '../../../services/DefaultContext';
 
 export default function HelpBeHelped({ children }) {
+  const store = useContext(Store);
   const [isHelping, setIsHelping] = React.useState(false);
-  const userLogged = {};
-  const [needyPeople, setNeedyPeople] = React.useState([]);
-  const [helpers, setHelpers] = React.useState([]);
+  const [needyPeople, setNeedyPeople] = React.useState(store.needyPeople || []);
+  const [helpers, setHelpers] = React.useState(store.helpers || []);
   const [needyErrorMessage, setNeedyErrorMsg] = React.useState();
   const [helperErrorMessage, setHelperError] = React.useState();
   const [isNeedySearching, setNeedySearching] = React.useState(true);
   const [isHelperSearching, setHelperSearching] = React.useState(true);
-  const [userLocation, setUserLocation] = React.useState();
+  const [userLocation, setUserLocation] = React.useState({});
 
   const toggleIsHelping = () => {
     setIsHelping(!isHelping);
   };
 
   useEffect(() => {
-    getUsers();
+    debugger;
+    if (store.helpers || store.needyPeople) {
+      setNeedySearching(false);
+      setHelperSearching(false);
+    } else {
+      getUsers();
+    }
   }, []);
 
   async function getLocation() {
@@ -61,13 +68,13 @@ export default function HelpBeHelped({ children }) {
 
   async function handleSwitch(isActive) {
     await api.put('/user', { active: isActive });
-    userLogged.active = isActive;
   }
 
   const getHelpers = async (coords) => {
     const data = await SearchService.getNearHelpers(coords);
     if (Array.isArray(data)) {
       setHelpers(data);
+      store.helpers = data;
       setHelperSearching(false);
     } else {
       setHelperError(data);
@@ -79,6 +86,7 @@ export default function HelpBeHelped({ children }) {
     const data = await SearchService.getNearNeedy(coords);
     if (Array.isArray(data)) {
       setNeedyPeople(data);
+      store.needyPeople = data;
       if (isNeedySearching) {
         setNeedySearching(false);
       }
@@ -101,9 +109,6 @@ export default function HelpBeHelped({ children }) {
       >
         <UserProfile
           handleSwitch={handleSwitch}
-          isActive={userLogged.active}
-          userName={userLogged.name}
-          userPhoto={userLogged.photoUrl}
           isHelping={isHelping}
         ></UserProfile>
         <TabContainer>

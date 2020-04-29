@@ -6,7 +6,7 @@ import Menu from './components/Menu';
 import api from './services/api';
 import Store from './services/DefaultContext';
 import swal from 'sweetalert';
-import Loader from './components/Loader';
+import * as SearchService from './services/SearchService';
 
 function App() {
   const storeConfig = {
@@ -18,6 +18,10 @@ function App() {
       isActive: undefined,
       phone: undefined,
     },
+    nearFriends: {
+      helpers: [],
+      needyPeople: [],
+    },
   };
 
   const [user, setUser] = useState(storeConfig.user);
@@ -26,6 +30,8 @@ function App() {
     user: user,
     refreshUserData: getUserData,
     setUser: setUser,
+    helpers: storeConfig.helpers,
+    needyPeople: storeConfig.needy,
     setName: (name) => {
       setUser(Object.assign(user, name));
     },
@@ -42,18 +48,12 @@ function App() {
 
   async function getUserData() {
     try {
-      swal({
-        title: 'Aguarde, por favor...',
-        content: Loader(),
-        buttons: {},
-      });
       const response = await api.get('/user');
-      swal.close();
       setUser(response.data);
     } catch (error) {
       swal(
         'Houve um erro na comunicação!',
-        'Recarregue a página, por favor',
+        'Recarregue a página, ou refaça o login.',
         'error',
       );
     }

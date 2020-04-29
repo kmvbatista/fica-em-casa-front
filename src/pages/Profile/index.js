@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import {
   ProfilePhotoContainer,
   MainContainer,
@@ -22,12 +22,22 @@ import Loader from '../../components/Loader';
 import ProfilePhoneInput from '../../components/ProfilePhoneInput';
 import ButtonWithLoading from '../../components/ButtonWithLoading';
 import UpdatePassord from '../../components/UpdatePassord';
+import Store from '../../services/DefaultContext';
 
 export default function Profile() {
-  const userData = {};
-  const [phone, setPhone] = useState(userData.phone);
+  const store = useContext(Store);
+  let userData = store.user;
+
+  useEffect(() => {
+    if (!userData || !userData.name) {
+      userData = {};
+      store.refreshUserData();
+    }
+  }, []);
+
+  const [phone, setPhone] = useState(userData.phone || '');
   const [nickname, setNickname] = useState(userData.nickname || '');
-  const [name, setName] = useState(userData.name);
+  const [name, setName] = useState(userData.name || '');
   const [photo, setPhoto] = useState(userData.photoUrl);
   const [isEditted, setIsEditted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);

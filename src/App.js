@@ -5,26 +5,26 @@ import Routes from './routes/routes';
 import Menu from './components/Menu';
 import api from './services/api';
 import Store from './services/DefaultContext';
+import swal from 'sweetalert';
+import Loader from './components/Loader';
 
 function App() {
   const storeConfig = {
     user: {
       name: undefined,
+      nickName: undefined,
       location: undefined,
       photoUrl: undefined,
       isActive: undefined,
       phone: undefined,
     },
-    token: undefined,
   };
 
   const [user, setUser] = useState(storeConfig.user);
-  const [token, setToken] = useState(storeConfig.token);
 
   const storeHandler = {
-    token: token,
     user: user,
-    setToken: setToken,
+    refreshUserData: getUserData,
     setUser: setUser,
     setName: (name) => {
       setUser(Object.assign(user, name));
@@ -40,11 +40,30 @@ function App() {
     },
   };
 
+  async function getUserData() {
+    try {
+      swal({
+        title: 'Aguarde, por favor...',
+        content: Loader(),
+        buttons: {},
+      });
+      const response = await api.get('/user');
+      swal.close();
+      setUser(response.data);
+    } catch (error) {
+      swal(
+        'Houve um erro na comunicação!',
+        'Recarregue a página, por favor',
+        'error',
+      );
+    }
+  }
+
   return (
     <>
       <Store.Provider value={storeHandler}>
         <BrowserRouter>
-          <Routes haveUserData={storeHandler.name != undefined}>
+          <Routes>
             <Menu></Menu>
           </Routes>
         </BrowserRouter>

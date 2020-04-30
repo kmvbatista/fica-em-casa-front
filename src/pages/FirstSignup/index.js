@@ -28,8 +28,18 @@ export default function Login() {
   const [hasNoEmail, setHasNoEmail] = useState(false);
   const [useTermsRead, setUseTermsRead] = useState(history.location.state);
   const [isLoading, setIsLoading] = useState(false);
+  const [alreadySent, setAlreadySent] = useState(false);
 
   const handleContinue = () => {
+    if (alreadySent) {
+      swal(
+        `Ok, iremos enviar novamente para ${
+          hasNoEmail ? 'número \n' + phone : 'o email \n' + email
+        }`,
+        'Por favor, consulte se o link já chegou.',
+        'info',
+      );
+    }
     if (!isFormValid()) {
       return;
     }
@@ -52,6 +62,7 @@ export default function Login() {
             'Por favor, verifique seu email pra continuarmos com o cadastro',
             'success',
           );
+          setAlreadySent(true);
         });
       }
     });
@@ -94,7 +105,7 @@ export default function Login() {
           para nos ajudarmos nesse momento tão complicado
         </Subtitle>
       </Welcome>
-      <InitialForm>
+      <InitialForm style={{ justifyContent: 'space-around' }}>
         <Title>
           Insira seu email ou telefone para validarmos seu cadastro...
         </Title>
@@ -139,41 +150,45 @@ export default function Login() {
             </Row>
           </Column>
         )}
-        <LoaderContainer isLoading={isLoading}>
-          <RegisterButton onClick={handleContinue}>continuar</RegisterButton>
-        </LoaderContainer>
-        <Row style={{ alignItems: 'center' }}>
-          <input
-            onClick={() => setUseTermsRead(!useTermsRead)}
-            checked={useTermsRead}
-            type='checkbox'
-            id='useTerms'
-            style={{ width: '1.4em', height: '1.4em' }}
-          />
-          <p
-            style={{
-              color: 'var(--color-purple)',
-              fontSize: '2em',
-              display: 'inline-block',
-              marginLeft: '1em',
-            }}
-          >
-            {' '}
-            <label
-              style={{ fontSize: '.7em', cursor: 'pointer' }}
-              htmlFor='useTerms'
+        <Column>
+          <Row style={{ alignItems: 'center', marginBottom: '2em' }}>
+            <input
+              onClick={() => setUseTermsRead(!useTermsRead)}
+              checked={useTermsRead}
+              type='checkbox'
+              id='useTerms'
+              style={{ width: '1.4em', height: '1.4em' }}
+            />
+            <p
+              style={{
+                color: 'var(--color-purple)',
+                fontSize: '2em',
+                display: 'inline-block',
+                marginLeft: '1em',
+              }}
             >
-              Eu li e concordo com os{' '}
-            </label>
-            <Link
-              style={{ fontSize: '.7em', display: 'inline-block' }}
-              to='/use-terms'
-            >
-              Termos de uso
-            </Link>
-            .
-          </p>
-        </Row>
+              {' '}
+              <label
+                style={{ fontSize: '.8em', cursor: 'pointer' }}
+                htmlFor='useTerms'
+              >
+                Eu li e concordo com os{' '}
+              </label>
+              <Link
+                style={{ fontSize: '.7em', display: 'inline-block' }}
+                to='/use-terms'
+              >
+                Termos de uso
+              </Link>
+              .
+            </p>
+          </Row>
+          <LoaderContainer isLoading={isLoading}>
+            <RegisterButton onClick={handleContinue}>
+              {alreadySent ? 'reenviar' : 'enviar'}
+            </RegisterButton>
+          </LoaderContainer>
+        </Column>
       </InitialForm>
     </Container>
   );

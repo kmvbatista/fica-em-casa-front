@@ -56,14 +56,24 @@ export default function Login() {
           content: Loader(),
           buttons: {},
         });
-        sendToken(phone, email, hasNoEmail).then((x) => {
-          swal(
-            'Código enviado com sucesso!',
-            'Por favor, verifique seu email pra continuarmos com o cadastro',
-            'success',
+        sendToken(phone, email, hasNoEmail)
+          .then((x) => {
+            swal(
+              'Código enviado com sucesso!',
+              'Por favor, verifique seu email pra continuarmos com o cadastro',
+              'success',
+            );
+            setAlreadySent(true);
+          })
+          .catch((error) =>
+            swal(
+              error.response
+                ? error.response.data.error
+                : 'Houve um erro na sua requisição',
+              '',
+              'error',
+            ),
           );
-          setAlreadySent(true);
-        });
       }
     });
   };

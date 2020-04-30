@@ -5,6 +5,7 @@ import Routes from './routes/routes';
 import Menu from './components/Menu';
 import api from './services/api';
 import Store from './services/DefaultContext';
+import { getIsUserLogged } from './services/sessionService';
 import swal from 'sweetalert';
 
 function App() {
@@ -26,7 +27,6 @@ function App() {
 
   const storeHandler = {
     user: user,
-    updateUser: (newUser) => setUser(user),
     isUserLogged: getIfUserIsLogged(),
     refreshUserData: getUserData,
     setUser: setUser,
@@ -45,7 +45,10 @@ function App() {
     },
   };
 
-  function getIfUserIsLogged() {}
+  function getIfUserIsLogged() {
+    debugger;
+    return getIsUserLogged();
+  }
 
   async function getUserData() {
     try {
@@ -66,7 +69,7 @@ function App() {
         <BrowserRouter>
           <Routes
             isUserLogged={
-              user || storeHandler.user.name || storeHandler.isUserLogged
+              user.name || storeHandler.user.name || storeHandler.isUserLogged
             }
           >
             <Menu></Menu>

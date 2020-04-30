@@ -1,6 +1,6 @@
 import React from 'react';
 import './style.css';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { logoutUser } from '../../services/sessionService';
 
 class Dropdown extends React.Component {
@@ -28,12 +28,6 @@ class Dropdown extends React.Component {
     });
   }
 
-  handleLogout() {
-    const history = useHistory();
-    logoutUser();
-    history.push('/login');
-  }
-
   render() {
     return (
       <div className='dropdown'>
@@ -59,7 +53,14 @@ class Dropdown extends React.Component {
               <Link to='/'>Tela inicial</Link>
             </li>
             <li>
-              <Link onClick={this.handleLogout}>Sair</Link>
+              <Link
+                onClick={() => {
+                  logoutUser();
+                  this.props.history.push('/login');
+                }}
+              >
+                Sair
+              </Link>
             </li>
           </ul>
         ) : null}
@@ -68,4 +69,4 @@ class Dropdown extends React.Component {
   }
 }
 
-export default Dropdown;
+export default withRouter(Dropdown);

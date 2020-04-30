@@ -10,12 +10,13 @@ export async function registerUser(dataToSend) {
   });
   const response = await api.post('/user', dataToSend);
   setIsUserLogged();
-  return response.data;
+  return response;
 }
 
 export async function loginUser(dataToSend) {
   try {
     const response = await api.post('/sessions', dataToSend);
+    setIsUserLogged();
     return response.data;
   } catch (error) {
     throw error;
@@ -32,6 +33,10 @@ export async function sendConfirmation(dataToSend) {
 
 export function setIsUserLogged() {
   window.localStorage.setItem('isUserLogged', 'true');
+}
+
+export function getIsUserLogged() {
+  return window.localStorage.getItem('isUserLogged');
 }
 
 export async function logoutUser() {

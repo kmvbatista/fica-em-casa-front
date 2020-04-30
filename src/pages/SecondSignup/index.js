@@ -15,7 +15,6 @@ import * as SessionService from '../../services/sessionService';
 import Store from '../../services/DefaultContext';
 
 export default function SignIn() {
-  const store = useContext(Store);
   const params = useParams();
   const { token, loginType } = params;
   const showPhone = loginType !== 'phone';
@@ -24,6 +23,8 @@ export default function SignIn() {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [name, setName] = useState('');
+
+  const storeHandler = useContext(Store);
 
   const handleSubmit = async () => {
     if (!isFormValid()) return;
@@ -37,9 +38,11 @@ export default function SignIn() {
     };
     try {
       debugger;
-      const user = await SessionService.registerUser(dataToSend);
-      store.setUser(user);
-      await swal(
+      const response = await SessionService.registerUser(dataToSend);
+      storeHandler.isUserLogged = true;
+      storeHandler.user = response.data.user;
+      storeHandler.setUser(response.data.user);
+      swal(
         'Bem vindo ao fica em casa',
         'Estamos felizes com sua chegada!',
         'success',

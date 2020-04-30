@@ -19,7 +19,7 @@ export default function PhoneInput({ phone, setPhone }) {
           setPhoneToShow(e.target.value);
           setPhone(ddi + phoneToShow);
         }}
-        placeholder='seu telefone'
+        placeholder='seu telefone com DDD'
         name='tel'
         id='tel'
         type='tel'

@@ -6,7 +6,6 @@ import Menu from './components/Menu';
 import api from './services/api';
 import Store from './services/DefaultContext';
 import swal from 'sweetalert';
-import * as SearchService from './services/SearchService';
 
 function App() {
   const storeConfig = {
@@ -27,6 +26,8 @@ function App() {
 
   const storeHandler = {
     user: user,
+    updateUser: (newUser) => setUser(user),
+    isUserLogged: getIfUserIsLogged(),
     refreshUserData: getUserData,
     setUser: setUser,
     helpers: storeConfig.helpers,
@@ -43,6 +44,8 @@ function App() {
       setUser(Object.assign(user, isActive));
     },
   };
+
+  function getIfUserIsLogged() {}
 
   async function getUserData() {
     try {
@@ -61,7 +64,11 @@ function App() {
     <>
       <Store.Provider value={storeHandler}>
         <BrowserRouter>
-          <Routes>
+          <Routes
+            isUserLogged={
+              user || storeHandler.user.name || storeHandler.isUserLogged
+            }
+          >
             <Menu></Menu>
           </Routes>
         </BrowserRouter>

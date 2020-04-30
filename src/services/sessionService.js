@@ -9,7 +9,8 @@ export async function registerUser(dataToSend) {
     buttons: {},
   });
   const response = await api.post('/user', dataToSend);
-  swal('Dados cadastrados com sucesso', '', 'success');
+  setIsUserLogged();
+  return response.data;
 }
 
 export async function loginUser(dataToSend) {
@@ -27,4 +28,13 @@ export async function sendForgotPwdToken(login) {
 
 export async function sendConfirmation(dataToSend) {
   await api.post('/password/reset', dataToSend);
+}
+
+export function setIsUserLogged() {
+  window.localStorage.setItem('isUserLogged', 'true');
+}
+
+export async function logoutUser() {
+  window.localStorage.removeItem('isUserLogged');
+  api.post('/logoutUser');
 }

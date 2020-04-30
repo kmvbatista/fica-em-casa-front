@@ -14,7 +14,7 @@ import Login from '../pages/Login';
 import Profile from '../pages/Profile';
 import ForgotPassword from '../pages/ForgotPassword';
 
-export default function Routes({ children, haveUserData }) {
+export default function Routes({ children, isUserLogged }) {
   return (
     <Switch>
       <PrivateRoute exact path='/'>
@@ -47,7 +47,7 @@ export default function Routes({ children, haveUserData }) {
       <PrivateRoute exact path='/profile'>
         <Profile></Profile>
       </PrivateRoute>
-      <Route exact path='/second-signup'>
+      <Route exact path='/second-signup/:token/:loginType'>
         <SecondSignup></SecondSignup>
       </Route>
       <Route exact path='/use-terms'>
@@ -57,7 +57,7 @@ export default function Routes({ children, haveUserData }) {
   );
 
   function PrivateRoute({ children, path }) {
-    const isAuthenticated = authenticate(haveUserData);
+    const isAuthenticated = authenticate(isUserLogged);
     return (
       <Route exact path={path}>
         {isAuthenticated ? children : <Redirect to='login'></Redirect>}

@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import React, { useState, useContext } from 'react';
+import { useHistory, useParams } from 'react-router-dom';
 
 import {
   Welcome,
@@ -12,29 +12,36 @@ import swal from 'sweetalert';
 import PhoneInput from '../../components/PhoneInput';
 import ButtonWithLoading from '../../components/ButtonWithLoading';
 import * as SessionService from '../../services/sessionService';
+import Store from '../../services/DefaultContext';
 
 export default function SignIn() {
+  const store = useContext(Store);
+  const params = useParams();
+  const { token, loginType } = params;
+  const showPhone = loginType !== 'phone';
   const history = useHistory();
-  const dataComing = history.location.state;
-  const [phone, setPhone] = useState(dataComing.phone);
+  const [phone, setPhone] = useState();
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [name, setName] = useState('');
 
   const handleSubmit = async () => {
     if (!isFormValid()) return;
     const dataToSend = {
-      name: dataComing.name,
-      login: dataComing.login,
-      useTermsRead: dataComing.useTermsRead,
+      name,
+      useTermsRead: true,
       phone,
       password,
+      token,
       confirmPassword,
     };
     try {
-      await SessionService.registerUser(dataToSend);
+      debugger;
+      const user = await SessionService.registerUser(dataToSend);
+      store.setUser(user);
       await swal(
-        'Cadastro efetuado com sucesso',
-        'Bem vindo ao fica em casa!',
+        'Bem vindo ao fica em casa',
+        'Estamos felizes com sua chegada!',
         'success',
       );
       history.push('/', { userJustRegistered: true });
@@ -52,7 +59,11 @@ export default function SignIn() {
   };
 
   function isFormValid() {
-    if (!phone || phone.length < 5) {
+    if (!name || name === '') {
+      swal('Insira um nome por favor', '', 'error');
+      return false;
+    }
+    if (showPhone && (!phone || phone.length < 5)) {
       swal('Telefone está em formato inválido', 'Corrija por favor', 'error');
       return false;
     }
@@ -82,7 +93,7 @@ export default function SignIn() {
         }}
       >
         <img
-          src='./people-at-the-window.png'
+          src='../../people-at-the-window.png'
           alt='people'
           style={{
             position: 'absolute',
@@ -91,7 +102,7 @@ export default function SignIn() {
           }}
         />
         <img
-          src='./person-at-the-window.png'
+          src='../../person-at-the-window.png'
           alt='person'
           style={{
             position: 'absolute',
@@ -115,7 +126,15 @@ export default function SignIn() {
         </Title>
       </Welcome>
       <InitialForm>
-        {!dataComing.phone && (
+        <LoginInput
+          placeholder='seu nome'
+          type='text'
+          name='name'
+          required
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        ></LoginInput>
+        {showPhone && (
           <PhoneInput value={phone} setPhone={setPhone}></PhoneInput>
         )}
         <LoginInput

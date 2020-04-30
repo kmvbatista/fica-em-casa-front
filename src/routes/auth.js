@@ -1,4 +1,7 @@
-export default function authenticate(haveUserData) {
+export default function authenticate(isUserLogged) {
   const isDevelopment = false;
-  return true;
+  if (isDevelopment) {
+    return true;
+  }
+  return isUserLogged;
 }

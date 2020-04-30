@@ -1,4 +1,5 @@
 import api from './api';
+import { logoutUser } from './sessionService';
 
 export async function getAssistCategories() {
   try {
@@ -17,6 +18,7 @@ export async function getPendingNecesseties() {
 
 export async function deleteAccount() {
   const response = await api.delete('/user');
+  logoutUser();
   return response.data;
 }
 

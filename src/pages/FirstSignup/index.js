@@ -16,86 +16,22 @@ import InputMask from 'react-input-mask';
 import Loader from '../../components/Loader';
 import Loading from 'react-loading';
 import { Row, Column } from '../../globalComponents';
-import { sendCode, sendToken } from '../../services/tokenService';
+import { sendToken } from '../../services/tokenService';
 import PhoneInput from '../../components/PhoneInput';
 import { isEmailValid } from '../../services/emailValidator';
+import LoaderContainer from '../../components/LoaderContainer';
 
 export default function Login() {
   const history = useHistory();
-  const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
-  const [token, setToken] = useState('');
-  const [isConfirmming, setConfirmming] = useState(false);
   const [hasNoEmail, setHasNoEmail] = useState(false);
   const [useTermsRead, setUseTermsRead] = useState(history.location.state);
   const [isLoading, setIsLoading] = useState(false);
-  const [alreadyHasCode, setAlreadyHasCode] = useState(false);
-
-  const confirmCode = async () => {
-    setIsLoading(true);
-    if (!token && token.split(' ').join('').length !== 6) {
-      return swal('Insira um token válido, por favor', '', 'error');
-    }
-    if (isFormValid()) {
-      sendCode(phone, email, hasNoEmail, token)
-        .then((res) => {
-          swal(
-            'Tudo certo! Vamos continuar com o cadastro',
-            '',
-            'success',
-          ).then((x) => {
-            history.push('second-signup', {
-              name,
-              login: hasNoEmail ? phone : email,
-              phone,
-              useTermsRead,
-            });
-            setIsLoading(false);
-          });
-        })
-        .catch((error) => {
-          setIsLoading(false);
-          swal(
-            error.response
-              ? error.response.data.error
-              : 'Houve um erro na requisição',
-            'Tente novamente!',
-            'error',
-          );
-        });
-    }
-  };
-
-  function sendConfirmationCode() {
-    sendToken(phone, email, hasNoEmail)
-      .then((_) => {
-        setConfirmming(true);
-        swal(
-          'Código enviado com sucesso!!!',
-          'Por favor, insira-o abaixo!',
-          'success',
-        );
-      })
-      .catch((error) => {
-        swal(
-          `${
-            error.response
-              ? error.response.data.error
-              : 'Tente novamente, por favor'
-          }`,
-          'Houve erro ao tentar enviar o código',
-          'error',
-        );
-      });
-  }
 
   const handleContinue = () => {
     if (!isFormValid()) {
       return;
-    }
-    if (alreadyHasCode) {
-      return confirmCode();
     }
     swal(
       `Iremos enviar o código de confirmação para ${
@@ -110,16 +46,18 @@ export default function Login() {
           content: Loader(),
           buttons: {},
         });
-        sendConfirmationCode();
+        sendToken(phone, email, hasNoEmail).then((x) => {
+          swal(
+            'Código enviado com sucesso!',
+            'Por favor, verifique seu email pra continuarmos com o cadastro',
+            'success',
+          );
+        });
       }
     });
   };
 
   function isFormValid() {
-    if (!name) {
-      swal('Insira um nome, por favor', '', 'error');
-      return false;
-    }
     if (hasNoEmail) {
       if (!phone || phone.length < 5) {
         swal(
@@ -157,128 +95,53 @@ export default function Login() {
         </Subtitle>
       </Welcome>
       <InitialForm>
-        {isConfirmming ? (
-          <Title>Insira o código enviado por favor..</Title>
-        ) : (
-          <Title>Faça o seu cadastro para continuar...</Title>
-        )}
-        {isConfirmming ? (
-          <InputMask
-            mask='* * * * * *'
-            value={token}
-            onChange={(e) => setToken(e.target.value)}
-          >
-            {(inputProps) => (
-              <LoginInput {...inputProps} placeholder='_ _ _ _ _ _' />
-            )}
-          </InputMask>
-        ) : (
-          <>
-            <LoginInput
-              placeholder='seu nome'
-              name='name'
-              id='name'
-              required
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            ></LoginInput>
-            {hasNoEmail ? (
-              <Column>
-                <PhoneInput setPhone={setPhone} phone={phone}></PhoneInput>
-                <Row style={{ justifyContent: 'space-around', width: '100%' }}>
-                  <TextLink
-                    onClick={() => {
-                      setAlreadyHasCode(!alreadyHasCode);
-                    }}
-                  >
-                    {alreadyHasCode
-                      ? 'não tenho um código'
-                      : 'já tenho um código'}
-                  </TextLink>
-                  <TextLink
-                    onClick={() => {
-                      setHasNoEmail(false);
-                    }}
-                  >
-                    usar email
-                  </TextLink>
-                </Row>
-              </Column>
-            ) : (
-              <Column>
-                <LoginInput
-                  placeholder='seu email'
-                  name='email'
-                  id='email'
-                  required
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                ></LoginInput>
-                <Row style={{ justifyContent: 'space-around' }}>
-                  <TextLink
-                    onClick={() => {
-                      setAlreadyHasCode(!alreadyHasCode);
-                    }}
-                  >
-                    {alreadyHasCode
-                      ? 'não tenho um código'
-                      : 'já tenho um código'}
-                  </TextLink>
-                  <TextLink
-                    onClick={() => {
-                      swal(
-                        'Deseja escolher o telefone como forma de fazer login?',
-                        { buttons: ['Continuar com email', 'Sim'] },
-                      ).then((change) => {
-                        if (change) {
-                          setHasNoEmail(true);
-                        }
-                      });
-                    }}
-                  >
-                    não tenho email
-                  </TextLink>
-                </Row>
-              </Column>
-            )}
-          </>
-        )}
-        {alreadyHasCode && (
-          <InputMask
-            mask='* * * * * *'
-            value={token}
-            onChange={(e) => setToken(e.target.value)}
-          >
-            {(inputProps) => (
-              <LoginInput {...inputProps} placeholder='_ _ _ _ _ _' />
-            )}
-          </InputMask>
-        )}
-        {isConfirmming ? (
-          isLoading ? (
-            <Row style={{ justifyContent: 'center' }}>
-              <Loading
-                type='spinningBubbles'
-                color='var(--color-pink)'
-                width='6em'
-                height='6em'
-              ></Loading>
+        <Title>
+          Insira seu email ou telefone para validarmos seu cadastro...
+        </Title>
+        {hasNoEmail ? (
+          <Column>
+            <PhoneInput setPhone={setPhone} phone={phone}></PhoneInput>
+            <Row style={{ justifyContent: 'space-around', width: '100%' }}>
+              <TextLink
+                onClick={() => {
+                  setHasNoEmail(false);
+                }}
+              >
+                usar email
+              </TextLink>
             </Row>
-          ) : (
-            <Column>
-              <RegisterButton onClick={confirmCode}>confirmar</RegisterButton>
-              <Row style={{ justifyContent: 'space-around', width: '100%' }}>
-                <TextLink onClick={() => handleContinue()}>reenviar</TextLink>
-                <TextLink onClick={() => setConfirmming(false)}>
-                  alterar email
-                </TextLink>
-              </Row>
-            </Column>
-          )
+          </Column>
         ) : (
-          <RegisterButton onClick={handleContinue}>continuar</RegisterButton>
+          <Column>
+            <LoginInput
+              placeholder='seu email'
+              name='email'
+              id='email'
+              required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            ></LoginInput>
+            <Row style={{ justifyContent: 'space-around' }}>
+              <TextLink
+                onClick={() => {
+                  swal(
+                    'Deseja escolher o telefone como forma de fazer login?',
+                    { buttons: ['Continuar com email', 'Sim'] },
+                  ).then((change) => {
+                    if (change) {
+                      setHasNoEmail(true);
+                    }
+                  });
+                }}
+              >
+                não tenho email
+              </TextLink>
+            </Row>
+          </Column>
         )}
-
+        <LoaderContainer isLoading={isLoading}>
+          <RegisterButton onClick={handleContinue}>continuar</RegisterButton>
+        </LoaderContainer>
         <Row style={{ alignItems: 'center' }}>
           <input
             onClick={() => setUseTermsRead(!useTermsRead)}

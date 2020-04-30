@@ -67,6 +67,11 @@ export default function Login() {
     }
   }
 
+  function toggleLoginWithPhone() {
+    setlogin('');
+    setLoginWithPhone(!loginWithPhone);
+  }
+
   async function sendConfirmation() {
     if (!isFormValid()) {
       return;
@@ -95,9 +100,11 @@ export default function Login() {
   }
 
   function isFormValid() {
-    if (loginWithPhone && login.length < 6) {
-      swal('Por favor, insira um telefone válido', '', 'error');
-      return false;
+    if (loginWithPhone) {
+      if (login.length < 6) {
+        swal('Por favor, insira um telefone válido', '', 'error');
+        return false;
+      }
     } else if (!isEmailValid(login)) {
       swal('Por favor, insira um email válido', '', 'error');
       return false;
@@ -154,7 +161,7 @@ export default function Login() {
                 onChange={(e) => setlogin(e.target.value)}
               ></LoginInput>
               <Row style={{ width: '100%', justifyContent: 'space-around' }}>
-                <TextLink onClick={() => setLoginWithPhone(!loginWithPhone)}>
+                <TextLink onClick={toggleLoginWithPhone}>
                   faço login com telefone
                 </TextLink>
                 <TextLink onClick={handleAlreadyHasCode}>
@@ -165,7 +172,7 @@ export default function Login() {
           ) : (
             <Column>
               <PhoneInput phone={login} setPhone={setlogin}></PhoneInput>
-              <TextLink onClick={() => setLoginWithPhone(!loginWithPhone)}>
+              <TextLink onClick={toggleLoginWithPhone}>
                 faço login com email
               </TextLink>
             </Column>

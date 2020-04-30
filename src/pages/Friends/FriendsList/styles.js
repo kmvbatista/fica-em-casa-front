@@ -7,7 +7,7 @@ export const Tab = styled.div`
 
   border-radius: 0 2em 0 0;
   width: 54%;
-  padding: 1em 3em;
+  padding: 1em 1em 1.8em 1em;
   position: absolute;
   font-size: 1.4em;
   cursor: pointer;
@@ -24,8 +24,8 @@ export const Tab = styled.div`
   z-index: 0;
   `
       : `
-    padding: 1.3em 3em;
-  z-index: 1000;
+    padding: 1.8em 2em;
+  z-index: 2;
   `}
 `;
 

@@ -179,7 +179,7 @@ export default function NeedHelpOptions({ children }) {
                         style={{ maxHeight: '55%' }}
                       />
                     )}
-                    {el.category}
+                    <GridText>{el.category}</GridText>
                   </OptionCard>
                 ))}
               </Grid>

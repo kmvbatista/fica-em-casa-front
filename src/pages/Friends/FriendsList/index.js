@@ -11,6 +11,7 @@ import LoadingMatch from '../../../components/NeedHelpLoadingMatch';
 import { getUserLocation } from '../../../services/locationService';
 import swal from 'sweetalert';
 import Store from '../../../services/DefaultContext';
+import Menu from '../../../components/Menu';
 
 export default function HelpBeHelped({ children }) {
   const store = useContext(Store);
@@ -105,7 +106,7 @@ export default function HelpBeHelped({ children }) {
   };
 
   return (
-    <div style={{ position: 'relative' }}>
+    <div>
       <TopDecoration
         isHelping={isHelping}
         style={{
@@ -115,11 +116,29 @@ export default function HelpBeHelped({ children }) {
           alignItems: 'flex-start',
         }}
       >
+        <Menu
+          customStyle={{
+            backgroundColor: 'inherit',
+            position: 'relative',
+            width: '100%',
+          }}
+        ></Menu>
         <UserProfile
           handleSwitch={handleSwitch}
           isHelping={isHelping}
         ></UserProfile>
         <TabContainer>
+          <Tab
+            isLoading={isNeedySearching}
+            isHelping={isHelping}
+            highLight={!isHelping}
+            style={{ right: '0' }}
+            onClick={toggleIsHelping}
+          >
+            <strong style={{ display: 'block', textAlign: 'center' }}>
+              Preciso de ajuda
+            </strong>
+          </Tab>
           <Tab
             isHelping={isHelping}
             isLoading={isNeedySearching}
@@ -131,23 +150,12 @@ export default function HelpBeHelped({ children }) {
               Quero ajudar
             </strong>
           </Tab>
-          <Tab
-            isLoading={isNeedySearching}
-            isHelping={isHelping}
-            highLight={!isHelping}
-            style={{ right: '0', zIndex: '0' }}
-            onClick={toggleIsHelping}
-          >
-            <strong style={{ display: 'block', textAlign: 'center' }}>
-              Preciso de ajuda
-            </strong>
-          </Tab>
         </TabContainer>
       </TopDecoration>
-      {getAvailableHelpers()}
-      {getAvailableNeeded()}
+      <div style={{ position: 'relative' }}>
+        {isHelping ? getAvailableHelpers() : getAvailableNeeded()}
+      </div>
       )}
-      {children}
     </div>
   );
 

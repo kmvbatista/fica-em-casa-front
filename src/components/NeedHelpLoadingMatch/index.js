@@ -18,7 +18,7 @@ import {
 export default function LoadingMatch() {
   return (
     <Container>
-      <Title style={{ height: '20em' }}>
+      <Title style={{ height: '10em' }}>
         Buscando
         <br />
         pessoas próximas<EffectReticences>...</EffectReticences>

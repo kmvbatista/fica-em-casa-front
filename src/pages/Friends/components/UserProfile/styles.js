@@ -22,8 +22,8 @@ export const Container = styled.div`
   height: 100%;
   width: 100%;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: space-around;
+  align-items: flex-start;
 `;
 
 export const SetCategoriesButton = styled.button`
@@ -46,3 +46,5 @@ export const SetCategoriesButton = styled.button`
     padding: 1em 0.8em;
   }
 `;
+
+export const Name = styled.p``;

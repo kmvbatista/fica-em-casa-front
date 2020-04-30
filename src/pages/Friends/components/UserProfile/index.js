@@ -49,10 +49,10 @@ export default function UserProfile(props) {
       <ProfileContainer>
         <ProfileImage userPhoto={userData.photoUrl}></ProfileImage>
         <Column style={{ justifyContent: 'space-around' }}>
-          <strong style={{ fontSize: '3em', marginBottom: '.2em' }}>
+          <strong style={{ fontSize: '2.5em', marginBottom: '.2em' }}>
             {userData.name ? userData.name.split(' ')[0] : ''},
           </strong>
-          <p style={{ fontSize: '1.8em' }}>você ainda está disponível?</p>
+          <p style={{ fontSize: '1.8em' }}>você está disponível?</p>
         </Column>
         <div>
           {isLoading ? (

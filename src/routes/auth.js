@@ -1,5 +1,5 @@
 export default function authenticate(isUserLogged) {
-  const isDevelopment = false;
+  const isDevelopment = true;
   if (isDevelopment) {
     return true;
   }

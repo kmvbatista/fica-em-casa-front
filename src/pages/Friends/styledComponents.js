@@ -8,22 +8,19 @@ export const TopDecorationImage = styled.img.attrs((props) => ({
   top: 0em;
   height: 180%;
   background-size: cover;
-  left: 50%;
-  transform: translate(-50%, 0);
 `;
 
 export const TopDecoration = styled.div`
   background-color: ${(props) =>
     props.isHelping ? 'var(--color-pink)' : 'var(--color-purple)'};
-  height: 25vh;
-  position: relative;
+  height: 30vh;
 `;
 
 export const MainTab = styled(Column)`
   background-color: var(--color-pink);
   min-height: 100vh;
-  z-index: 100;
   padding: 3em;
+  transform: translate(0, 0px);
 `;
 
 export const MainPhrase = styled.p`

@@ -35,14 +35,18 @@ export const OptionCard = styled.div`
   padding: 10px 0;
   text-align: center;
 
+  @media only screen and (max-width: 900px) {
+    height: 9em;
+    width: 9em;
+  }
   @media only screen and (max-width: 600px) {
     height: 8em;
     width: 8em;
   }
 
-  @media only screen and (max-width: 900px) {
-    height: 9em;
-    width: 9em;
+  @media only screen and (max-width: 340px) {
+    height: 7em;
+    width: 7em;
   }
   @media only screen and (min-width: 900px) {
     height: 12em;
@@ -65,7 +69,7 @@ export const CardImage = styled.img`
 `;
 
 export const GridText = styled.p`
-  font-size: 1.25em;
+  font-size: 1.2em;
 `;
 
 export const Grid = styled.div`
@@ -121,8 +125,11 @@ export const SubTitle = styled.p`
 `;
 
 export const TextContainer = styled.div`
-  width: 90%;
-  @media only screen and (min-width: 600px) {
+  width: 80%;
+  @media only screen and (min-width: 1200px) {
+    width: 70%;
+  }
+  @media only screen and (min-width: 1600px) {
     width: 100%;
   }
 `;
@@ -130,7 +137,7 @@ export const TextContainer = styled.div`
 export const GoToNextPage = styled(Row)`
   margin-top: 2.5em;
   justify-content: flex-end;
-  width: 94%;
+  width: 85%;
   @media only screen and (min-width: 600px) {
     width: 100%;
   }

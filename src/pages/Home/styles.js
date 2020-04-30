@@ -72,16 +72,13 @@ export const Box3 = styled(Box1)`
 
 export const CenteredBox = styled.div`
   background-color: white;
-  width: 50%;
+  width: 70%;
   height: 17vh;
   border-radius: 30px;
   align-items: center;
   display: flex;
   justify-content: flex-end;
   position: relative;
-  @media only screen and (min-width: 1200px) {
-    width: 70%;
-  }
 `;
 
 export const HighlightText = styled.p`

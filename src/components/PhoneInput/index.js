@@ -22,7 +22,7 @@ export default function PhoneInput({ phone, setPhone }) {
         placeholder='seu telefone com DDD'
         name='tel'
         id='tel'
-        type='tel'
+        type='number'
         required
       ></LoginInput>
     </Row>

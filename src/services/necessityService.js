@@ -64,7 +64,6 @@ export async function getUserNecessities() {
 }
 
 export async function deleteSimpleNecessity(id) {
-  debugger;
   await api.delete(`/necessity`, { data: { necessities: [id] } });
 }
 

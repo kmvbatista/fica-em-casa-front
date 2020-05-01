@@ -1,6 +1,5 @@
 export default function authenticate(isUserLogged) {
-  const isDevelopment = true;
-  if (isDevelopment) {
+  if (process.env.NODE_ENV == 'development') {
     return true;
   }
   return isUserLogged;

@@ -5,9 +5,7 @@ import { RegisterButton } from '../../FirstSignup/styles';
 
 export default function LocationErrorMessage({ buttonsColor }) {
   return (
-    <Column
-      style={{ alignItems: 'flex-start', margin: '5% auto', padding: '0 4em' }}
-    >
+    <Column style={{ alignItems: 'flex-start', margin: '5% auto' }}>
       <>
         {locationErrorMsg.message.split('\n').map((x) => (
           <p style={{ fontSize: '2em', marginBottom: '1.3em' }}>{x}</p>

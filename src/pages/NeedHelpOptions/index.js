@@ -134,7 +134,6 @@ export default function NeedHelpOptions({ children }) {
           if (accepted) {
             toggleIsCardChecked(category);
             toggleCardLoading(category);
-            debugger;
             await NecessityService.deleteSimpleNecessity(id);
             toggleCardLoading(category);
           }

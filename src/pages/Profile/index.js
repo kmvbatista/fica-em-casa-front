@@ -10,6 +10,7 @@ import {
   PhotoContainer,
   ProfileContainer,
   SaveButton,
+  ButtonsContainer,
 } from './styles';
 import Dropdown from '../../components/PopUpMenu';
 import { useHistory } from 'react-router-dom';
@@ -163,7 +164,7 @@ export default function Profile() {
   }
 
   return (
-    <ProfileContainer style={{ backgroundColor: 'var(--color-purple)' }}>
+    <ProfileContainer>
       <ProfilePhotoContainer>
         <PhotoContainer style={{ position: 'relative' }}>
           <input
@@ -236,7 +237,7 @@ export default function Profile() {
             />
           </Row>
         </InputBlock>
-        <Row style={{ justifyContent: 'space-around', width: '100%' }}>
+        <ButtonsContainer>
           <ButtonWithLoading
             onClick={deleteAccount}
             style={{
@@ -258,7 +259,7 @@ export default function Profile() {
           >
             Alterar senha
           </ButtonWithLoading>
-        </Row>
+        </ButtonsContainer>
         <BottomContainer></BottomContainer>
       </MainContainer>
       <Menu></Menu>

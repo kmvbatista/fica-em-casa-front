@@ -94,7 +94,6 @@ export default function NeedHelpOptions({ children }) {
     try {
       const newAssist = await AssistanceService.postAssistance(category);
       toggleIsCardChecked(category);
-      debugger;
       setCardId(category, newAssist._id);
       if (!hasRegisteredOption) {
         updateUserLocation(userLocation).then((x) => setRegisteredOption(true));

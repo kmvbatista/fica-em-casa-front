@@ -37,7 +37,6 @@ export default function SignIn() {
       confirmPassword,
     };
     try {
-      debugger;
       const response = await SessionService.registerUser(dataToSend);
       storeHandler.isUserLogged = true;
       storeHandler.user = response.data.user;

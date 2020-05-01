@@ -14,6 +14,7 @@ export default function Menu({ customStyle }) {
               position: 'absolute',
               top: '0',
               width: '100%',
+              height: 'min-content',
             }
       }
     >

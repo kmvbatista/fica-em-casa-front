@@ -15,10 +15,10 @@ export default function ProfilePhoneInput({ phone, setPhone }) {
           setPhoneToShow(e.target.value);
           setPhone(ddi + phoneToShow);
         }}
-        placeholder='seu telefone'
+        placeholder='telefone com DDD'
         name='tel'
         id='tel'
-        type='tel'
+        type='number'
         required
       ></Input>
     </Row>

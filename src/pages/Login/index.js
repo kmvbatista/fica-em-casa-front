@@ -31,12 +31,10 @@ export default function Login() {
     const dataToSend = { login, password };
     try {
       setIsLoading(true);
-      debugger;
       const response = await loginUser(dataToSend);
       storeHandler.setUser(response.user);
       history.replace('/');
     } catch (error) {
-      debugger;
       setIsLoading(false);
       swal(
         `${

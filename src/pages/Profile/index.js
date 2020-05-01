@@ -10,7 +10,8 @@ import {
   PhotoContainer,
   ProfileContainer,
   SaveButton,
-  ButtonsContainer,
+  PhotoInput,
+  Buttons,
 } from './styles';
 import Dropdown from '../../components/PopUpMenu';
 import { useHistory } from 'react-router-dom';
@@ -164,17 +165,10 @@ export default function Profile() {
   }
 
   return (
-    <ProfileContainer>
+    <ProfileContainer style={{ backgroundColor: 'var(--color-purpe)' }}>
       <ProfilePhotoContainer>
-        <PhotoContainer style={{ position: 'relative' }}>
-          <input
-            style={{
-              opacity: 0,
-              width: '100%',
-              height: '100%',
-              cursor: 'pointer',
-              position: 'absolute',
-            }}
+        <PhotoContainer>
+          <PhotoInput
             type='file'
             onChange={(event) => {
               postPhoto(event.target.files[0]);
@@ -203,7 +197,6 @@ export default function Profile() {
               style={{
                 fontSize: '3em',
                 fontFamily: 'BalooThambi2-Bolder',
-                marginTop: '.2em',
                 lineHeight: '1.8',
               }}
             ></Input>
@@ -237,17 +230,7 @@ export default function Profile() {
             />
           </Row>
         </InputBlock>
-        <ButtonsContainer>
-          <ButtonWithLoading
-            onClick={deleteAccount}
-            style={{
-              border: '1px solid white',
-              width: '80%',
-              boxShadow: '0px 15px 10px rgba(0,0,0, 0.1)',
-            }}
-          >
-            Excluir minha conta
-          </ButtonWithLoading>
+        <Buttons>
           <ButtonWithLoading
             onClick={handleUpdatePassword}
             style={{
@@ -259,9 +242,20 @@ export default function Profile() {
           >
             Alterar senha
           </ButtonWithLoading>
-        </ButtonsContainer>
+          <ButtonWithLoading
+            onClick={deleteAccount}
+            style={{
+              border: '1px solid white',
+              width: '80%',
+              boxShadow: '0px 15px 10px rgba(0,0,0, 0.1)',
+            }}
+          >
+            Excluir minha conta
+          </ButtonWithLoading>
+        </Buttons>
         <BottomContainer></BottomContainer>
       </MainContainer>
+
       <Menu></Menu>
     </ProfileContainer>
   );

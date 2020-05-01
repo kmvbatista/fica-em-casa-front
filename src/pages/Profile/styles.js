@@ -1,17 +1,27 @@
 import styled from 'styled-components';
-import { Column, Row } from '../../globalComponents';
+import { Column } from '../../globalComponents';
 import { RegisterButton } from '../FirstSignup/styles';
+
+export const ProfileContainer = styled(Column)`
+  position: relative;
+  justify-content: flex-end;
+  height: 100vh;
+  @media only screen and (min-width: 600px) {
+    flex-direction: row;
+  }
+`;
 
 export const ProfilePhotoContainer = styled.div`
   height: 35vh;
   background-color: var(--color-pink);
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  position: absolute;
+  top: 0;
+  width: 100%;
   @media only screen and (min-width: 600px) {
-    width: 40%;
     border-radius: 5px 0 0 5px;
     height: 100vh;
+    left: 0;
+    width: 40vw;
   }
 `;
 
@@ -19,31 +29,42 @@ export const MainContainer = styled.div`
   background-color: var(--color-purple);
   border-radius: 20px 0 0 0;
   padding: 3em 3em 0 3em;
-  height: calc(65vh + 2.1em);
-  position: absolute;
+  height: calc(65% + 20px);
+  transform: translate(0, 0);
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  bottom: 0;
   @media only screen and (min-width: 600px) {
-    width: 65%;
-    border-radius: 20px 0px 0px 0;
+    padding: 6em;
+
+    width: calc(60% + 20px);
+    border-radius: 20px 5px 5px 0;
     overflow: hidden;
     height: 100vh;
-    right: 0;
-    padding: 6em;
   }
 `;
 
 export const BottomContainer = styled.div`
   background-color: rgba(0, 0, 0, 0.2);
   width: 100%;
-  height: 73%;
+  height: 72%;
   left: 0;
   border-radius: 0 20px 0 0;
   position: absolute;
   bottom: 0;
   z-index: -1;
+`;
+
+export const PhotoContainer = styled(Column)`
+  align-items: center;
+  height: 35vh;
+  justify-content: center;
+  position: relative;
+  @media only screen and (min-width: 600px) {
+    margin-top: 50%;
+    transform: translateY(-50%);
+  }
 `;
 
 export const PhotoCard = styled.div`
@@ -62,9 +83,11 @@ export const Input = styled.input`
   color: white;
   font-size: 2.1em;
   width: 100%;
-  margin-top: 0.7em;
+  line-height: 2;
   &::placeholder {
     color: #f2f1f1b3;
+    font-size: 0.7em;
+    font-weight: 400;
   }
 `;
 
@@ -76,18 +99,6 @@ export const Label = styled.label`
 
 export const InputBlock = styled.div`
   margin-bottom: 1em;
-`;
-
-export const ProfileContainer = styled(Column)`
-  position: relative;
-  width: 100vw;
-  height: 100vh;
-  @media only screen and (min-width: 600px) {
-    flex-direction: row;
-  }
-`;
-export const PhotoContainer = styled(Column)`
-  align-items: center;
 `;
 
 export const SaveButton = styled(RegisterButton)`
@@ -103,13 +114,27 @@ export const SaveButton = styled(RegisterButton)`
   }
 `;
 
-export const ButtonsContainer = styled(Row)`
-  justify-content: space-around;
+export const PhotoInput = styled.input`
+  opacity: 0;
   width: 100%;
-  @media only screen and (max-width: 600px) {
-    flex-direction: column;
+  height: 100%;
+  cursor: pointer;
+  position: absolute;
+`;
+
+export const Buttons = styled(Column)`
+  width: 100%;
+  justify-content: space-around;
+  align-items: center;
+  & > * {
+    margin-bottom: 1em;
+    width: 50%;
+  }
+  @media only screen and (min-width: 600px) {
+    color: var(--color-purple);
+    flex-direction: row;
     & > * {
-      padding-bottom: 1em;
+      margin-bottom: 0;
     }
   }
 `;

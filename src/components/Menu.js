@@ -22,7 +22,12 @@ export default function Menu({ customStyle }) {
         <img
           src='./back.svg'
           onClick={() => history.goBack()}
-          style={{ width: '5em', padding: '1em', cursor: 'pointer' }}
+          style={{
+            width: '5em',
+            height: '5em',
+            padding: '1em',
+            cursor: 'pointer',
+          }}
           alt='Voltar'
         />
         <div style={{ width: '100%' }}></div>

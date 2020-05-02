@@ -57,7 +57,7 @@ export const InitialForm = styled.div`
   }
   ${column}
   & > * {
-    margin-bottom: 4em;
+    margin-bottom: 2em;
   }
   height: 50vh;
   @media only screen and (max-width: 600px) {

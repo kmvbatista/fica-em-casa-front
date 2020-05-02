@@ -33,8 +33,6 @@ export async function getUserData() {
 }
 
 export async function resetPassword(dataToSend) {
-  const response = await api.post('/password/reset', {
-    dataToSend,
-  });
+  const response = await api.post('/password/reset', dataToSend);
   return response.data;
 }

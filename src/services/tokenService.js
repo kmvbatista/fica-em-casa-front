@@ -6,7 +6,7 @@ export function sendSignupToken(phone, email, hasNoEmail) {
 }
 
 export function validateForgotPwdToken(token) {
-  return api.put('/token-validation/reset-password', { token });
+  return api.post('/token-validation/reset-password', { token });
 }
 
 export async function sendForgotPwdToken(login) {

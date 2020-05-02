@@ -94,6 +94,9 @@ export default function ModalContent({
 
   const postNecessity = async () => {
     try {
+      if (itemToAdd.item.length > 0) {
+        itemList.push(itemToAdd);
+      }
       await NecessityService.postNecessityItems(itemList);
       setCardChecked(cardInfo.category);
       closeModal();

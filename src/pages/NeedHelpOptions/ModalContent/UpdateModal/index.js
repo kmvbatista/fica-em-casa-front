@@ -45,6 +45,9 @@ export default function UpdateModal({
     try {
       setIsLoading(true);
       if (itemsToAdd.length > 0) {
+        if (itemToAdd.item.length > 0) {
+          itemsToAdd.push(itemToAdd);
+        }
         await NecessityService.addMany(itemsToAdd);
       }
       if (itemsToDelete.length > 0) {

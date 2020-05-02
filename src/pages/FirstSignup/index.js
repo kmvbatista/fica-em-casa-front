@@ -120,52 +120,62 @@ export default function Login() {
         <Title>
           Insira seu email ou telefone para validarmos seu cadastro...
         </Title>
-        {hasNoEmail ? (
-          <Column>
-            <PhoneInput
-              setPhone={setPhone}
-              phone={phone}
-              onEnter={handleSubmit}
-            ></PhoneInput>
-            <Row style={{ justifyContent: 'space-around', width: '100%' }}>
-              <TextLink
-                onClick={() => {
-                  setHasNoEmail(false);
-                }}
-              >
-                usar email
-              </TextLink>
-            </Row>
-          </Column>
-        ) : (
-          <Column>
-            <LoginInput
-              placeholder='seu email'
-              name='email'
-              id='email'
-              required
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              onKeyPress={(e) => e.charCode === 13 && handleSubmit()}
-            ></LoginInput>
-            <Row style={{ justifyContent: 'space-around' }}>
-              <TextLink
-                onClick={() => {
-                  swal(
-                    'Deseja escolher o telefone como forma de fazer login?',
-                    { buttons: ['Continuar com email', 'Sim'] },
-                  ).then((change) => {
-                    if (change) {
-                      setHasNoEmail(true);
-                    }
-                  });
-                }}
-              >
-                não tenho email
-              </TextLink>
-            </Row>
-          </Column>
-        )}
+        <Column>
+          {alreadySent && (
+            <Title>
+              <p style={{ fontSize: '1em' }}>
+                O acesso para resetar a senha foi enviado para
+              </p>
+            </Title>
+          )}
+
+          {hasNoEmail ? (
+            <Column>
+              <PhoneInput
+                setPhone={setPhone}
+                phone={phone}
+                onEnter={handleSubmit}
+              ></PhoneInput>
+              <Row style={{ justifyContent: 'space-around', width: '100%' }}>
+                <TextLink
+                  onClick={() => {
+                    setHasNoEmail(false);
+                  }}
+                >
+                  usar email
+                </TextLink>
+              </Row>
+            </Column>
+          ) : (
+            <Column>
+              <LoginInput
+                placeholder='seu email'
+                name='email'
+                id='email'
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                onKeyPress={(e) => e.charCode === 13 && handleSubmit()}
+              ></LoginInput>
+              <Row style={{ justifyContent: 'space-around' }}>
+                <TextLink
+                  onClick={() => {
+                    swal(
+                      'Deseja escolher o telefone como forma de fazer login?',
+                      { buttons: ['Continuar com email', 'Sim'] },
+                    ).then((change) => {
+                      if (change) {
+                        setHasNoEmail(true);
+                      }
+                    });
+                  }}
+                >
+                  não tenho email
+                </TextLink>
+              </Row>
+            </Column>
+          )}
+        </Column>
         <Column>
           <Row style={{ alignItems: 'center', marginBottom: '2em' }}>
             <input

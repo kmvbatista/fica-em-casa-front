@@ -91,7 +91,6 @@ export default function ForgotPassword() {
     }
     try {
       setIsLoading(true);
-      debugger;
       const dataToSend = { password, confirmPassword, token: params.token };
       await resetPassword(dataToSend);
       swal({

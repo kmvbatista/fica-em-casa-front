@@ -16,6 +16,7 @@ import {
   TextLink,
 } from '../FirstSignup/styles';
 import LoaderContainer from '../../components/LoaderContainer';
+import { useForm } from '../../customHooks/useForm';
 
 export default function Login() {
   const [login, setlogin] = useState('');
@@ -59,6 +60,11 @@ export default function Login() {
     setlogin('');
   }
 
+  const [inputValues, handleInputChange] = useForm({
+    login: '',
+    password: '',
+  });
+
   return (
     <Container style={{ padding: 0 }}>
       <Welcome
@@ -90,11 +96,11 @@ export default function Login() {
           <Column>
             <LoginInput
               placeholder='seu email'
-              name='login'
-              id='login'
+              name='email'
               required
-              value={login}
-              onChange={(e) => setlogin(e.target.value)}
+              value={inputValues.login}
+              onChange={handleInputChange}
+              onEnter={handleSubmit}
             ></LoginInput>
             <TextLink style={{ marginTop: '1em' }} onClick={changeLoginWay}>
               faço login com telefone
@@ -107,7 +113,9 @@ export default function Login() {
             name='password'
             type='password'
             value={password}
+            required
             onChange={(e) => setPassword(e.target.value)}
+            onKeyPress={(e) => e.charCode === 13 && handleSubmit()}
           ></LoginInput>
         </Column>
         <LoaderContainer

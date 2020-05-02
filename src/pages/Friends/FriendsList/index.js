@@ -13,15 +13,19 @@ import swal from 'sweetalert';
 import Store from '../../../services/DefaultContext';
 import Menu from '../../../components/Menu';
 
-export default function HelpBeHelped({ children }) {
+export default function HelpBeHelped() {
   const store = useContext(Store);
   const [isHelping, setIsHelping] = React.useState(false);
   const [needyPeople, setNeedyPeople] = React.useState(store.needyPeople || []);
   const [helpers, setHelpers] = React.useState(store.helpers || []);
   const [needyErrorMessage, setNeedyErrorMsg] = React.useState();
   const [helperErrorMessage, setHelperError] = React.useState();
-  const [isNeedySearching, setNeedySearching] = React.useState(true);
-  const [isHelperSearching, setHelperSearching] = React.useState(true);
+  const [isNeedySearching, setNeedySearching] = React.useState(
+    store.needyPeople != undefined,
+  );
+  const [isHelperSearching, setHelperSearching] = React.useState(
+    store.helpers != undefined,
+  );
   const [userLocation, setUserLocation] = React.useState({});
 
   const toggleIsHelping = () => {
@@ -162,16 +166,15 @@ export default function HelpBeHelped({ children }) {
   function getAvailableNeeded() {
     return (
       <>
-        {!isHelping &&
-          (isNeedySearching ? (
-            <LoadingMatch></LoadingMatch>
-          ) : (
-            <AvailableNeeded
-              errorMessage={needyErrorMessage}
-              needyPeople={needyPeople}
-              userLocation={userLocation}
-            ></AvailableNeeded>
-          ))}
+        {isNeedySearching ? (
+          <LoadingMatch></LoadingMatch>
+        ) : (
+          <AvailableNeeded
+            errorMessage={needyErrorMessage}
+            needyPeople={needyPeople}
+            userLocation={userLocation}
+          ></AvailableNeeded>
+        )}
       </>
     );
   }
@@ -179,16 +182,15 @@ export default function HelpBeHelped({ children }) {
   function getAvailableHelpers() {
     return (
       <>
-        {isHelping &&
-          (isHelperSearching ? (
-            <LoadingMatch></LoadingMatch>
-          ) : (
-            <AvailableHelpers
-              errorMessaged={helperErrorMessage}
-              helpers={helpers}
-              userLocation={userLocation}
-            ></AvailableHelpers>
-          ))}
+        {isHelperSearching ? (
+          <LoadingMatch></LoadingMatch>
+        ) : (
+          <AvailableHelpers
+            errorMessaged={helperErrorMessage}
+            helpers={helpers}
+            userLocation={userLocation}
+          ></AvailableHelpers>
+        )}
       </>
     );
   }

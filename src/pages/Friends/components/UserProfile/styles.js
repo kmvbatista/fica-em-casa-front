@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { Row } from '../../../../globalComponents';
 
 export const ProfileImage = styled.div`
+  cursor: pointer;
   border-radius: 20px;
   border: 1px solid white;
   height: 7em;

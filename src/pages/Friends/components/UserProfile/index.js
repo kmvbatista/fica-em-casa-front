@@ -6,8 +6,10 @@ import Loading from 'react-loading';
 import swal from 'sweetalert';
 import Store from '../../../../services/DefaultContext';
 import { getUserData } from '../../../../services/userService';
+import { useHistory } from 'react-router-dom';
 
 export default function UserProfile(props) {
+  const history = useHistory();
   const store = useContext(Store);
   let userData = store.user;
   useEffect(() => {
@@ -47,7 +49,10 @@ export default function UserProfile(props) {
   return (
     <Container>
       <ProfileContainer>
-        <ProfileImage userPhoto={userData.photoUrl}></ProfileImage>
+        <ProfileImage
+          onClick={() => history.push('/profile')}
+          userPhoto={userData.photoUrl}
+        ></ProfileImage>
         <Column style={{ justifyContent: 'space-around' }}>
           <strong style={{ fontSize: '2.5em', marginBottom: '.2em' }}>
             {userData.name ? userData.name.split(' ')[0] : ''},

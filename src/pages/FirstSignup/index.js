@@ -12,11 +12,9 @@ import {
   TextLink,
 } from './styles';
 import swal from 'sweetalert';
-import InputMask from 'react-input-mask';
 import Loader from '../../components/Loader';
-import Loading from 'react-loading';
 import { Row, Column } from '../../globalComponents';
-import { sendToken } from '../../services/tokenService';
+import { sendSignupToken } from '../../services/tokenService';
 import PhoneInput from '../../components/PhoneInput';
 import { isEmailValid } from '../../services/emailValidator';
 import LoaderContainer from '../../components/LoaderContainer';
@@ -51,12 +49,13 @@ export default function Login() {
       { buttons: ['Agora não', 'Sim'] },
     ).then((accepted) => {
       if (accepted) {
+        setIsLoading(true);
         swal({
           title: 'Aguarde enquanto enviamos o código...',
           content: Loader(),
           buttons: {},
         });
-        sendToken(phone, email, hasNoEmail)
+        sendSignupToken(phone, email, hasNoEmail)
           .then((x) => {
             swal(
               'Código enviado com sucesso!',
@@ -64,16 +63,18 @@ export default function Login() {
               'success',
             );
             setAlreadySent(true);
+            setIsLoading(false);
           })
-          .catch((error) =>
+          .catch((error) => {
+            setIsLoading(false);
             swal(
               error.response
                 ? error.response.data.error
                 : 'Houve um erro na sua requisição',
               '',
               'error',
-            ),
-          );
+            );
+          });
       }
     });
   };

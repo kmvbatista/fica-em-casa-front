@@ -1,6 +1,6 @@
 import api from './api';
 
-export function sendToken(phone, email, hasNoEmail) {
+export function sendSignupToken(phone, email, hasNoEmail) {
   const login = hasNoEmail ? phone : email;
   return api.post('/signup', { login });
 }

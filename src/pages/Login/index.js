@@ -4,6 +4,7 @@ import { loginUser } from '../../services/sessionService';
 import { Row, Column } from '../../globalComponents';
 import PhoneInput from '../../components/PhoneInput';
 import Store from '../../services/DefaultContext';
+import { isEmailValid } from '../../services/emailValidator';
 
 import swal from 'sweetalert';
 import {
@@ -19,8 +20,6 @@ import LoaderContainer from '../../components/LoaderContainer';
 import { useForm } from '../../customHooks/useForm';
 
 export default function Login() {
-  const [login, setlogin] = useState('');
-  const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [logWithPhone, setLogWithPhone] = useState(false);
 
@@ -29,7 +28,13 @@ export default function Login() {
   const history = useHistory();
 
   const handleSubmit = async () => {
-    const dataToSend = { login, password };
+    if (!isFormValid()) {
+      return;
+    }
+    const dataToSend = {
+      login: inputValues.login,
+      password: inputValues.password,
+    };
     try {
       setIsLoading(true);
       const response = await loginUser(dataToSend);
@@ -55,9 +60,26 @@ export default function Login() {
     }
   };
 
+  function isFormValid() {
+    if (logWithPhone) {
+      if (inputValues.login.length < 5) {
+        swal('Por favor, insira um telefone válido', '', 'error');
+        return false;
+      }
+    } else if (!isEmailValid(inputValues.login)) {
+      swal('Por favor, insira um email válido', '', 'error');
+      return false;
+    }
+    if (inputValues.password.length < 8) {
+      swal('A senha deve ter no mínimo 8 caracteres', '', 'error');
+      return false;
+    }
+    return true;
+  }
+
   function changeLoginWay() {
     setLogWithPhone(!logWithPhone);
-    setlogin('');
+    inputValues.login = '';
   }
 
   const [inputValues, handleInputChange] = useForm({
@@ -90,13 +112,16 @@ export default function Login() {
         </Title>
         {logWithPhone ? (
           <Column>
-            <PhoneInput setPhone={setlogin}></PhoneInput>
+            <PhoneInput
+              setPhone={(value) => (inputValues.login = value)}
+              onEnter={handleSubmit}
+            ></PhoneInput>
           </Column>
         ) : (
           <Column>
             <LoginInput
               placeholder='seu email'
-              name='email'
+              name='login'
               required
               value={inputValues.login}
               onChange={handleInputChange}
@@ -112,9 +137,9 @@ export default function Login() {
             placeholder='sua senha'
             name='password'
             type='password'
-            value={password}
+            value={inputValues.password}
             required
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={handleInputChange}
             onKeyPress={(e) => e.charCode === 13 && handleSubmit()}
           ></LoginInput>
         </Column>

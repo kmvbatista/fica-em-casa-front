@@ -21,12 +21,11 @@ import LoaderContainer from '../../components/LoaderContainer';
 import PhoneInput from '../../components/PhoneInput';
 import { isEmailValid } from '../../services/emailValidator';
 import Loader from './Loader';
+import { useForm } from '../../customHooks/useForm';
 
 export default function ForgotPassword() {
   const params = useParams();
   const [login, setlogin] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
   const [isLoading, setIsLoading] = useState(params.token != undefined);
   const [isChangingPassword, setIsChangingPassword] = useState(false);
   const [loginWithPhone, setLoginWithPhone] = useState(false);
@@ -91,7 +90,11 @@ export default function ForgotPassword() {
     }
     try {
       setIsLoading(true);
-      const dataToSend = { password, confirmPassword, token: params.token };
+      const dataToSend = {
+        password: inputValues.password,
+        confirmPassword: inputValues.confirmPassword,
+        token: params.token,
+      };
       await resetPassword(dataToSend);
       swal({
         title: 'Senha alterada com sucesso. \nFaça login por favor',
@@ -115,7 +118,7 @@ export default function ForgotPassword() {
     setLoginWithPhone(!loginWithPhone);
   }
 
-  function handleButtonClick() {
+  function handleSubmit() {
     if (isChangingPassword) {
       return sendNewPassword();
     }
@@ -124,16 +127,17 @@ export default function ForgotPassword() {
 
   function isFormValid() {
     if (isChangingPassword) {
-      if (password.length < 8) {
+      if (inputValues.password.length < 8) {
         swal('A senha deve ter no mínimo 8 caracteres', '', 'error');
         return false;
       }
-      if (password !== confirmPassword) {
+      if (inputValues.password !== inputValues.confirmPassword) {
         swal('A confirmação de senha está incorreta', '', 'error');
         return false;
       }
     } else {
       if (loginWithPhone) {
+        debugger;
         if (login.length < 6) {
           swal('Por favor, insira um telefone válido', '', 'error');
           return false;
@@ -146,6 +150,11 @@ export default function ForgotPassword() {
 
     return true;
   }
+
+  const [inputValues, handleInputChanges] = useForm({
+    password: '',
+    confirmPassword: '',
+  });
 
   return (
     <Container style={{ padding: 0 }}>
@@ -169,7 +178,7 @@ export default function ForgotPassword() {
       {isLoading ? (
         <Loader></Loader>
       ) : (
-        <InitialForm>
+        <InitialForm style={{ justifyContent: 'space-evenly' }}>
           <Title>
             <strong style={{ fontSize: '1.5em' }}>Esqueci minha senha</strong>
           </Title>
@@ -191,6 +200,7 @@ export default function ForgotPassword() {
                     required
                     value={login}
                     onChange={(e) => setlogin(e.target.value)}
+                    onKeyPress={(e) => e.charCode === 13 && handleSubmit()}
                   ></LoginInput>
                   <Row
                     style={{ width: '100%', justifyContent: 'space-around' }}
@@ -202,7 +212,11 @@ export default function ForgotPassword() {
                 </Column>
               ) : (
                 <Column>
-                  <PhoneInput phone={login} setPhone={setlogin}></PhoneInput>
+                  <PhoneInput
+                    phone={login}
+                    setPhone={setlogin}
+                    onEnter={handleSubmit}
+                  ></PhoneInput>
                   <TextLink onClick={toggleLoginWithPhone}>
                     faço login com email
                   </TextLink>
@@ -216,21 +230,23 @@ export default function ForgotPassword() {
                 name='password'
                 type='password'
                 required
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                value={inputValues.password}
+                onChange={handleInputChanges}
+                onKeyPress={(e) => e.charCode === 13 && handleSubmit()}
               ></LoginInput>
               <LoginInput
                 placeholder='confirmação de nova senha'
-                name='password'
+                name='confirmPassword'
                 type='password'
                 required
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
+                value={inputValues.confirmPassword}
+                onChange={handleInputChanges}
+                onKeyPress={(e) => e.charCode === 13 && handleSubmit()}
               ></LoginInput>
             </>
           )}
           <LoaderContainer color={'var(--color-pink)'} isLoading={isLoading}>
-            <RegisterButton onClick={handleButtonClick}>
+            <RegisterButton onClick={handleSubmit}>
               {isChangingPassword
                 ? 'Alterar senha'
                 : alreadySentCode

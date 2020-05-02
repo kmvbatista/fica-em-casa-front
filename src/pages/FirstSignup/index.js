@@ -28,7 +28,7 @@ export default function Login() {
   const [isLoading, setIsLoading] = useState(false);
   const [alreadySent, setAlreadySent] = useState(false);
 
-  const handleContinue = () => {
+  const handleSubmit = () => {
     if (alreadySent) {
       swal(
         `Ok, iremos enviar novamente para ${
@@ -122,7 +122,11 @@ export default function Login() {
         </Title>
         {hasNoEmail ? (
           <Column>
-            <PhoneInput setPhone={setPhone} phone={phone}></PhoneInput>
+            <PhoneInput
+              setPhone={setPhone}
+              phone={phone}
+              onEnter={handleSubmit}
+            ></PhoneInput>
             <Row style={{ justifyContent: 'space-around', width: '100%' }}>
               <TextLink
                 onClick={() => {
@@ -142,6 +146,7 @@ export default function Login() {
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              onKeyPress={(e) => e.charCode === 13 && handleSubmit()}
             ></LoginInput>
             <Row style={{ justifyContent: 'space-around' }}>
               <TextLink
@@ -195,7 +200,7 @@ export default function Login() {
             </p>
           </Row>
           <LoaderContainer isLoading={isLoading}>
-            <RegisterButton onClick={handleContinue}>
+            <RegisterButton onClick={handleSubmit}>
               {alreadySent ? 'reenviar' : 'enviar'}
             </RegisterButton>
           </LoaderContainer>

@@ -13,6 +13,7 @@ import PhoneInput from '../../components/PhoneInput';
 import ButtonWithLoading from '../../components/ButtonWithLoading';
 import * as SessionService from '../../services/sessionService';
 import Store from '../../services/DefaultContext';
+import { useForm } from '../../customHooks/useForm';
 
 export default function SignIn() {
   const params = useParams();
@@ -20,21 +21,24 @@ export default function SignIn() {
   const showPhone = loginType !== 'phone';
   const history = useHistory();
   const [phone, setPhone] = useState();
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [name, setName] = useState('');
 
   const storeHandler = useContext(Store);
+
+  const [inputValues, handleInputChanges] = useForm({
+    name: '',
+    password: '',
+    confirmPassword: '',
+  });
 
   const handleSubmit = async () => {
     if (!isFormValid()) return;
     const dataToSend = {
-      name,
+      name: inputValues.name,
       useTermsRead: true,
-      phone,
-      password,
+      password: inputValues.password,
       token,
-      confirmPassword,
+      confirmPassword: inputValues.confirmPassword,
+      phone,
     };
     try {
       const response = await SessionService.registerUser(dataToSend);
@@ -61,7 +65,7 @@ export default function SignIn() {
   };
 
   function isFormValid() {
-    if (!name || name === '') {
+    if (!inputValues.name || inputValues.name === '') {
       swal('Insira um nome por favor', '', 'error');
       return false;
     }
@@ -69,18 +73,16 @@ export default function SignIn() {
       swal('Telefone está em formato inválido', 'Corrija por favor', 'error');
       return false;
     }
-    if (password !== confirmPassword) {
+    if (inputValues.password !== inputValues.confirmPassword) {
       swal('As duas senhas não estão iguais', 'Corrija por favor', 'error');
       return false;
     }
-    if (password.length < 8) {
+    if (inputValues.password.length < 8) {
       swal(
         'Insira uma senha de 8 dígitos, por favor',
         'Corrija por favor',
         'error',
       );
-      setPassword('');
-      setConfirmPassword('');
       return false;
     }
     return true;
@@ -133,8 +135,9 @@ export default function SignIn() {
           type='text'
           name='name'
           required
-          value={name}
-          onChange={(e) => setName(e.target.value)}
+          value={inputValues.name}
+          onChange={handleInputChanges}
+          onKeyPress={(e) => e.charCode === 13 && handleSubmit()}
         ></LoginInput>
         {showPhone && (
           <PhoneInput value={phone} setPhone={setPhone}></PhoneInput>
@@ -144,16 +147,18 @@ export default function SignIn() {
           type='password'
           name='password'
           required
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          value={inputValues.password}
+          onChange={handleInputChanges}
+          onKeyPress={(e) => e.charCode === 13 && handleSubmit()}
         ></LoginInput>
         <LoginInput
           placeholder='confirmar senha'
           type='password'
-          value={confirmPassword}
-          onChange={(e) => setConfirmPassword(e.target.value)}
+          value={inputValues.confirmPassword}
+          onChange={handleInputChanges}
           name='confirmPassword'
           required
+          onKeyPress={(e) => e.charCode === 13 && handleSubmit()}
         ></LoginInput>
         <ButtonWithLoading
           loaderColor={'var(--color-pink)'}

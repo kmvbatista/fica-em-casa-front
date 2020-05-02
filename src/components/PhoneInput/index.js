@@ -13,11 +13,11 @@ export default function PhoneInput({ setPhone, onEnter }) {
         value={phoneToShow}
         onBlur={(e) => {
           setPhoneToShow(e.target.value);
-          setPhone(ddi + phoneToShow);
+          setPhone(ddi + e.target.value);
         }}
         onChange={(e) => {
           setPhoneToShow(e.target.value);
-          setPhone(ddi + phoneToShow);
+          setPhone(ddi + e.target.value);
         }}
         onKeyPress={(e) => e.charCode === 13 && onEnter()}
         placeholder='seu telefone com DDD'

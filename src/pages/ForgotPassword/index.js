@@ -1,6 +1,10 @@
-import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
-import * as SessionService from '../../services/sessionService';
+import React, { useState, useEffect } from 'react';
+import { useHistory, useParams } from 'react-router-dom';
+import {
+  sendForgotPwdToken,
+  validateForgotPwdToken,
+} from '../../services/tokenService';
+import { resetPassword } from '../../services/userService';
 import { Column, Row } from '../../globalComponents';
 
 import swal from 'sweetalert';
@@ -14,25 +18,28 @@ import {
   TextLink,
 } from '../FirstSignup/styles';
 import LoaderContainer from '../../components/LoaderContainer';
-import InputMask from 'react-input-mask';
 import PhoneInput from '../../components/PhoneInput';
 import { isEmailValid } from '../../services/emailValidator';
 
 export default function Login() {
+  const params = useParams();
   const [login, setlogin] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [token, setToken] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
-  const [isInsertingToken, setIsInsertingToken] = useState(false);
+  const [isLoading, setIsLoading] = useState(params.token != undefined);
+  const [isChangingPassword, setIsChangingPassword] = useState(false);
   const [loginWithPhone, setLoginWithPhone] = useState(false);
   const history = useHistory();
 
-  function handleButtonClick() {
-    if (isInsertingToken) {
-      return sendConfirmation();
+  useEffect(() => {
+    if (params.token) {
+      validateToken();
     }
-    return sendToken();
+  });
+
+  async function validateToken() {
+    await validateForgotPwdToken(params.token);
+    setIsChangingPassword(true);
   }
 
   async function sendToken() {
@@ -41,10 +48,13 @@ export default function Login() {
     }
     try {
       setIsLoading(true);
-      await SessionService.sendForgotPwdToken(login);
+      await sendForgotPwdToken(login);
       setIsLoading(false);
-      swal('Código enviado com sucesso', '', 'success');
-      setIsInsertingToken(true);
+      swal(
+        'Código enviado com sucesso',
+        'Verifique o seu email por favor',
+        'success',
+      );
     } catch (error) {
       setIsLoading(false);
       swal(
@@ -59,28 +69,14 @@ export default function Login() {
     }
   }
 
-  function handleAlreadyHasCode() {
-    if (isEmailValid(login)) {
-      setIsInsertingToken(true);
-    } else {
-      swal('Insira um email antes, por favor!', '', 'error');
-    }
-  }
-
-  function toggleLoginWithPhone() {
-    setlogin('');
-    setLoginWithPhone(!loginWithPhone);
-  }
-
-  async function sendConfirmation() {
+  async function sendNewPassword() {
     if (!isFormValid()) {
       return;
     }
     try {
       setIsLoading(true);
-      const dataToSend = { login, token, password, confirmPassword };
-      await SessionService.sendConfirmation(dataToSend);
-      setIsLoading(false);
+      const dataToSend = { password, confirmPassword, token: params.token };
+      await resetPassword(dataToSend);
       swal({
         title: 'Senha alterada com sucesso. \nFaça login por favor',
         icon: 'success',
@@ -98,6 +94,17 @@ export default function Login() {
       );
     }
   }
+  function toggleLoginWithPhone() {
+    setlogin('');
+    setLoginWithPhone(!loginWithPhone);
+  }
+
+  function handleButtonClick() {
+    if (isChangingPassword) {
+      return sendNewPassword();
+    }
+    return sendToken();
+  }
 
   function isFormValid() {
     if (loginWithPhone) {
@@ -109,11 +116,7 @@ export default function Login() {
       swal('Por favor, insira um email válido', '', 'error');
       return false;
     }
-    if (isInsertingToken) {
-      if (token.length < 6) {
-        swal('Por favor, insira um token válido', '', 'error');
-        return false;
-      }
+    if (isChangingPassword) {
       if (password.length < 8) {
         swal('A senha deve ter no mínimo 8 caracteres', '', 'error');
         return false;
@@ -149,7 +152,7 @@ export default function Login() {
         <Title>
           <strong style={{ fontSize: '1.5em' }}>Esqueci minha senha</strong>
         </Title>
-        {!isInsertingToken &&
+        {!isChangingPassword &&
           (!loginWithPhone ? (
             <Column>
               <LoginInput
@@ -164,9 +167,6 @@ export default function Login() {
                 <TextLink onClick={toggleLoginWithPhone}>
                   faço login com telefone
                 </TextLink>
-                <TextLink onClick={handleAlreadyHasCode}>
-                  já tenho um código
-                </TextLink>
               </Row>
             </Column>
           ) : (
@@ -177,7 +177,7 @@ export default function Login() {
               </TextLink>
             </Column>
           ))}
-        {isInsertingToken && (
+        {isChangingPassword && (
           <>
             <LoginInput
               placeholder='nova senha'
@@ -195,30 +195,11 @@ export default function Login() {
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
             ></LoginInput>
-            <InputMask
-              mask='* * * * * *'
-              value={token}
-              onChange={(e) => setToken(e.target.value)}
-            >
-              {(inputProps) => (
-                <LoginInput {...inputProps} placeholder='_ _ _ _ _ _' />
-              )}
-            </InputMask>
-            <TextLink
-              onClick={() => {
-                setIsInsertingToken(false);
-                setToken('');
-                setConfirmPassword('');
-                setPassword('');
-              }}
-            >
-              reenviar código
-            </TextLink>
           </>
         )}
         <LoaderContainer color={'var(--color-pink)'} isLoading={isLoading}>
           <RegisterButton onClick={handleButtonClick}>
-            {isInsertingToken ? 'Confirmar' : 'Enviar código'}
+            {isChangingPassword ? 'Confirmar' : 'Enviar código'}
           </RegisterButton>
         </LoaderContainer>
       </InitialForm>

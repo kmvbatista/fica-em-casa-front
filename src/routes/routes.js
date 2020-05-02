@@ -38,6 +38,9 @@ export default function Routes({ children, isUserLogged }) {
       <Route exact path='/forgot-password'>
         <ForgotPassword></ForgotPassword>
       </Route>
+      <Route exact path='/forgot-password/:token'>
+        <ForgotPassword></ForgotPassword>
+      </Route>
       <Route exact path='/need-help-form'>
         <NeedHelpForm></NeedHelpForm>
       </Route>

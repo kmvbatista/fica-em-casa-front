@@ -59,7 +59,7 @@ export default function ModalContent({
           <img
             alt={necessity.category}
             src={`./${necessity.category}.svg`}
-            style={{ width: '5em' }}
+            style={{ width: '5em', width: '5em' }}
           />
         </Card>
         <strong style={{ fontSize: '3em' }}>{necessity.category}</strong>

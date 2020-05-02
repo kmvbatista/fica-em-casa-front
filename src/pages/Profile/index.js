@@ -135,7 +135,12 @@ export default function Profile() {
         <img
           src='./back.svg'
           onClick={() => history.goBack()}
-          style={{ width: '5em', padding: '1em', cursor: 'pointer' }}
+          style={{
+            width: '5em',
+            height: '5em',
+            padding: '1em',
+            cursor: 'pointer',
+          }}
           alt='Voltar'
         />
         {isEditted ? (
@@ -200,7 +205,11 @@ export default function Profile() {
                 lineHeight: '1.8',
               }}
             ></Input>
-            <img src='./pencil.svg' style={{ width: '2em' }} alt='seu nome' />
+            <img
+              src='./pencil.svg'
+              style={{ width: '2em', height: '2em' }}
+              alt='seu nome'
+            />
           </Row>
         </InputBlock>
         <InputBlock>
@@ -213,7 +222,11 @@ export default function Profile() {
                 setName(e.target.value);
               }}
             ></Input>
-            <img src='./user.svg' style={{ width: '2em' }} alt='seu nome' />
+            <img
+              src='./user.svg'
+              style={{ width: '2em', height: '2em' }}
+              alt='seu nome'
+            />
           </Row>
         </InputBlock>
         <InputBlock>
@@ -225,7 +238,7 @@ export default function Profile() {
             ></ProfilePhoneInput>
             <img
               src='./iphone.svg'
-              style={{ width: '2em' }}
+              style={{ width: '2em', height: '2em' }}
               alt='seu telefone'
             />
           </Row>

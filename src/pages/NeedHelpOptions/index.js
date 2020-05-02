@@ -242,7 +242,7 @@ export default function NeedHelpOptions({ children }) {
                 <img
                   onClick={() => history.push('friends')}
                   src='./next.svg'
-                  style={{ width: '3.5em', cursor: 'pointer' }}
+                  style={{ width: '3.5em', height: '3.5em', cursor: 'pointer' }}
                   alt='ver amigos'
                 />
               </GoToNextPage>

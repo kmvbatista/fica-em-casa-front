@@ -32,7 +32,11 @@ class Dropdown extends React.Component {
     return (
       <div className='dropdown'>
         <div onClick={this.showDropdownMenu} style={{ cursor: 'pointer' }}>
-          <img style={{ width: '4em' }} src='./more.svg' alt='menu' />
+          <img
+            style={{ width: '4em', height: '4em' }}
+            src='./more.svg'
+            alt='menu'
+          />
         </div>
 
         {this.state.displayMenu ? (

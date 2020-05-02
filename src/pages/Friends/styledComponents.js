@@ -19,7 +19,7 @@ export const TopDecoration = styled.div`
 export const MainTab = styled(Column)`
   background-color: var(--color-pink);
   min-height: 100vh;
-  padding: 3em;
+  padding: 3em 2em;
   transform: translate(0, 0px);
 `;
 

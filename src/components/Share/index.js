@@ -39,6 +39,7 @@ export default function Share() {
             style={{
               position: 'absolute',
               width: '1em',
+              height: '1em',
               right: '10%',
               top: '35%',
               transform: 'rotate(75deg)',
@@ -50,6 +51,7 @@ export default function Share() {
             style={{
               position: 'absolute',
               width: '1.2em',
+              height: '1.2em',
               left: '1%',
               top: '40%',
             }}
@@ -60,6 +62,7 @@ export default function Share() {
             style={{
               position: 'absolute',
               width: '2em',
+              height: '2em',
               right: '12%',
               top: '7px',
             }}
@@ -69,6 +72,7 @@ export default function Share() {
           <img
             style={{
               position: 'absolute',
+              height: '0.7em',
               width: '0.7em',
               left: '5%',
               top: '10%',
@@ -95,7 +99,7 @@ export default function Share() {
               <IconContainer>
                 <img
                   src='./facebook.svg'
-                  style={{ width: '2.7em' }}
+                  style={{ height: '2.7em', width: '2.7em' }}
                   alt='Compartilhe no Facebok'
                 />
                 Facebook
@@ -109,21 +113,21 @@ export default function Share() {
               <IconContainer>
                 <img
                   src='./shareWhatsapp.svg'
-                  style={{ width: '2.7em' }}
+                  style={{ height: '2.7em', width: '2.7em' }}
                   alt='Compartilhe no Whatsapp'
                 />
                 Whatsapp
               </IconContainer>
             </ShareLink>
             <ShareLink
-              target="_blank"
+              target='_blank'
               href='https://www.instagram.com/ficaemcasaapp/'
               data-action='share/instagram/share'
             >
               <IconContainer>
                 <img
                   src='./instagram.svg'
-                  style={{ width: '2.7em' }}
+                  style={{ height: '2.7em', width: '2.7em' }}
                   alt='Compartilhe no Instagram'
                 />
                 Instagram

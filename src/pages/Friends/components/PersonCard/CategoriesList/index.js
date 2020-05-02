@@ -47,7 +47,7 @@ export default function CategoriesList({
                 <img
                   src={`./${it.category}.svg`}
                   alt={it.category}
-                  style={{ width: '2.5em' }}
+                  style={{ width: '2.5em', height: '2.5em' }}
                 />
               </HelpOptionCard>
             </div>
@@ -58,7 +58,11 @@ export default function CategoriesList({
           {helperCategories.map((it) => (
             <div>
               <HelpOptionCard>
-                <img src={`./${it}.svg`} alt={it} style={{ width: '2.5em' }} />
+                <img
+                  src={`./${it}.svg`}
+                  alt={it}
+                  style={{ width: '2.5em', height: '2.5em' }}
+                />
               </HelpOptionCard>
             </div>
           ))}

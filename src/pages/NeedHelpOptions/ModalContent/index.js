@@ -115,7 +115,7 @@ export default function ModalContent({
                 {item.quantity}
                 {` ${item.measureUnit} (s)`}
                 <img
-                  style={{ width: '1em', cursor: 'pointer' }}
+                  style={{ width: '1em', height: '1em', cursor: 'pointer' }}
                   src='./cancel.svg'
                   alt='apagar item'
                   onClick={() => {
@@ -160,6 +160,7 @@ export default function ModalContent({
             src='./plus-rounded.svg'
             style={{
               width: '1.5em',
+              height: '1.5em',
               margin: '0 auto 0 auto',
               display: 'block',
               cursor: 'pointer',
@@ -188,7 +189,7 @@ export default function ModalContent({
               <img
                 alt={cardInfo.category}
                 src={cardInfo.imageUrl}
-                style={{ height: '2.5em' }}
+                style={{ height: '2.5em', width: '2.5em' }}
               />
             </Card>
             <strong style={{ fontSize: '3em' }}>{cardInfo.category}</strong>

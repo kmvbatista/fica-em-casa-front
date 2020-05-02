@@ -74,22 +74,27 @@ export default function PersonCard({
           ></PersonAvatar>
           <Column style={{ marginRight: '5%' }}>
             <PersonName>
-              <strong style={{ fontSize: 'inherit' }}>{person.userName}</strong>
+              <strong style={{ fontSize: '.9em' }}>
+                {person.userName.split(' ')[0]}
+              </strong>
             </PersonName>
             {person.distance && (
               <Distance>{person.distance}km perto de você</Distance>
             )}
           </Column>
-          <Row style={{ width: '30%' }}>
+          <Row style={{ width: '25%' }}>
             <ContactIcon>
               <a
-                href={`https://web.whatsapp.com/send?phone=${person.userPhone}&text=Olá,%20${person.userName}%20vi%20que%20você%20precisa%20de%20ajuda%20pelo%20fica%20em%20casa`}
+                target='_blank'
+                rel='noopener noreferrer'
+                href={`https://api.whatsapp.com/send?phone=${person.userPhone}&text=Olá,%20${person.userName}%20vi%20que%20você%20precisa%20de%20ajuda%20pelo%20fica%20em%20casa`}
               >
                 <img
                   src='./whatsapp.svg'
                   alt='whatsapp icon'
                   style={{
                     width: '70%',
+                    height: '70%',
                     borderRadius: 'inherit',
                   }}
                 />
@@ -102,6 +107,7 @@ export default function PersonCard({
                   alt='whatsapp icon'
                   style={{
                     width: '70%',
+                    height: '70%',
                     borderRadius: 'inherit',
                   }}
                 />

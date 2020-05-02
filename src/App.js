@@ -5,7 +5,7 @@ import Routes from './routes/routes';
 import Menu from './components/Menu';
 import api from './services/api';
 import Store from './services/DefaultContext';
-import { getIsUserLogged } from './services/sessionService';
+import { getToken } from './services/sessionService';
 import swal from 'sweetalert';
 
 function App() {
@@ -46,7 +46,7 @@ function App() {
   };
 
   function getIfUserIsLogged() {
-    return getIsUserLogged();
+    return getToken() != null;
   }
 
   async function getUserData() {

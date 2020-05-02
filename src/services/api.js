@@ -1,5 +1,22 @@
 import axios from 'axios';
-export default axios.create({
+import { getToken } from './sessionService';
+
+const instance = axios.create({
   baseURL: process.env.REACT_APP_API_URL,
-  withCredentials: true,
 });
+
+instance.interceptors.request.use(function (config) {
+  const token = getToken();
+  debugger;
+  if (token) {
+    try {
+      config.headers.Authorization = token ? `Bearer ${token}` : '';
+      return config;
+    } catch (error) {
+      return config;
+    }
+  }
+  return config;
+});
+
+export default instance;

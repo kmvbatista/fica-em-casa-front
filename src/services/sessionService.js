@@ -9,14 +9,14 @@ export async function registerUser(dataToSend) {
     buttons: {},
   });
   const response = await api.post('/user', dataToSend);
-  setIsUserLogged();
+  setLoggedToken(response.data.token);
   return response;
 }
 
 export async function loginUser(dataToSend) {
   try {
     const response = await api.post('/sessions', dataToSend);
-    setIsUserLogged();
+    setLoggedToken(response.data.token);
     return response.data;
   } catch (error) {
     throw error;
@@ -31,15 +31,14 @@ export async function sendConfirmation(dataToSend) {
   await api.post('/password/reset', dataToSend);
 }
 
-export function setIsUserLogged() {
-  window.localStorage.setItem('isUserLogged', 'true');
+export function setLoggedToken(token) {
+  window.localStorage.setItem('token', token);
 }
 
-export function getIsUserLogged() {
-  return window.localStorage.getItem('isUserLogged');
+export function getToken() {
+  return window.localStorage.getItem('token');
 }
 
 export async function logoutUser() {
-  window.localStorage.removeItem('isUserLogged');
-  api.post('/logoutUser');
+  window.localStorage.removeItem('token');
 }

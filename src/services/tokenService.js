@@ -5,7 +5,10 @@ export function sendToken(phone, email, hasNoEmail) {
   return api.post('/signup', { login });
 }
 
-export function sendCode(phone, email, hasNoEmail, token) {
-  const login = hasNoEmail ? phone : email;
-  return api.put('/token-validation/signup', { login, token });
+export function validateForgotPwdToken(token) {
+  return api.put('/token-validation/reset-password', { token });
+}
+
+export async function sendForgotPwdToken(login) {
+  await api.post('/password/forgot', { login });
 }

@@ -23,14 +23,6 @@ export async function loginUser(dataToSend) {
   }
 }
 
-export async function sendForgotPwdToken(login) {
-  await api.post('/password/forgot', { login });
-}
-
-export async function sendConfirmation(dataToSend) {
-  await api.post('/password/reset', dataToSend);
-}
-
 export function setLoggedToken(token) {
   window.localStorage.setItem('token', token);
 }

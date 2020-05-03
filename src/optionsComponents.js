@@ -38,13 +38,13 @@ export const OptionCard = styled.div`
   text-align: center;
 
   @media only screen and (max-width: 400px) {
-    height: 8.5em;
-    width: 8.5em;
+    height: 7.8em;
+    width: 7.8em;
   }
 
   @media only screen and (max-width: 340px) {
-    height: 7em;
-    width: 7em;
+    height: 6.5em;
+    width: 6.5em;
   }
 
   @media only screen and (min-width: 400px) {
@@ -60,11 +60,11 @@ export const OptionCard = styled.div`
 
 export const TextContainer = styled.div`
   @media only screen and (max-width: 400px) {
-    width: calc(3 * 8.5em + 2 * 2.5em);
+    width: calc(3 * 7.8em + 2 * 2.5em);
   }
 
   @media only screen and (max-width: 340px) {
-    width: calc(3 * 7em + 2 * 2.5em);
+    width: calc(3 * 6.5em + 2 * 3.5em);
   }
 
   @media only screen and (min-width: 400px) {
@@ -92,11 +92,11 @@ export const Grid = styled.div`
   }
 
   @media only screen and (max-width: 400px) {
-    grid-template-columns: repeat(3, 8.5em);
+    grid-template-columns: repeat(3, 7.8em);
   }
 
   @media only screen and (max-width: 340px) {
-    grid-template-columns: repeat(3, 7em);
+    grid-template-columns: repeat(3, 6.5em);
   }
   @media only screen and (min-width: 900px) {
     grid-template-columns: repeat(6, 10em);
@@ -153,6 +153,6 @@ export const SubTitle = styled.span`
   font-size: 1.7em;
   font-weight: 500;
   color: white;
-  margin-top: 1.2em;
+  padding-top: 2em;
   text-align: left;
 `;

@@ -82,41 +82,39 @@ export default function PersonCard({
               <Distance>{person.distance}km perto de você</Distance>
             )}
           </Column>
-          <Row style={{ width: '25%' }}>
-            <ContactIcon>
-              <a
-                target='_blank'
-                rel='noopener noreferrer'
-                href={`https://web.whatsapp.com/send?phone=${person.userPhone}&text=Olá,%20${person.userName}%20vi%20que%20você%20precisa%20de%20ajuda%20pelo%20fica%20em%20casa`}
-              >
-                <img
-                  src='./whatsapp.svg'
-                  alt='whatsapp icon'
-                  style={{
-                    width: '70%',
-                    height: '70%',
-                    borderRadius: 'inherit',
-                  }}
-                />
-              </a>
-            </ContactIcon>
-            <ContactIcon>
-              <a href={`tel:${person.userPhone}`}>
-                <img
-                  src='./phone.svg'
-                  alt='whatsapp icon'
-                  style={{
-                    width: '70%',
-                    height: '70%',
-                    borderRadius: 'inherit',
-                  }}
-                />
-              </a>
-            </ContactIcon>
-            <div onClick={() => setIsExpanded(!isExpanded)}>
-              <ArrowButton isExpanded={isExpanded}></ArrowButton>
-            </div>
-          </Row>
+          <ContactIcon>
+            <a
+              target='_blank'
+              rel='noopener noreferrer'
+              href={`https://web.whatsapp.com/send?phone=${person.userPhone}&text=Olá,%20${person.userName}%20vi%20que%20você%20precisa%20de%20ajuda%20pelo%20fica%20em%20casa`}
+            >
+              <img
+                src='./whatsapp.svg'
+                alt='whatsapp icon'
+                style={{
+                  width: '1.7em',
+                  height: '1.7em',
+                  borderRadius: 'inherit',
+                }}
+              />
+            </a>
+          </ContactIcon>
+          <ContactIcon>
+            <a href={`tel:${person.userPhone}`}>
+              <img
+                src='./phone.svg'
+                alt='whatsapp icon'
+                style={{
+                  width: '1.7em',
+                  height: '1.7em',
+                  borderRadius: 'inherit',
+                }}
+              />
+            </a>
+          </ContactIcon>
+          <div onClick={() => setIsExpanded(!isExpanded)}>
+            <ArrowButton isExpanded={isExpanded}></ArrowButton>
+          </div>
         </PeopleCard>
         <Collapse
           open={isExpanded}

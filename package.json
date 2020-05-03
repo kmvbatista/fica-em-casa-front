@@ -19,7 +19,8 @@
     "sweetalert": "^2.1.2"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "prestart": "cp -f ./certificate.pem ./node_modules/webpack-dev-server/ssl || :",
+    "start": "HTTPS=true react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

@@ -1,5 +1,5 @@
 export const registerServiceWorker = () => {
-  if ('serviceWorker' in navigator && process.env.NODE_ENV === 'production') {
+  if ('serviceWorker' in navigator && process.env.NODE_ENV !== 'development') {
     window.addEventListener('load', function () {
       navigator.serviceWorker
         .register('/sw.js')

@@ -16,6 +16,7 @@ import swal from 'sweetalert';
 import { Row } from '../../globalComponents';
 import { updateUser } from '../../services/userService';
 import LoaderContainer from '../../components/LoaderContainer';
+import Collapse from 'react-expand-animated';
 
 export default function NeedHelpForm() {
   const history = useHistory();
@@ -122,11 +123,10 @@ export default function NeedHelpForm() {
               </RadioButton>
             </Row>
           </InputBlock>
-          <div
-            style={{
-              transition: 'opacity .8s',
-              opacity: !hasChildren ? 0 : 1,
-            }}
+          <Collapse
+            open={hasChildren}
+            duration={300}
+            transitions={['height', 'opacity', 'background']}
           >
             <InputBlock>
               <Question>Quantos?</Question>
@@ -161,7 +161,7 @@ export default function NeedHelpForm() {
                 />
               </InputBox>
             </InputBlock>
-          </div>
+          </Collapse>
         </div>
         <LoaderContainer isLoading={isLoading}>
           <RegisterUserButton onClick={handleSubmit}>

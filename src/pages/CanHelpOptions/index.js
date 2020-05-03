@@ -22,8 +22,9 @@ import {
 import { useHistory } from 'react-router-dom';
 import LocationErrorMessage from '../Friends/components/LocationErrorMessage';
 import Store from '../../services/DefaultContext';
+import Menu from '../../components/Menu';
 
-export default function NeedHelpOptions({ children }) {
+export default function NeedHelpOptions() {
   const store = useContext(Store);
   const [userLocation, setUserLocation] = useState({});
   const [hasRegisteredOption, setRegisteredOption] = useState(false);
@@ -131,77 +132,92 @@ export default function NeedHelpOptions({ children }) {
 
   return (
     <ColumnContainer
-      style={{ backgroundColor: 'var(--color-purple)', position: 'relative' }}
+      style={
+        cards.length === 0
+          ? {
+              justifyContent: 'flex-start',
+              backgroundColor: 'var(--color-purple)',
+            }
+          : {
+              backgroundColor: 'var(--color-purple)',
+            }
+      }
     >
-      <Column style={{ alignItems: 'center' }}>
-        {!userLocation ? (
-          <LocationErrorMessage
-            buttonsColor={'var(--color-pink)'}
-          ></LocationErrorMessage>
+      <Menu
+        customStyle={{
+          backgroundColor: 'inherit',
+          position: 'relative',
+          width: '100%',
+        }}
+      ></Menu>
+      {!userLocation ? (
+        <LocationErrorMessage
+          buttonsColor={'var(--color-pink)'}
+        ></LocationErrorMessage>
+      ) : (
+        <TextContainer>
+          <Title>Quero ajudar</Title>
+          <SubTitle>
+            Escolha as categorias nas quais você pode ajudar.
+            <br />
+            Pode escolher mais de uma opção, tá?
+          </SubTitle>
+        </TextContainer>
+      )}
+      {userLocation &&
+        (cards.length > 0 ? (
+          <>
+            <Grid>
+              {cards.map((el) => (
+                <OptionCard
+                  key={el.category}
+                  style={{ color: 'var(--color-purple)' }}
+                  onClick={() => handleCardClick(el)}
+                >
+                  <IsChecked
+                    isChecked={el.isChecked}
+                    color={'var(--color-purple)'}
+                  ></IsChecked>
+                  {el.isLoading && !el.isChecked ? (
+                    <Loading
+                      height='30%'
+                      width='30%'
+                      type='spinningBubbles'
+                      color='var(--color-purple)'
+                    ></Loading>
+                  ) : (
+                    <img
+                      src={el.imageUrl}
+                      alt={el.category}
+                      style={{ maxHeight: '55%' }}
+                    />
+                  )}
+                  <GridText>{el.category}</GridText>
+                </OptionCard>
+              ))}
+            </Grid>
+            <img
+              onClick={() => history.push('friends')}
+              src='./next.svg'
+              style={{
+                width: '3.5em',
+                height: '3.5em',
+                marginBottom: '1em',
+                cursor: 'pointer',
+              }}
+              alt='ver amigos'
+            />
+          </>
         ) : (
-          <TextContainer>
-            <Title>Quero ajudar</Title>
-            <SubTitle>
-              Escolha as categorias nas quais você pode ajudar.
-              <br />
-              Pode escolher mais de uma opção, tá?
-            </SubTitle>
-          </TextContainer>
-        )}
-        {userLocation &&
-          (cards.length > 0 ? (
-            <>
-              <Grid>
-                {cards.map((el) => (
-                  <OptionCard
-                    key={el.category}
-                    style={{ color: 'var(--color-purple)' }}
-                    onClick={() => handleCardClick(el)}
-                  >
-                    <IsChecked
-                      isChecked={el.isChecked}
-                      color={'var(--color-purple)'}
-                    ></IsChecked>
-                    {el.isLoading && !el.isChecked ? (
-                      <Loading
-                        height='30%'
-                        width='30%'
-                        type='spinningBubbles'
-                        color='var(--color-purple)'
-                      ></Loading>
-                    ) : (
-                      <img
-                        src={el.imageUrl}
-                        alt={el.category}
-                        style={{ maxHeight: '55%' }}
-                      />
-                    )}
-                    <GridText>{el.category}</GridText>
-                  </OptionCard>
-                ))}
-              </Grid>
-              <img
-                onClick={() => history.push('friends')}
-                src='./next.svg'
-                style={{
-                  width: '3.5em',
-                  height: '3.5em',
-                  paddingBottom: '1em',
-                  cursor: 'pointer',
-                }}
-                alt='ver amigos'
-              />
-            </>
-          ) : (
+          <div style={{ marginTop: '20vh' }}>
             <Loading
               width={'10em'}
               height={'10em'}
               type={'spinningBubbles'}
               color={'white'}
             ></Loading>
-          ))}
-      </Column>
-      {children}
+          </div>
+        ))}
     </ColumnContainer>
   );
 }

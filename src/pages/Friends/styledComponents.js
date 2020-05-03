@@ -13,7 +13,10 @@ export const TopDecorationImage = styled.img.attrs((props) => ({
 export const TopDecoration = styled.div`
   background-color: ${(props) =>
     props.isHelping ? 'var(--color-pink)' : 'var(--color-purple)'};
-  height: 30vh;
+  height: 32vh;
+  @media only screen and (min-height: 600px) {
+    height: 35vh;
+  }
 `;
 
 export const MainTab = styled(Column)`

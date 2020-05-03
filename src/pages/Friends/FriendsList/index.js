@@ -117,7 +117,6 @@ export default function HelpBeHelped() {
           display: 'flex',
           flexFlow: 'column',
           justifyContent: 'space-between',
-          alignItems: 'flex-start',
         }}
       >
         <Menu

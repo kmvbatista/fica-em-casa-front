@@ -20,11 +20,11 @@ export const ProfileContainer = styled(Row)`
 `;
 
 export const Container = styled.div`
-  height: 100%;
   width: 100%;
   display: flex;
   justify-content: space-around;
   align-items: flex-start;
+  padding-bottom: 2em;
 `;
 
 export const SetCategoriesButton = styled.button`

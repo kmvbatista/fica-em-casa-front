@@ -18,14 +18,13 @@ export default function Menu({ customStyle }) {
             }
       }
     >
-      <Row style={{ width: '100%', padding: '0 2em' }}>
+      <Row style={{ width: '100%', padding: '0 2em', alignItems: 'center' }}>
         <img
           src='./back.svg'
           onClick={() => history.goBack()}
           style={{
-            width: '5em',
-            height: '5em',
-            padding: '1em',
+            width: '3em',
+            height: '3em',
             cursor: 'pointer',
           }}
           alt='Voltar'

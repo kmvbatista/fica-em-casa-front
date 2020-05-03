@@ -4,18 +4,15 @@ import {
   Grid,
   OptionCard,
   GridText,
-  CardImage,
   SubTitle,
   TextContainer,
   Title,
-  GoToNextPage,
 } from '../../optionsComponents';
 import jsonCards from '../../assets/productCategory.json';
 import Modal from '../../components/Modal';
 import ModalContent from './ModalContent';
 import { useHistory } from 'react-router-dom';
 import IsChecked from '../../components/isChecked';
-import { Column } from '../../globalComponents';
 import * as NecessityService from '../../services/necessityService';
 import { useEffect } from 'react';
 import swal from 'sweetalert';
@@ -26,6 +23,7 @@ import {
 } from '../../services/locationService';
 import LocationErrorMessage from '../Friends/components/LocationErrorMessage';
 import Store from '../../services/DefaultContext';
+import Menu from '../../components/Menu';
 
 export default function NeedHelpOptions({ children }) {
   const history = useHistory();
@@ -189,75 +187,82 @@ export default function NeedHelpOptions({ children }) {
   };
 
   return (
-    <ColumnContainer style={{ position: 'relative' }}>
-      {children}
-      <Column style={{ alignItems: 'center' }}>
-        {!userLocation ? (
-          <LocationErrorMessage
-            buttonsColor={'var(--color-purple)'}
-          ></LocationErrorMessage>
+    <ColumnContainer
+      style={cards.length === 0 ? { justifyContent: 'flex-start' } : {}}
+    >
+      <Menu
+        customStyle={{
+          backgroundColor: 'inherit',
+          position: 'relative',
+          width: '100%',
+        }}
+      ></Menu>
+      {!userLocation ? (
+        <LocationErrorMessage
+          buttonsColor={'var(--color-purple)'}
+        ></LocationErrorMessage>
+      ) : (
+        <TextContainer>
+          <Title>Preciso de ajuda</Title>
+          <SubTitle>
+            Pode escolher mais de uma opção, tá?
+            <br />É muito importante que você descreva a sua necessidade após a
+            seleção da categoria, assim fica mais fácil de ajudar!
+          </SubTitle>
+        </TextContainer>
+      )}
+
+      {userLocation &&
+        (cards.length > 0 ? (
+          <>
+            <Grid>
+              {cards.map((el) => (
+                <OptionCard
+                  key={el.category}
+                  onClick={() => handleCardClick(el)}
+                >
+                  <IsChecked
+                    isChecked={el.isChecked}
+                    color={'var(--color-pink)'}
+                  ></IsChecked>
+                  {el.isLoading && !el.isChecked ? (
+                    <Loading
+                      height='30%'
+                      width='30%'
+                      type='spinningBubbles'
+                      color='var(--color-pink)'
+                    ></Loading>
+                  ) : (
+                    <img
+                      src={el.imageUrl}
+                      alt={el.category}
+                      style={{ maxHeight: '55%' }}
+                    />
+                  )}
+                  <GridText>{el.category}</GridText>
+                </OptionCard>
+              ))}
+            </Grid>
+            <img
+              onClick={() => history.push('friends')}
+              src='./next.svg'
+              style={{
+                width: '3.5em',
+                height: '3.5em',
+                cursor: 'pointer',
+                marginBottom: '1em',
+              }}
+              alt='ver amigos'
+            />
+          </>
         ) : (
-          <TextContainer>
-            <Title>Preciso de ajuda</Title>
-            <SubTitle>
-              Pode escolher mais de uma opção, tá?
-              <br />É muito importante que você descreva a sua necessidade após
-              a seleção da categoria, assim fica mais fácil de ajudar!
-            </SubTitle>
-          </TextContainer>
-        )}
-
-        {userLocation &&
-          (cards.length > 0 ? (
-            <>
-              <Grid>
-                {cards.map((el) => (
-                  <OptionCard
-                    key={el.category}
-                    onClick={() => handleCardClick(el)}
-                  >
-                    <IsChecked
-                      isChecked={el.isChecked}
-                      color={'var(--color-pink)'}
-                    ></IsChecked>
-                    {el.isLoading && !el.isChecked ? (
-                      <Loading
-                        height='30%'
-                        width='30%'
-                        type='spinningBubbles'
-                        color='var(--color-pink)'
-                      ></Loading>
-                    ) : (
-                      <img
-                        src={el.imageUrl}
-                        alt={el.category}
-                        style={{ maxHeight: '55%' }}
-                      />
-                    )}
-                    <GridText>{el.category}</GridText>
-                  </OptionCard>
-                ))}
-              </Grid>
-              <GoToNextPage>
-                <img
-                  onClick={() => history.push('friends')}
-                  src='./next.svg'
-                  style={{ width: '3.5em', height: '3.5em', cursor: 'pointer' }}
-                  alt='ver amigos'
-                />
-              </GoToNextPage>
-            </>
-          ) : (
-            <Loading
-              width={'10em'}
-              height={'10em'}
-              type={'spinningBubbles'}
-              color={'white'}
-            ></Loading>
-          ))}
-      </Column>
-
-      {children}
+          <Loading
+            width={'10em'}
+            height={'10em'}
+            type={'spinningBubbles'}
+            color={'white'}
+          ></Loading>
+        ))}
       {showModal && getModal()}
     </ColumnContainer>
   );

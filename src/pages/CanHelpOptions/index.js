@@ -4,11 +4,9 @@ import {
   Grid,
   OptionCard,
   GridText,
-  CardImage,
   SubTitle,
   Title,
   TextContainer,
-  GoToNextPage,
 } from '../../optionsComponents';
 import { Column } from '../../globalComponents';
 import cardsFromJson from '../../assets/productCategory.json';
@@ -182,14 +180,17 @@ export default function NeedHelpOptions({ children }) {
                   </OptionCard>
                 ))}
               </Grid>
-              <GoToNextPage>
-                <img
-                  onClick={() => history.push('friends')}
-                  src='./next.svg'
-                  style={{ width: '3.5em', height: '3.5em', cursor: 'pointer' }}
-                  alt='ver amigos'
-                />
-              </GoToNextPage>
+              <img
+                onClick={() => history.push('friends')}
+                src='./next.svg'
+                style={{
+                  width: '3.5em',
+                  height: '3.5em',
+                  paddingBottom: '1em',
+                  cursor: 'pointer',
+                }}
+                alt='ver amigos'
+              />
             </>
           ) : (
             <Loading

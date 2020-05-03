@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { Row } from './globalComponents';
 
 export const ColumnContainer = styled.div`
   position: relative;
@@ -7,16 +6,19 @@ export const ColumnContainer = styled.div`
   min-height: 100vh;
   flex-direction: column;
   background-color: var(--color-pink);
-  padding: 7em 0;
   align-items: center;
-  @media only screen and (min-width: 600px) {
-    padding: 6em 5em;
+  justify-content: space-between;
+  @media only screen and (min-width: 900px) {
+    padding: 0 2em;
+  }
+  @media only screen and (min-width: 1200px) {
+    padding: 0 15em;
   }
   @media only screen and (min-width: 1400px) {
-    padding: 10em 6em;
+    padding: 0 6em;
   }
   @media only screen and (min-width: 1800px) {
-    padding: 10em 10em;
+    padding: 0 10em;
   }
 `;
 
@@ -35,22 +37,74 @@ export const OptionCard = styled.div`
   padding: 10px 0;
   text-align: center;
 
-  @media only screen and (max-width: 900px) {
-    height: 9em;
-    width: 9em;
-  }
-  @media only screen and (max-width: 600px) {
-    height: 8em;
-    width: 8em;
+  @media only screen and (max-width: 400px) {
+    height: 8.5em;
+    width: 8.5em;
   }
 
   @media only screen and (max-width: 340px) {
     height: 7em;
     width: 7em;
   }
-  @media only screen and (min-width: 900px) {
+
+  @media only screen and (min-width: 400px) {
+    height: 10em;
+    width: 10em;
+  }
+
+  @media only screen and (min-width: 1400px) {
     height: 12em;
     width: 12em;
+  }
+`;
+
+export const TextContainer = styled.div`
+  @media only screen and (max-width: 400px) {
+    width: calc(3 * 8.5em + 2 * 2.5em);
+  }
+
+  @media only screen and (max-width: 340px) {
+    width: calc(3 * 7em + 2 * 2.5em);
+  }
+
+  @media only screen and (min-width: 400px) {
+    width: calc(3 * 10em + 2 * 2.5em);
+  }
+
+  @media only screen and (min-width: 900px) {
+    width: calc(6 * 10em + 5 * 2.5em);
+  }
+
+  @media only screen and (min-width: 1400px) {
+    width: calc(6 * 12em + 5 * 3.5em);
+  }
+`;
+
+export const Grid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 10em);
+  grid-auto-rows: 1fr;
+  grid-gap: 2.5em;
+  align-self: center;
+
+  @media only screen and (max-width: 900px) {
+    grid-template-columns: repeat(3, 10em);
+  }
+
+  @media only screen and (max-width: 400px) {
+    grid-template-columns: repeat(3, 8.5em);
+  }
+
+  @media only screen and (max-width: 340px) {
+    grid-template-columns: repeat(3, 7em);
+  }
+  @media only screen and (min-width: 900px) {
+    grid-template-columns: repeat(6, 10em);
+  }
+
+  @media only screen and (min-width: 1400px) {
+    grid-template-columns: repeat(6, 12em);
+    grid-gap: 3.5em;
   }
 `;
 
@@ -70,25 +124,6 @@ export const CardImage = styled.img`
 
 export const GridText = styled.p`
   font-size: 1.2em;
-`;
-
-export const Grid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-auto-rows: 1fr;
-  grid-gap: 2.5em;
-  align-self: center;
-  margin-top: 5%;
-
-  @media only screen and (min-width: 900px) {
-    grid-template-columns: repeat(4, 1fr);
-    grid-gap: 3.5em;
-  }
-
-  @media only screen and (min-width: 1400px) {
-    grid-template-columns: repeat(6, 1fr);
-    grid-gap: 3.5em;
-  }
 `;
 
 export const GetModalButton = styled.div`
@@ -112,33 +147,12 @@ export const Title = styled.p`
   font-size: 3.7em;
   font-weight: bold;
   color: white;
-  width: 90%;
 `;
 
-export const SubTitle = styled.p`
+export const SubTitle = styled.span`
   font-size: 1.7em;
   font-weight: 500;
   color: white;
-  margin: 1.2em 0;
-  text-align: justify;
-  width: 90%;
-`;
-
-export const TextContainer = styled.div`
-  width: 80%;
-  @media only screen and (min-width: 1200px) {
-    width: 70%;
-  }
-  @media only screen and (min-width: 1600px) {
-    width: 100%;
-  }
-`;
-
-export const GoToNextPage = styled(Row)`
-  margin-top: 2.5em;
-  justify-content: flex-end;
-  width: 85%;
-  @media only screen and (min-width: 600px) {
-    width: 100%;
-  }
+  margin-top: 1.2em;
+  text-align: left;
 `;

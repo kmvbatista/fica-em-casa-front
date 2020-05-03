@@ -77,6 +77,7 @@ export const GoToMapsIcon = styled.img`
   bottom: 0;
   left: 1em;
   height: 89%;
+  width: 3em;
 `;
 
 export const Grid = styled.div`

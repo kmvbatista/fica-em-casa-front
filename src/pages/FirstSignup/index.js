@@ -109,12 +109,32 @@ export default function Login() {
 
   return (
     <Container>
-      <Welcome>
+      <Welcome style={{ position: 'relative' }}>
         <Title style={{ color: 'var(--color-white)' }}>Oi, tudo bem?</Title>
         <Subtitle>
           Sabemos que não muito, né :(<br></br>Mas esse app foi feito justamente
           para nos ajudarmos nesse momento tão complicado
         </Subtitle>
+        <img
+          style={{
+            width: '8em',
+            height: '8em',
+            position: 'absolute',
+            right: '0',
+            top: '0',
+          }}
+          src='./tijolo.png'
+        ></img>
+        <img
+          style={{
+            width: '8em',
+            height: '8em',
+            position: 'absolute',
+            left: '0',
+            bottom: '0',
+          }}
+          src='./tijolo-pequeno.png'
+        ></img>
       </Welcome>
       <InitialForm style={{ justifyContent: 'space-around' }}>
         <Title>

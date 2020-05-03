@@ -97,12 +97,22 @@ export default function SignIn() {
         }}
       >
         <img
+          style={{
+            width: '20%',
+            height: '20%',
+            position: 'absolute',
+            right: '0',
+            top: '0',
+          }}
+          src='../../tijolo.png'
+        ></img>
+        <img
           src='../../people-at-the-window.png'
           alt='people'
           style={{
             position: 'absolute',
             right: '0%',
-            height: '57%',
+            height: '50%',
           }}
         />
         <img

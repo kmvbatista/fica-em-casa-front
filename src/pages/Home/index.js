@@ -19,7 +19,6 @@ import { updateNecessitiesStatus } from '../../services/necessityService';
 import PendingNecessities from '../../components/PendingNecessities';
 import Loader from '../../components/Loader';
 import Store from '../../services/DefaultContext';
-import { getUserLocation } from '../../services/locationService';
 
 export default function ChooseGroup({ children }) {
   const history = useHistory();
@@ -173,12 +172,12 @@ export default function ChooseGroup({ children }) {
       </Box2>
       {!userJustRegistered && (
         <Box3 onClick={viewFriendsChoice}>
-          <TitleContainer>
+          <TitleContainer style={{}}>
             <Title>
-              <strong>Não faço parte</strong>
+              <strong>Ver pessoas</strong>
               <br></br>
             </Title>
-            <SubTitle>do grupo de risco</SubTitle>
+            <SubTitle>próximas</SubTitle>
           </TitleContainer>
           <CenteredBox>
             <div
@@ -190,6 +189,12 @@ export default function ChooseGroup({ children }) {
               <Image
                 style={{ right: 0, height: '105%', top: '10%' }}
                 src='./amigos.png'
+                alt='amigos'
+              ></Image>
+
+              <Image
+                style={{ left: '-4em', height: '35%', top: '0' }}
+                src='./comments.png'
                 alt='amigos'
               ></Image>
 

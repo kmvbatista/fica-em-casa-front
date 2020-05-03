@@ -151,6 +151,7 @@ export default function PersonCard({
                     textDecoration: 'none',
                     border: 'none',
                     color: '#fff',
+                    paddingLeft: '3em',
                   }}
                   target='_blank'
                   rel='noopener noreferrer'

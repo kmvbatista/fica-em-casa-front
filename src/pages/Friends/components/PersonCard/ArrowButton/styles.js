@@ -15,4 +15,5 @@ export const ArrowContainer = styled.div`
 
 export const Arrow = styled.img`
   width: 0.9em;
+  height: 0.9em;
 `;

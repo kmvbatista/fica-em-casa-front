@@ -256,12 +256,14 @@ export default function NeedHelpOptions({ children }) {
             />
           </>
         ) : (
-          <Loading
-            width={'10em'}
-            height={'10em'}
-            type={'spinningBubbles'}
-            color={'white'}
-          ></Loading>
+          <div style={{ marginTop: '20vh' }}>
+            <Loading
+              width={'10em'}
+              height={'10em'}
+              type={'spinningBubbles'}
+              color={'white'}
+            ></Loading>
+          </div>
         ))}
       {showModal && getModal()}
     </ColumnContainer>

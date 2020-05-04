@@ -14,6 +14,8 @@ import ButtonWithLoading from '../../components/ButtonWithLoading';
 import * as SessionService from '../../services/sessionService';
 import Store from '../../services/DefaultContext';
 import { useForm } from '../../customHooks/useForm';
+import isPhoneValid from '../../services/phoneValidator';
+import { Row } from '../../globalComponents';
 
 export default function SignIn() {
   const params = useParams();
@@ -69,10 +71,17 @@ export default function SignIn() {
       swal('Insira um nome por favor', '', 'error');
       return false;
     }
-    if (showPhone && (!phone || phone.length < 5)) {
-      swal('Telefone está em formato inválido', 'Corrija por favor', 'error');
-      return false;
+    if (showPhone) {
+      if (!phone || phone.length < 8) {
+        swal('Telefone está em formato inválido', 'Corrija por favor', 'error');
+        return false;
+      }
+      if (phone.slice(0, 3) === '+55' && !isPhoneValid(phone)) {
+        swal('Telefone está em formato inválido', 'Corrija por favor', 'error');
+        return false;
+      }
     }
+
     if (inputValues.password !== inputValues.confirmPassword) {
       swal('As duas senhas não estão iguais', 'Corrija por favor', 'error');
       return false;
@@ -140,36 +149,46 @@ export default function SignIn() {
         </Title>
       </Welcome>
       <InitialForm>
-        <LoginInput
-          placeholder='seu nome'
-          type='text'
-          name='name'
-          required
-          value={inputValues.name}
-          onChange={handleInputChanges}
-          onKeyPress={(e) => e.charCode === 13 && handleSubmit()}
-        ></LoginInput>
+        <Row>
+          <LoginInput
+            placeholder='seu nome'
+            type='text'
+            name='name'
+            required
+            value={inputValues.name}
+            onChange={handleInputChanges}
+            onKeyPress={(e) => e.charCode === 13 && handleSubmit()}
+          ></LoginInput>
+        </Row>
         {showPhone && (
-          <PhoneInput value={phone} setPhone={setPhone}></PhoneInput>
+          <PhoneInput
+            value={phone}
+            setPhone={setPhone}
+            onEnter={handleSubmit}
+          ></PhoneInput>
         )}
-        <LoginInput
-          placeholder='criar senha'
-          type='password'
-          name='password'
-          required
-          value={inputValues.password}
-          onChange={handleInputChanges}
-          onKeyPress={(e) => e.charCode === 13 && handleSubmit()}
-        ></LoginInput>
-        <LoginInput
-          placeholder='confirmar senha'
-          type='password'
-          value={inputValues.confirmPassword}
-          onChange={handleInputChanges}
-          name='confirmPassword'
-          required
-          onKeyPress={(e) => e.charCode === 13 && handleSubmit()}
-        ></LoginInput>
+        <Row>
+          <LoginInput
+            placeholder='criar senha'
+            type='password'
+            name='password'
+            required
+            value={inputValues.password}
+            onChange={handleInputChanges}
+            onKeyPress={(e) => e.charCode === 13 && handleSubmit()}
+          ></LoginInput>
+        </Row>
+        <Row>
+          <LoginInput
+            placeholder='confirmar senha'
+            type='password'
+            value={inputValues.confirmPassword}
+            onChange={handleInputChanges}
+            name='confirmPassword'
+            required
+            onKeyPress={(e) => e.charCode === 13 && handleSubmit()}
+          ></LoginInput>
+        </Row>
         <ButtonWithLoading
           loaderColor={'var(--color-pink)'}
           onClick={handleSubmit}

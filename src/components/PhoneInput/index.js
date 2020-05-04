@@ -19,7 +19,7 @@ export default function PhoneInput({ setPhone, onEnter }) {
           setPhoneToShow(e.target.value);
           setPhone(ddi + e.target.value);
         }}
-        onKeyPress={(e) => e.charCode === 13 && onEnter()}
+        onKeyPress={(e) => e.charCode === 13 && onEnter && onEnter()}
         placeholder='seu telefone com DDD'
         name='tel'
         id='tel'

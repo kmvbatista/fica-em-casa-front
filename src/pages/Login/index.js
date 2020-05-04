@@ -15,6 +15,7 @@ import {
   Title,
   Container,
   TextLink,
+  LinksContainer,
 } from '../FirstSignup/styles';
 import LoaderContainer from '../../components/LoaderContainer';
 import { useForm } from '../../customHooks/useForm';
@@ -156,14 +157,17 @@ export default function Login() {
             Acessar
           </RegisterButton>
         </LoaderContainer>
-        <Row style={{ justifyContent: 'space-around', width: '100%' }}>
-          <Link style={{ textAlign: 'center' }} to='first-signup'>
+        <LinksContainer>
+          <Link
+            style={{ textAlign: 'center', marginBottom: '1em' }}
+            to='first-signup'
+          >
             Cadastrar-se
           </Link>
           <Link style={{ textAlign: 'center' }} to='forgot-password'>
             Esqueci minha senha
           </Link>
-        </Row>
+        </LinksContainer>
       </InitialForm>
     </Container>
   );

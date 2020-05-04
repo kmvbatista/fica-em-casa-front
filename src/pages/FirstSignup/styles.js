@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import { Row } from '../../globalComponents';
 
 const desktopContainer = css`
   width: 50%;
@@ -136,4 +137,16 @@ export const TextLink = styled.p`
   color: var(--color-purple-dark);
   margin-top: 1em;
   font-size: 1.4em;
+`;
+
+export const LinksContainer = styled(Row)`
+  width: 100%;
+
+  @media only screen and (max-width: 600px) {
+    flex-direction: column;
+    justify-content: space-around;
+    &:first-child {
+      margin-bottom: 1.5em;
+    }
+  }
 `;

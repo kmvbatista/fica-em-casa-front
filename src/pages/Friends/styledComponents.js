@@ -24,6 +24,9 @@ export const MainTab = styled(Column)`
   min-height: 100vh;
   padding: 3em 2em;
   transform: translate(0, 0px);
+  @media only screen and (max-width: 350px) {
+    padding: 3em 0.5em;
+  }
 `;
 
 export const MainPhrase = styled.p`

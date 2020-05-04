@@ -82,10 +82,10 @@ export const GoToMapsIcon = styled.img`
 
 export const Grid = styled.div`
   display: grid;
-  grid-template-columns: repeat(1, 1fr);
-  gap: 2em;
+  grid-template-columns: repeat(1, 98%);
+  gap: 3em;
   @media only screen and (min-width: 600px) {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 4em;
+    grid-template-columns: repeat(2, 47.5%);
+    gap: 5%;
   }
 `;

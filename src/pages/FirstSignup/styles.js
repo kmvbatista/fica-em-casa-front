@@ -142,9 +142,9 @@ export const TextLink = styled.p`
 export const LinksContainer = styled(Row)`
   width: 100%;
 
+  justify-content: space-around;
   @media only screen and (max-width: 600px) {
     flex-direction: column;
-    justify-content: space-around;
     &:first-child {
       margin-bottom: 1.5em;
     }

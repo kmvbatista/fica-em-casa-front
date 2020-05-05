@@ -13,7 +13,6 @@ import {
 } from './styles';
 import * as NecessityService from '../../../services/necessityService';
 import UpdateModal from './UpdateModal/index';
-import { updateUserLocation } from '../../../services/locationService';
 
 export default function ModalContent({
   cardInfo,
@@ -22,7 +21,7 @@ export default function ModalContent({
   deleteOrUpdateCard,
   setDeleteCardModal,
   refresh,
-  userLocation,
+  updateLocation,
 }) {
   const [showConfirmButton, setShowConfirmButton] = useState(true);
   let [itemList, setItemList] = useState([]);
@@ -101,7 +100,7 @@ export default function ModalContent({
       setCardChecked(cardInfo.category);
       closeModal();
       refresh();
-      updateUserLocation(userLocation);
+      updateLocation();
     } catch (error) {
       closeModal();
     }
@@ -183,7 +182,7 @@ export default function ModalContent({
           cardInfo={cardInfo}
           closeModal={closeModal}
           setDeleteCardModal={setDeleteCardModal}
-          userLocation={userLocation}
+          updateLocation={updateLocation}
         ></UpdateModal>
       ) : (
         <ModalContainer>

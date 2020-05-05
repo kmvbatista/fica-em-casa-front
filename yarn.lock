@@ -8453,6 +8453,11 @@ react-loading@^2.0.3:
   resolved "https://registry.yarnpkg.com/react-loading/-/react-loading-2.0.3.tgz#e8138fb0c3e4674e481b320802ac7048ae14ffb9"
   integrity sha512-Vdqy79zq+bpeWJqC+xjltUjuGApyoItPgL0vgVfcJHhqwU7bAMKzysfGW/ADu6i0z0JiOCRJjo+IkFNkRNbA3A==
 
+react-long@^1.1.9:
+  version "1.1.9"
+  resolved "https://registry.yarnpkg.com/react-long/-/react-long-1.1.9.tgz#f9316abf96ff3ecdbf43b2270538123ac492245b"
+  integrity sha512-uDchYdi0WKSys2jdFQcXfzHA+8P71a4G9yfiFhaTiT4MHvw974UFjE5MtS2dvQi/UyNb9iKVw6Lhb8CvJQI8Ng==
+
 react-router-dom@^5.1.2:
   version "5.1.2"
   resolved "https://registry.yarnpkg.com/react-router-dom/-/react-router-dom-5.1.2.tgz#06701b834352f44d37fbb6311f870f84c76b9c18"

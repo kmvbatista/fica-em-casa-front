@@ -1,6 +1,10 @@
 import React from 'react';
 import { Row } from '../../../../globalComponents';
-import { ConfirmationButton } from '../styles';
+import {
+  ConfirmationButton,
+  CancelHelpButton,
+  CancelChangeButton,
+} from '../styles';
 
 export default function BottomButtons({
   category,
@@ -11,32 +15,16 @@ export default function BottomButtons({
   return (
     <>
       <Row style={{ justifyContent: 'space-between' }}>
-        <ConfirmationButton
-          id='confirmButton'
-          style={{ backgroundColor: 'var(--color-pink)' }}
-          onClick={deleteCategory}
-        >
+        <CancelHelpButton id='confirmButton' onClick={deleteCategory}>
           <strong
-            style={{ fontSize: '1.25em', color: 'white' }}
+            style={{ color: 'white' }}
           >{`Cancelar ajuda com ${category}`}</strong>
-        </ConfirmationButton>
-        <ConfirmationButton
-          id='confirmButton'
-          style={{ backgroundColor: 'var(--color-purple)' }}
-          onClick={closeModal}
-        >
-          <strong style={{ fontSize: '1.25em', color: 'white' }}>
-            Cancelar alterações
-          </strong>
-        </ConfirmationButton>
-        <ConfirmationButton
-          id='confirmButton'
-          style={{ backgroundColor: 'var(--color-green)' }}
-          onClick={confirmUpdates}
-        >
-          <strong style={{ fontSize: '1.25em', color: 'white' }}>
-            Confirmar Alterações
-          </strong>
+        </CancelHelpButton>
+        <CancelChangeButton id='confirmButton' onClick={closeModal}>
+          <strong style={{ color: 'white' }}>Cancelar alterações</strong>
+        </CancelChangeButton>
+        <ConfirmationButton id='confirmButton' onClick={confirmUpdates}>
+          <strong style={{ color: 'white' }}>Confirmar Alterações</strong>
         </ConfirmationButton>
       </Row>
     </>

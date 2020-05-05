@@ -24,6 +24,7 @@ import {
 import LocationErrorMessage from '../Friends/components/LocationErrorMessage';
 import Store from '../../services/DefaultContext';
 import Menu from '../../components/Menu';
+import LongPress from 'react-long';
 
 export default function NeedHelpOptions({ children }) {
   const history = useHistory();
@@ -50,6 +51,7 @@ export default function NeedHelpOptions({ children }) {
           deleteOrUpdateCard={deleteOrUpdateCard}
           refresh={getCards}
           userLocation={userLocation}
+          updateLocation={updateLocation}
         ></ModalContent>
       </Modal>
     );
@@ -149,10 +151,7 @@ export default function NeedHelpOptions({ children }) {
       toggleCardLoading(category);
       await NecessityService.postNecessity(category);
       setCardChecked(category);
-      if (!didUpdatedLocation && userLocation) {
-        await updateUserLocation(userLocation);
-        setDidUpdatedLocation(true);
-      }
+      updateLocation();
     } catch (error) {}
   }
 
@@ -186,6 +185,45 @@ export default function NeedHelpOptions({ children }) {
     setCards([...cards]);
   };
 
+  function handleCardLongPress(card) {
+    if (card.isChecked) {
+      swal(
+        'Deseja remover a necessidade em ' + card.category + '?',
+        '',
+        'warning',
+        {
+          buttons: ['Não', 'Sim'],
+          dangerMode: true,
+        },
+      ).then((accepted) => {
+        if (accepted) {
+          deleteCategory(card.category);
+        }
+      });
+    }
+  }
+
+  async function deleteCategory(category) {
+    try {
+      toggleCardLoading(category);
+      await NecessityService.deleteByCategory(category);
+      toggleCardLoading(category);
+      swal('Dados atualizados com sucesso', '', 'success');
+      getCards();
+      updateLocation();
+    } catch (error) {
+      toggleCardLoading(category);
+      swal('Houve um erro na atualização', '', 'error');
+    }
+  }
+
+  async function updateLocation() {
+    if (!didUpdatedLocation && userLocation) {
+      await updateUserLocation(userLocation);
+      setDidUpdatedLocation(true);
+    }
+  }
+
   return (
     <ColumnContainer
       style={cards.length === 0 ? { justifyContent: 'flex-start' } : {}}
@@ -217,30 +255,35 @@ export default function NeedHelpOptions({ children }) {
           <>
             <Grid>
               {cards.map((el) => (
-                <OptionCard
-                  key={el.category}
-                  onClick={() => handleCardClick(el)}
+                <LongPress
+                  time={500}
+                  onLongPress={() => handleCardLongPress(el)}
                 >
-                  <IsChecked
-                    isChecked={el.isChecked}
-                    color={'var(--color-pink)'}
-                  ></IsChecked>
-                  {el.isLoading && !el.isChecked ? (
-                    <Loading
-                      height='30%'
-                      width='30%'
-                      type='spinningBubbles'
-                      color='var(--color-pink)'
-                    ></Loading>
-                  ) : (
-                    <img
-                      src={el.imageUrl}
-                      alt={el.category}
-                      style={{ maxHeight: '55%' }}
-                    />
-                  )}
-                  <GridText>{el.category}</GridText>
-                </OptionCard>
+                  <OptionCard
+                    key={el.category}
+                    onClick={() => handleCardClick(el)}
+                  >
+                    <IsChecked
+                      isChecked={el.isChecked}
+                      color={'var(--color-pink)'}
+                    ></IsChecked>
+                    {el.isLoading && !el.isChecked ? (
+                      <Loading
+                        height='30%'
+                        width='30%'
+                        type='spinningBubbles'
+                        color='var(--color-pink)'
+                      ></Loading>
+                    ) : (
+                      <img
+                        src={el.imageUrl}
+                        alt={el.category}
+                        style={{ maxHeight: '55%' }}
+                      />
+                    )}
+                    <GridText>{el.category}</GridText>
+                  </OptionCard>
+                </LongPress>
               ))}
             </Grid>
             <img

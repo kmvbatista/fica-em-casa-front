@@ -86,7 +86,11 @@ export default function PersonCard({
             <a
               target='_blank'
               rel='noopener noreferrer'
-              href={`https://web.whatsapp.com/send?phone=${person.userPhone}&text=Olá,%20${person.userName}%20vi%20que%20você%20precisa%20de%20ajuda%20pelo%20fica%20em%20casa`}
+              href={
+                'ontouchstart' in window
+                  ? `https://api.whatsapp.com/send?phone=${person.userPhone}&text=Olá,%20${person.userName}%20vi%20que%20você%20precisa%20de%20ajuda%20pelo%20fica%20em%20casa`
+                  : `https://web.whatsapp.com/send?phone=${person.userPhone}&text=Olá,%20${person.userName}%20vi%20que%20você%20precisa%20de%20ajuda%20pelo%20fica%20em%20casa`
+              }
             >
               <img
                 src='./whatsapp.svg'

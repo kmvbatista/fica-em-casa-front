@@ -72,6 +72,7 @@ body {
   min-height: 100vh;
   color: white;
   font-family: BalooThambi2-Regular;
+  max-zoom: 100%;
 }
 
 strong {

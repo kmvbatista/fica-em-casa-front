@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Row } from '../../../globalComponents';
 import {
   ConfirmationButton,
@@ -13,6 +13,7 @@ import {
 } from './styles';
 import * as NecessityService from '../../../services/necessityService';
 import UpdateModal from './UpdateModal/index';
+import Store from '../../../services/DefaultContext';
 
 export default function ModalContent({
   cardInfo,
@@ -32,6 +33,8 @@ export default function ModalContent({
     category: cardInfo.category,
   };
   let [itemToAdd, setItem] = useState(itemInitialState);
+
+  const store = useContext(Store);
 
   const viewConfirmButton = () => {
     document.getElementById('confirmButton').style.display = 'block';
@@ -98,6 +101,7 @@ export default function ModalContent({
       }
       await NecessityService.postNecessityItems(itemList);
       setCardChecked(cardInfo.category);
+      store.helpers = undefined;
       closeModal();
       refresh();
       updateLocation();
@@ -183,6 +187,7 @@ export default function ModalContent({
           closeModal={closeModal}
           setDeleteCardModal={setDeleteCardModal}
           updateLocation={updateLocation}
+          store={store}
         ></UpdateModal>
       ) : (
         <ModalContainer>

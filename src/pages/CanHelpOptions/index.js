@@ -8,7 +8,6 @@ import {
   Title,
   TextContainer,
 } from '../../optionsComponents';
-import { Column } from '../../globalComponents';
 import cardsFromJson from '../../assets/productCategory.json';
 import * as AssistanceService from '../../services/assistanceService';
 import swal from 'sweetalert';
@@ -97,6 +96,7 @@ export default function NeedHelpOptions() {
       if (!hasRegisteredOption) {
         updateUserLocation(userLocation).then((x) => setRegisteredOption(true));
       }
+      store.needyPeople = undefined;
     } catch (error) {
       swal(
         'Não foi possível adotar a categoria ' + category + '!',
@@ -110,6 +110,7 @@ export default function NeedHelpOptions() {
     try {
       toggleIsCardChecked(card.category);
       await AssistanceService.deleteAssistance(card.id);
+      store.needyPeople = undefined;
     } catch (error) {
       toggleIsCardChecked(card.category);
       swal(

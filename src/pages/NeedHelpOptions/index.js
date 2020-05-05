@@ -129,16 +129,11 @@ export default function NeedHelpOptions({ children }) {
 
   async function deleteSimpleCard(id, category) {
     try {
-      swal(`Queres apagar a necessidade ${category}`, '', 'info').then(
-        async (accepted) => {
-          if (accepted) {
-            toggleIsCardChecked(category);
-            toggleCardLoading(category);
-            await NecessityService.deleteSimpleNecessity(id);
-            toggleCardLoading(category);
-          }
-        },
-      );
+      toggleIsCardChecked(category);
+      toggleCardLoading(category);
+      await NecessityService.deleteSimpleNecessity(id);
+      toggleCardLoading(category);
+      store.helpers = undefined;
     } catch (error) {
       toggleCardLoading(category);
       toggleIsCardChecked(category);
@@ -152,6 +147,7 @@ export default function NeedHelpOptions({ children }) {
       await NecessityService.postNecessity(category);
       setCardChecked(category);
       updateLocation();
+      store.helpers = undefined;
     } catch (error) {}
   }
 
@@ -208,6 +204,7 @@ export default function NeedHelpOptions({ children }) {
       toggleCardLoading(category);
       await NecessityService.deleteByCategory(category);
       toggleCardLoading(category);
+      store.helpers = undefined;
       swal('Dados atualizados com sucesso', '', 'success');
       getCards();
       updateLocation();

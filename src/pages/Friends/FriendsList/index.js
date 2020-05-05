@@ -21,10 +21,10 @@ export default function HelpBeHelped() {
   const [needyErrorMessage, setNeedyErrorMsg] = React.useState();
   const [helperErrorMessage, setHelperError] = React.useState();
   const [isNeedySearching, setNeedySearching] = React.useState(
-    store.needyPeople != undefined,
+    store.needyPeople === undefined,
   );
   const [isHelperSearching, setHelperSearching] = React.useState(
-    store.helpers != undefined,
+    store.helpers === undefined,
   );
   const [userLocation, setUserLocation] = React.useState({});
 
@@ -37,12 +37,16 @@ export default function HelpBeHelped() {
   }, []);
 
   async function initiate() {
-    if (store.helpers || store.needyPeople) {
-      setNeedySearching(false);
+    const userLocation = await getLocation();
+    if (store.helpers) {
       setHelperSearching(false);
     } else {
-      await getLocation();
-      getUsers();
+      getHelpers(userLocation);
+    }
+    if (store.needyPeople) {
+      setNeedySearching(false);
+    } else {
+      getNeedy(userLocation);
     }
   }
 
@@ -56,9 +60,9 @@ export default function HelpBeHelped() {
         };
         setUserLocation(newLocation);
         store.location = newLocation;
-        getUsers(newLocation);
+        return newLocation;
       } else {
-        getUsers(store.location);
+        return store.location;
       }
     } catch (error) {
       setUserLocation(undefined);
@@ -69,13 +73,6 @@ export default function HelpBeHelped() {
         'Verifique se seu gps está ativado. Aí estão algumas dicas:',
         'error',
       );
-    }
-  }
-
-  async function getUsers(location) {
-    if (location) {
-      getNeedy(location);
-      getHelpers(location);
     }
   }
 

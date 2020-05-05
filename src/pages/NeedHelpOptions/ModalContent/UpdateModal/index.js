@@ -23,6 +23,7 @@ export default function UpdateModal({
   refresh,
   setDeleteCardModal,
   updateLocation,
+  store,
 }) {
   const [itemsToDelete, setItemsToDelete] = useState([]);
   const [itemsToAdd, setItemsToAdd] = useState([]);
@@ -71,6 +72,7 @@ export default function UpdateModal({
       swal('Dados atualizados com sucesso', '', 'success');
       refresh();
       updateLocation();
+      store.helpers = undefined;
     } catch (error) {
       setIsLoading(false);
       swal('Houve um erro na atualização', '', 'error');

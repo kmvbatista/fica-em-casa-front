@@ -64,6 +64,7 @@ export default function PersonCard({
               ? { borderRadius: '10px', backgroundColor: backgroundColor }
               : { backgroundColor: backgroundColor }
           }
+          onClick={() => setIsExpanded(!isExpanded)}
         >
           <PersonAvatar
             style={{

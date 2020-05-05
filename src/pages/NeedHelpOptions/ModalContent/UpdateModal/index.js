@@ -163,6 +163,7 @@ export default function UpdateModal({
                           width: '1em',
                           height: '1em',
                           cursor: 'pointer',
+                          marginLeft: '1em',
                         }}
                         src='./cancel.svg'
                         alt='apagar item'
@@ -198,7 +199,7 @@ export default function UpdateModal({
                   <option value='litro'>litro</option>
                 </SelectUnit>
                 <QuantityButton onClick={decreaseItemQnt}>-</QuantityButton>
-                <p>{itemToAdd.quantity}</p>
+                <p style={{ fontSize: '1.1em' }}>{itemToAdd.quantity}</p>
                 <QuantityButton onClick={increaseItemQnt}>+</QuantityButton>
               </Quantity>
             </Row>

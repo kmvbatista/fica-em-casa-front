@@ -53,6 +53,10 @@ export const ModalContainer = styled(Column)`
   @media only screen and (max-width: 600px) {
     padding: 2em 2.5em 1em 2.5em;
   }
+
+  @media only screen and (max-width: 400px) {
+    padding: 2em 1em 1em 1em;
+  }
   @media only screen and (min-width: 1200px) {
     padding: 4em 20em 1em 20em;
   }
@@ -97,7 +101,7 @@ export const QuantityButton = styled.button`
   background-color: var(--color-yellow);
   text-align: center;
   border-radius: 26%;
-  margin: 0 0.3em;
+  margin: 0em;
 `;
 
 export const ItemInput = styled.input`

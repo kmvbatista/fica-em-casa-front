@@ -23,7 +23,11 @@ export default function BottomButtons({
         <CancelChangeButton id='confirmButton' onClick={closeModal}>
           <strong style={{ color: 'white' }}>Cancelar alterações</strong>
         </CancelChangeButton>
-        <ConfirmationButton id='confirmButton' onClick={confirmUpdates}>
+        <ConfirmationButton
+          style={{ backgroundColor: 'var(--color-green)' }}
+          id='confirmButton'
+          onClick={confirmUpdates}
+        >
           <strong style={{ color: 'white' }}>Confirmar Alterações</strong>
         </ConfirmationButton>
       </Row>

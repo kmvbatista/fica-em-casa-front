@@ -26,7 +26,7 @@ import Store from '../../services/DefaultContext';
 import Menu from '../../components/Menu';
 import LongPress from 'react-long';
 
-export default function NeedHelpOptions({ children }) {
+export default function NeedHelpOptions() {
   const history = useHistory();
   const isFirstAccess = history.location.state;
   const [showModal, setShowModal] = useState(false);
@@ -61,6 +61,9 @@ export default function NeedHelpOptions({ children }) {
     try {
       if (!store.location) {
         const coords = await getUserLocation();
+        if (!coords) {
+          return setUserLocation(undefined);
+        }
         const newLocation = {
           latitude: coords.latitude,
           longitude: coords.longitude,

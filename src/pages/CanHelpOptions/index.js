@@ -36,18 +36,25 @@ export default function NeedHelpOptions() {
   }, []);
 
   async function verifyLocation() {
-    if (!store.location) {
-      const coords = await getUserLocation();
-      const newLocation = {
-        latitude: coords.latitude,
-        longitude: coords.longitude,
-      };
-      setUserLocation(newLocation);
-      store.location = newLocation;
-      getCards();
-    } else {
-      setUserLocation(store.location);
-      getCards();
+    try {
+      if (!store.location) {
+        const coords = await getUserLocation();
+        if (!coords) {
+          return setUserLocation(undefined);
+        }
+        const newLocation = {
+          latitude: coords.latitude,
+          longitude: coords.longitude,
+        };
+        setUserLocation(newLocation);
+        store.location = newLocation;
+        getCards();
+      } else {
+        setUserLocation(store.location);
+        getCards();
+      }
+    } catch (error) {
+      return setUserLocation(undefined);
     }
   }
 

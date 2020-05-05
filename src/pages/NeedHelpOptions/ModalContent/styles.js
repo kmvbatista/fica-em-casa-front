@@ -4,18 +4,18 @@ import { Column, Row } from '../../../globalComponents';
 
 export const ConfirmationButton = styled.button`
   outline: none;
-  padding: 1.1em 0;
+  padding: 1.1em 1em;
   border: none;
   border-radius: 1.5em;
   background-color: var(--color-yellow);
   opacity: 1;
   transition: all 0.5s;
-  background-color: var(--color-green);
   cursor: pointer;
   font-size: 1.25em;
   @media only screen and (max-width: 900px) {
     width: 40%;
     font-size: 1.1em;
+    padding: 1.1em 0;
   }
 `;
 

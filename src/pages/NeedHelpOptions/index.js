@@ -294,6 +294,7 @@ export default function NeedHelpOptions() {
                 height: '3.5em',
                 cursor: 'pointer',
                 marginBottom: '1em',
+                margin: '5% 0',
               }}
               alt='ver amigos'
             />

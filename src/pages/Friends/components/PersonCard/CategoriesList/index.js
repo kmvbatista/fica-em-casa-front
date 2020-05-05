@@ -54,7 +54,7 @@ export default function CategoriesList({
           ))}
         </Row>
       ) : (
-        <Row style={{ margin: '.8em 0' }}>
+        <Row style={{ margin: '.8em 0, ', flexWrap: 'wrap' }}>
           {helperCategories.map((it) => (
             <div>
               <HelpOptionCard>

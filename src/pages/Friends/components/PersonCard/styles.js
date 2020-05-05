@@ -60,7 +60,7 @@ export const HelpOptionCard = styled.div`
   border-radius: 20%;
   background-color: white;
   padding: 0.85em 1.1em;
-  margin-right: 0.8em;
+  margin: 0em 0.8em 0.8em 0;
 `;
 
 export const GoToMapsButtonn = styled.div`
@@ -86,6 +86,5 @@ export const Grid = styled.div`
   gap: 3em;
   @media only screen and (min-width: 600px) {
     grid-template-columns: repeat(2, 47.5%);
-    gap: 5%;
   }
 `;

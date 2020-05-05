@@ -211,7 +211,21 @@ export default function ModalContent({
           <ConfirmationButton
             id='confirmButton'
             onClick={postNecessity}
-            style={showConfirmButton ? { opacity: '1' } : { opacity: '0' }}
+            style={
+              showConfirmButton
+                ? {
+                    opacity: '1',
+                    width: '100%',
+                    padding: '1em 1em',
+                    marginBottom: '1em',
+                  }
+                : {
+                    opacity: '0',
+                    width: '100%',
+                    padding: '1em 1em',
+                    marginBottom: '1em',
+                  }
+            }
           >
             <strong style={{ fontSize: '1.25em' }}>Finalizar!</strong>
           </ConfirmationButton>

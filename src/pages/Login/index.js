@@ -117,6 +117,9 @@ export default function Login() {
               setPhone={(value) => (inputValues.login = value)}
               onEnter={handleSubmit}
             ></PhoneInput>
+            <TextLink style={{ marginTop: '1em' }} onClick={changeLoginWay}>
+              faço login com email
+            </TextLink>
           </Column>
         ) : (
           <Column>

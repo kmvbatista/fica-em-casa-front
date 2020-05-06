@@ -48,7 +48,7 @@ export default function SignIn() {
       storeHandler.user = response.data.user;
       storeHandler.setUser(response.data.user);
       swal(
-        'Bem vindo ao fica em casa',
+        'Bem-vindo(a) ao Fica em Casa',
         'Estamos felizes com sua chegada!',
         'success',
       );

@@ -203,8 +203,9 @@ export default function ModalContent({
           </Row>
           <MainContainer>
             <p style={{ marginBottom: '1em' }}>
-              Digite abaixo o que você está precisando, e, se for necessário,
-              especifique a quantidade.
+              Digite abaixo o que você está precisando e clique no botão de +
+              para adicionar à lista. Se for necessário, especifique a
+              quantidade.
             </p>
             {getItemList()}
           </MainContainer>

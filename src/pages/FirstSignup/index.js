@@ -144,7 +144,7 @@ export default function Login() {
           {alreadySent && (
             <Title>
               <p style={{ fontSize: '1em' }}>
-                O acesso para resetar a senha foi enviado para
+                O acesso para prosseguir com o cadastro foi enviado para
               </p>
             </Title>
           )}

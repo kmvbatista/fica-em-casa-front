@@ -9,6 +9,7 @@
   "dependencies": {
     "axios": "^0.19.2",
     "react": "^16.13.1",
+    "react-animated-css": "^1.2.1",
     "react-dom": "^16.13.1",
     "react-expand-animated": "^1.0.2",
     "react-input-mask": "^2.0.4",

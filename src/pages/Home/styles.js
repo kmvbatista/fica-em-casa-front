@@ -28,12 +28,13 @@ export const SubTitle = styled.p`
   font-weight: 500;
 `;
 
+
 export const Box1 = styled.div`
   cursor: pointer;
   display: flex;
   flex-direction: column;
   box-sizing: content-box;
-  height: ${(props) => (props.userJustRegistered ? '50vh' : '34vh')};
+  height: ${(props) => (props.userJustRegistered ? '50vh' : '33vh')};
   font-size: 0.8em;
   padding-bottom: 2em;
   background-color: var(--color-pink);
@@ -47,10 +48,10 @@ export const Box1 = styled.div`
 `;
 
 export const Box2 = styled(Box1)`
-  transform: translate(0, -2em);
+  // transform: translate(0, -2em);
   border-radius: 0 2.5em 0 0;
   background-color: var(--color-purple);
-  height: ${(props) => (props.userJustRegistered ? '50vh' : '34vh')};
+  height: ${(props) => (props.userJustRegistered ? '50vh' : '33vh')};
 
   @media only screen and (min-width: 1200px) {
     transform: translate(-2em, 0em);
@@ -59,11 +60,10 @@ export const Box2 = styled(Box1)`
 `;
 
 export const Box3 = styled(Box1)`
-  transform: translate(0, -4em);
-  border-radius: 0 0 0 2.5em;
+  // transform: translate(0, -4em);
   background-color: var(--color-green);
-  height: 34vh;
-
+  height: 33vh;
+  padding-bottom: 0em;
   @media only screen and (min-width: 1200px) {
     transform: translate(-4em, 0em);
     border-radius: 2.5em 0 0 0;

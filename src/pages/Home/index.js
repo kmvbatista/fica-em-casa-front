@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
+import {Animated} from "react-animated-css";
 import {
   Container,
   Box1,
@@ -100,7 +101,8 @@ export default function ChooseGroup({ children }) {
           : { backgroundColor: 'var(--color-green)' })
       }
     >
-      <Box1 onClick={needyChoice} userJustRegistered={userJustRegistered}>
+      <Animated className="animation-wrapper" animationIn="slideInUp" animationInDuration={1000} isVisible={true} style={{ height: '33vh' }}>
+      <Box1  onClick={needyChoice} userJustRegistered={userJustRegistered}>
         <TitleContainer>
           <Title>
             <strong>Faço parte do</strong> <br></br>
@@ -123,15 +125,19 @@ export default function ChooseGroup({ children }) {
               transform: 'translateY(-50%)',
             }}
           >
+            <Animated className="animation-wrapper" animationIn="fadeIn" animationInDuration={1000} isVisible={true} animationInDelay={800}>
             <HighlightText>
               <strong>Preciso</strong>
               <br></br>
             </HighlightText>
             <SecondaryText>de ajuda</SecondaryText>
+            </Animated>
           </div>
         </CenteredBox>
       </Box1>
+      </Animated>
 
+      <Animated className="animation-wrapper" animationIn="slideInUp" animationInDuration={1000} isVisible={true} animationInDelay={300} style={{ height: '33vh' }}>
       <Box2 onClick={helperChoice} userJustRegistered={userJustRegistered}>
         <TitleContainer>
           <Title>
@@ -160,17 +166,22 @@ export default function ChooseGroup({ children }) {
                 top: '50%',
                 transform: 'translateY(-50%)',
               }}
-            >
+            >      
+            <Animated className="animation-wrapper" animationIn="fadeIn" animationInDuration={1000} isVisible={true} animationInDelay={1100}>
               <HighlightText>
                 <strong>Quero</strong>
                 <br></br>
               </HighlightText>
               <SecondaryText>ajudar</SecondaryText>
+              </Animated>
             </div>
           </div>
         </CenteredBox>
       </Box2>
+      </Animated>
+      
       {!userJustRegistered && (
+        <Animated className="animation-wrapper" animationIn="slideInUp" animationInDuration={1000} isVisible={true} animationInDelay={600} style={{ height: '33vh' }}>
         <Box3 onClick={viewFriendsChoice}>
           <TitleContainer style={{}}>
             <Title>
@@ -206,16 +217,20 @@ export default function ChooseGroup({ children }) {
                   transform: 'translateY(-50%)',
                 }}
               >
+            <Animated className="animation-wrapper" animationIn="fadeIn" animationInDuration={1000} isVisible={true} animationInDelay={1400}>
+
                 <SecondaryText>
                   meus<br></br>
                 </SecondaryText>
                 <HighlightText>
                   <strong>Amigos</strong>
                 </HighlightText>
+                </Animated>
               </div>
             </div>
           </CenteredBox>
         </Box3>
+        </Animated>
       )}
 
       {userJustRegistered || children}

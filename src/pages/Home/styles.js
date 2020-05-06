@@ -28,7 +28,6 @@ export const SubTitle = styled.p`
   font-weight: 500;
 `;
 
-
 export const Box1 = styled.div`
   cursor: pointer;
   display: flex;
@@ -40,9 +39,10 @@ export const Box1 = styled.div`
   background-color: var(--color-pink);
   justify-content: center;
   align-items: center;
+  width: 100vw;
   @media only screen and (min-width: 900px) {
     height: 100vh;
-    width: ${(props) => (props.userJustRegistered ? '50vw' : '34vw')};
+    width: ${(props) => (props.userJustRegistered ? '50vw' : '33vw')};
     padding: 0;
   }
 `;
@@ -60,10 +60,11 @@ export const Box2 = styled(Box1)`
 `;
 
 export const Box3 = styled(Box1)`
-  // transform: translate(0, -4em);
+  /* transform: translate(0, -4em); */
   background-color: var(--color-green);
   height: 33vh;
   padding-bottom: 0em;
+  border-radius: 0 2.5em 0 0;
   @media only screen and (min-width: 1200px) {
     transform: translate(-4em, 0em);
     border-radius: 2.5em 0 0 0;

@@ -8,7 +8,7 @@ import {
   TextContainer,
   Title,
 } from '../../optionsComponents';
-import jsonCards from '../../assets/productCategory.json';
+import cardsFromJson from '../../assets/productCategory.json';
 import Modal from '../../components/Modal';
 import ModalContent from './ModalContent';
 import { useHistory } from 'react-router-dom';
@@ -32,6 +32,7 @@ export default function NeedHelpOptions() {
   const [showModal, setShowModal] = useState(false);
   const [cardSelectedInfo, setCardSelectedInfo] = useState();
   const [cards, setCards] = useState([]);
+  const [jsonCards, setJsonCards] = useState(Object.assign([], cardsFromJson));
   const [deleteOrUpdateCard, setDeleteOrUpdateModal] = useState(false);
   const [userLocation, setUserLocation] = useState({});
   const [didUpdatedLocation, setDidUpdatedLocation] = useState(false);
@@ -46,7 +47,7 @@ export default function NeedHelpOptions() {
         <ModalContent
           cardInfo={cardSelectedInfo}
           closeModal={toggleShowModal}
-          setCardChecked={setCardChecked}
+          setCardChecked={toggleIsCardChecked}
           setDeleteCardModal={setDeleteOrUpdateModal}
           deleteOrUpdateCard={deleteOrUpdateCard}
           refresh={getCards}
@@ -147,12 +148,10 @@ export default function NeedHelpOptions() {
 
   async function postSimpleNecessity(category) {
     try {
-      debugger;
       toggleCardLoading(category);
       const newNecessity = await NecessityService.postNecessity(category);
-      setCardChecked(category, newNecessity[0]._id);
-      debugger;
       toggleCardLoading(category);
+      setCardChecked(category, newNecessity[0]._id);
       updateLocation();
       store.helpers = undefined;
     } catch (error) {}
@@ -172,15 +171,22 @@ export default function NeedHelpOptions() {
 
   const setCardChecked = (categoryName, newNecessityId) => {
     const cardIndex = cards.findIndex((x) => x.category === categoryName);
-    cards[cardIndex].isChecked = true;
-    cards[cardIndex].items[0]._id = newNecessityId;
+    cards[cardIndex].items = [{ _id: newNecessityId }];
     setCards([...cards]);
+    toggleIsCardChecked(categoryName);
   };
 
   const toggleIsCardChecked = (category) => {
-    const index = cards.findIndex((x) => x.category === category);
-    cards[index].isChecked = !cards[index].isChecked;
-    setCards([...cards]);
+    const newCards = cards.map((cat) => {
+      return {
+        category: cat.category,
+        items: cat.items,
+        imageUrl: cat.imageUrl,
+        isChecked: category === cat.category ? !cat.isChecked : cat.isChecked,
+        isSimple: cat.isSimple,
+      };
+    });
+    setCards(Object.assign([], newCards));
   };
 
   const toggleCardLoading = (category) => {

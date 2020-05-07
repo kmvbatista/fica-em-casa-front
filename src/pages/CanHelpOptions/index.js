@@ -28,7 +28,7 @@ export default function NeedHelpOptions() {
   const [userLocation, setUserLocation] = useState({});
   const [hasRegisteredOption, setRegisteredOption] = useState(false);
   const [cards, setCards] = useState([]);
-  const jsonCards = [...cardsFromJson];
+  const jsonCards = Object.assign([], cardsFromJson);
   const history = useHistory();
 
   useEffect(() => {
@@ -78,9 +78,17 @@ export default function NeedHelpOptions() {
   };
 
   const toggleIsCardChecked = (category) => {
-    const index = cards.findIndex((x) => x.category === category);
-    cards[index].isChecked = !cards[index].isChecked;
-    setCards([...cards]);
+    const newCards = cards.map((cat) => {
+      return {
+        category: cat.category,
+        items: cat.items,
+        imageUrl: cat.imageUrl,
+        isChecked:
+          category === cat.category ? !category.isChecked : category.isChecked,
+        isSimple: cat.isSimple,
+      };
+    });
+    setCards(Object.assign([], newCards));
   };
 
   const setCardId = (category, cardId) => {

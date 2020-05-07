@@ -132,6 +132,7 @@ export default function NeedHelpOptions() {
 
   async function deleteSimpleCard(id, category) {
     try {
+      debugger;
       toggleIsCardChecked(category);
       toggleCardLoading(category);
       await NecessityService.deleteSimpleNecessity(id);
@@ -146,9 +147,12 @@ export default function NeedHelpOptions() {
 
   async function postSimpleNecessity(category) {
     try {
+      debugger;
       toggleCardLoading(category);
-      await NecessityService.postNecessity(category);
-      setCardChecked(category);
+      const newNecessity = await NecessityService.postNecessity(category);
+      setCardChecked(category, newNecessity[0]._id);
+      debugger;
+      toggleCardLoading(category);
       updateLocation();
       store.helpers = undefined;
     } catch (error) {}
@@ -166,9 +170,10 @@ export default function NeedHelpOptions() {
     setShowModal(!showModal);
   };
 
-  const setCardChecked = (categoryName) => {
+  const setCardChecked = (categoryName, newNecessityId) => {
     const cardIndex = cards.findIndex((x) => x.category === categoryName);
     cards[cardIndex].isChecked = true;
+    cards[cardIndex].items[0]._id = newNecessityId;
     setCards([...cards]);
   };
 
@@ -179,6 +184,7 @@ export default function NeedHelpOptions() {
   };
 
   const toggleCardLoading = (category) => {
+    debugger;
     const index = cards.findIndex((x) => x.category === category);
     cards[index].isLoading = !cards[index].isLoading;
     setCards([...cards]);

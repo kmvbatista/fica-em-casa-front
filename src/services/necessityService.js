@@ -46,12 +46,14 @@ export async function postNecessity(category) {
     ],
   };
   try {
-    await api.post('necessity', dataToSend);
+    const response = await api.post('necessity', dataToSend);
     swal(
       'Necessidade cadastrada com sucesso!',
       'Esperamos que dê tudo certo!',
       'success',
     );
+    debugger;
+    return response.data;
   } catch (error) {
     swal('Houve um erro no cadastro!', 'Tente novamente!', 'error');
     throw error;

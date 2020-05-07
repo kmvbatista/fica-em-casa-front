@@ -231,7 +231,7 @@ export default function Login() {
           </Row>
           <LoaderContainer isLoading={isLoading}>
             <RegisterButton onClick={handleSubmit}>
-              {alreadySent ? 'reenviar' : 'enviar'}
+              {alreadySent ? 'Reenviar' : 'Enviar'}
             </RegisterButton>
           </LoaderContainer>
         </Column>

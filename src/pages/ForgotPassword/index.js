@@ -137,7 +137,6 @@ export default function ForgotPassword() {
       }
     } else {
       if (loginWithPhone) {
-        debugger;
         if (login.length < 6) {
           swal('Por favor, insira um telefone válido', '', 'error');
           return false;

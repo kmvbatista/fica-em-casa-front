@@ -52,7 +52,6 @@ export async function postNecessity(category) {
       'Esperamos que dê tudo certo!',
       'success',
     );
-    debugger;
     return response.data;
   } catch (error) {
     swal('Houve um erro no cadastro!', 'Tente novamente!', 'error');

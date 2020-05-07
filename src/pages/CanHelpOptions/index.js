@@ -77,40 +77,38 @@ export default function NeedHelpOptions() {
     setCards(dataWithLoading);
   };
 
-  const toggleIsCardChecked = (category) => {
+  const setIsCardChecked = (category, id) => {
     const newCards = cards.map((cat) => {
+      if (category !== cat.category) {
+        return Object.assign({}, cat);
+      }
       return {
         category: cat.category,
         items: cat.items,
         imageUrl: cat.imageUrl,
-        isChecked:
-          category === cat.category ? !category.isChecked : category.isChecked,
-        isSimple: cat.isSimple,
+        isChecked: true,
+        id: id || cat.id,
       };
     });
     setCards(Object.assign([], newCards));
   };
 
-  const setCardId = (category, cardId) => {
-    const index = cards.findIndex((x) => x.category === category);
-    cards[index].id = cardId;
-    setCards([...cards]);
-  };
-
   const toggleCardLoading = (category) => {
     const index = cards.findIndex((x) => x.category === category);
+    cards[index].isChecked = false;
     cards[index].isLoading = !cards[index].isLoading;
     setCards([...cards]);
   };
 
   async function postCategoryAssistance(category) {
     try {
+      toggleCardLoading(category);
       const newAssist = await AssistanceService.postAssistance(category);
-      toggleIsCardChecked(category);
-      setCardId(category, newAssist._id);
+      toggleCardLoading(category);
       if (!hasRegisteredOption) {
         updateUserLocation(userLocation).then((x) => setRegisteredOption(true));
       }
+      setIsCardChecked(category, newAssist._id);
       store.needyPeople = undefined;
     } catch (error) {
       swal(
@@ -123,11 +121,11 @@ export default function NeedHelpOptions() {
 
   async function deleteAssist(card) {
     try {
-      toggleIsCardChecked(card.category);
+      toggleCardLoading(card.category);
       await AssistanceService.deleteAssistance(card.id);
+      toggleCardLoading(card.category);
       store.needyPeople = undefined;
     } catch (error) {
-      toggleIsCardChecked(card.category);
       swal(
         'Não foi possível remover a categoria ' + card.category + '!',
         'Por favor, tente novamente',
@@ -137,13 +135,13 @@ export default function NeedHelpOptions() {
   }
 
   async function handleCardClick(card) {
-    toggleCardLoading(card.category);
+    // toggleCardLoading(card.category);
     if (card.isChecked) {
       await deleteAssist(card);
     } else {
       await postCategoryAssistance(card.category);
     }
-    toggleCardLoading(card.category);
+    // toggleCardLoading(card.category);
   }
 
   return (

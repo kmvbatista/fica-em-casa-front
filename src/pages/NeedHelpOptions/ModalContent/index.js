@@ -204,84 +204,84 @@ export default function ModalContent({
           <MainContainer>
             {cardInfo.category === 'Mercado' && 
               <p style={{ marginBottom: '1em' }}>
-              Aqui você pode montar sua lista de compras para +
-              que a outra pessoa saiba exatamente do que você precisa. +
-              É só digitar o nome do produto (e o peso, quando tiver) e +
+              Aqui você pode montar sua lista de compras para
+              que a outra pessoa saiba exatamente do que você precisa.
+              É só digitar o nome do produto (e o peso, quando tiver) e
               selecionar a quantidade, ao lado.
             </p>
             }
             {cardInfo.category === 'Farmácia' && 
               <p style={{ marginBottom: '1em' }}>
-              Precisa de algum remédio ou produto da farmácia? +
+              Precisa de algum remédio ou produto da farmácia?
               Só digitar o nome do remédio/produto e a quantidade, ao lado!
-              IMPORTANTE: No caso de remédios controlados, é necessário disponibilizar+
-               a receita médica.
+              IMPORTANTE: No caso de remédios controlados, é necessário disponibilizar
+              a receita médica.
             </p>
             }
             {cardInfo.category === 'Doações' && 
               <p style={{ marginBottom: '1em' }}>
-              Se sua renda não está sendo suficiente para comprar os mantimentos +
-              necessários, você pode contar com a solidariedade de alguém. Basta +
+              Se sua renda não está sendo suficiente para comprar os mantimentos
+              necessários, você pode contar com a solidariedade de alguém. Basta
               digitar os itens que gostaria de receber como doação.
             </p>
             }
             {cardInfo.category === 'Padaria' && 
               <p style={{ marginBottom: '1em' }}>
-              Pão quentinho? Leite? Frios? "Chega a manteiga derrete". +
-              Só digitar o que precisa da padaria (e o peso, quando tiver) +
+              Pão quentinho? Leite? Frios? "Chega a manteiga derrete".
+              Só digitar o que precisa da padaria (e o peso, quando tiver)
               e selecionar a quantidade logo ao lado.
             </p>
             }
             {cardInfo.category === 'Limpeza' && 
               <p style={{ marginBottom: '1em' }}>
-              Precisa de alguém para ajudar na limpeza da casa ou da lavagem +
+              Precisa de alguém para ajudar na limpeza da casa ou da lavagem
               das roupas, por exemplo? Só especificar aqui o tipo de ajuda.
             </p>
             }
             {cardInfo.category === 'Assistência online' && 
               <p style={{ marginBottom: '1em' }}>
-              Trocar um chuveiro, consertar um vazamento, consertar um computador... +
-              se precisar de alguma ajuda técnica que não possa ser oferecida pelas +
-              empresas de água, luz, telefonia, gás ou internet, é só explicar que +
+              Trocar um chuveiro, consertar um vazamento, consertar um computador...
+              se precisar de alguma ajuda técnica que não possa ser oferecida pelas
+              empresas de água, luz, telefonia, gás ou internet, é só explicar que
               tipo de ajuda você precisa.
             </p>
             }
             {cardInfo.category === 'Leitura' && 
               <p style={{ marginBottom: '1em' }}>
-              Um livro agora cairia bem né? Será que alguém tem algum +
-              para compartilhar? Coloque aqui os estilos/gêneros de +
+              Um livro agora cairia bem né? Será que alguém tem algum
+              para compartilhar? Coloque aqui os estilos/gêneros de
               livros que você gosta.
             </p>
             }
             {cardInfo.category === 'Conselho' && 
               <p style={{ marginBottom: '1em' }}>
-              Conselho bom se dá sim! E mais do que isso: +
-              tá precisando conversar, dar aquela desabafada +
-              ou só uma companhia para socializar um pouco +
+              Conselho bom se dá sim! E mais do que isso:
+              tá precisando conversar, dar aquela desabafada
+              ou só uma companhia para socializar um pouco
               (ainda que virtualmente)? Só mandar um "Oi" aqui.
             </p>
             }
             {cardInfo.category === 'Vídeo aula' && 
               <p style={{ marginBottom: '1em' }}>
-              Quer aproveitar esse tempo em isolamento para +
-              aprender algo novo? Tocar um instrumento, fazer +
-              um artesanato, desenhar, um novo idioma... +
+              Quer aproveitar esse tempo em isolamento para
+              aprender algo novo? Tocar um instrumento, fazer
+              um artesanato, desenhar, um novo idioma...
               Escolha o que você gostaria de aprender.
             </p>
             }
             {cardInfo.category === 'Pet' && 
               <p style={{ marginBottom: '1em' }}>
-              Faz tempo que seu cachorrinho não sai pra dar uma +
-              volta? Tá precisando de um banho? Seu gato precisa +
-              de um arranhador novo? Comida pro pet? Escolha a +
+              Faz tempo que seu cachorrinho não sai pra dar uma
+              volta? Tá precisando de um banho? Seu gato precisa
+              de um arranhador novo? Comida pro pet? Escolha a
               opção desejada e vamos tentar achar alguém para ajudar.
             </p>
             }
             {cardInfo.category === 'Netflix' && 
               <p style={{ marginBottom: '1em' }}>
-              Gostaria de poder assistir algo diferente, aprender +
-              alguma coisa nova em cursos online? Talvez existam +
-              pessoas que adorariam compartilhar o acesso a algumas +
+              Gostaria de poder assistir algo diferente, aprender
+              alguma coisa nova em cursos online? Talvez existam
+              pessoas que adorariam compartilhar o acesso a algumas
               plataformas de educação, filmes, séries e livros com você!
             </p>
             }

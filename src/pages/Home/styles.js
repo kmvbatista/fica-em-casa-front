@@ -33,7 +33,7 @@ export const Box1 = styled.div`
   display: flex;
   flex-direction: column;
   box-sizing: content-box;
-  height: ${(props) => (props.userJustRegistered ? '50vh' : '33vh')};
+  height: ${(props) => (props.userJustRegistered ? '50vh' : '34vh')};
   font-size: 0.8em;
   padding-bottom: 2em;
   background-color: var(--color-pink);
@@ -48,10 +48,10 @@ export const Box1 = styled.div`
 `;
 
 export const Box2 = styled(Box1)`
-  // transform: translate(0, -2em);
+  transform: translate(0, -2em);
   border-radius: 0 2.5em 0 0;
   background-color: var(--color-purple);
-  height: ${(props) => (props.userJustRegistered ? '50vh' : '33vh')};
+  height: ${(props) => (props.userJustRegistered ? '50vh' : '34vh')};
 
   @media only screen and (min-width: 1200px) {
     transform: translate(-2em, 0em);

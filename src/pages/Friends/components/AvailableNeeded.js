@@ -43,6 +43,7 @@ export default function AvailableNeeded({
                 userLocation={userLocation}
                 key={person.userName}
                 person={person}
+                isHelping={false}
               >
                 precisa de ajuda com:
               </PersonCard>

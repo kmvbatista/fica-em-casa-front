@@ -23,6 +23,7 @@ export default function PersonCard({
   backgroundColor,
   children,
   userLocation,
+  isHelping,
 }) {
   const [isExpanded, setIsExpanded] = useState(false);
   const [showModal, setShowModal] = useState(false);
@@ -88,9 +89,29 @@ export default function PersonCard({
               target='_blank'
               rel='noopener noreferrer'
               href={
-                'ontouchstart' in window
-                  ? `https://api.whatsapp.com/send?phone=${person.userPhone}&text=Olá,%20${person.userName}%20vi%20que%20você%20precisa%20de%20ajuda%20pelo%20fica%20em%20casa`
-                  : `https://web.whatsapp.com/send?phone=${person.userPhone}&text=Olá,%20${person.userName}%20vi%20que%20você%20precisa%20de%20ajuda%20pelo%20fica%20em%20casa`
+                isHelping
+                  ? 'ontouchstart' in window
+                    ? `https://api.whatsapp.com/send?phone=${
+                        person.userPhone
+                      }&text=Olá,%20${
+                        person.userName.split(' ')[0]
+                      },%20vi%20pelo%20Fica%20em%20Casa%20que%20voc%C3%AA%20pode%20me%20ajudar.`
+                    : `https://web.whatsapp.com/send?phone=${
+                        person.userPhone
+                      }&text=Olá,%20${
+                        person.userName.split(' ')[0]
+                      },%20vi%20pelo%20Fica%20em%20Casa%20que%20voc%C3%AA%20pode%20me%20ajudar.`
+                  : 'ontouchstart' in window
+                  ? `https://api.whatsapp.com/send?phone=${
+                      person.userPhone
+                    }&text=Olá,%20${
+                      person.userName.split(' ')[0]
+                    },%20vi%20pelo%20Fica%20em%20Casa%20que%20voc%C3%AA%20precisa%20de%20ajuda.`
+                  : `https://web.whatsapp.com/send?phone=${
+                      person.userPhone
+                    }&text=Olá,%20${
+                      person.userName.split(' ')[0]
+                    },%20vi%20pelo%20Fica%20em%20Casa%20que%20voc%C3%AA%20precisa%20de%20ajuda.`
               }
             >
               <img

@@ -45,6 +45,7 @@ export default function AvailableHelpers({
                 person={person}
                 key={person.name}
                 userLocation={userLocation}
+                isHelping={true}
               >
                 pode te ajudar com
               </PersonCard>

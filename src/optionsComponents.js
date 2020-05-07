@@ -147,6 +147,7 @@ export const Title = styled.p`
   font-size: 3.7em;
   font-weight: bold;
   color: white;
+  margin-bottom: 0.5em;
 `;
 
 export const SubTitle = styled.span`

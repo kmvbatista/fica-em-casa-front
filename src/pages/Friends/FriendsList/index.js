@@ -12,10 +12,15 @@ import { getUserLocation } from '../../../services/locationService';
 import swal from 'sweetalert';
 import Store from '../../../services/DefaultContext';
 import Menu from '../../../components/Menu';
+import { useHistory } from 'react-router-dom';
 
 export default function HelpBeHelped() {
+  const history = useHistory();
   const store = useContext(Store);
-  const [isHelping, setIsHelping] = React.useState(false);
+  debugger;
+  const [isHelping, setIsHelping] = React.useState(
+    history.location.state && history.location.state.isHelper,
+  );
   const [needyPeople, setNeedyPeople] = React.useState(store.needyPeople || []);
   const [helpers, setHelpers] = React.useState(store.helpers || []);
   const [needyErrorMessage, setNeedyErrorMsg] = React.useState();

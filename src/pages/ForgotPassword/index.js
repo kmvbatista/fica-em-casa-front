@@ -224,24 +224,28 @@ export default function ForgotPassword() {
           </Column>
           {isChangingPassword && (
             <>
-              <LoginInput
-                placeholder='nova senha'
-                name='password'
-                type='password'
-                required
-                value={inputValues.password}
-                onChange={handleInputChanges}
-                onKeyPress={(e) => e.charCode === 13 && handleSubmit()}
-              ></LoginInput>
-              <LoginInput
-                placeholder='confirmação de nova senha'
-                name='confirmPassword'
-                type='password'
-                required
-                value={inputValues.confirmPassword}
-                onChange={handleInputChanges}
-                onKeyPress={(e) => e.charCode === 13 && handleSubmit()}
-              ></LoginInput>
+              <Row>
+                <LoginInput
+                  placeholder='nova senha'
+                  name='password'
+                  type='password'
+                  required
+                  value={inputValues.password}
+                  onChange={handleInputChanges}
+                  onKeyPress={(e) => e.charCode === 13 && handleSubmit()}
+                ></LoginInput>
+              </Row>
+              <Row>
+                <LoginInput
+                  placeholder='confirmação de nova senha'
+                  name='confirmPassword'
+                  type='password'
+                  required
+                  value={inputValues.confirmPassword}
+                  onChange={handleInputChanges}
+                  onKeyPress={(e) => e.charCode === 13 && handleSubmit()}
+                ></LoginInput>
+              </Row>
             </>
           )}
           <LoaderContainer color={'var(--color-pink)'} isLoading={isLoading}>

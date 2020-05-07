@@ -297,7 +297,7 @@ export default function NeedHelpOptions() {
               ))}
             </Grid>
             <img
-              onClick={() => history.push('friends')}
+              onClick={() => history.push('friends', { isHelper: true })}
               src='./next.svg'
               style={{
                 width: '3.5em',

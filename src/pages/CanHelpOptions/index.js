@@ -211,13 +211,14 @@ export default function NeedHelpOptions() {
               ))}
             </Grid>
             <img
-              onClick={() => history.push('friends')}
+              onClick={() => history.push('friends', { isHelper: false })}
               src='./next.svg'
               style={{
                 width: '3.5em',
                 height: '3.5em',
                 marginBottom: '1em',
                 cursor: 'pointer',
+                margin: '5% 0',
               }}
               alt='ver amigos'
             />

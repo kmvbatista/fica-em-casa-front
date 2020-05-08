@@ -172,9 +172,9 @@ export default function NeedHelpOptions() {
         <TextContainer>
           <Title>Quero ajudar</Title>
           <SubTitle>
-            Escolha as categorias nas quais você pode ajudar.
-            <br />
-            Pode escolher mais de uma opção, tá?
+          É muito importante que você selecione apenas as categorias
+           e subcategorias em que realmente consiga ajudar. 
+           Assim não fica pesado para ninguém. 😉
           </SubTitle>
         </TextContainer>
       )}

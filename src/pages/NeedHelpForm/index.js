@@ -139,7 +139,7 @@ export default function NeedHelpForm() {
               </InputBox>
             </InputBlock>
             <InputBlock>
-              <Question>Faixa Etária?</Question>
+              <Question>Faixa etária?</Question>
               <Select
                 name='childrenAge'
                 id='childrenAge'

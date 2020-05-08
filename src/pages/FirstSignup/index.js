@@ -42,25 +42,25 @@ export default function Login() {
       return;
     }
     swal(
-      `Iremos enviar o código de confirmação para ${
-        hasNoEmail ? 'número \n' + phone : 'o email \n' + email
-      }. Ok?`,
-      hasNoEmail ? 'Esse envio será por sms, confira nas mensagens' : '',
+      `Enviaremos um link de confirmação para ${
+        hasNoEmail ? 'o nº \n' + phone : 'o email \n' + email
+      }, ok?`,
+      '',
       { buttons: ['Agora não', 'Sim'] },
     ).then((accepted) => {
       if (accepted) {
         setIsLoading(true);
         swal({
-          title: 'Aguarde enquanto enviamos o código...',
+          title: 'Aguarde enquanto enviamos o link...',
           content: Loader(),
           buttons: {},
         });
         sendSignupToken(phone, email, hasNoEmail)
           .then((x) => {
             swal(
-              'Código enviado com sucesso!',
-              'Por favor, verifique seu email pra continuarmos com o cadastro',
-              'success',
+              'Link de ativação enviado!',
+              hasNoEmail ? 'Por favor, verifique suas mensagens e clique no link para concluir seu cadastro.' : 'Por favor, verifique seu e-mail e clique no link para concluir seu cadastro.'
+              ,'success',
             );
             setAlreadySent(true);
             setIsLoading(false);
@@ -112,8 +112,8 @@ export default function Login() {
       <Welcome style={{ position: 'relative' }}>
         <Title style={{ color: 'var(--color-white)' }}>Oi, tudo bem?</Title>
         <Subtitle>
-          Sabemos que não muito, né :(<br></br>Mas esse app foi feito justamente
-          para nos ajudarmos nesse momento tão complicado
+          A gente sabe que a situação não é das melhores, mas nosso app 
+          foi feito justamente para nos ajudarmos nesse momento tão complicado! 😉
         </Subtitle>
         <img
           style={{
@@ -137,14 +137,16 @@ export default function Login() {
         ></img>
       </Welcome>
       <InitialForm style={{ justifyContent: 'space-around' }}>
-        <Title>
-          Insira seu email ou telefone para validarmos seu cadastro...
-        </Title>
+        {!alreadySent && (
+          <Title>
+            Insira seu email ou telefone para validarmos seu cadastro...
+          </Title>
+        )}
         <Column>
           {alreadySent && (
             <Title>
               <p style={{ fontSize: '1em' }}>
-                O acesso para prosseguir com o cadastro foi enviado para
+                O link para prosseguir com o cadastro foi enviado para:
               </p>
             </Title>
           )}
@@ -181,7 +183,8 @@ export default function Login() {
                 <TextLink
                   onClick={() => {
                     swal(
-                      'Deseja escolher o telefone como forma de fazer login?',
+                      'Deseja se cadastrar usando seu número de telefone?',
+                      '',
                       { buttons: ['Continuar com email', 'Sim'] },
                     ).then((change) => {
                       if (change) {
@@ -190,7 +193,7 @@ export default function Login() {
                     });
                   }}
                 >
-                  não tenho email
+                  usar n° de telefone
                 </TextLink>
               </Row>
             </Column>

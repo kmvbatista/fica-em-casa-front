@@ -164,7 +164,10 @@ export default function Login() {
                     setHasNoEmail(false);
                   }}
                 >
-                  usar email
+                  {!alreadySent && (
+                    <p>usar email</p>
+                  )}
+                  
                 </TextLink>
               </Row>
             </Column>
@@ -193,7 +196,9 @@ export default function Login() {
                     });
                   }}
                 >
-                  usar n° de telefone
+                  {!alreadySent && (
+                    <p>usar n° de telefone</p>
+                  )}
                 </TextLink>
               </Row>
             </Column>

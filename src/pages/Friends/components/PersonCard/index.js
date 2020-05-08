@@ -157,7 +157,7 @@ export default function PersonCard({
                 fontWeight: '400',
               }}
             >
-              {person.userName} {children}
+              {person.userName.split(' ')[0]} {children}
             </p>
             <CategoriesList
               personName={person.userName}

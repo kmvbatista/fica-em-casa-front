@@ -48,6 +48,7 @@ export default function Profile() {
   async function handleSave() {
     setIsLoading(true);
     try {
+      debugger;
       await api.put('/user', { name, phone, nickname });
       setIsEditted(false);
       setIsLoading(false);
@@ -234,6 +235,7 @@ export default function Profile() {
           <Row>
             <ProfilePhoneInput
               phone={phone}
+              handleEdit={handleEditting}
               setPhone={setPhone}
             ></ProfilePhoneInput>
             <img

@@ -34,6 +34,7 @@ export default function CategoriesList({
                   position: 'relative',
                   display: 'flex',
                   justifyContent: 'center',
+                  alignItems: 'center',
                   height: '3.5em',
                   width: '3.5em',
                   padding: '0',

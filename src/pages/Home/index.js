@@ -105,7 +105,7 @@ export default function ChooseGroup({ children }) {
           <Title>
             <strong>Faço parte do</strong> <br></br>
           </Title>
-          <SubTitle>grupo de risco</SubTitle>
+          <SubTitle>grupo mais vulnerável</SubTitle>
         </TitleContainer>
         <CenteredBox>
           <Image
@@ -138,7 +138,7 @@ export default function ChooseGroup({ children }) {
             <strong>Não faço parte</strong>
             <br></br>
           </Title>
-          <SubTitle>do grupo de risco</SubTitle>
+          <SubTitle>do grupo mais vulnerável</SubTitle>
         </TitleContainer>
         <CenteredBox>
           <div

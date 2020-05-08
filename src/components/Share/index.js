@@ -107,7 +107,11 @@ export default function Share() {
             </ShareLink>
             <ShareLink
               target='_blank'
-              href='https://web.whatsapp.com/send?text=Oi%2C%20conhece%20algu%C3%A9m%20que%20precisa%20de%20ajuda%20ou%20pode%20ajudar%20nessa%20quarentena%3F%20Olha%20esse%20app%20que%20legal%3A%0Dficaemcasaapp.com.br'
+              href={
+                'ontouchstart' in window
+                  ? 'https://api.whatsapp.com/send?text=Oi%2C%20conhece%20algu%C3%A9m%20que%20precisa%20de%20ajuda%20ou%20pode%20ajudar%20nessa%20quarentena%3F%20Olha%20esse%20app%20que%20legal%3A%0Dficaemcasaapp.com.br'
+                  : 'https://web.whatsapp.com/send?text=Oi%2C%20conhece%20algu%C3%A9m%20que%20precisa%20de%20ajuda%20ou%20pode%20ajudar%20nessa%20quarentena%3F%20Olha%20esse%20app%20que%20legal%3A%0Dficaemcasaapp.com.br'
+              }
               data-action='share/whatsapp/share'
             >
               <IconContainer>

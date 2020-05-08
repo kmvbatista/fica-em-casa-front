@@ -253,9 +253,9 @@ export default function NeedHelpOptions() {
         <TextContainer>
           <Title>Preciso de ajuda</Title>
           <SubTitle>
-          É muito importante que você descreva sua necessidade 
-          quando escolher a categoria, assim fica mais fácil encontrar 
-          quem pode te ajudar! Ah, e você pode escolher mais de uma opção, ta? 😀
+            Descreva sua necessidade quando escolher a categoria, assim fica
+            mais fácil encontrar quem pode te ajudar! Ah, e você pode escolher
+            mais de uma opção, ta? 😀
           </SubTitle>
         </TextContainer>
       )}

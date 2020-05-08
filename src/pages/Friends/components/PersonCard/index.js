@@ -166,7 +166,7 @@ export default function PersonCard({
               necessities={necessities}
               helperCategories={person.categoriesToHelp}
             ></CategoriesList>
-            {person.coordinates.latitude && userLocation && (
+            {/* {person.coordinates.latitude && userLocation && (
               <GoToMapsButtonn>
                 <GoToMapsIcon src='./location.svg'></GoToMapsIcon>
                 <a
@@ -184,7 +184,7 @@ export default function PersonCard({
                   Traçar mapa usando o Google Maps
                 </a>
               </GoToMapsButtonn>
-            )}
+            )} */}
           </CollapsibleCard>
         </Collapse>
       </Column>

@@ -156,4 +156,5 @@ export const SubTitle = styled.span`
   color: white;
   padding-top: 2em;
   text-align: left;
+  margin-bottom: 0.15em;
 `;

@@ -84,7 +84,7 @@ export default function UseTerm() {
           Este site/aplicativo estará em contínuo desenvolvimento, podendo
           conter erros e, portanto, o uso é fornecido “no estado em que se
           encontra” sob risco do usuário final. Na extensão máxima permitida
-          pela legislação aplicável, a “Fica em casa”, seus idealizadores e
+          pela legislação aplicável, a “Fica em Casa”, seus idealizadores e
           colaboradores isentam-se de quaisquer garantias e condições expressas
           ou implícitas incluindo, sem limitação, garantias de comercialização,
           adequação a um propósito específico, titularidade e não violação no

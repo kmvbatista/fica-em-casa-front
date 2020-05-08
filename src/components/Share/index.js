@@ -30,7 +30,7 @@ export default function Share() {
             <strong style={{ fontSize: '2em' }}>Gostou?</strong>
             <p>
               Compartilhe essa ideia nas redes sociais e quem sabe, com o apoio
-              do Fica em casa, logo logo estaremos assim, todos juntos
+              do Fica em Casa, logo logo estaremos assim, todos juntos
               <br />
               <strong>até fisicamente.</strong>
             </p>

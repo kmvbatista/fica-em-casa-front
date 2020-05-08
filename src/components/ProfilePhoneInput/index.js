@@ -14,7 +14,6 @@ export default function ProfilePhoneInput({ phone, setPhone, handleEdit }) {
         onChange={(e) => {
           handleEdit();
           setPhoneToShow(e.target.value);
-          debugger;
           setPhone(ddi + e.target.value);
         }}
         placeholder='telefone com DDD'

@@ -48,7 +48,6 @@ export default function Profile() {
   async function handleSave() {
     setIsLoading(true);
     try {
-      debugger;
       await api.put('/user', { name, phone, nickname });
       setIsEditted(false);
       setIsLoading(false);

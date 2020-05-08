@@ -17,7 +17,6 @@ import { useHistory } from 'react-router-dom';
 export default function HelpBeHelped() {
   const history = useHistory();
   const store = useContext(Store);
-  debugger;
   const [isHelping, setIsHelping] = React.useState(
     history.location.state && history.location.state.isHelper,
   );

@@ -193,7 +193,7 @@ export default function SignIn() {
           loaderColor={'var(--color-pink)'}
           onClick={handleSubmit}
         >
-          Cadastrar-se
+          Concluir
         </ButtonWithLoading>
       </InitialForm>
     </Container>

@@ -60,7 +60,7 @@ export const Box2 = styled(Box1)`
 `;
 
 export const Box3 = styled(Box1)`
-  /* transform: translate(0, -4em); */
+  transform: translate(0, -4em);
   background-color: var(--color-green);
   height: 33vh;
   padding-bottom: 0em;

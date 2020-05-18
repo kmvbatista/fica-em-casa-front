@@ -36,10 +36,6 @@ export default function ModalContent({
       });
       closeModal();
       setLoading(false);
-      swal({
-        content: Share(),
-        buttons: {},
-      });
       turnCategoryPending(necessity.category);
     } catch (error) {
       closeModal();

@@ -47,7 +47,7 @@ export default function AvailableHelpers({
                 userLocation={userLocation}
                 isHelping={true}
               >
-                pode te ajudar com
+                {person.userName.split(' ')[0]} pode te ajudar com
               </PersonCard>
             ))}
           </Grid>

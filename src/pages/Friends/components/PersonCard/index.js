@@ -7,26 +7,24 @@ import {
   PersonName,
   ContactIcon,
   CollapsibleCard,
-  GoToMapsButtonn,
-  GoToMapsIcon,
+  ContactContainer,
 } from './styles';
 
 import { Column, Row } from '../../../../globalComponents';
-import Collapse from 'react-expand-animated';
-import ArrowButton from './ArrowButton/arrowButton';
 import ModalContent from './ModalContent';
 import Modal from '../../../../components/Modal';
 import CategoriesList from './CategoriesList';
+import swal from 'sweetalert';
+import Share from '../../../../components/Share';
 
 export default function PersonCard({
   person,
   backgroundColor,
   children,
-  userLocation,
   isHelping,
 }) {
-  const [isExpanded, setIsExpanded] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const [showContacts, setShowContacts] = useState(isHelping);
   const [necessity, setNecessity] = useState();
 
   let [necessities, setNecessities] = useState(person.necessities);
@@ -39,6 +37,7 @@ export default function PersonCard({
     const index = necessities.findIndex((x) => x.category === category);
     necessities[index].status = 'pending';
     setNecessities([...necessities]);
+    setShowContacts(true);
   }
 
   const getModal = () => {
@@ -60,12 +59,7 @@ export default function PersonCard({
       <Column>
         <PeopleCard
           key={person.userName}
-          style={
-            !isExpanded
-              ? { borderRadius: '10px', backgroundColor: backgroundColor }
-              : { backgroundColor: backgroundColor }
-          }
-          onClick={() => setIsExpanded(!isExpanded)}
+          style={{ backgroundColor: backgroundColor }}
         >
           <PersonAvatar
             style={{
@@ -84,87 +78,88 @@ export default function PersonCard({
               <Distance>{person.distance}km perto de você</Distance>
             )}
           </Column>
-          <ContactIcon>
-            <a
-              target='_blank'
-              rel='noopener noreferrer'
-              href={
-                isHelping
-                  ? 'ontouchstart' in window
-                    ? `https://api.whatsapp.com/send?phone=${
-                        person.userPhone
-                      }&text=Olá,%20${
+          <ContactContainer style={!showContacts ? { opacity: 0 } : {}}>
+            <ContactIcon
+              onClick={() =>
+                swal({
+                  content: Share(),
+                  buttons: {},
+                })
+              }
+            >
+              <a
+                target='_blank'
+                rel='noopener noreferrer'
+                href={
+                  isHelping
+                    ? 'ontouchstart' in window
+                      ? `https://wa.me/${person.userPhone}?text=Olá,%20${
+                          person.userName.split(' ')[0]
+                        },%20vi%20pelo%20Fica%20em%20Casa%20que%20voc%C3%AA%pode%20me%20ajudar.`
+                      : `https://web.whatsapp.com/send?phone=${
+                          person.userPhone
+                        }&text=Olá,%20${
+                          person.userName.split(' ')[0]
+                        },%20vi%20pelo%20Fica%20em%20Casa%20que%20voc%C3%AA%20pode%20me%20ajudar.`
+                    : 'ontouchstart' in window
+                    ? `https://wa.me/${person.userPhone}?text=Olá,%20${
                         person.userName.split(' ')[0]
-                      },%20vi%20pelo%20Fica%20em%20Casa%20que%20voc%C3%AA%20pode%20me%20ajudar.`
+                      },%20vi%20pelo%20Fica%20em%20Casa%20que%20voc%C3%AA%20precisa%20de%20ajuda.`
                     : `https://web.whatsapp.com/send?phone=${
                         person.userPhone
                       }&text=Olá,%20${
                         person.userName.split(' ')[0]
-                      },%20vi%20pelo%20Fica%20em%20Casa%20que%20voc%C3%AA%20pode%20me%20ajudar.`
-                  : 'ontouchstart' in window
-                  ? `https://wa.me/${person.userPhone}?text=Olá,%20${
-                      person.userName.split(' ')[0]
-                    },%20vi%20pelo%20Fica%20em%20Casa%20que%20voc%C3%AA%20precisa%20de%20ajuda.`
-                  : `https://web.whatsapp.com/send?phone=${
-                      person.userPhone
-                    }&text=Olá,%20${
-                      person.userName.split(' ')[0]
-                    },%20vi%20pelo%20Fica%20em%20Casa%20que%20voc%C3%AA%20precisa%20de%20ajuda.`
-              }
-            >
-              <img
-                src='./whatsapp.svg'
-                alt='whatsapp icon'
-                style={{
-                  width: '1.7em',
-                  height: '1.7em',
-                  borderRadius: 'inherit',
-                }}
-              />
-            </a>
-          </ContactIcon>
-          <ContactIcon>
-            <a href={`tel:${person.userPhone}`}>
-              <img
-                src='./phone.svg'
-                alt='whatsapp icon'
-                style={{
-                  width: '1.7em',
-                  height: '1.7em',
-                  borderRadius: 'inherit',
-                }}
-              />
-            </a>
-          </ContactIcon>
-          <div onClick={() => setIsExpanded(!isExpanded)}>
-            <ArrowButton isExpanded={isExpanded}></ArrowButton>
-          </div>
+                      },%20vi%20pelo%20Fica%20em%20Casa%20que%20voc%C3%AA%20precisa%20de%20ajuda.`
+                }
+              >
+                <img
+                  src='./whatsapp.svg'
+                  alt='whatsapp icon'
+                  style={{
+                    width: '1.7em',
+                    height: '1.7em',
+                    borderRadius: 'inherit',
+                  }}
+                />
+              </a>
+            </ContactIcon>
+            <ContactIcon>
+              <a href={`tel:${person.userPhone}`}>
+                <img
+                  src='./phone.svg'
+                  alt='whatsapp icon'
+                  style={{
+                    width: '1.7em',
+                    height: '1.7em',
+                    borderRadius: 'inherit',
+                  }}
+                />
+              </a>
+            </ContactIcon>
+          </ContactContainer>
         </PeopleCard>
-        <Collapse
-          open={isExpanded}
-          duration={300}
-          transitions={['height', 'opacity', 'background']}
+        <CollapsibleCard
+          style={{ backgroundColor: backgroundColor, marginTop: '1px' }}
         >
-          <CollapsibleCard
-            style={{ backgroundColor: backgroundColor, marginTop: '1px' }}
+          <p
+            style={{
+              fontSize: '1.7em',
+              color: 'var(--color-grey-dark1)',
+              fontWeight: '400',
+              marginBottom: '5px',
+            }}
           >
-            <p
-              style={{
-                fontSize: '1.7em',
-                color: 'var(--color-grey-dark1)',
-                fontWeight: '400',
-              }}
-            >
-              {person.userName.split(' ')[0]} {children}
-            </p>
-            <CategoriesList
-              personName={person.userName}
-              setNecessity={setNecessity}
-              toggleShowModal={toggleShowModal}
-              necessities={necessities}
-              helperCategories={person.categoriesToHelp}
-            ></CategoriesList>
-            {/* {person.coordinates.latitude && userLocation && (
+            {children}
+          </p>
+          <CategoriesList
+            personName={person.userName}
+            setNecessity={setNecessity}
+            toggleShowModal={toggleShowModal}
+            necessities={necessities}
+            helperCategories={person.categoriesToHelp}
+            setShowContacts={setShowContacts}
+          ></CategoriesList>
+          {/* {person.coordinates.latitude && userLocation && (
               <GoToMapsButtonn>
                 <GoToMapsIcon src='./location.svg'></GoToMapsIcon>
                 <a
@@ -183,8 +178,7 @@ export default function PersonCard({
                 </a>
               </GoToMapsButtonn>
             )} */}
-          </CollapsibleCard>
-        </Collapse>
+        </CollapsibleCard>
       </Column>
       {showModal && getModal()}
     </>

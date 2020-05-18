@@ -45,7 +45,7 @@ export default function AvailableNeeded({
                 person={person}
                 isHelping={false}
               >
-                precisa de ajuda com:
+                Selecione itens para ajudar o {person.userName.split(' ')[0]}
               </PersonCard>
             ))}
           </Grid>

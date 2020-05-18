@@ -1,23 +1,31 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+import { Row } from '../../../../globalComponents';
+
+export const paddingDefault = css`
+  padding: 1em 1em;
+  @media only screen and (min-width: 600px) {
+    padding: 1em 3em;
+  }
+`;
 
 export const PeopleCard = styled.div`
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   background-color: #f9b0c336;
   color: white;
   font-weight: 200;
   align-items: center;
-  padding: 0.7em 0;
   border-radius: 10px 10px 0 0;
   position: relative;
+  ${paddingDefault}
 `;
 
 export const CollapsibleCard = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 1em 3em;
   background-color: #f9b0c336;
   border-radius: 0 0 10px 10px;
+  ${paddingDefault}
 `;
 
 export const PersonAvatar = styled.div`
@@ -87,4 +95,9 @@ export const Grid = styled.div`
   @media only screen and (min-width: 600px) {
     grid-template-columns: repeat(2, 47.5%);
   }
+`;
+
+export const ContactContainer = styled(Row)`
+  width: 25%;
+  justify-content: space-between;
 `;

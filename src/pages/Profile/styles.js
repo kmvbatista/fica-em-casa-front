@@ -36,9 +36,8 @@ export const MainContainer = styled.div`
   justify-content: space-around;
   @media only screen and (min-width: 600px) {
     padding: 6em;
-
     width: calc(60% + 20px);
-    border-radius: 20px 5px 5px 0;
+    border-radius: 20px 0 0 0;
     overflow: hidden;
     height: 100vh;
   }

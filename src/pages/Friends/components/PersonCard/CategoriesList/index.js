@@ -58,7 +58,17 @@ export default function CategoriesList({
         <Row style={{ margin: '.8em 0, ', flexWrap: 'wrap' }}>
           {helperCategories.map((it) => (
             <div>
-              <HelpOptionCard>
+              <HelpOptionCard
+                style={{
+                  position: 'relative',
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  height: '3.5em',
+                  width: '3.5em',
+                  padding: '0',
+                }}
+              >
                 <img
                   src={`./${it}.svg`}
                   alt={it}

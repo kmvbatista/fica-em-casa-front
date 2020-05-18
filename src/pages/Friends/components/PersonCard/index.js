@@ -102,9 +102,7 @@ export default function PersonCard({
                         person.userName.split(' ')[0]
                       },%20vi%20pelo%20Fica%20em%20Casa%20que%20voc%C3%AA%20pode%20me%20ajudar.`
                   : 'ontouchstart' in window
-                  ? `https://api.whatsapp.com/send?phone=${
-                      person.userPhone
-                    }&text=Olá,%20${
+                  ? `https://wa.me/${person.userPhone}?text=Olá,%20${
                       person.userName.split(' ')[0]
                     },%20vi%20pelo%20Fica%20em%20Casa%20que%20voc%C3%AA%20precisa%20de%20ajuda.`
                   : `https://web.whatsapp.com/send?phone=${

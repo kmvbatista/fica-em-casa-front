@@ -18,7 +18,6 @@ export const ProfilePhotoContainer = styled.div`
   top: 0;
   width: 100%;
   @media only screen and (min-width: 600px) {
-    border-radius: 5px 0 0 5px;
     height: 100vh;
     left: 0;
     width: 40vw;

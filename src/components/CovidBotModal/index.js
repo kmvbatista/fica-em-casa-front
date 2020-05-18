@@ -58,10 +58,10 @@ export default function CovidBotModal() {
               : `https://web.whatsapp.com/send?phone=+552199066-0621&text=Olá,%20CovidBot!`
           }
         >
-          <strong style={{ fontSize: '.9em' }}>Realizar uma entrevista</strong>
+          <strong style={{ fontSize: '.7em' }}>Realizar uma entrevista</strong>
           <img
             src='./whiteWhatsapp.svg'
-            style={{ marginLeft: '1em', width: '1.5em', height: '1.5em' }}
+            style={{ marginLeft: '1em', width: '1em', height: '1em' }}
             alt='Conversar com CovidBot'
           />
         </WhatsContainer>

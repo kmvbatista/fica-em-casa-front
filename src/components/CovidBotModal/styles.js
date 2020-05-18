@@ -35,14 +35,14 @@ export const WhatsContainer = styled.a`
 `;
 
 export const Title = styled.strong`
-  font-size: 1.8em;
+  font-size: 1.5em;
   width: 90%;
   margin-bottom: 1em;
 `;
 
 export const SubTitle = styled.p`
   font-weight: 400;
-  font-size: 1.3em;
+  font-size: 1.1em;
   width: 95%;
 `;
 
@@ -51,6 +51,6 @@ export const CloseButton = styled.img`
   height: 2em;
   cursor: pointer;
   position: absolute;
-  right: 10px;
-  top: 10px;
+  right: 5px;
+  top: 5px;
 `;

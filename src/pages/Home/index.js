@@ -19,6 +19,7 @@ import { updateNecessitiesStatus } from '../../services/necessityService';
 import PendingNecessities from '../../components/PendingNecessities';
 import Loader from '../../components/Loader';
 import Store from '../../services/DefaultContext';
+import CovidBotModal from '../../components/CovidBotModal';
 
 export default function ChooseGroup({ children }) {
   const history = useHistory();
@@ -60,7 +61,11 @@ export default function ChooseGroup({ children }) {
             updateNecessitiesStatus(necessitiesToComplete, 'done');
           });
         } else {
-          swal.close();
+          swal({
+            content: CovidBotModal(),
+            buttons: {},
+            className: 'modal',
+          });
         }
       }
     } catch (error) {

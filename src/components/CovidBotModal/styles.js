@@ -18,7 +18,8 @@ export const SecondContainer = styled(Column)`
   padding: 2em;
   border-radius: 20px;
 `;
-export const WhatsContainer = styled(Row)`
+export const WhatsContainer = styled.a`
+  display: flex;
   border-radius: 20px 20px 0 0;
   background-color: var(--color-purple);
   height: 13%;
@@ -29,6 +30,8 @@ export const WhatsContainer = styled(Row)`
   align-items: center;
   cursor: pointer;
   border-radius: 20px;
+  text-decoration: none;
+  color: white;
 `;
 
 export const Title = styled.strong`

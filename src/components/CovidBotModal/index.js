@@ -49,11 +49,19 @@ export default function CovidBotModal() {
             Whatsapp.
           </SubTitle>
         </SecondContainer>
-        <WhatsContainer>
-          <strong style={{ fontSize: '1.3em' }}>Realizar uma entrevista</strong>
+        <WhatsContainer
+          target='_blank'
+          rel='noopener noreferrer'
+          href={
+            'ontouchstart' in window
+              ? `https://wa.me/+552199066-0621?text=Olá,%20CovidBot!.`
+              : `https://web.whatsapp.com/send?phone=+552199066-0621&text=Olá,%20CovidBot!`
+          }
+        >
+          <strong style={{ fontSize: '.9em' }}>Realizar uma entrevista</strong>
           <img
             src='./whiteWhatsapp.svg'
-            style={{ marginLeft: '1em', width: '2em', height: '2em' }}
+            style={{ marginLeft: '1em', width: '1.5em', height: '1.5em' }}
             alt='Conversar com CovidBot'
           />
         </WhatsContainer>
